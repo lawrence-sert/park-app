@@ -1,0 +1,35 @@
+{
+  "__collections__": {
+   "projects": {
+      
+ "1" : {
+   "id": "1",
+   "title": "Project 1",
+   "Category": "Farming",
+   "image": "project1.png",
+   "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+   "Date": "August 2021",
+   "location" : "Kigali"
+ },
+ "2" : {
+   "id": "2",
+   "title": "Project 2",
+   "Category": "Farming",
+   "image": "project2.png",
+   "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+   "Date": "January 2021",
+   "location" : "Kicikiro"
+ },
+ "3" : {
+   "id": "3",
+   "title": "Project 1",
+   "Category": "Vendor Training",
+   "image": "project3.png",
+   "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+   "Date": "June 2021",
+   "location" : "Rebero"
+ }
+
+}
+}
+}

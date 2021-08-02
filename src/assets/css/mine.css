@@ -1,0 +1,9 @@
+.no-items {
+	padding: 20px;
+	height: 150px;
+	background: rgba(222, 50, 58, 0.3);
+}
+
+.dashed {
+	border-bottom: 1px dashed #ccc;
+}
