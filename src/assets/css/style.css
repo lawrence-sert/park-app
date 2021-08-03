@@ -2069,7 +2069,6 @@ fieldset[disabled] .s-btn {
   width: 70%;
   height: auto;
   z-index: -1;
-  background: url("../img/widgets/worldmap.png") no-repeat center center;
   background-size: cover;
   content: " ";
 }

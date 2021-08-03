@@ -24,3 +24,86 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+
+* {
+  font-family: Gilroy;
+}
+
+.profile-logo-img {
+	border: 2px solid #fff;
+	margin: 0 auto;
+	padding: 3px;
+	width: 100px;
+}
+
+.profile-user-img-main {
+	border: 2px solid #812B89;
+	margin: 0 auto;
+	padding: 5px;
+	width: 100px;
+}
+
+.small-user-img {
+	border: 1px solid #fff;
+	margin: 0 auto;
+	padding: 3px;
+	width: 30px;
+}
+
+.medium-user-img {
+	border: 1px solid #812B89;
+	margin: 0 auto;
+	padding: 3px;
+	width: 100px;
+}
+
+
+
+.img-circle {
+  border-radius: 50%;
+}
+
+
+.header-color {
+	--background: #812B89;
+	color : #fff;
+}
+
+.result-card {
+	height : 100px;
+	text-align: center;
+	font-size: 36px;
+	color : #812B89;
+}
+
+.center {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.my_label {
+	color : #812B89;
+}
+
+.cal-modal {
+    --height: 80%;
+    --border-radius: 10px;
+    padding: 25px;
+}
+
+.button-at-bottom {
+	position: absolute;
+    bottom: 2px;
+    width: 98%;
+}
+
+.dashed {
+	border-bottom : 1px dashed #fff;
+}
+
+.lined {
+	border-bottom : 1px solid #812B89;
+}

@@ -1,9 +1,80 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>sign-in</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content>
 
+  <div class="top g-padding-y-60--xs">
+    <div class="profile-logo-img img-circle logo" >
+      <img src="assets/img/logo.png" class="img-flud" />
+    </div>
+  </div>
+
+
+  <ion-row>
+    <ion-col>
+      <h1 class="g-font-size-22--xs g-text-center--xs  g-text-color--white g-letter-spacing--1">SIGN IN</h1>
+    </ion-col>
+  </ion-row>
+
+
+  <div class="form_body">
+    <form>
+      <ion-grid class="bordered">
+        <ion-row>
+          <ion-col class="ion-align-self-start g-font-height-18--xs" size="1">
+            <i class="far fa-user g-font-size-18--xs g-text-color--white"></i>
+          </ion-col>
+          <ion-col class="dashed" size="11">
+            <ion-input type="text" placeholder="Email Address" #userName required></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="bordered">
+        <ion-row>
+          <ion-col class="ion-align-self-start g-font-height-18--xs" size="1">
+            <i class="fas fa-lock-open g-font-size-18--xs g-text-color--white"></i>
+          </ion-col>
+          <ion-col class="dashed" size="11">
+            <ion-input type="password" placeholder="Password" #userPassword required></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+        <ion-row class="g-padding-y-30--xs">
+          <ion-col class="g-text-center--xs">
+          </ion-col>
+          <ion-col class="g-text-center--xs">
+            <a [routerLink]="['/forgot-password']" class="g-font-size-13--xs g-text-color--white">Forgot Password?</a>
+          </ion-col>
+        </ion-row>
+
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" color="secondary" value="Sign in" (click)="ngAuthService.SignIn(userName.value, userPassword.value)">
+            <span class="g-color--primary">SIGN IN</span>
+          </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+
+            <p class="g-text-center--xs">Dont have an account ? <a [routerLink]="['/sign-up']" class="g-font-size-13--xs g-text-color--white">Sign Up</a></p>
+            
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+      
+
+    </form>
+  </div>
 </ion-content>
+
