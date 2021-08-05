@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "src/app/model/user";
+import User from 'src/app/model/user.model';
 import  auth  from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AuthService {
   userData: any; // Save logged in user data
   userInfo: any; // Save logged in user data
+  userState: any;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -41,11 +42,12 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
+          this.toastr.success(email, 'Welcome Back');
           this.router.navigate(['/dashboard']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.warning(error.message, 'Something Wrong');
       })
   }
 
@@ -58,14 +60,14 @@ export class AuthService {
         this.SendVerificationMail();
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.warning(error.message, 'Sorry');
       })
   }
 
   SendVerificationMail() {
     return this.afAuth.currentUser.then(u => u?.sendEmailVerification())
     .then(() => {
-      this.router.navigate(['/verify']);
+      this.router.navigate(['/verify-email']);
     })
   } 
 
@@ -108,7 +110,8 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      firstrun : '0',
     }
     return userRef.set(userData, {
       merge: true

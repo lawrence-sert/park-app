@@ -1,9 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>sign-up</ion-title>
-  </ion-toolbar>
+<ion-header class="header-color ion-no-border" >
+	<ion-toolbar>
+		<div class="g-padding-y-30--xs">
+			<div class="profile-logo-img img-circle logo" >
+				<img src="assets/img/logo.png" class="img-flud" />
+			</div>
+			<h1 class="g-font-size-22--xs g-text-center--xs  g-text-color--white g-letter-spacing--1">Login To Continue</h1>
+		</div>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
+	<div class="form_body">
+		<form class="center-block g-bg-color--white-opacity-lightest">
+			<div class="formGroup g-margin-b-30--xs">
+				<input type="email" class="form-control s-form-v3__input g-radius--10" placeholder="Email Address" #userEmail required>
+			</div>
+			<div class="formGroup g-margin-b-30--xs">
+				<input type="password" class="form-control s-form-v3__input g-radius--10" placeholder="Password" #userPwd required>
+			</div>
+			<div class="formGroup g-text-center--xs">
+				<button type="submit" class="text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">Sign Up</button>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<a class="g-color--primary g-font-size-14--xs" routerLink="/forgot-password">Forgot Password?</a>
+				</div>
+			</div>
+
+			<hr>
+
+			<div class="row">
+				<div class="col-md-8 col-sm-8 col-xs-8">
+					<h2 class="g-font-size-18--xs g-color--white">Already A Patron?</h2>
+					<p class="g-font-size-12--xs g-color--white">We happy to see you back. Please</p>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-4">
+					<button routerLink="/sign-in" class="btn-block s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+					>Sign In</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
 </ion-content>

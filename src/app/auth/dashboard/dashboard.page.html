@@ -1,7 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dashboard</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="header-color">
+
+		<ion-buttons slot="start" class="g-padding-l-20--xs g-font-size-18--xs">
+			<i class="fas fa-store"></i>
+		</ion-buttons>
+
+		<ion-title class="ion-text-center">
+			Vegetable Market
+		</ion-title>
+
+		<ion-buttons slot="end">
+			<ion-button>
+				<img class="profile-user-img-main img-flud img-circle g-padding-r-20--xs"
+				src="assets/img/director2.png"
+				alt="{{photoURL}}">
+			</ion-button>
+		</ion-buttons>
+
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
