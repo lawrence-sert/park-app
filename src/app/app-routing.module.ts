@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: 'create-basket',
     loadChildren: () => import('./client/pages/create-basket/create-basket.module').then( m => m.CreateBasketPageModule)
+  },  {
+    path: 'market',
+    loadChildren: () => import('./client/pages/market/market.module').then( m => m.MarketPageModule)
   }
+
 ];
 
 @NgModule({
