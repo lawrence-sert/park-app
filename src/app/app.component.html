@@ -8,18 +8,33 @@
               <i class="g-padding-r-5--xs ti-settings g-font-size-22--xs g-color--primary"></i>
             </ion-col>
             <ion-col size="10">
-              <span class="pull-right">
+              <span class="pull-right icon-circle g-text-center--xs" *ngIf="userRef.accountType ==='farmer'">
                 <i class="fas fa-tractor"></i>
-                Farmer
+              </span>
+              <span class="pull-right icon-circle g-text-center--xs" *ngIf="userRef.accountType ==='vendor'">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="pull-right icon-circle g-text-center--xs" *ngIf="userRef.accountType ==='customer'">
+                <i class="fas fa-user"></i>
               </span>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col class="g-text-center--xs">
-              <img src="assets/img/director2.png" class="menu-profile-img img-flud img-circle" />
-              <h1 class="g-font-size-14--xs g-text-center--xs g-margin-t-10--xs">Lawrence Gumbo</h1>
-              <p><i class="fas fa-map-marker-alt"></i> Kigali</p>
+              <span *ngIf="userRef.accountType ==='farmer'">
+                <img src="assets/img/farmer.png" class="menu-profile-img img-flud img-circle" />
+              </span>
+
+              <span *ngIf="userRef.accountType ==='vendor'">
+                <img src="assets/img/vendor.png" class="menu-profile-img img-flud img-circle" />
+              </span>
+
+              <span *ngIf="userRef.accountType ==='customer'">
+                <img src="assets/img/customer.png" class="menu-profile-img img-flud img-circle" />
+              </span>
+
+              <h1 class="g-font-size-16--xs g-text-center--xs g-margin-t-10--xs">{{displayName}}</h1>
             </ion-col>
           </ion-row>
         </div>
@@ -27,84 +42,23 @@
 
         <div class="mid">
 
-          <div class="mid-first">
-
-            <ion-card class="g-bg-color--white">
-              <ion-card-content>
-                <ion-row>
-                  <ion-col size="1" class="g-text-center--xs">
-                    <i class="ti-settings g-font-size-18--xs g-color--primary"></i>
-                  </ion-col>
-                  <ion-col size="10" class="g-text-center--xs">
-                    <h3 class="g-font-size-16--xs g-color--primary">Account Settings</h3>
-                  </ion-col>
-                  <ion-col size="1" class="g-text-center--xs">
-                    <i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
-                  </ion-col>
-                </ion-row>
-              </ion-card-content>
-            </ion-card>
-
-            <ion-card class="g-bg-color--white">
-              <ion-card-content>
-                <ion-row>
-                  <ion-col size="1" class="g-text-center--xs">
-                    <i class="ti-settings g-font-size-18--xs g-color--primary"></i>
-                  </ion-col>
-                  <ion-col size="10" class="g-text-center--xs">
-                    <h3 class="g-font-size-16--xs g-color--primary">Account Settings</h3>
-                  </ion-col>
-                  <ion-col size="1" class="g-text-center--xs">
-                    <i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
-                  </ion-col>
-                </ion-row>
-              </ion-card-content>
-            </ion-card>
-
+          <div *ngIf="userRef.accountType ==='customer'">
+            <app-user-menu></app-user-menu>
           </div>
 
-          <div class="mid-second">
-            <ion-row class="menu-header">
-              <ion-col>
-               <i class="far fa-bell g-font-size-16--xs g-color--white"></i> 
-               <span class="g-font-size-14--xs g-color--white">Notifications</span>
-               <span class="g-font-size-14--xs g-color--white pull-right">12</span>
-             </ion-col>
-
-             <ion-col>
-              <span class="pull-right">
-                <button type="button" class="btn btn-block btn-secondary btn-xs">Clear</button>
-              </span>
-            </ion-col>
-
-          </ion-row>
-
-          <ion-item button (click)="testClick()">
-            <ion-thumbnail slot="start" class="menu-notification-img img-flud img-circle">
-              <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-            </ion-thumbnail>
-            <ion-label class="g-padding-l-20--xs">
-              <h3>H3 Title Text</h3>
-              <p>Icon on right</p>
-            </ion-label>
-            <ion-icon name="close-circle" slot="end"></ion-icon>
-          </ion-item>
-
+          
 
         </div>
 
-      </div>
 
+        <div class="bot">
+          <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+          >Log Out</button>
+        </div>
 
-      <div class="bot">
-        <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-        >Log Out</button>
-      </div>
+      </ion-content>
+    </ion-menu>
 
-    </ion-content>
-  </ion-menu>
-
-
-  <ion-router-outlet id="main-content"></ion-router-outlet>
-</ion-split-pane>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

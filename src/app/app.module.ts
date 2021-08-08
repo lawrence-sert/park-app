@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -22,8 +23,11 @@ import { environment } from '../environments/environment';
 
 import { AuthService } from "src/app/services/auth.service";
 
+import { UserMenuComponent } from 'src/app/components/user-menu/user-menu.component';
+
+
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, UserMenuComponent],
 	entryComponents: [],
 	imports: [
 		BrowserModule, 
@@ -38,6 +42,7 @@ import { AuthService } from "src/app/services/auth.service";
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireDatabaseModule,
 		AngularFireAuthModule,
+
 	],
 	providers: [
 		AuthService,

@@ -44,6 +44,10 @@ const routes: Routes = [
     path: 'info',
     loadChildren: () => import('./auth/info/info.module').then( m => m.InfoPageModule)
   },
+  {
+    path: 'create-basket',
+    loadChildren: () => import('./client/pages/create-basket/create-basket.module').then( m => m.CreateBasketPageModule)
+  }
 ];
 
 @NgModule({

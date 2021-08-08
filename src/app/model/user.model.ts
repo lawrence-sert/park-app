@@ -1,7 +1,7 @@
 export default class User {
   uid?: string;
   firstname?: string;
-  surname?: string;
+  lastname?: string;
   displayName?: string;
   email?: string;
   phone?: string;
@@ -10,7 +10,7 @@ export default class User {
   nationality?: string;
   emailVerified?: boolean;
   photoURL?: string;
-  diabetesType?: number;
+  accountType?: number;
   residence?: string;
   points? : string;
   firstrun? : string;

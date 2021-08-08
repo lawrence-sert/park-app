@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import User from 'src/app/model/user.model';
+import { Router } from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
 	providedIn: 'root'
@@ -11,7 +14,11 @@ export class UserService {
 
 	UsersRef: AngularFirestoreCollection<User>;
 
-	constructor(private db: AngularFirestore) {
+	constructor(
+		private db: AngularFirestore,
+		private toastr: ToastrService,
+		 public router: Router 
+		) {
 		this.UsersRef = db.collection(this.dbPath);
 	}
 
@@ -64,12 +71,10 @@ export class UserService {
 		.doc(id)
 		.update({
 			firstname: user.firstname,
-			surname: user.surname,
-			displayName: user.firstname +' '+ user.surname,
+			surname: user.lastname,
+			displayName: user.firstname +' '+ user.lastname,
 			phone: user.phone,
-			gender: user.gender,
-			nationality: user.nationality,
-			diabetesType: user.diabetesType,
+			accountType: user.accountType,
 			firstrun: FirstRun
 		});
 	}
