@@ -50,6 +50,10 @@ const routes: Routes = [
   },  {
     path: 'market',
     loadChildren: () => import('./client/pages/market/market.module').then( m => m.MarketPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./auth/settings/settings.module').then( m => m.SettingsPageModule)
   }
 
 ];

@@ -33,6 +33,7 @@ export class InfoPage implements OnInit {
   userEmail : any;
   userRef : any;
 
+
   constructor(
   	public photoService: PhotoService,
     private modalCtrl : ModalController,
@@ -56,12 +57,17 @@ export class InfoPage implements OnInit {
   ngOnInit() {
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
+
     this.userEmail = this.crrntUsr.email;
+
     this.userService.getUserDoc(id).subscribe(res => {
     this.userRef = res;
     this.firstname.patchValue(res.firstname.split(' ')[0])
     this.lastname.patchValue(res.lastname.split(' ')[0])
     this.accountType.patchValue(res.accountType);
+    this.firstrun = this.userRef.firstrun;
+
+    console.log(this.userRef);
     });
   }
 

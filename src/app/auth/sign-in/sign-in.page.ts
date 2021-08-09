@@ -20,7 +20,9 @@ export class SignInPage implements OnInit {
 		private modalCtrl: ModalController,
 		private router: Router,
 		private toastr: ToastrService,
-		) { }
+		) {
+
+		}
 
 	ngOnInit() {
 	}

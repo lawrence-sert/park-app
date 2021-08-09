@@ -8,15 +8,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AppComponent {
 
-  // public appPages = [
-  //   { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-  //   { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-  //   { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-  //   { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-  //   { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-  //   { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
-  // ];
-  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   uid: any;
   crrntUsr: any;
@@ -45,16 +36,7 @@ export class AppComponent {
     this.userEmail = this.crrntUsr.email;
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
-      this.userEmail = this.userRef.email;
-      this.firstrun = this.userRef.firstrun;
-      this.firstname = this.userRef.firstname;
-      this.lastname = this.userRef.surname;
-      this.displayName = this.userRef.displayName;
-      this.emailVerified = this.userRef.emailVerified;
-      this.photoURL = this.userRef.photoURL;
-      this.accountType = this.userRef.accountType;
-
-      console.log(this.accountType);
+      console.log(this.userRef);
     });
 
   }

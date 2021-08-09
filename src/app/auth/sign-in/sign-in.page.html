@@ -19,31 +19,44 @@
       <div class="formGroup g-margin-b-30--xs">
         <input type="password" class="form-control s-form-v3__input g-radius--10" #userPassword  placeholder="* Password" required>
       </div>
+      
+      <ion-row>
+        <ion-col class="g-text-center--xs">
+          <p class="g-font-size-12--xs">
+            By clicking <strong>Sign In</strong> you agree with our <a routerLink="/terms">Terms</a>.<br>
+            Learn how we process your data in our <a routerLink="/terms">Privacy Policy</a> and <a routerLink="/terms">Cookies Policy</a>
+          </p>
+        </ion-col>
+      </ion-row>
+
       <div class="formGroup g-text-center--xs">
         <button type="submit" class="text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">Sign In</button>
       </div>
 
       <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <a class="g-color--primary g-font-size-14--xs" routerLink="/forgot-password">Forgot Password?</a>
-        </div>
-      </div>
-
-      <hr>
-
-
-      <div class="row">
-        <div class="col-md-8 col-sm-8 col-xs-8">
-          <h2 class="g-font-size-18--xs g-color--primary">New To Park&Pick ?</h2>
-          <p class="g-font-size-12--xs g-color--primary">Signing up takes less than a minute</p>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-4">
-          <button routerLink="/sign-up" class="s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-          >Sign Up</button>
+        <div class="col-md-12 col-sm-12 col-xs-12 g-text-center--xs">
+          <a class="g-color--primary g-font-size-16--xs" routerLink="/forgot-password">Forgot Password?</a>
         </div>
       </div>
 
     </form>
   </div>
+
+  
+
+
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-row>
+    <ion-col size="8">
+      <h2 class="g-font-size-18--xs g-color--primary">New To Park&Pick ?</h2>
+      <p class="g-font-size-12--xs g-color--primary">Signing up takes less than a minute</p>
+    </ion-col>
+    <ion-col size="4" class="g-padding-t-20--xs">
+      <button routerLink="/sign-up" class="s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+      >Sign Up</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
 
