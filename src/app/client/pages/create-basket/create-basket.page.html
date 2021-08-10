@@ -11,13 +11,11 @@
 			Create Basket
 		</ion-title>
 
-		<ion-buttons slot="end">
-			<ion-button>
-				<img class="profile-user-img-main img-flud img-circle g-padding-r-20--xs"
-				src="assets/img/director2.png"
-				alt="{{photoURL}}">
-			</ion-button>
-		</ion-buttons>
+		<span slot="end" class="g-padding-r-10--xs">
+			<img class="profile-user-img-main  img-circle "
+			src="{{photourl}}"
+			alt="{{displayName}}">
+		</span>
 
 	</ion-toolbar>
 </ion-header>
@@ -27,20 +25,18 @@
 
 <ion-content>
 
-	<ion-row>
+	<ion-row class="saved-basket">
 		<ion-col></ion-col>
 	</ion-row>
 
 	<ion-row>
-		<ion-col></ion-col>
+		<ion-col>
+			
+		</ion-col>
 	</ion-row>
+
+
 </ion-content>
 
-<ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <ion-row>
-    	<ion-col size="6"> </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>
+
 

@@ -12,6 +12,7 @@ export class UserService {
 
 	private dbPath = '/users';
 
+
 	UsersRef: AngularFirestoreCollection<User>;
 
 	constructor(
@@ -22,9 +23,7 @@ export class UserService {
 		this.UsersRef = db.collection(this.dbPath);
 	}
 
-	getAll(): AngularFirestoreCollection<User> {
-		return this.UsersRef;
-	}
+	
 
 	create(users: User): any {
 		return this.UsersRef.add({ ...users });
@@ -65,6 +64,8 @@ export class UserService {
 	updateUser(user: User, id) {
 		let FirstRun: string;
 		FirstRun = '1';
+		let photourl : string;
+		photourl = 'assets/img/lawrence.png';
 
     return this.db
 		.collection("users")
@@ -75,7 +76,8 @@ export class UserService {
 			displayName: user.firstname +' '+ user.lastname,
 			phone: user.phone,
 			accountType: user.accountType,
-			firstrun: FirstRun
+			firstrun: FirstRun,
+			photourl : photourl
 		});
 	}
 

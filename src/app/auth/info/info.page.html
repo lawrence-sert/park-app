@@ -5,123 +5,100 @@
  		</ion-buttons>
 
  		<ion-title class="ion-text-center">
- 			Create Your Account
+ 			Create Your Accounts
  		</ion-title>
  	</ion-toolbar>
  </ion-header>
 
- <ion-content>
+
+ <ion-content class="ion-padding">
+
 
  	<form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
- 		<ion-row class="profile-image g-margin-b-20--xs">
+
+ 		<ion-row class="image-edit">
+ 			<ion-col></ion-col>
+ 		</ion-row>
+
+ 		<ion-row>
  			<ion-col>
- 				<ion-card class="g-bg-color--white image-upload">
- 					<ion-card-content>
+ 				<div class="formGroup">
+ 					<label>First Name</label>
+ 					<input 
+ 					type="text" 
+ 					class="form-control s-form-v2__input g-radius--10" 
+ 					formControlName="firstname"
+ 					placeholder="* First Name" 
+ 					required
+ 					>
+ 				</div>
+ 			</ion-col>
+ 		</ion-row>
 
- 						<ion-row>
- 							<ion-col
- 							size="6"
- 							*ngFor="let photo of photoService.photos; index as position"
- 							>
- 							<ion-img [src]="photo.webviewPath"></ion-img>
- 						</ion-col>
- 					</ion-row>
+ 		<ion-row>
+ 			<ion-col>
+ 				<div class="formGroup">
+ 					<label>Last Name</label>
+ 					<input 
+ 					type="text" 
+ 					class="form-control s-form-v2__input g-radius--10" 
+ 					formControlName="lastname"
+ 					placeholder="* Last Name" 
+ 					required
+ 					>
+ 				</div>
+ 			</ion-col>
+ 		</ion-row>
 
- 					<ion-row>
- 						<ion-col>
- 							<a class="btn btn-app" (click)="addPhotoToGallery()">
- 								<i class="fas fa-camera g-font-size-18--xs g-text-color--primary"></i><br> Camera
- 							</a>
- 						</ion-col>
- 					</ion-row>
+ 		<ion-row>
+ 			<label>Phone Number</label>
+ 			<ion-col size="12">
+ 				<div class="formGroup">
+ 					
+ 					<input 
+ 					type="text" 
+ 					class="form-control s-form-v2__input g-radius--10" 
+ 					formControlName="phone"
+ 					placeholder="* Phone Number" 
+ 					required
+ 					>
+ 				</div>
+ 			</ion-col>
+ 		</ion-row>
 
- 				</ion-card-content>
- 			</ion-card>
- 		</ion-col>
- 	</ion-row>
-
-
-
- 	<ion-row class="profile-info">
- 		<ion-col>
- 			
- 			<ion-row>
- 				<ion-col>
- 					<div class="formGroup">
- 						<label>First Name</label>
- 						<input 
- 						type="text" 
- 						class="form-control s-form-v3__input g-radius--10" 
- 						formControlName="firstname"
- 						placeholder="* First Name" 
- 						required
+ 		<ion-row>
+ 			<ion-col>
+ 				<ion-list>
+ 					<ion-item>
+ 						<ion-label>Account Type</ion-label>
+ 						<ion-select 
+ 						value="Account Type" 
+ 						okText="Okay" 
+ 						cancelText="Dismiss"
+ 						formControlName="accountType"
+ 						placeholder="Account Type"
  						>
- 					</div>
- 				</ion-col>
- 			</ion-row>
-
- 			<ion-row>
- 				<ion-col>
- 					<div class="formGroup">
- 						<label>Last Name</label>
- 						<input 
- 						type="text" 
- 						class="form-control s-form-v3__input g-radius--10" 
- 						formControlName="lastname"
- 						placeholder="* Last Name" 
- 						required
- 						>
- 					</div>
- 				</ion-col>
- 			</ion-row>
-
- 			<ion-row>
- 				<ion-col>
- 					<div class="formGroup">
- 						<label>Phone Number</label>
- 						<input 
- 						type="text" 
- 						class="form-control s-form-v3__input g-radius--10" 
- 						formControlName="phone"
- 						placeholder="* Phone Number" 
- 						required
- 						>
- 					</div>
- 				</ion-col>
- 			</ion-row>
-
- 			<ion-row>
-					<ion-col class="ion-align-self-start g-font-height-18--xs" size="1">
-						<i class="fas fa-venus-mars g-font-size-18--xs g-text-color--primary"></i>
-					</ion-col>
-					<ion-col class="lined" size="11">
-						<ion-select 
-						value="Account Type" 
-						okText="Okay" 
-						cancelText="Dismiss"
-						formControlName="accountType"
-						>
-					      <ion-select-option value="farmer">Farmer</ion-select-option>
-					      <ion-select-option value="vendor">Vendor</ion-select-option>
-					      <ion-select-option value="customer">Customer</ion-select-option>
-					    </ion-select>
-					</ion-col>
-				</ion-row>
-
+ 						<ion-select-option value="farmer">Farmer</ion-select-option>
+ 						<ion-select-option value="vendor">Vendor</ion-select-option>
+ 						<ion-select-option value="customer">Customer</ion-select-option>
+ 					</ion-select>
+ 				</ion-item>
+ 			</ion-list>
  		</ion-col>
  	</ion-row>
 
  	<ion-row class="inside">
- 		<ion-col class="inside">
+ 		<ion-col>
  			<span>
- 			<button type="submit" (click)="onSubmit()" class="text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Get Started</button>
- 		</span>
-
+ 				<button type="submit" (click)="onSubmit()" class="text-uppercase btn-block s-btn s-btn--md s-btn--primary-bg g-radius--50 g-padding-x-50--xs g-margin-b-20--xs">Get Started</button>
+ 			</span>
  		</ion-col>
  	</ion-row>
+
  </form>
 
 </ion-content>
+
 
 
 

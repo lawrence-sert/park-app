@@ -10,7 +10,7 @@ export default class User {
   nationality?: string;
   emailVerified?: boolean;
   photoURL?: string;
-  accountType?: number;
+  accountType?: string;
   residence?: string;
   points? : string;
   firstrun? : string;

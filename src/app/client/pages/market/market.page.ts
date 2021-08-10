@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "src/app/services/auth.service";
 import { UserService } from 'src/app/services/user.service';
+
+import { ProductsService } from 'src/app/services/products.service';
+import { Product } from 'src/app/model/product.model';
 
 @Component({
   selector: 'app-market',
@@ -18,34 +20,49 @@ export class MarketPage implements OnInit {
   displayName: any;
   email: any;
   emailVerified?: boolean;
-  photoURL: any;
-  accountType?: number;
+  photourl: any;
+  accountType?: any;
   firstrun : any;
 
-  photourl : any = 'assets/img/director2.png';
+  products : any;
+
+  type: string;
 
   constructor(
-  	private authService: AuthService,
-    public usersService: UserService
-  	) { }
-
-  ngOnInit() {
-  	this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+    public usersService: UserService,
+    private productsService: ProductsService
+    ) { 
+    // Local storage information
+    this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
-    this.userEmail = this.crrntUsr.email;
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
-      this.userEmail = this.userRef.email;
       this.firstrun = this.userRef.firstrun;
       this.firstname = this.userRef.firstname;
       this.lastname = this.userRef.surname;
       this.displayName = this.userRef.displayName;
       this.emailVerified = this.userRef.emailVerified;
-      this.photoURL = this.userRef.photoURL;
       this.accountType = this.userRef.accountType;
-
-      console.log(this.accountType);
+      this.photourl = this.userRef.photourl;
     });
+  }
+
+  ngOnInit() {
+    //get segment start
+    this.type = 'vegitables';
+    //read products 
+    this.productsService.getProducts().subscribe((data) => {
+      this.products = data.map((e) => {
+        return {
+          id: e.payload.doc.id,
+          ...(e.payload.doc.data() as {}),
+        } as Product;
+      });
+    });
+  }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
   }
 
 }

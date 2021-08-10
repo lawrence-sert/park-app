@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DashboardPage implements OnInit {
 
+	type: string;
+
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
@@ -20,37 +22,38 @@ export class DashboardPage implements OnInit {
 	displayName: any;
 	email: any;
 	emailVerified?: boolean;
-	photoURL: any;
-	accountType?: number;
+	photourl: any;
+	accountType?: any;
 	firstrun : any;
-
-	photourl : any = 'assets/img/director2.png';
 
 	constructor(
 		public authService: AuthService,
 		private usersService: UserService,
 		public router: Router
-		) { }
-
-	ngOnInit() {
-
+		) { 
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
-		this.userEmail = this.crrntUsr.email;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.userEmail = this.userRef.email;
 			this.firstrun = this.userRef.firstrun;
 			this.firstname = this.userRef.firstname;
 			this.lastname = this.userRef.surname;
 			this.displayName = this.userRef.displayName;
 			this.emailVerified = this.userRef.emailVerified;
-			this.photoURL = this.userRef.photoURL;
 			this.accountType = this.userRef.accountType;
-
-			console.log(this.accountType);
+			this.photourl = this.userRef.photourl;
 		});
 	}
+
+	ngOnInit() {
+		this.type = 'home';
+	}
+
+	segmentChanged(ev: any) {
+		console.log('Segment changed', ev);
+	}
+
+
 
 }

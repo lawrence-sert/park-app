@@ -1,9 +1,9 @@
 <ion-header [translucent]="true" class="ion-no-border">
 	<ion-toolbar class="header-color">
 
-		<ion-buttons slot="start" class="g-font-size-18--xs">
+		<ion-buttons slot="start">
 			<ion-menu-button>
-				<i class="fas fa-store"></i>
+				<i class="fas fa-store g-font-size-16--xs"></i>
 			</ion-menu-button>
 		</ion-buttons>
 
@@ -11,17 +11,55 @@
 			Park&Pick
 		</ion-title>
 
-		<ion-buttons slot="end">
-			<ion-button>
-				<img class="profile-user-img-main img-flud img-circle g-padding-r-20--xs"
-				src="assets/img/director2.png"
-				alt="{{photoURL}}">
-			</ion-button>
-		</ion-buttons>
+		<span slot="end" class="g-padding-r-10--xs">
+			<img class="profile-user-img-main  img-circle "
+			src="{{photourl}}"
+			alt="{{displayName}}">
+		</span>
+
+	</ion-toolbar>
+
+	<ion-toolbar>
+		<!-- Scrollable Segment -->
+		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+			<ion-segment-button value="home" checked>
+				<i class="fas fa-home g-font-size-18--xs"></i>
+			</ion-segment-button>
+
+			<ion-segment-button value="list">
+				<i class="far fa-list-alt g-font-size-18--xs"></i>
+			</ion-segment-button>
+
+			<ion-segment-button value="recipe">
+				<i class="fas fa-concierge-bell g-font-size-18--xs"></i>
+			</ion-segment-button>
+
+			<ion-segment-button value="messages">
+				<i class="far fa-comments g-font-size-18--xs"></i>
+			</ion-segment-button>
+
+			<ion-segment-button value="delivery">
+				<i class="fas fa-motorcycle g-font-size-18--xs"></i>
+			</ion-segment-button>
+
+		</ion-segment>
 
 	</ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+
+	<div [ngSwitch]="type">
+		<ion-list *ngSwitchCase="'home'">
+			
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'loan'">
+			<ion-item>
+				
+			</ion-item>
+		</ion-list>
+	</div>
 	
 </ion-content>

@@ -3,16 +3,12 @@
 	height  : 150px;
 }
 
-.image-upload {
+.image-edit {
 	height  : 150px;
+    background-color: #eee;
 }
 
-.outside {
-	position: relative;
-    width: 200px;
-    height: 200px;
-    background-color: #EEE; /*to make it visible*/
-}
+
 .inside {
     position: fixed;
     bottom: 0;

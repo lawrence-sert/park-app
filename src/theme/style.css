@@ -322,14 +322,13 @@ fieldset[disabled] .s-btn {
 
 /* Form Input v2 */
 .s-form-v2__input {
-  height: 3.5rem;
+  height: 40px;
   font-size: 0.875rem;
   font-weight: 300;
   color: #656565;
-  border: none;
+  border: 1px solid #DE323A;
   box-shadow: none;
   letter-spacing: .1rem;
-  text-transform: uppercase;
   padding: .625rem 1.25rem;
   transition-duration: 300ms;
   transition-property: all;

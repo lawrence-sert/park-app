@@ -11,13 +11,11 @@
 			Market Place
 		</ion-title>
 
-		<ion-buttons slot="end">
-			<ion-button>
-				<img class="profile-user-img-main img-flud img-circle g-padding-r-20--xs"
-				src="assets/img/director2.png"
-				alt="{{photoURL}}">
-			</ion-button>
-		</ion-buttons>
+		<span slot="end" class="g-padding-r-10--xs">
+			<img class="profile-user-img-main  img-circle "
+			src="{{photourl}}"
+			alt="{{displayName}}">
+		</span>
 
 	</ion-toolbar>
 </ion-header>
@@ -25,11 +23,69 @@
 
 <ion-content>
 
+	<ion-row>
+		<ion-col>
+			<h2 class="g-font-size-24--xs">
+				Your Favorite <br>
+				Food Corner
+			</h2>
+		</ion-col>
+	</ion-row>
+
+	<ion-toolbar>
+		<ion-searchbar></ion-searchbar>
+	</ion-toolbar>
+
+	<!-- Scrollable Segment -->
+	<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+		<ion-segment-button value="vegitables" size="3" checked>
+			Vegitables
+		</ion-segment-button>
+
+		<ion-segment-button value="fruit" size="3">
+			Fruit
+		</ion-segment-button>
+
+		<ion-segment-button value="processed" size="3">
+			Processed Foods
+		</ion-segment-button>
+
+		<ion-segment-button value="care" size="3">
+			Home Care
+		</ion-segment-button>
+
+	</ion-segment>
 
 
-<!-- Searchbar in a Toolbar -->
-<ion-toolbar>
-  <ion-searchbar></ion-searchbar>
-</ion-toolbar>
+	<div [ngSwitch]="type">
+		<ion-row *ngSwitchCase="'vegitables'" class="ion-padding">
+			<ion-col size="6">
+				<article>
+					<img class="img-responsive" src="assets/img/products/carrots.png" alt="Image">
+					<div class="g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-center--xs g-padding-y-10--xs">
+						<h3 class="g-font-size-14--xs g-letter-spacing--1"><a href="">This isn Vegitable</a></h3>
+					</div>
+				</article>
+				<!-- End News -->
+			</ion-col>
+
+			<ion-col size="6">
+				<article>
+					<img class="img-responsive" src="assets/img/products/carrots.png" alt="Image">
+					<div class="g-bg-color--white g-box-shadow__dark-lightest-v2 g-text-center--xs g-padding-y-10--xs">
+						<h3 class="g-font-size-14--xs g-letter-spacing--1"><a href="">This isn Vegitable</a></h3>
+					</div>
+				</article>
+				<!-- End News -->
+			</ion-col>
+
+		</ion-row>
+	</div>
+
+
+
+
+
+
 
 </ion-content>

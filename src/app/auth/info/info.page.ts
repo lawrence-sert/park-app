@@ -67,13 +67,10 @@ export class InfoPage implements OnInit {
     this.accountType.patchValue(res.accountType);
     this.firstrun = this.userRef.firstrun;
 
-    console.log(this.userRef);
     });
   }
 
-  addPhotoToGallery() {
-  this.photoService.addNewToGallery();
-}
+
 
 // Form Getters
    get firstname(){

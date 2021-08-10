@@ -12,18 +12,18 @@
             <ion-col size="4"></ion-col>
 
             <ion-col size="4"  routerLink="/info" class="g-text-center--xs">
-              <span *ngIf="userRef.accountType ==='farmer'">
+              <span *ngIf="accountType ==='farmer'">
                 <i class="g-padding-r-5--xs fas fa-tractor g-font-size-24--xs g-color--primary"></i><br>
                 <span class="g-font-size-12--xs">Edit Info</span>
               </span>
 
-              <span *ngIf="userRef.accountType ==='vendor'">
+              <span *ngIf="accountType ==='vendor'">
                 <i class="g-padding-r-5--xs fas fa-tractor g-font-size-24--xs g-color--primary"></i><br>
                 <span class="g-font-size-12--xs">Edit Info</span>
               </span>
 
-              <span *ngIf="userRef.accountType ==='customer'">
-                <i class="g-padding-r-5--xs fas fa-tractor g-font-size-24--xs g-color--primary"></i><br>
+              <span *ngIf="accountType ==='customer'">
+                <i class="g-padding-r-5--xs fas fa-user g-font-size-24--xs g-color--primary"></i><br>
                 <span class="g-font-size-12--xs">Edit Info</span>
               </span>
               
@@ -32,32 +32,29 @@
 
           <ion-row>
             <ion-col class="g-text-center--xs">
-              <span *ngIf="userRef.accountType ==='farmer'">
-                <img src="assets/img/farmer.png" class="menu-profile-img img-flud img-circle" />
+              <span *ngIf="accountType ==='farmer'">
+                <img src="{{photourl}}" class="menu-profile-img img-flud img-circle" />
               </span>
 
-              <span *ngIf="userRef.accountType ==='vendor'">
-                <img src="assets/img/vendor.png" class="menu-profile-img img-flud img-circle" />
+              <span *ngIf="accountType ==='vendor'">
+                <img src="{{photourl}}" class="menu-profile-img img-flud img-circle" />
               </span>
 
-              <span *ngIf="userRef.accountType ==='customer'">
-                <img src="assets/img/customer.png" class="menu-profile-img img-flud img-circle" />
+              <span *ngIf="accountType ==='customer'">
+                <img src="{{photourl}}" class="menu-profile-img img-flud img-circle" />
               </span>
 
               <h1 class="g-font-size-16--xs g-text-center--xs g-margin-t-10--xs">{{displayName}}</h1>
             </ion-col>
           </ion-row>
+
         </div>
 
 
-        <div class="mid">
-
-          <div *ngIf="userRef.accountType ==='customer'">
+        <div class="mid">          
+          <div *ngIf="accountType ==='customer'">
             <app-user-menu></app-user-menu>
           </div>
-
-          
-
         </div>
 
 
