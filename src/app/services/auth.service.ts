@@ -42,10 +42,10 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
+          this.SetUserData(result.user);
           this.toastr.success(email, 'Welcome Back');
           this.router.navigate(['/dashboard']);
         });
-        this.SetUserData(result.user);
       }).catch((error) => {
         this.toastr.warning(error.message, 'Something Wrong');
       })

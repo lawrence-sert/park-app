@@ -9,6 +9,7 @@ import auth  from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
+import {  MenuController } from '@ionic/angular';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
@@ -44,6 +45,7 @@ export class InfoPage implements OnInit {
     public router: Router,
     private toastr: ToastrService,
     public formBuilder: FormBuilder,
+    public menuCtrl: MenuController
   	) { 
     this.editForm = this.formBuilder.group({
       firstname: [''],
@@ -70,6 +72,10 @@ export class InfoPage implements OnInit {
     });
   }
 
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+
 
 
 // Form Getters
@@ -90,7 +96,6 @@ export class InfoPage implements OnInit {
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
     this.userService.updateUser(this.editForm.value, id);
-    this.toastr.success('Your profile information has been successfully updated', 'Success');
     this.router.navigate(['/dashboard']);  
   }
 

@@ -3,6 +3,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { Router } from "@angular/router";
 import User from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-dashboard',
@@ -29,7 +30,8 @@ export class DashboardPage implements OnInit {
 	constructor(
 		public authService: AuthService,
 		private usersService: UserService,
-		public router: Router
+		public router: Router,
+		public menuCtrl: MenuController,
 		) { 
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -48,6 +50,16 @@ export class DashboardPage implements OnInit {
 
 	ngOnInit() {
 		this.type = 'home';
+	}
+
+	ionViewWillEnter() {
+		if(this.accountType==='0') {
+			this.menuCtrl.enable(false);
+		}
+		else {
+			this.menuCtrl.enable(true);
+		}
+		
 	}
 
 	segmentChanged(ev: any) {

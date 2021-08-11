@@ -44,8 +44,6 @@ export class UserService {
 		.valueChanges()
 	}
 
-
-
 	updateUserImage(user: User, id) {
 		let newPhoto: string;
 		newPhoto = 'assets/img/new.png';
@@ -61,11 +59,12 @@ export class UserService {
 		});
 	}
 
+
 	updateUser(user: User, id) {
 		let FirstRun: string;
 		FirstRun = '1';
 		let photourl : string;
-		photourl = 'assets/img/lawrence.png';
+		photourl = 'assets/img/default.png';
 
     return this.db
 		.collection("users")
@@ -77,7 +76,7 @@ export class UserService {
 			phone: user.phone,
 			accountType: user.accountType,
 			firstrun: FirstRun,
-			photourl : photourl
+			photoURL : photourl
 		});
 	}
 

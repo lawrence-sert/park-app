@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-settings',
@@ -23,7 +24,8 @@ export class SettingsPage implements OnInit {
 	phone : any;
 
 	constructor(
-		public usersService: UserService
+		public usersService: UserService,
+		public menuCtrl: MenuController
 	) { 
 		// Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -44,5 +46,9 @@ export class SettingsPage implements OnInit {
 
 	ngOnInit() {
 	}
+
+	ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
 }

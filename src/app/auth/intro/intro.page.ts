@@ -3,7 +3,8 @@ import { IonSlides } from '@ionic/angular';
 import { INTRO_KEY } from 'src/app/guards/intro.guard';
 import { Router } from '@angular/router';
 import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
+import { Storage } from '@capacitor/storage';
+import {  MenuController } from '@ionic/angular';
  
 @Component({
   selector: 'app-intro',
@@ -13,9 +14,16 @@ const { Storage } = Plugins;
 export class IntroPage implements OnInit {
   @ViewChild(IonSlides)slides: IonSlides;
  
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    public menuCtrl: MenuController
+    ) { }
  
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
  
   next() {

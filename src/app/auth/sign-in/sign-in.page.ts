@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "src/app/services/auth.service";
-import { LoadingController, AlertController, ModalController } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {  MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -15,16 +12,16 @@ export class SignInPage implements OnInit {
 
 	constructor(
 		private authService: AuthService,
-		private alertCtrl: AlertController,
-		private loadingCtrl: LoadingController,
-		private modalCtrl: ModalController,
-		private router: Router,
-		private toastr: ToastrService,
+		public menuCtrl: MenuController,
 		) {
 
-		}
+	}
 
 	ngOnInit() {
+	}
+
+	ionViewWillEnter() {
+		this.menuCtrl.enable(false);
 	}
 
 }
