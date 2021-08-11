@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Router } from '@angular/router';
 import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins;
+import { Storage } from '@capacitor/storage';
  
 export const INTRO_KEY = 'intro-seen';
  
@@ -22,3 +22,5 @@ export class IntroGuard implements CanLoad {
       }
   }
 }
+
+

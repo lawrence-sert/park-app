@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { INTRO_KEY } from 'src/app/guard/intro.guard';
+import { INTRO_KEY } from 'src/app/guards/intro.guard';
 import { Router } from '@angular/router';
 import { Plugins } from '@capacitor/core';
 const { Storage } = Plugins;
@@ -20,6 +20,10 @@ export class IntroPage implements OnInit {
  
   next() {
     this.slides.slideNext();
+  }
+
+  previous() {
+    this.slides.slidePrev();
   }
  
   async start() {

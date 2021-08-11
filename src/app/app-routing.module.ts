@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from "src/app/guard/auth.guard";
-import { IntroGuard } from 'src/app/guard/intro.guard';
-import { AutoLoginGuard } from 'src/app/guard/auto-login.guard';
+import { AuthGuard } from "src/app/guards/auth.guard";
+import { IntroGuard } from 'src/app/guards/intro.guard';
+import { AutoLoginGuard } from 'src/app/guards/auto-login.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'sign-in',
-    loadChildren: () => import('./auth/sign-in/sign-in.module').then( m => m.SignInPageModule)
+    loadChildren: () => import('./auth/sign-in/sign-in.module').then( m => m.SignInPageModule),
+    canLoad: [IntroGuard, AutoLoginGuard] // Check if we should show the introduction or forward to inside
   },
   {
     path: 'sign-up',
@@ -28,7 +29,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./auth/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    loadChildren: () => import('./auth/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canLoad: [AuthGuard] // Secure all child pages
   },
 
   //to remove
@@ -37,17 +39,14 @@ const routes: Routes = [
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'intro',
-    loadChildren: () => import('./auth/intro/intro.module').then( m => m.IntroPageModule)
-  },
-  {
     path: 'info',
     loadChildren: () => import('./auth/info/info.module').then( m => m.InfoPageModule)
   },
   {
     path: 'create-basket',
     loadChildren: () => import('./client/pages/create-basket/create-basket.module').then( m => m.CreateBasketPageModule)
-  },  {
+  },
+  {
     path: 'market',
     loadChildren: () => import('./client/pages/market/market.module').then( m => m.MarketPageModule)
   },
@@ -66,7 +65,12 @@ const routes: Routes = [
   {
     path: 'cookie',
     loadChildren: () => import('./legal/cookie/cookie.module').then( m => m.CookiePageModule)
+  },
+  {
+    path: 'intro',
+    loadChildren: () => import('./auth/intro/intro.module').then( m => m.IntroPageModule)
   }
+
 
 ];
 

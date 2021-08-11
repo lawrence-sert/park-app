@@ -1,25 +1,83 @@
 <ion-content>
   <ion-slides pager="true">
- 
-    <!-- Slide 1 -->
+
     <ion-slide>
-      <ion-text color="light">
-        <img src="https://i1.wp.com/ionicacademy.com/wp-content/uploads/2019/10/async-code-course.png">
-        <h1>Hey there!</h1>
-        <p>This is an epic app because...</p>
-        <ion-button (click)="next()" fill="outline" color="light">Next</ion-button>
-      </ion-text>
-    </ion-slide>
- 
-    <!-- Slide 2 -->
-    <ion-slide>
-      <ion-text color="light">
-        <img src="https://i1.wp.com/ionicacademy.com/wp-content/uploads/2020/06/ionic-everywhere-course.png">
-        <h1>It's Ionic!</h1>
-        <p>... it shows all the basics you need!</p>
-        <ion-button (click)="start()" fill="outline" color="light">Start</ion-button>
-      </ion-text>
-    </ion-slide>
- 
-  </ion-slides>
+      <div class="slide g-text-center--xs">
+       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/welcome.svg">
+       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Welcome To Park&Pick</h2>
+       <p class="g-font-size-14--xs">Introduction</p>
+
+       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="fas fa-chevron-right g-font-size-22--xs g-color--white"></i>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+      <div class="slide g-text-center--xs">
+       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/farmer.svg">
+       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Be A Farmer </h2>
+       <p class="g-font-size-14--xs">Farmer Intro</p>
+
+       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="fas fa-chevron-right g-font-size-22--xs g-color--white"></i>
+        </ion-fab-button>
+      </ion-fab>
+
+      <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="fas fa-chevron-left g-font-size-22--xs g-color--white"></i> 
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+      <div class="slide g-text-center--xs">
+       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/vendor.svg">
+       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Be A Local Vendor</h2>
+       <p class="g-font-size-14--xs">Use the application to remind you when to take your daily reading.</p>
+
+       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="fas fa-chevron-right g-font-size-22--xs g-color--white"></i>
+        </ion-fab-button>
+      </ion-fab>
+
+      <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="fas fa-chevron-left g-font-size-22--xs g-color--white"></i> 
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+      <div class="slide g-text-center--xs">
+       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/family.svg">
+       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Happy Family</h2>
+       <p class="g-font-size-14--xs">brief here.</p>
+
+       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="start()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="far fa-thumbs-up g-font-size-22--xs g-color--white"></i> 
+        </ion-fab-button>
+      </ion-fab>
+
+      <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
+        <ion-fab-button color="tertiary" size="small">
+          <i class="fas fa-chevron-left g-font-size-22--xs g-color--white"></i> 
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </ion-slide>
+
+</ion-slides>
 </ion-content>
+
+
+
+
