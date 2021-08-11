@@ -51,15 +51,37 @@
 
 
 	<div [ngSwitch]="type">
-		<ion-list *ngSwitchCase="'home'">
-			
-		</ion-list>
 
-		<ion-list *ngSwitchCase="'loan'">
-			<ion-item>
-				
-			</ion-item>
-		</ion-list>
+		<ion-row *ngSwitchCase="'home'">
+			<ion-col>
+				<app-dash></app-dash>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngSwitchCase="'list'">
+			<ion-col>
+				<app-list></app-list>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngSwitchCase="'recipe'">
+			<ion-col>
+				<app-recipes></app-recipes>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngSwitchCase="'messages'">
+			<ion-col>
+				<app-messaging></app-messaging>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngSwitchCase="'delivery'">
+			<ion-col>
+				<app-maps></app-maps>
+			</ion-col>
+		</ion-row>
+
 	</div>
 	
 </ion-content>

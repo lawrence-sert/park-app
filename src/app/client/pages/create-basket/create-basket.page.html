@@ -25,15 +25,38 @@
 
 <ion-content>
 
-	<ion-row class="saved-basket">
-		<ion-col></ion-col>
-	</ion-row>
-
 	<ion-row>
 		<ion-col>
-			
+			<h2 class="g-font-size-24--xs g-color--primary">
+				Your Favorite <br>
+				Food Corner
+			</h2>
 		</ion-col>
 	</ion-row>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-item button (click)="testClick()" *ngFor="let basket of basket">
+					<ion-thumbnail slot="start" class="menu-notification-img img-flud img-circle">
+						<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+					</ion-thumbnail>
+					<ion-label class="g-padding-l-20--xs">
+						<h3>{{basket.basket_name}}</h3>
+						<p>1200 <strong>RWF</strong></p>
+					</ion-label>
+					<i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+		<ion-fab-button (click)="presentAlertPrompt()">
+			<i class="fas fa-shopping-basket g-font-size-18--xs"></i>
+		</ion-fab-button>
+	</ion-fab>
 
 
 </ion-content>

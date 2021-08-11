@@ -54,6 +54,18 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./auth/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'privacy',
+    loadChildren: () => import('./legal/privacy/privacy.module').then( m => m.PrivacyPageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('./legal/terms/terms.module').then( m => m.TermsPageModule)
+  },
+  {
+    path: 'cookie',
+    loadChildren: () => import('./legal/cookie/cookie.module').then( m => m.CookiePageModule)
   }
 
 ];

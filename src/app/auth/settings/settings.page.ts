@@ -20,6 +20,7 @@ export class SettingsPage implements OnInit {
 	photourl: any;
 	accountType?: any;
 	firstrun : any;
+	phone : any;
 
 	constructor(
 		public usersService: UserService
@@ -36,6 +37,8 @@ export class SettingsPage implements OnInit {
       this.emailVerified = this.userRef.emailVerified;
       this.accountType = this.userRef.accountType;
       this.photourl = this.userRef.photourl;
+      this.phone = this.userRef.phone;
+      this.email = this.userRef.email;
     });
 	}
 

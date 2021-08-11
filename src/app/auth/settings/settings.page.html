@@ -20,6 +20,90 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+	<h2 class="g-font-size-14--xs">Account Type</h2>
+	<ion-card class="g-bg-color--white">
+		<ion-card-content>
+			<ion-row routerLink="/market">
+				<ion-col size="1" class="g-text-center--xs">
+					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+				</ion-col>
+				<ion-col size="10">
+					<h3 class="g-font-size-16--xs g-color--primary">{{accountType}}</h3>
+				</ion-col>
+				<ion-col size="1">
+					<i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+
+	<h2 class="g-font-size-14--xs">Mobile Number</h2>
+	<ion-card class="g-bg-color--white">
+		<ion-card-content>
+			<ion-row routerLink="/market">
+				<ion-col size="1" class="g-text-center--xs">
+					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+				</ion-col>
+				<ion-col size="10">
+					<h3 class="g-font-size-16--xs g-color--primary">{{phone}}</h3>
+				</ion-col>
+				<ion-col size="1">
+					<i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+	<small>Verify your number to help us make sure your orders come straight</small>
+
+
+	<h2 class="g-font-size-14--xs">Email</h2>
+	<ion-card class="g-bg-color--white">
+		<ion-card-content>
+			<ion-row routerLink="/market">
+				<ion-col size="1" class="g-text-center--xs">
+					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+				</ion-col>
+				<ion-col size="10">
+					<h3 class="g-font-size-16--xs g-color--primary">{{email}}</h3>
+				</ion-col>
+				<ion-col size="1">
+					<i class="ti-angle-right g-font-size-16--xs g-color--primary"></i>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+	<small>Park&Pick uses you email address to make sure you get promotional material</small>
+
+	<h2 class="g-font-size-14--xs">Location</h2>
+	<ion-card class="g-bg-color--white">
+		<ion-card-content>
+			<ion-row routerLink="/market">
+				<ion-col size="1" class="g-text-center--xs">
+					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+				</ion-col>
+				<ion-col size="10">
+					<h3 class="g-font-size-16--xs g-color--primary">{{email}}</h3>
+				</ion-col>
+				<ion-col size="1">
+					<i class="ti-angle-right g-font-size-16--xs g-color--primary"></i>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+
+	<h2 class="g-font-size-14--xs">Legal</h2>
+	<ion-card class="g-bg-color--white">
+		<ion-card-content>
+			<ion-row>
+				<ion-col size="12">
+					<p class="g-font-size-13--xs g-line-height--lg" routerLink="/privacy"><strong>Privacy Policy</strong></p>
+					<p class="g-font-size-13--xs g-line-height--lg" routerLink="/cookie"><strong>Cookie Policy</strong></p>
+					<p class="g-font-size-13--xs g-line-height--lg" routerLink="/terms"><strong>Terms Of Service</strong></p>
+				</ion-col>
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
 
 </ion-content>
