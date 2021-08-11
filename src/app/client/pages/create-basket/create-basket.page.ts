@@ -26,7 +26,7 @@ export class CreateBasketPage implements OnInit {
   displayName: any;
   email: any;
   emailVerified?: boolean;
-  photourl: any;
+  photoURL: any;
   accountType?: any;
   firstrun : any;
 
@@ -65,7 +65,7 @@ export class CreateBasketPage implements OnInit {
       this.displayName = this.userRef.displayName;
       this.emailVerified = this.userRef.emailVerified;
       this.accountType = this.userRef.accountType;
-      this.photourl = this.userRef.photourl;
+      this.photoURL = this.userRef.photoURL;
     });
 
    

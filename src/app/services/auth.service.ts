@@ -42,7 +42,6 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.SetUserData(result.user);
           this.toastr.success(email, 'Welcome Back');
           this.router.navigate(['/dashboard']);
         });
@@ -70,20 +69,6 @@ export class AuthService {
       this.router.navigate(['/verify-email']);
     })
   } 
-
-  // Auth logic to run auth providers
-  AuthLogin(provider) {
-    return this.afAuth.signInWithPopup(provider)
-    .then((result) => {
-       this.ngZone.run(() => {
-          this.router.navigate(['/dashboard']);
-        })
-      this.SetUserData(result.user);
-    }).catch((error) => {
-      window.alert(error)
-    })
-  }
-
 
 
   ForgotPassword(passwordResetEmail) {

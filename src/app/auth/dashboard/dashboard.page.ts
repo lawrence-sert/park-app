@@ -3,7 +3,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { Router } from "@angular/router";
 import User from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
-import {  MenuController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-dashboard',
@@ -23,7 +23,7 @@ export class DashboardPage implements OnInit {
 	displayName: any;
 	email: any;
 	emailVerified?: boolean;
-	photourl: any;
+	photoURL: any;
 	accountType?: any;
 	firstrun : any;
 
@@ -44,7 +44,7 @@ export class DashboardPage implements OnInit {
 			this.displayName = this.userRef.displayName;
 			this.emailVerified = this.userRef.emailVerified;
 			this.accountType = this.userRef.accountType;
-			this.photourl = this.userRef.photourl;
+			this.photoURL = this.userRef.photoURL;
 		});
 	}
 

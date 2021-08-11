@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <div class="top">
@@ -33,15 +33,15 @@
           <ion-row>
             <ion-col class="g-text-center--xs">
               <span *ngIf="accountType ==='farmer'">
-                <img src="{{photourl}}" class="menu-profile-img img-flud img-circle" />
+                <img src="{{photoURL}}" class="menu-profile-img img-flud img-circle" />
               </span>
 
               <span *ngIf="accountType ==='vendor'">
-                <img src="{{photourl}}" class="menu-profile-img img-flud img-circle" />
+                <img src="{{photoURL}}" class="menu-profile-img img-flud img-circle" />
               </span>
 
               <span *ngIf="accountType ==='customer'">
-                <img src="{{photourl}}" class="menu-profile-img img-flud img-circle" />
+                <img src="{{photoURL}}" class="menu-profile-img img-flud img-circle" />
               </span>
 
               <h2 class="g-font-size-16--xs g-text-center--xs g-margin-t-10--xs g-color--primary">{{displayName}}</h2>
@@ -67,5 +67,5 @@
     </ion-menu>
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
-  </ion-split-pane>
+
 </ion-app>
