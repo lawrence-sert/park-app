@@ -79,7 +79,7 @@ export class SettingsPage implements OnInit {
           text: 'Change',
           handler: (data: any) => {
             console.log('Saved Information', data);
-            //this.usersService.changePhone(this.uid , data);
+            this.usersService.changePhone(this.uid , data);
           }
         }
       ]

@@ -52,6 +52,7 @@ export class InfoPage implements OnInit {
       lastname: [''],
       phone: [''],
       accountType: [''],
+      location: [''],
     })
 
   }
@@ -67,6 +68,7 @@ export class InfoPage implements OnInit {
     this.firstname.patchValue(res.firstname.split(' ')[0])
     this.lastname.patchValue(res.lastname.split(' ')[0])
     this.accountType.patchValue(res.accountType);
+    this.location.patchValue(res.location);
     this.firstrun = this.userRef.firstrun;
 
     });
@@ -90,6 +92,9 @@ export class InfoPage implements OnInit {
   }
   get accountType(){
     return this.editForm.get('accountType')
+  }
+  get location(){
+    return this.editForm.get('location')
   }
 
   onSubmit() {
