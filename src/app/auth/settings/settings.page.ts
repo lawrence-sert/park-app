@@ -28,20 +28,20 @@ export class SettingsPage implements OnInit {
 		public menuCtrl: MenuController
 	) { 
 		// Local storage information
-    this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-    const id = this.crrntUsr.uid;
-    this.usersService.getUserDoc(id).subscribe(res => {
-      this.userRef = res;
-      this.firstrun = this.userRef.firstrun;
-      this.firstname = this.userRef.firstname;
-      this.lastname = this.userRef.surname;
-      this.displayName = this.userRef.displayName;
-      this.emailVerified = this.userRef.emailVerified;
-      this.accountType = this.userRef.accountType;
-      this.photoURL = this.userRef.photoURL;
-      this.phone = this.userRef.phone;
-      this.email = this.userRef.email;
-    });
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		this.usersService.getUserDoc(id).subscribe(res => {
+			this.userRef = res;
+			this.firstrun = this.userRef.firstrun;
+			this.firstname = this.userRef.firstname;
+			this.lastname = this.userRef.surname;
+			this.displayName = this.userRef.displayName;
+			this.emailVerified = this.userRef.emailVerified;
+			this.accountType = this.userRef.accountType;
+			this.photoURL = this.userRef.photoURL;
+			this.phone = this.userRef.phone;
+			this.email = this.userRef.email;
+		});
 	}
 
 	ngOnInit() {
