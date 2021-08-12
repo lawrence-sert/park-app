@@ -14,4 +14,6 @@ export default class User {
   residence?: string;
   points? : string;
   firstrun? : string;
+  location? : string;
+
 }

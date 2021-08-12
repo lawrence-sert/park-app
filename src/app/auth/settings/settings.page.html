@@ -2,8 +2,8 @@
 	<ion-toolbar class="header-color">
 
 		<ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
 
 		<ion-title class="ion-text-center">
 			Settings
@@ -11,8 +11,8 @@
 
 		<span slot="end" class="g-padding-r-10--xs">
 			<img class="profile-user-img-main  img-circle "
-			src="{{photoURL}}"
-			alt="{{displayName}}">
+			src="assets/img/header-logo.png"
+			alt="Park&Pick Logo">
 		</span>
 
 	</ion-toolbar>
@@ -104,11 +104,25 @@
 		</ion-card-content>
 	</ion-card>
 
+
+	<ion-row>
+		<ion-col size="12">
+			<button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+			>Log Out</button>
+		</ion-col>
+	</ion-row>
+
+	<ion-row>
+		<ion-col size="12">
+			<button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--secondary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+			>Delete Account</button>
+		</ion-col>
+	</ion-row>
+
 </ion-content>
 
 <ion-footer class="ion-no-border">
 
-          <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-          >Log Out</button>
+
 
 </ion-footer>

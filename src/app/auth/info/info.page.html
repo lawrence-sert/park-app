@@ -5,19 +5,28 @@
  		</ion-buttons>
 
  		<ion-title class="ion-text-center">
- 			Create Your Accounts
+ 			Account Information
  		</ion-title>
  	</ion-toolbar>
  </ion-header>
 
 
- <ion-content class="ion-padding">
+ <ion-content>
 
 
  	<form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
 
- 		<ion-row class="image-edit">
- 			<ion-col></ion-col>
+ 		<ion-row>
+ 			<ion-col size="8">
+ 				<h2>
+ 					<span class="g-font-size-24--xs g-color--primary">Tell Us</span><br>
+ 					<span class="g-font-size-24--xs g-color--primary light"> About You </span> 
+ 				</h2>
+ 			</ion-col>
+
+ 			<ion-col size="4">
+
+ 			</ion-col>
  		</ion-row>
 
  		<ion-row>
@@ -70,31 +79,54 @@
  			<ion-col>
  				<ion-list>
  					<ion-item>
- 						<ion-label>Account Type</ion-label>
+ 						<ion-label>Location</ion-label>
  						<ion-select 
- 						value="Account Type" 
+ 						value="Location" 
  						okText="Okay" 
  						cancelText="Dismiss"
- 						formControlName="accountType"
- 						placeholder="Account Type"
+ 						formControlName="location"
+ 						placeholder="City Location"
  						>
- 						<ion-select-option value="farmer">Farmer</ion-select-option>
- 						<ion-select-option value="vendor">Vendor</ion-select-option>
- 						<ion-select-option value="customer">Customer</ion-select-option>
+ 						<ion-select-option value="Kigali">Kigali</ion-select-option>
+ 						<ion-select-option value="Eastern Province">Eastern Province</ion-select-option>
+ 						<ion-select-option value="Northern Province">Northern Province</ion-select-option>
+ 						<ion-select-option value="Southern Province">Southern Province</ion-select-option>
+ 						<ion-select-option value="Western Province">Western Province</ion-select-option>
  					</ion-select>
  				</ion-item>
  			</ion-list>
  		</ion-col>
  	</ion-row>
 
+ 	<ion-row>
+ 		<ion-col>
+ 			<ion-list>
+ 				<ion-item>
+ 					<ion-label>Account Type</ion-label>
+ 					<ion-select 
+ 					value="Account Type" 
+ 					okText="Okay" 
+ 					cancelText="Dismiss"
+ 					formControlName="accountType"
+ 					placeholder="Account Type"
+ 					>
+ 					<ion-select-option value="farmer">Farmer</ion-select-option>
+ 					<ion-select-option value="vendor">Vendor</ion-select-option>
+ 					<ion-select-option value="customer">Customer</ion-select-option>
+ 				</ion-select>
+ 			</ion-item>
+ 		</ion-list>
+ 	</ion-col>
+ </ion-row>
 
 
- 	<div class="inside">
-          <button (click)="onSubmit()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-          >Log Out</button>
-        </div>
 
- </form>
+ <div class="inside">
+ 	<button (click)="onSubmit()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+ 	>Update Profile</button>
+ </div>
+
+</form>
 
 </ion-content>
 

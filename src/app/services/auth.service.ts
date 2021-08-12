@@ -97,7 +97,8 @@ export class AuthService {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       firstrun : '0',
-      accountType : '0'
+      accountType : '0',
+      location : '0'
     }
     return userRef.set(userData, {
       merge: true
