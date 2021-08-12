@@ -45,14 +45,21 @@ export class DashboardPage implements OnInit {
 			this.emailVerified = this.userRef.emailVerified;
 			this.accountType = this.userRef.accountType;
 			this.photoURL = this.userRef.photoURL;
+
+			console.log(this.firstrun);
+          if(this.firstrun==='0') {
+            this.router.navigate(['/info']);
+          }
 		});
 	}
 
 	ngOnInit() {
 		this.type = 'home';
+		
 	}
 
 	ionViewWillEnter() {
+
 		if(this.accountType==='0') {
 			this.menuCtrl.enable(false);
 		}

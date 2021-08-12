@@ -1,11 +1,9 @@
 <ion-header [translucent]="true" class="ion-no-border">
 	<ion-toolbar class="header-color">
 
-		<ion-buttons slot="start" class="g-font-size-18--xs">
-			<ion-menu-button>
-				<i class="ti-settings g-font-size-18--xs"></i>
-			</ion-menu-button>
-		</ion-buttons>
+		<ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
 
 		<ion-title class="ion-text-center">
 			Settings
@@ -25,9 +23,9 @@
 	<h2 class="g-font-size-14--xs">Account Type</h2>
 	<ion-card class="g-bg-color--white">
 		<ion-card-content>
-			<ion-row routerLink="/market">
+			<ion-row (click)="changeAccountType()">
 				<ion-col size="1" class="g-text-center--xs">
-					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+					<i class="far fa-user-circle g-font-size-16--xs g-color--primary"></i>
 				</ion-col>
 				<ion-col size="10">
 					<h3 class="g-font-size-16--xs g-color--primary">{{accountType}}</h3>
@@ -42,9 +40,9 @@
 	<h2 class="g-font-size-14--xs">Mobile Number</h2>
 	<ion-card class="g-bg-color--white">
 		<ion-card-content>
-			<ion-row routerLink="/market">
+			<ion-row (click)="changePhone()">
 				<ion-col size="1" class="g-text-center--xs">
-					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+					<i class="fas fa-mobile-alt g-font-size-16--xs g-color--primary"></i>
 				</ion-col>
 				<ion-col size="10">
 					<h3 class="g-font-size-16--xs g-color--primary">{{phone}}</h3>
@@ -61,9 +59,9 @@
 	<h2 class="g-font-size-14--xs">Email</h2>
 	<ion-card class="g-bg-color--white">
 		<ion-card-content>
-			<ion-row routerLink="/market">
+			<ion-row (click)="changeEmail()">
 				<ion-col size="1" class="g-text-center--xs">
-					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+					<i class="far fa-envelope g-font-size-16--xs g-color--primary"></i>
 				</ion-col>
 				<ion-col size="10">
 					<h3 class="g-font-size-16--xs g-color--primary">{{email}}</h3>
@@ -79,9 +77,9 @@
 	<h2 class="g-font-size-14--xs">Location</h2>
 	<ion-card class="g-bg-color--white">
 		<ion-card-content>
-			<ion-row routerLink="/market">
+			<ion-row (click)="changeLocation()">
 				<ion-col size="1" class="g-text-center--xs">
-					<i class="fas fa-store g-font-size-16--xs g-color--primary"></i>
+					<i class="fas fa-map-marked-alt g-font-size-16--xs g-color--primary"></i> 
 				</ion-col>
 				<ion-col size="10">
 					<h3 class="g-font-size-16--xs g-color--primary">{{email}}</h3>
@@ -107,3 +105,10 @@
 	</ion-card>
 
 </ion-content>
+
+<ion-footer class="ion-no-border">
+
+          <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+          >Log Out</button>
+
+</ion-footer>

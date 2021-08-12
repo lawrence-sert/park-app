@@ -80,5 +80,23 @@ export class UserService {
 		});
 	}
 
+	changePhone(uid, data) {
+    return this.db
+		.collection("users")
+		.doc(uid)
+		.update({
+			phone: data.phone
+		});
+	}
+
+	changeAccountType(uid, data) {
+    return this.db
+		.collection("users")
+		.doc(uid)
+		.update({
+			accountType: data
+		});
+	}
+
 
 }

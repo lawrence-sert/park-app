@@ -101,7 +101,8 @@ export class AuthService {
     }
     return userRef.set(userData, {
       merge: true
-    })
+    });
+    
   }
 
   // Sign out 
