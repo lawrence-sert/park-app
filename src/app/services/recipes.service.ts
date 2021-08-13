@@ -28,7 +28,7 @@ export class RecipesService {
     return this.firestore
 		.collection(`users/${id}/recipes`)
 		.add({
-			recipe_id : pageId
+			recipe_id : pageId,
 		});
 	}
 }

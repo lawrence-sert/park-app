@@ -38,15 +38,25 @@
 
 		
 		<ion-row class="recipe-stats">
-			<ion-col size="4">
+			<ion-col size="3">
 				<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
 				<span class="g-font-size-12--xs">{{recipe.recipe_like}}</span>
 			</ion-col>
-			<ion-col size="4">
+			<ion-col size="3">
 				<i class="ti-comments g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
 				<span class="g-font-size-12--xs">100</span>
 			</ion-col>
-			<ion-col size="4">
+
+			<!-- chef small profile here -->
+			<ion-col size="6">
+				<ion-row>
+					<ion-col size="3">
+						<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
+					</ion-col>
+					<ion-col size="9">
+						<small>Lawrence Gumbo</small>
+					</ion-col>
+				</ion-row>
 			</ion-col>
 		</ion-row>
 
@@ -101,7 +111,7 @@
 					<ion-row>
 						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2></ion-col>
 					</ion-row>
-					{{recipe.recipe_description}}
+					{{recipe.recipe_ingredients}}
 				</ion-col>
 			</ion-row>
 
@@ -135,7 +145,13 @@
 					<ion-row>
 						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2></ion-col>
 					</ion-row>
-					{{recipe.recipe_description}}
+					<!-- show comments here -->
+					<ion-row>
+						<ion-col>
+							
+						</ion-col>
+					</ion-row>
+
 				</ion-col>
 			</ion-row>
 

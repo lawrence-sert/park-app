@@ -1,0 +1,56 @@
+{
+ "__collections__": {
+   "posts": {
+
+     "1" : {
+      "id": 1,
+      "post_title": "this is a tip",
+      "post_date": "02102021",
+      "post_image": "assets/img/post/1.png",
+      "post_category": "News",
+      "post_main": "A simple, comforting vegetarian curry with mild spicing. If yr, or use a stronger cnd if you’re in a hurry, you can use tinned, drained lentils instead of cooking them from scratch. Serve with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "post_like": "0",
+      "post_auth": "0",
+      "post_comments": "0"
+
+   },
+   "2" : {
+      "id": 2,
+      "post_title": "Second Article",
+      "post_date": "02102021",
+      "post_image": "assets/img/post/2.png",
+      "post_category": "Farmers",
+      "post_main": "A simple, comforting vegetarian curry with mild spicing. If you would like a hotter dish, add more cayenne pepper, or use a stronger curry power, or add some chopped fresh chillies. And if you’re in a hurry, you can use tinned, drained lentils instead of cooking them from scratch. Serve with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "post_like": "0",
+      "post_auth": "0",
+      "post_comments": "0"
+
+   },
+   "3" : {
+      "id": 3,
+      "post_title": "Third Article",
+      "post_date": "02102021",
+      "post_image": "assets/img/post/3.png",
+      "post_category": "Sponsored",
+      "post_main": "A simple, comforting vegower, or add some chopped fresh chillies. And if you’re in a hurry, you can use tinned, drained lentils instead of cooking them from scratch. Serve with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "post_like": "0",
+      "post_auth": "0",
+      "post_comments": "0"
+
+   }
+   ,
+   "4" : {
+      "id": 4,
+      "post_title": "Forth Article",
+      "post_date": "02102021",
+      "post_image": "assets/img/post/4.png",
+      "post_category": "Sponsored",
+      "post_main": "A simple, comforting vegower, or add some choppeServe with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "post_like": "0",
+      "post_auth": "0",
+      "post_comments": "0"
+
+   }
+}
+}
+}

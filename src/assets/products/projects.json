@@ -12,6 +12,7 @@
       "recipe_people": "4",
       "recipe_time": "40",
       "recipe_like": "0",
+      "recipe_chef": "1",
       "recipe_level": "Intermediate",
       "recipe_ingredients" : {
          "ingredient1" : "1",
@@ -41,6 +42,7 @@
       "recipe_people": "3",
       "recipe_time": "35",
       "recipe_like": "0",
+      "recipe_chef": "2",
       "recipe_level": "Intermediate",
       "recipe_ingredients" : {
          "ingredient1" : "1",

@@ -2,10 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { RecipesService } from 'src/app/services/recipes.service';
-import {Recipes} from 'src/app/model/recipes.model';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { RecipesService } from 'src/app/services/recipes.service';
+import {Recipes} from 'src/app/model/recipes.model';
+
+import { ChefsService } from 'src/app/services/chefs.service';
+import {Chefs} from 'src/app/model/chefs.model';
+
+
 
 @Component({
 	selector: 'app-recipe',
@@ -32,6 +39,11 @@ export class RecipePage implements OnInit {
 	recipe$: Observable<Recipes[]>;
 	recipeID: any[] = [];
 	public parameterValue: any[] = [];
+
+	chefRef: AngularFirestoreCollection<Chefs>;
+	chef$: Observable<Recipes[]>;
+	chef_id: any[] = [];
+
 
 	type: string;
 
@@ -62,7 +74,6 @@ export class RecipePage implements OnInit {
 
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.recipeID
-			console.log(this.parameterValue);
 		});
 
 		
@@ -77,8 +88,6 @@ export class RecipePage implements OnInit {
 				const data = a.payload.doc.data(); // DB Questions
 				const id = a.payload.doc.id;
 				return { id, ...data };
-				console.log(this.recipe$);
-				console.log('here');
 			}))
 			);
 	}

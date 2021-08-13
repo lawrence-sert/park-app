@@ -1,25 +1,39 @@
-<ion-card class="g-bg-color--white">
+<ion-card class="g-bg-color--white" *ngFor="let tip of tips | slice:0:1; let i=index">
 	<ion-card-content>
-		<div class="row">
-			<div class="col-xs-12">
-				
-			</div>
-		</div>
+		<ion-row>
+			<ion-col size="2">
+				<i class="ti-face-smile g-font-size-32--xs g-color--primary"></i>
+			</ion-col>
+			<ion-col size="10">
+				<h3 class="g-font-size-14--xs g-color--primary">Daily Health Tip</h3>
+				<p class="g-font-size-12--xs">
+					{{tip.tip}}
+				</p>
+			</ion-col>
+		</ion-row>
 	</ion-card-content>
 </ion-card>
 
-<ion-row>
+<ion-row class="post_cat">
 	<ion-col>
-		<article>
-			<img class="img-responsive" src="assets/img/ad_1.jpg" alt="Image">
-			<div class="g-bg-color--white g-box-shadow__dark-lightest-v2  g-padding-x-10--xs g-padding-y-10--xs">
-				<p class="text-uppercase g-font-size-10--xs g-font-weight--700 g-color--primary g-letter-spacing--2">News</p>
-				<h3 class="g-font-size-16--xs">Jacks of All. Experts in All.</h3>
-				<p>The time has come to bring those ideas and plans to life.</p>
-			</div>
-		</article>
+		<ion-slides class="slides" [options]='slideOpts'>
+				<ion-slide *ngFor="let post_cat of posts_cat; index as i">
+					<div [routerLink]="['/postcat', post_cat.id]">
+						<img src="{{post_cat.postc_image}}">
+					</div>
+				</ion-slide>
+			</ion-slides>
+	</ion-col>
+</ion-row>
 
-
+<ion-row class="post" *ngFor="let post of posts">
+	<ion-col size="9">
+		<span class="g-font-size-12--xs g-color--primary title-text">{{post.post_title}}</span>
+		<span class="g-font-size-10--xs g-color--primary pull-right">{{post.post_category}}</span>
+		<p class="g-font-size-10--xs">Need to make this text at least this small so that user can understand</p>
+	</ion-col>
+	<ion-col size="3">
+		<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_name}}">
 	</ion-col>
 </ion-row>
 
