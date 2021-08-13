@@ -1,3 +1,27 @@
-<p>
-  recipes works!
-</p>
+<ion-row>
+	<ion-col size="9">
+		<h2 class="g-font-size-24--xs g-color--primary">
+			Healthy Meals <br>
+			<span class="light">Everyday!</span>
+		</h2>
+	</ion-col>
+
+	<ion-col size="3" class="g-text-center--xs g-padding-t-20--xs">
+		<i class="ti-face-smile g-font-size-40--xs g-color--primary"></i>
+	</ion-col>
+</ion-row>
+
+<ion-row>
+	<ion-col>
+		<div>
+			<ion-slides class="slides" [options]='slideOpts'>
+				<ion-slide *ngFor="let recipe of recipes; index as i">
+					<div [routerLink]="">
+						<img src="{{recipe.recipe_image}}">
+						<p class="title">{{recipe.recipe_name}}</p>
+					</div>
+				</ion-slide>
+			</ion-slides>
+		</div>
+	</ion-col>
+</ion-row>

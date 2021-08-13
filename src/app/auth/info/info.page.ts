@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoService } from 'src/app/services/photo.service';
-
 import { ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/services/auth.service";
 import User from 'src/app/model/user.model';
@@ -36,7 +34,6 @@ export class InfoPage implements OnInit {
 
 
   constructor(
-  	public photoService: PhotoService,
     private modalCtrl : ModalController,
     private authService: AuthService,
     private userService: UserService,

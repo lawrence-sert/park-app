@@ -25,7 +25,7 @@ export class DashboardPage implements OnInit {
 	displayName: any;
 	email: any;
 	emailVerified?: boolean;
-	photoURL: any;
+	location: any;
 	accountType?: any;
 	firstrun : any;
 
@@ -46,7 +46,7 @@ export class DashboardPage implements OnInit {
 			this.displayName = this.userRef.displayName;
 			this.emailVerified = this.userRef.emailVerified;
 			this.accountType = this.userRef.accountType;
-			this.photoURL = this.userRef.photoURL;
+			this.location = this.userRef.location;
 
 			console.log(this.firstrun);
           if(this.firstrun==='0') {

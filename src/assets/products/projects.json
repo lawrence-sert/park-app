@@ -1,34 +1,63 @@
 {
-  "__collections__": {
-   "projects": {
-      
- "1" : {
-   "id": "1",
-   "title": "Project 1",
-   "Category": "Farming",
-   "image": "project1.png",
-   "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-   "Date": "August 2021",
-   "location" : "Kigali"
- },
- "2" : {
-   "id": "2",
-   "title": "Project 2",
-   "Category": "Farming",
-   "image": "project2.png",
-   "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-   "Date": "January 2021",
-   "location" : "Kicikiro"
- },
- "3" : {
-   "id": "3",
-   "title": "Project 1",
-   "Category": "Vendor Training",
-   "image": "project3.png",
-   "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit essecillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat nonproident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-   "Date": "June 2021",
-   "location" : "Rebero"
- }
+ "__collections__": {
+   "recipes": {
+
+     "1" : {
+      "id": "1",
+      "recipe_name": "Lentil And Pea Curry with Wild Rice",
+      "recipe_date": "02102021",
+      "recipe_image": "project1.png",
+      "recipe_description": "A simple, comforting vegetarian curry with mild spicing. If you would like a hotter dish, add more cayenne pepper, or use a stronger curry power, or add some chopped fresh chillies. And if you’re in a hurry, you can use tinned, drained lentils instead of cooking them from scratch. Serve with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "recipe_category": "1",
+      "recipe_people": "4",
+      "recipe_time": "40",
+      "recipe_level": "Intermediate",
+      "recipe_ingredients" : {
+         "ingredient1" : "1",
+         "ingredient1" : "2",
+         "ingredient1" : "3",
+         "ingredient1" : "4",
+         "ingredient1" : "5"
+      },
+      "recipe_method" : {
+         "method1" : "this",
+         "method1" : "and",
+         "method1" : "then"
+      },
+      "recipe_nutrition" : {
+         "nutrition1" : "1",
+         "nutrition1" : "2",
+         "nutrition1" : "3"
+      }
+   },
+   "2" : {
+      "id": "2",
+      "recipe_name": "Lentil And Pea Curry with Wild Rice",
+      "recipe_date": "02102021",
+      "recipe_image": "project1.png",
+      "recipe_description": "A simple, comforting vegetarian curry with mild spicing. If you would like a hotter dish, add more cayenne pepper, or use a stronger curry power, or add some chopped fresh chillies. And if you’re in a hurry, you can use tinned, drained lentils instead of cooking them from scratch. Serve with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "recipe_category": "1",
+      "recipe_people": "4",
+      "recipe_time": "40",
+      "recipe_level": "Intermediate",
+      "recipe_ingredients" : {
+         "ingredient1" : "1",
+         "ingredient1" : "2",
+         "ingredient1" : "3",
+         "ingredient1" : "4",
+         "ingredient1" : "5"
+      },
+      "recipe_method" : {
+         "method1" : "this",
+         "method1" : "and",
+         "method1" : "then"
+      },
+      "recipe_nutrition" : {
+         "nutrition1" : "1",
+         "nutrition1" : "2",
+         "nutrition1" : "3"
+      }
+   }
 
 }
 }
