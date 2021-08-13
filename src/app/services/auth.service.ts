@@ -82,7 +82,7 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')|| '{}');
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null && user.emailVerified !== true) ? true : false;
   }
 
   /* Setting up user data when sign in with username/password, 
@@ -94,11 +94,10 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       firstrun : '0',
       accountType : '0',
-      location : '0'
+      location : '-'
     }
     return userRef.set(userData, {
       merge: true

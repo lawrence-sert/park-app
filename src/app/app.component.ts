@@ -22,8 +22,8 @@ export class AppComponent {
   displayName: any;
   email: any;
   emailVerified?: boolean;
-  photoURL: any;
   accountType?: any;
+  location?: any;
   firstrun : any;
 
 
@@ -50,7 +50,7 @@ export class AppComponent {
           this.displayName = this.userRef.displayName;
           this.emailVerified = this.userRef.emailVerified;
           this.accountType = this.userRef.accountType;
-          this.photoURL = this.userRef.photoURL; 
+          this.location = this.userRef.location; 
         });
 
 

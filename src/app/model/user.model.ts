@@ -5,15 +5,8 @@ export default class User {
   displayName?: string;
   email?: string;
   phone?: string;
-  gender?: string;
-  age?: string;
-  nationality?: string;
   emailVerified?: boolean;
-  photoURL?: string;
   accountType?: string;
-  residence?: string;
-  points? : string;
   firstrun? : string;
   location? : string;
-
 }

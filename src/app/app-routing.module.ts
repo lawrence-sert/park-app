@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from "src/app/guards/auth.guard";
 import { IntroGuard } from 'src/app/guards/intro.guard';
-import { AutoLoginGuard } from 'src/app/guards/auto-login.guard';
 
 const routes: Routes = [
   {
@@ -13,7 +12,7 @@ const routes: Routes = [
   {
     path: 'sign-in',
     loadChildren: () => import('./auth/sign-in/sign-in.module').then( m => m.SignInPageModule),
-    canLoad: [IntroGuard, AutoLoginGuard] // Check if we should show the introduction or forward to inside
+    canLoad: [IntroGuard] // Check if we should show the introduction or forward to inside
   },
   {
     path: 'sign-up',
@@ -29,8 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./auth/dashboard/dashboard.module').then( m => m.DashboardPageModule),
-    canLoad: [AuthGuard] // Secure all child pages
+    loadChildren: () => import('./auth/dashboard/dashboard.module').then( m => m.DashboardPageModule) // Secure all child pages
   },
 
   //to remove
