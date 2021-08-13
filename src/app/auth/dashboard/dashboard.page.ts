@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import User from 'src/app/model/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { MenuController } from '@ionic/angular';
+import { Plugins, LocalNotificationEnabledResult, LocalNotificationActionPerformed, LocalNotification, Device } from '@capacitor/core';
+const { LocalNotifications } = Plugins;
 
 @Component({
 	selector: 'app-dashboard',
@@ -53,7 +55,8 @@ export class DashboardPage implements OnInit {
 		});
 	}
 
-	ngOnInit() {
+	async ngOnInit() {
+		await LocalNotifications.requestPermission();
 		this.type = 'home';
 		
 	}
@@ -72,6 +75,25 @@ export class DashboardPage implements OnInit {
 	segmentChanged(ev: any) {
 		console.log('Segment changed', ev);
 	}
+
+	async scheduleBasic() {
+
+    await LocalNotifications.schedule(
+    {
+      notifications : [
+        {
+          title : 'Reminder',
+          body : 'Remember To Take Your Sugar Level Reading',
+          id : 1,
+          extra : {
+            data : 'pass data to your handler'
+          },
+          iconColor : '#ccccc'
+        }
+      ]
+    }
+      );
+    }
 
 
 
