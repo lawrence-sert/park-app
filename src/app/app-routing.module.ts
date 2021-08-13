@@ -67,7 +67,12 @@ const routes: Routes = [
   {
     path: 'intro',
     loadChildren: () => import('./auth/intro/intro.module').then( m => m.IntroPageModule)
+  },
+  {
+    path: 'recipe/:recipeID',
+    loadChildren: () => import('./client/pages/recipe/recipe.module').then( m => m.RecipePageModule)
   }
+
 
 
 ];

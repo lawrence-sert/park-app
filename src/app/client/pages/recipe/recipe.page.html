@@ -1,0 +1,170 @@
+<ion-header [translucent]="true">
+
+
+	<div *ngFor="let recipe of recipe$ | async; index as i">
+		<!--========== PROMO BLOCK ==========-->
+		<div class="g-fullheight--md js__parallax-window" style="background: url({{recipe.recipe_image}}) 0% 0 no-repeat fixed;">
+			<div class="g-container--md g-text-center--xs g-ver-center--md g-padding-y-0--md">
+				<div class="g-margin-b-60--xs g-padding-b-100-xs">
+					<ion-toolbar >
+						<ion-buttons slot="start">
+							<ion-back-button></ion-back-button>
+						</ion-buttons>
+						<span slot="end" class="g-padding-r-10--xs">
+							<img class="profile-user-img-main  img-circle "
+							src="assets/img/header-logo.png"
+							alt="Park&Pick Logo">
+						</span>
+					</ion-toolbar>
+				</div>
+
+			</div>
+		</div>
+
+		<ion-row>
+			<ion-col class="g-text-center--xs">
+				<h2 class="g-font-size-16--xs g-color--primary">
+					{{recipe.recipe_name}}
+				</h2>
+			</ion-col>
+		</ion-row>
+
+	</div>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+	<div *ngFor="let recipe of recipe$ | async; index as i">
+
+		
+		<ion-row class="recipe-stats">
+			<ion-col size="4">
+				<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
+				<span class="g-font-size-12--xs">{{recipe.recipe_like}}</span>
+			</ion-col>
+			<ion-col size="4">
+				<i class="ti-comments g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
+				<span class="g-font-size-12--xs">100</span>
+			</ion-col>
+			<ion-col size="4">
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="recipe-details">
+			<ion-col size="4" class="g-text-center--xs">
+				<i class="ti-user g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
+				<span class="g-font-size-12--xs">Serves {{recipe.recipe_people}}</span>
+			</ion-col>
+
+			<ion-col size="4" class="g-text-center--xs">
+				<i class="ti-time g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
+				<span class="g-font-size-12--xs">{{recipe.recipe_time}}</span>
+			</ion-col>
+
+			<ion-col size="4" class="g-text-center--xs">
+				<i class="ti-crown g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
+				<span class="g-font-size-12--xs">{{recipe.recipe_level}}</span>
+			</ion-col>
+
+		</ion-row>
+
+		<ion-row class="g-margin-t-10--xs">
+			<ion-col>
+				<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+					<ion-segment-button value="ingredients" checked>
+						<span>Ingred</span>
+					</ion-segment-button>
+
+					<ion-segment-button value="directions">
+						<span>Method</span>
+					</ion-segment-button>
+
+					<ion-segment-button value="nutrition">
+						<span>Nutri</span>
+					</ion-segment-button>
+
+					<ion-segment-button value="description">
+						<span>Descr</span>
+					</ion-segment-button>
+
+					<ion-segment-button value="comments">
+						<span>Comments</span>
+					</ion-segment-button>
+				</ion-segment>
+			</ion-col>
+		</ion-row>
+
+		<div [ngSwitch]="type">
+
+			<ion-row *ngSwitchCase="'ingredients'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2></ion-col>
+					</ion-row>
+					{{recipe.recipe_description}}
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'directions'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Method </h2></ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'nutrition'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Nutritional Value </h2></ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'description'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2></ion-col>
+					</ion-row>
+					{{recipe.recipe_description}}
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'comments'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2></ion-col>
+					</ion-row>
+					{{recipe.recipe_description}}
+				</ion-col>
+			</ion-row>
+
+		</div>
+
+
+
+		<!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
+		<ion-fab vertical="bottom" horizontal="start"  slot="fixed">
+			<ion-fab-button>
+				<i class="fab fa-angellist g-font-size-24--xs"></i>
+			</ion-fab-button>
+			<ion-fab-list side="end">
+				<ion-fab-button>
+					<i class="far fa-share-square"></i>
+				</ion-fab-button>
+
+				<ion-fab-button (click)="addLike()">
+					<i class="far fa-thumbs-up"></i>
+				</ion-fab-button>
+
+				<ion-fab-button>
+					<i class="fas fa-shopping-basket"></i>
+				</ion-fab-button>
+				
+			</ion-fab-list>
+		</ion-fab>
+
+
+
+	</div>
+</ion-content>

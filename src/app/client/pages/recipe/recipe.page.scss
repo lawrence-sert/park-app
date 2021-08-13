@@ -1,0 +1,23 @@
+/* Transparent standard */
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+.recipe-details {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top : 10px;
+	height : 30px;
+	background-color: #E6E7E8;
+	height : auto;
+	border-radius : 15px;
+
+}
+
+ion-segment-button {
+ text-transform: none;
+ width: 20%;
+ font-size: 12px;
+}

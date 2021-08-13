@@ -16,7 +16,7 @@
 		<div>
 			<ion-slides class="slides" [options]='slideOpts'>
 				<ion-slide *ngFor="let recipe of recipes; index as i">
-					<div [routerLink]="">
+					<div [routerLink]="['/recipe', recipe.id]">
 						<img src="{{recipe.recipe_image}}">
 						<p class="title">{{recipe.recipe_name}}</p>
 					</div>

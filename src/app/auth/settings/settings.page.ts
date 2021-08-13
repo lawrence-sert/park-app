@@ -20,7 +20,7 @@ export class SettingsPage implements OnInit {
 	displayName: any;
 	email: any;
 	emailVerified?: boolean;
-	photoURL: any;
+	location: any;
 	accountType?: any;
 	firstrun : any;
 	phone : any;
@@ -43,7 +43,7 @@ export class SettingsPage implements OnInit {
       this.displayName = this.userRef.displayName;
       this.emailVerified = this.userRef.emailVerified;
       this.accountType = this.userRef.accountType;
-      this.photoURL = this.userRef.photoURL;
+      this.location = this.userRef.location;
       this.phone = this.userRef.phone;
       this.email = this.userRef.email;
     });

@@ -126,7 +126,13 @@ label {
 .g-line-height--lg {
   line-height: 1.6;
 }
-
 .g-padding-t-20--xs {
   padding-top: 20px;
+}
+.g-padding-b-100-xs {
+  padding-bottom: 100px;
+}
+
+ion-segment-button {
+ text-transform: none;
 }
