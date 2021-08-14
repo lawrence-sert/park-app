@@ -10,3 +10,58 @@
 		<i class="ti-shopping-cart-full g-font-size-40--xs g-color--primary"></i>
 	</ion-col>
 </ion-row>
+
+
+<div *ngIf="basket?.length > 0; else emptyBasket">
+	<ion-row>
+		<ion-col>
+			<ion-item button (click)="testClick()" *ngFor="let basket of basket">
+				<ion-thumbnail slot="start" class="menu-notification-img img-flud img-circle">
+					<img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
+				</ion-thumbnail>
+				<ion-label class="g-padding-l-20--xs">
+					<h3>{{basket.basket_name}}</h3>
+					<p>1200 <strong>RWF</strong></p>
+				</ion-label>
+				<i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
+			</ion-item>
+		</ion-col>
+	</ion-row>
+</div>
+<ng-template #emptyBasket>
+
+	<ion-row class="emptybasket">
+		<ion-col>
+
+			<ion-row class="emptyImage">
+				<ion-col>
+					<img class="img-responsive center-image g-margin-b-30--xs" src="assets/svg/no-basket.svg" style="width: 80%;">
+				</ion-col>
+			</ion-row>
+
+			<ion-row class="emptyImage">
+				<ion-col class="g-text-center--xs">
+					<h2 class="g-font-size-18--xs g-color--primary">No Basket Yet</h2>
+					<p>
+						Seems like you have not yet created a basket. Please click the button below to create your first basket.
+						<br>
+						<br>
+						Not sure how the Park&Pick basket works click here to 
+						<a routerLink="/basket-tour">take a tour</a>
+						of the basket experience.
+					</p>
+				</ion-col>
+			</ion-row>
+
+		</ion-col>
+	</ion-row>
+
+</ng-template>
+
+
+
+<ion-fab vertical="bottom" horizontal="start" slot="fixed" edge>
+	<ion-fab-button (click)="presentAlertPrompt()" size="small">
+		<i class="fas fa-shopping-basket g-font-size-18--xs"></i>
+	</ion-fab-button>
+</ion-fab>

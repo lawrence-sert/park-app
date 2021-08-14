@@ -117,7 +117,7 @@ export class DashComponent implements OnInit {
 
 	constructor(
 		private localNotification : LocalNotificationService,
-		public usersService: UserService,
+		public  usersService: UserService,
 		private tipsService: TipsService,
 		private postsService: PostsService,
 		private posts_catService: PostsCatService,

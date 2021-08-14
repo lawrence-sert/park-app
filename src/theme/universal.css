@@ -1230,6 +1230,8 @@
 
 .g-box-shadow__dark-lightest-v4 {
   box-shadow: 0 0.3125rem 1rem 0 rgba(34, 35, 36, 0.2);
+  padding : 5px;
+  border-radius : 10px;
 }
 
 /*----------------------------------

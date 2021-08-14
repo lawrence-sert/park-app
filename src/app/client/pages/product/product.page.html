@@ -1,0 +1,159 @@
+<ion-header [translucent]="true">
+
+
+	<div *ngFor="let product of product$ | async; index as i">
+		<!--========== PROMO BLOCK ==========-->
+		<div class="g-fullheight--md js__parallax-window" style="background: url({{product.Image}}) 0% 0 no-repeat fixed;">
+			<div class="g-container--md g-text-center--xs g-ver-center--md g-padding-y-0--md">
+				<div class="g-margin-b-60--xs g-padding-b-100-xs">
+					<ion-toolbar >
+						<ion-buttons slot="start">
+							<ion-back-button></ion-back-button>
+						</ion-buttons>
+						<span slot="end" class="g-padding-r-10--xs">
+							<img class="profile-user-img-main  img-circle "
+							src="assets/img/header-logo.png"
+							alt="Park&Pick Logo">
+						</span>
+					</ion-toolbar>
+				</div>
+
+			</div>
+		</div>
+
+		<ion-row>
+			<ion-col size="8" class="pull-left">
+				<h2 class="g-font-size-16--xs g-color--primary">
+					{{product.Item}}
+				</h2>
+			</ion-col>
+			<ion-col size="4">
+				<h2 class="g-font-size-16--xs g-color--primary pull-right">
+					{{product.Price}} <span class="light">RWF</span>
+				</h2>
+			</ion-col>
+		</ion-row>
+
+	</div>
+</ion-header>
+
+<ion-content>
+	<div *ngFor="let product of product$ | async; index as i">
+
+		<ion-row class="g-margin-t-20--xs">
+			<ion-col size="4">
+				<img src="{{product.Image}}" class="product-image-thumb img-responsive" />
+			</ion-col>
+			<ion-col size="8">
+
+				<ion-row>
+					<ion-col>
+						<span class="product-detail-list g-font-size-12--xs">
+							<span class="pull-left">Category</span>
+							<span class="pull-right g-color--primary heavy cap-me">{{product.Category}}</span>
+						</span><br>
+						<span class="product-detail-list g-font-size-12--xs">
+							<span class="pull-left">Caption</span>
+							<span class="pull-right g-color--primary heavy cap-me">{{product.Caption}}</span>
+						</span>
+					</ion-col>
+				</ion-row>
+
+				<ion-row class="recipe-stats">
+					<ion-col size="4">
+						<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
+						<span class="g-font-size-12--xs">{{product.Likes}}</span>
+					</ion-col>
+					<ion-col size="4">
+						<i class="ti-comments g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
+						<span class="g-font-size-12--xs">{{product.Comments}}</span>
+					</ion-col>
+
+					<!-- chef small profile here -->
+					<ion-col size="4" class="pull-right">
+						<i class="fas fa-star g-padding-r-5--xs g-color--primary"></i>
+						<i class="fas fa-star g-padding-r-5--xs g-color--primary"></i>
+						<i class="fas fa-star g-padding-r-5--xs g-color--primary"></i>
+						<i class="far fa-star g-padding-r-5--xs g-color--primary"></i>
+					</ion-col>
+				</ion-row>
+				
+
+
+			</ion-col>
+		</ion-row>
+
+		<ion-row class="g-margin-t-10--xs">
+			<ion-col>
+				<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+					<ion-segment-button value="description" checked>
+						<span>Description</span>
+					</ion-segment-button>
+
+					<ion-segment-button value="comments">
+						<span>Comments</span>
+					</ion-segment-button>
+
+					<ion-segment-button value="nutrition">
+						<span>Nutri</span>
+					</ion-segment-button>
+
+				</ion-segment>
+			</ion-col>
+		</ion-row>
+
+		<div [ngSwitch]="type">
+
+
+			
+
+			<ion-row *ngSwitchCase="'description'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2></ion-col>
+					</ion-row>
+					{{product.Description}}
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'comments'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2></ion-col>
+					</ion-row>
+					<!-- show comments here -->
+					<ion-row>
+						<ion-col>
+							
+						</ion-col>
+					</ion-row>
+
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'nutrition'">
+				<ion-col>
+					<ion-row>
+						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Nutritional Value </h2></ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+
+		</div>
+
+
+		
+		<ion-fab vertical="bottom" horizontal="start"  slot="fixed">
+			<ion-fab-button>
+				<i class="fas fa-shopping-basket g-font-size-24--xs"></i>
+			</ion-fab-button>
+		</ion-fab>
+
+		<ion-fab vertical="bottom" horizontal="end"  slot="fixed">
+			<ion-fab-button size="small">
+				<i class="far fa-thumbs-up g-font-size-16--xs"></i>
+			</ion-fab-button>
+		</ion-fab>
+
+	</div>
+</ion-content>

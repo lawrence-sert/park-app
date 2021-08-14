@@ -71,9 +71,15 @@ const routes: Routes = [
   {
     path: 'recipe/:recipeID',
     loadChildren: () => import('./client/pages/recipe/recipe.module').then( m => m.RecipePageModule)
+  },
+  {
+    path: 'product/:productID',
+    loadChildren: () => import('./client/pages/product/product.module').then( m => m.ProductPageModule)
+  },
+  {
+    path: 'basket-tour',
+    loadChildren: () => import('./client/help/basket-tour/basket-tour.module').then( m => m.BasketTourPageModule)
   }
-
-
 
 ];
 

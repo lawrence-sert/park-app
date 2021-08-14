@@ -1,0 +1,19 @@
+/* Transparent standard */
+ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+}
+
+.product-image-thumb {
+
+}
+
+ion-segment-button {
+ text-transform: none;
+ width: 33%;
+ font-size: 12px;
+}
+
+.product-detail-list {
+	border-bottom: 1px solid #ccc; 
+}

@@ -32,9 +32,15 @@
   font-weight: 400;
 }
 
+.cap-me {
+	text-transform : capitalize;
+}
 
 .light {
 	font-weight: 300;
+}
+.heavy {
+	font-weight: 700;
 }
 
 //header
@@ -137,4 +143,10 @@ label {
 
 ion-segment-button {
  text-transform: none;
+}
+
+.center-image {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
