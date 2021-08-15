@@ -81,7 +81,12 @@ const routes: Routes = [
   {
     path: 'basket-tour',
     loadChildren: () => import('./client/help/basket-tour/basket-tour.module').then( m => m.BasketTourPageModule)
+  },
+  {
+    path: 'post/:postID',
+    loadChildren: () => import('./client/pages/post/post.module').then( m => m.PostPageModule)
   }
+
 
 ];
 

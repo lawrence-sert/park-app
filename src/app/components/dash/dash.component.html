@@ -26,7 +26,9 @@
 	</ion-col>
 </ion-row>
 
-<ion-row class="post" *ngFor="let post of posts">
+
+<span *ngFor="let post of posts">
+<ion-row class="post" [routerLink]="['/post', post.id]">
 	<ion-col size="9">
 		<span class="g-font-size-12--xs g-color--primary title-text">{{post.post_title}}</span>
 		<span class="g-font-size-10--xs g-color--primary pull-right">{{post.post_category}}</span>
@@ -36,6 +38,7 @@
 		<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_name}}">
 	</ion-col>
 </ion-row>
+</span>
 
 <ion-button expand="block" (click)="sendLocalNotification()">
 	Send Local notification

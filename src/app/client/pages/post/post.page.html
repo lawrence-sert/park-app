@@ -1,0 +1,36 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="header-color">
+
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+
+		<ion-title class="ion-text-center">
+
+		</ion-title>
+
+		<span slot="end" class="g-padding-r-10--xs">
+			<img class="profile-user-img-main  img-circle "
+			src="assets/img/header-logo.png"
+			alt="Park&Pick Logo">
+		</span>
+
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div *ngFor="let post of post$ | async; index as i">
+		<div class="post-titled">
+			<ion-row>
+				<ion-col class="g-text-center--xs">
+					<h2 class="g-color--white g-font-size-20--xs">This is the title os the post</h2>
+				</ion-col>
+			</ion-row>
+		</div>
+		<div class="page-content">
+			<div class="post-image">
+				<img src="assets/img/post/1.png" class="img-responsive">
+			</div>
+		</div>
+	</div>
+</ion-content>
