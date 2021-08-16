@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { INTRO_KEY } from 'src/app/guards/intro.guard';
+import { INTRO_KEY } from 'src/app/auth/guards/intro.guard';
 import { Router } from '@angular/router';
 import { Plugins } from '@capacitor/core';
 import { Storage } from '@capacitor/storage';

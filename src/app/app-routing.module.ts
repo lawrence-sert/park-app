@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from "src/app/guards/auth.guard";
-import { IntroGuard } from 'src/app/guards/intro.guard';
-import { AutoLoginGuard } from './guards/auto-login.guard';
+import { AuthGuard } from "src/app/auth/guards/auth.guard";
+import { IntroGuard } from 'src/app/auth/guards/intro.guard';
+import { AutoLoginGuard } from 'src/app/auth/guards/auto-login.guard';
 
 const routes: Routes = [
   {
@@ -10,84 +10,84 @@ const routes: Routes = [
     redirectTo: 'sign-in',
     pathMatch: 'full'
   },
+
+  // authentication pages 
   {
     path: 'sign-in',
-    loadChildren: () => import('./auth/sign-in/sign-in.module').then( m => m.SignInPageModule),
+    loadChildren: () => import('src/app/auth/sign-in/sign-in.module').then( m => m.SignInPageModule),
     canLoad: [IntroGuard, AutoLoginGuard] // Check if we should show the introduction or forward to inside
   },
   {
     path: 'sign-up',
-    loadChildren: () => import('./auth/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    loadChildren: () => import('src/app/auth/sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./auth/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    loadChildren: () => import('src/app/auth/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
     path: 'verify-email',
-    loadChildren: () => import('./auth/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
+    loadChildren: () => import('src/app/auth/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('./auth/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    loadChildren: () => import('src/app/auth/dashboard/dashboard.module').then( m => m.DashboardPageModule),
     canLoad: [AuthGuard] // Secure all child pages
-  },
-
-  //to remove
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
     path: 'info',
-    loadChildren: () => import('./auth/info/info.module').then( m => m.InfoPageModule)
-  },
-  {
-    path: 'create-basket',
-    loadChildren: () => import('./client/pages/create-basket/create-basket.module').then( m => m.CreateBasketPageModule)
-  },
-  {
-    path: 'market',
-    loadChildren: () => import('./client/pages/market/market.module').then( m => m.MarketPageModule)
+    loadChildren: () => import('src/app/auth/info/info.module').then( m => m.InfoPageModule)
   },
   {
     path: 'settings',
-    loadChildren: () => import('./auth/settings/settings.module').then( m => m.SettingsPageModule)
-  },
-  {
-    path: 'privacy',
-    loadChildren: () => import('./legal/privacy/privacy.module').then( m => m.PrivacyPageModule)
-  },
-  {
-    path: 'terms',
-    loadChildren: () => import('./legal/terms/terms.module').then( m => m.TermsPageModule)
-  },
-  {
-    path: 'cookie',
-    loadChildren: () => import('./legal/cookie/cookie.module').then( m => m.CookiePageModule)
+    loadChildren: () => import('src/app/auth/settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
     path: 'intro',
-    loadChildren: () => import('./auth/intro/intro.module').then( m => m.IntroPageModule)
+    loadChildren: () => import('src/app/auth/intro/intro.module').then( m => m.IntroPageModule)
+  },
+
+  //clents pages
+  {
+    path: 'create-basket',
+    loadChildren: () => import('src/app/client/pages/create-basket/create-basket.module').then( m => m.CreateBasketPageModule)
+  },
+  {
+    path: 'basket/:basketID',
+    loadChildren: () => import('src/app/client/pages/basket/basket.module').then( m => m.BasketPageModule)
+  },
+  {
+    path: 'market',
+    loadChildren: () => import('src/app/client/pages/market/market.module').then( m => m.MarketPageModule)
   },
   {
     path: 'recipe/:recipeID',
-    loadChildren: () => import('./client/pages/recipe/recipe.module').then( m => m.RecipePageModule)
+    loadChildren: () => import('src/app/client/pages/recipe/recipe.module').then( m => m.RecipePageModule)
   },
   {
     path: 'product/:productID',
-    loadChildren: () => import('./client/pages/product/product.module').then( m => m.ProductPageModule)
-  },
-  {
-    path: 'basket-tour',
-    loadChildren: () => import('./client/help/basket-tour/basket-tour.module').then( m => m.BasketTourPageModule)
+    loadChildren: () => import('src/app/client/pages/product/product.module').then( m => m.ProductPageModule)
   },
   {
     path: 'post/:postID',
-    loadChildren: () => import('./client/pages/post/post.module').then( m => m.PostPageModule)
+    loadChildren: () => import('src/app/client/pages/post/post.module').then( m => m.PostPageModule)
+  },
+
+  //legal pages
+   {
+    path: 'privacy',
+    loadChildren: () => import('src/app/legal/privacy/privacy.module').then( m => m.PrivacyPageModule)
+  },
+  {
+    path: 'terms',
+    loadChildren: () => import('src/app/legal/terms/terms.module').then( m => m.TermsPageModule)
+  },
+  {
+    path: 'cookie',
+    loadChildren: () => import('src/app/legal/cookie/cookie.module').then( m => m.CookiePageModule)
   }
 
-
+  
 ];
 
 @NgModule({

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { AuthService } from "src/app/services/auth.service";
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from "src/app/auth/services/auth.service";
+import { UserService } from 'src/app/auth/services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',

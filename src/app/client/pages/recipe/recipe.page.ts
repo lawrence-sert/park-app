@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { RecipesService } from 'src/app/services/recipes.service';
-import {Recipes} from 'src/app/model/recipes.model';
+import { RecipesService } from 'src/app/client/services/recipes.service';
+import {Recipes} from 'src/app/client/models/recipes.model';
 
-import { ChefsService } from 'src/app/services/chefs.service';
-import {Chefs} from 'src/app/model/chefs.model';
+import { ChefsService } from 'src/app/client/services/chefs.service';
+import {Chefs} from 'src/app/client/models/chefs.model';
 
 
 

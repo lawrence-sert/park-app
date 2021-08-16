@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from "src/app/services/auth.service";
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from "src/app/auth/services/auth.service";
+import { UserService } from 'src/app/auth/services/user.service';
 
 import { AlertController, IonSlides } from '@ionic/angular';
 
 //
-import { BasketService } from 'src/app/services/basket.service';
-import { Basket } from 'src/app/model/basket.model';
+import { BasketService } from 'src/app/client/services/basket.service';
+import { Basket } from 'src/app/client/models/basket.model';
 
 @Component({
   selector: 'app-create-basket',
@@ -151,6 +151,10 @@ async presentAlertPrompt() {
     });
 
     await alert.present();
+  }
+
+  viewBasket() {
+    
   }
 
 

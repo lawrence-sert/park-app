@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { PostsService } from 'src/app/services/posts.service';
-import {Posts} from 'src/app/model/posts.model';
+import { PostsService } from 'src/app/client/services/posts.service';
+import {Posts} from 'src/app/client/models/posts.model';
 
 @Component({
 	selector: 'app-post',

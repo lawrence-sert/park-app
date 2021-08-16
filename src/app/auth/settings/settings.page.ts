@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { AuthService } from "src/app/services/auth.service";
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from "src/app/auth/services/auth.service";
+import { UserService } from 'src/app/auth/services/user.service';
 import { AlertController, IonSlides } from '@ionic/angular';
 
 @Component({
@@ -137,6 +137,80 @@ export class SettingsPage implements OnInit {
           handler: (data: any) => {
             console.log('Saved Information', data);
             this.usersService.changeAccountType(this.uid , data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  //Change account type
+  async changeLocation() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Change Account Type',
+      inputs: [
+        {
+          name: 'location',
+          type: 'radio',
+          label: 'Kigali',
+          value: 'Kigali',
+          handler: () => {
+            console.log('Kigali Selected');
+          },
+          checked: true
+        },
+        {
+          name: 'location',
+          type: 'radio',
+          label: 'Northern Province',
+          value: 'Northern Province',
+          handler: () => {
+            console.log('Northern Province Selected');
+          }
+        },
+        {
+          name: 'location',
+          type: 'radio',
+          label: 'Eastern Province',
+          value: 'Eastern Province',
+          handler: () => {
+            console.log('Eastern Province Selected');
+          }
+        },
+        {
+          name: 'location',
+          type: 'radio',
+          label: 'Southern Province',
+          value: 'Southern Province',
+          handler: () => {
+            console.log('Southern Province Selected');
+          }
+        },
+        {
+          name: 'location',
+          type: 'radio',
+          label: 'Western Province',
+          value: 'Western Province',
+          handler: () => {
+            console.log('Western Province Selected');
+          }
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Change',
+          handler: (data: any) => {
+            console.log('Saved Information', data);
+            this.usersService.changeLocation(this.uid , data);
           }
         }
       ]

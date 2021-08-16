@@ -18,14 +18,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
+import { AuthService } from "src/app/auth/services/auth.service";
 
-import { AuthService } from "src/app/services/auth.service";
-
-import { UserMenuComponent } from 'src/app/components/user-menu/user-menu.component';
-
+//different user menus
+import { UserMenuComponent } from 'src/app/client/components/user-menu/user-menu.component';
+import { FarmerMenuComponent } from 'src/app/farmer/components/farmer-menu/farmer-menu.component';
+import { VendorMenuComponent } from 'src/app/vendor/components/vendor-menu/vendor-menu.component';
 
 @NgModule({
-	declarations: [AppComponent, UserMenuComponent],
+	declarations: [AppComponent, UserMenuComponent, FarmerMenuComponent, VendorMenuComponent],
 	entryComponents: [],
 	imports: [
 		BrowserModule, 

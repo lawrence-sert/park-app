@@ -1,0 +1,48 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="header-color">
+
+		<ion-buttons slot="start" class="g-font-size-18--xs">
+			<ion-menu-button>
+				<i class="ti-arrow-left g-font-size-18--xs"></i>
+			</ion-menu-button>
+		</ion-buttons>
+
+		<ion-title class="ion-text-center">
+
+		</ion-title>
+
+		<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
+			<img class="profile-user-img-main  img-circle "
+			src="assets/img/header-logo.png"
+			alt="Park&Pick Logo">
+		</span>
+
+	</ion-toolbar>
+	
+</ion-header>
+
+<ion-content>
+	<div *ngFor="let basket of basket$ | async; index as i">
+
+		<div class="basket-top">
+			<div class="basket-icon g-text-center--xs">
+				<i class="fas fa-shopping-basket g-font-size-80--xs g-color--white"></i>
+				<h2 class="g-font-size-24--xs g-color--white light">{{basket.basket_name}} </h2>
+			</div>
+
+			<div class="basket-price">
+				<div class="row">
+					<div class="col-xs-6">Created</div>
+					<div class="col-xs-6">Total 123</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="basket-bottom">
+			
+			hello
+		</div>
+
+
+	</div>
+</ion-content>

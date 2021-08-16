@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AuthService } from "src/app/services/auth.service";
-import User from 'src/app/model/user.model';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from "src/app/auth/services/auth.service";
+import User from 'src/app/auth/models/user.model';
+import { UserService } from 'src/app/auth/services/user.service';
 import auth  from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';

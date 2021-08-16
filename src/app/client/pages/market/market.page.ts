@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/auth/services/user.service';
 
-import { ProductsService } from 'src/app/services/products.service';
-import { Product } from 'src/app/model/product.model';
+import { ProductsService } from 'src/app/client/services/products.service';
+import { Product } from 'src/app/client/models/product.model';
 
-import { PromotionsService } from 'src/app/services/promotions.service';
-import { Promotions } from 'src/app/model/promotions.model';
+import { PromotionsService } from 'src/app/client/services/promotions.service';
+import { Promotions } from 'src/app/client/models/promotions.model';
 
 @Component({
   selector: 'app-market',

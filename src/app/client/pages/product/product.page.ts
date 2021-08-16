@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-import { ProductsService } from 'src/app/services/products.service';
-import {Product} from 'src/app/model/product.model';
+import { ProductsService } from 'src/app/client/services/products.service';
+import {Product} from 'src/app/client/models/product.model';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

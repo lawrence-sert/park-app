@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "src/app/services/auth.service";
+import { AuthService } from "src/app/auth/services/auth.service";
 import { Router } from "@angular/router";
-import User from 'src/app/model/user.model';
-import { UserService } from 'src/app/services/user.service';
+import User from 'src/app/auth/models/user.model';
+import { UserService } from 'src/app/auth/services/user.service';
 import { MenuController } from '@ionic/angular';
 
 

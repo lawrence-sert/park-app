@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
-import { HomeComponent } from 'src/app/client/home/home.component';
-import { MessagingComponent } from 'src/app/components/messaging/messaging.component';
-import { RecipesComponent } from 'src/app/components/recipes/recipes.component';
-import { MapsComponent } from 'src/app/components/maps/maps.component';
-import { DashComponent } from 'src/app/components/dash/dash.component';
-import { ListComponent } from 'src/app/components/list/list.component';
+import { MessagingComponent } from 'src/app/client/components/messaging/messaging.component';
+import { RecipesComponent } from 'src/app/client/components/recipes/recipes.component';
+import { MapsComponent } from 'src/app/client/components/maps/maps.component';
+import { DashComponent } from 'src/app/client/components/dash/dash.component';
+import { ListComponent } from 'src/app/client/components/list/list.component';
 
 @NgModule({
 	imports: [
@@ -22,8 +21,7 @@ import { ListComponent } from 'src/app/components/list/list.component';
 		DashboardPageRoutingModule
 	],
 	declarations: [
-		DashboardPage, 
-		HomeComponent, 
+		DashboardPage,  
 		MessagingComponent,
 		RecipesComponent,
 		MapsComponent,

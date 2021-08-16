@@ -1,51 +1,64 @@
 <ion-app>
 
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <div class="top">
-          <ion-row>
-            <ion-col size="4" routerLink="/settings" class="g-text-center--xs">
-              <i class="g-padding-r-5--xs ti-settings g-font-size-24--xs g-color--primary"></i><br>
-              <span class="g-font-size-12--xs"><strong>Settings</strong></span>
-            </ion-col>
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <div class="top">
+        <ion-row>
+          <ion-col size="4" routerLink="/settings" class="g-text-center--xs">
+            <i class="g-padding-r-5--xs ti-settings g-font-size-24--xs g-color--primary"></i><br>
+            <span class="g-font-size-12--xs"><strong>Settings</strong></span>
+          </ion-col>
 
-            <ion-col size="4"></ion-col>
+          <ion-col size="4"></ion-col>
 
-            <ion-col size="4"  routerLink="/dashboard" class="g-text-center--xs">
-              <span>
-                <i class="g-padding-r-5--xs fas fa-home g-font-size-24--xs g-color--primary"></i><br>
-                <span class="g-font-size-12--xs"><strong>Home</strong></span>
-              </span>
-              
-            </ion-col>
-          </ion-row>
+          <ion-col size="4"  routerLink="/dashboard" class="g-text-center--xs">
+            <span>
+              <i class="g-padding-r-5--xs fas fa-home g-font-size-24--xs g-color--primary"></i><br>
+              <span class="g-font-size-12--xs"><strong>Home</strong></span>
+            </span>
 
-          <ion-row>
-            <ion-col class="g-text-center--xs">
-                <img src="assets/img/sidebar-logo.png" class="menu-profile-img img-flud img-circle" />
-              <h2 class="g-font-size-16--xs g-text-center--xs g-margin-t-10--xs g-color--primary">{{displayName}}</h2>
-              <p><strong><i class="fas fa-map-marker-alt"></i> {{location}}</strong></p>
-            </ion-col>
-          </ion-row>
+          </ion-col>
+        </ion-row>
 
-        </div>
+        <ion-row>
+          <ion-col class="g-text-center--xs">
+            <img src="assets/img/sidebar-logo.png" class="menu-profile-img img-flud img-circle" />
+            <h2 class="g-font-size-16--xs g-text-center--xs g-margin-t-10--xs g-color--primary">{{displayName}}</h2>
+            <p><strong>
+              <i class="fas fa-map-marker-alt"></i> {{location}} 
+              - 
+              <span class="cap-me">{{accountType}}</span>
+            </strong>
+          </p>
+        </ion-col>
+      </ion-row>
 
-
-        <div class="mid">          
-          <div *ngIf="accountType ==='customer'">
-            <app-user-menu></app-user-menu>
-          </div>
-        </div>
+    </div>
 
 
-        <div class="bot">
-          <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-          >Log Out</button>
-        </div>
+    <div class="mid">          
+      <span *ngIf="accountType ==='customer'">
+        <app-user-menu></app-user-menu>
+      </span>
 
-      </ion-content>
-    </ion-menu>
+      <span *ngIf="accountType ==='farmer'">
+        <app-farmer-menu></app-farmer-menu>
+      </span>
 
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+      <span *ngIf="accountType ==='vendor'">
+        <app-vendor-menu></app-vendor-menu>
+      </span>
+    </div>
+
+
+    <div class="bot">
+      <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+      >Log Out</button>
+    </div>
+
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
 
 </ion-app>
