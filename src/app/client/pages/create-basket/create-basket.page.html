@@ -2,10 +2,10 @@
 	<ion-toolbar class="header-color">
 
 		<ion-buttons slot="start" class="g-font-size-18--xs">
-			<ion-menu-button>
-				<i class="ti-arrow-left g-font-size-18--xs"></i>
-			</ion-menu-button>
-		</ion-buttons>
+      <ion-back-button>
+      	<i class="ti-arrow-left g-font-size-18--xs"></i>
+      </ion-back-button>
+    </ion-buttons>
 
 		<ion-title class="ion-text-center">
 			Create Basket
@@ -44,6 +44,12 @@
 						<i class="fas fa-shopping-basket g-font-size-18--xs g-color--primary" slot="start"></i>
 						<ion-label class="g-padding-l-20--xs">
 							<h3>{{basket.basket_name}}</h3>
+							<p class="g-font-size-10--xs">
+								{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
+								<span class="pull-right">
+								<span class="g-color--primary">(12)</span> 
+								Items</span>
+							</p>
 						</ion-label>
 						<i class="ti-angle-right g-font-size-12--xs g-color--primary" slot="end"></i>
 					</ion-item>

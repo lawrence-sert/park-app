@@ -35,6 +35,13 @@ export class BasketPage implements OnInit {
 	basketID: any[] = [];
 	public parameterValue: any[] = [];
 
+	type: string;
+
+	products : any;
+
+	bassketItems: Basket[] = [];
+	items : any;
+
 	constructor(
 		public usersService: UserService,
 		public basketService: BasketService,
@@ -68,8 +75,12 @@ export class BasketPage implements OnInit {
 	}
 
 	ngOnInit() {
+
+		this.type = 'vegitables';
+
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
+		const param = this.parameterValue;
 
 		console.log(id);
 
@@ -81,6 +92,12 @@ export class BasketPage implements OnInit {
 				return { id, ...data };
 			}))
 			);
+
 	}
+
+	segmentChanged(ev: any) {
+		console.log('Segment changed', ev);
+	}
+
 
 }

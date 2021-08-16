@@ -1,0 +1,24 @@
+import { firestore } from 'firebase/app';
+import Timestamp = firestore.Timestamp;
+
+@Injectable()
+export class YourService {
+
+....
+
+    list = (): Observable<any[]> => this.collection
+        .snapshotChanges()
+        .pipe(
+            map(changes => {
+                return changes.map(a => {
+                    const data = a.payload.doc.data() as any;
+                    Object.keys(data).filter(key => data[key] instanceof Timestamp)
+                        .forEach(key => data[key] = data[key].toDate())
+                    data._id = a.payload.doc.id;
+                    return data;
+                });
+            })
+        );
+
+...
+}

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Basket } from 'src/app/client/models/basket.model';
 import { UserService } from 'src/app/auth/services/user.service';
+import * as firebase from 'firebase';
+
 
 
 @Injectable({
@@ -42,7 +44,7 @@ export class BasketService {
 		.collection(`users/${uid}/basket`).doc(basket_id).set({
 			basket_id : basket_id,
 			basket_name : data.basket_name,
-			basket_date : 'date',
+			basket_date : firebase.default.firestore.FieldValue.serverTimestamp(),
 			basket_cost : 'dummy',
 			basket_items : 'dummy',
 			basket_completed : false,

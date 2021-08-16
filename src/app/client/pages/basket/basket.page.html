@@ -1,14 +1,16 @@
+<div *ngFor="let basket of basket$ | async; index as i">
 <ion-header [translucent]="true" class="ion-no-border">
+
 	<ion-toolbar class="header-color">
 
 		<ion-buttons slot="start" class="g-font-size-18--xs">
-			<ion-menu-button>
+			<ion-back-button>
 				<i class="ti-arrow-left g-font-size-18--xs"></i>
-			</ion-menu-button>
+			</ion-back-button>
 		</ion-buttons>
 
 		<ion-title class="ion-text-center">
-
+			{{basket.basket_name}}
 		</ion-title>
 
 		<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
@@ -18,31 +20,45 @@
 		</span>
 
 	</ion-toolbar>
+
+	<div class="header-basket">
+		<div class="basket-icon g-text-center--xs">
+			<i class="fas fa-shopping-basket g-font-size-80--xs g-color--white"></i>
+		</div>
+		<div class="basket-cost">
+			<div class="row"> 
+				<div class="col-xs-6"></div>
+
+				<div class="col-xs-6">
+					<span class="pull-right">
+						<h2 class="g-font-size-18--xs g-color--white">
+						{{basket.basket_cost}}
+						<span class="light">RWF</span>
+						</h2>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+		<ion-segment-button value="vegitables" size="3" checked>
+			Basket Items
+		</ion-segment-button>
+
+		<ion-segment-button value="fruit" size="3">
+			Basket History
+		</ion-segment-button>
+
+		<ion-segment-button value="processed" size="3">
+			Recipes
+		</ion-segment-button>
+
+	</ion-segment>
 	
 </ion-header>
 
 <ion-content>
-	<div *ngFor="let basket of basket$ | async; index as i">
-
-		<div class="basket-top">
-			<div class="basket-icon g-text-center--xs">
-				<i class="fas fa-shopping-basket g-font-size-80--xs g-color--white"></i>
-				<h2 class="g-font-size-24--xs g-color--white light">{{basket.basket_name}} </h2>
-			</div>
-
-			<div class="basket-price">
-				<div class="row">
-					<div class="col-xs-6">Created</div>
-					<div class="col-xs-6">Total 123</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="basket-bottom">
-			
-			hello
-		</div>
-
-
-	</div>
+	
 </ion-content>
+</div>

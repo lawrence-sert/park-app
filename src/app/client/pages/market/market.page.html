@@ -2,10 +2,10 @@
 	<ion-toolbar class="header-color">
 
 		<ion-buttons slot="start" class="g-font-size-18--xs">
-			<ion-menu-button>
-				<i class="ti-arrow-left g-font-size-18--xs"></i>
-			</ion-menu-button>
-		</ion-buttons>
+      <ion-back-button>
+      	<i class="ti-arrow-left g-font-size-18--xs"></i>
+      </ion-back-button>
+    </ion-buttons>
 
 		<ion-title class="ion-text-center">
 			Market Place
@@ -39,9 +39,17 @@
 
 	</ion-segment>
 
-	<ion-toolbar>
-		<ion-searchbar></ion-searchbar>
-	</ion-toolbar>
+		<div class="row">
+			<div class="col-xs-10">
+				<ion-searchbar  cancelButtonText="Custom Cancel"></ion-searchbar>
+			</div>
+
+			<div class="col-xs-2">
+				<i class="ti-panel g-font-size-24--xs"></i>
+			</div>
+		</div>
+		
+
 
 
 </ion-header>
@@ -230,6 +238,8 @@
 		</ion-row>
 
 	</div>
+
+
 
 
 
