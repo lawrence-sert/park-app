@@ -29,6 +29,10 @@ export class BasketService {
 		return this.firestore.collection(`users/${uid}/basket`).snapshotChanges();
 	}
 
+	getBasketItem(uid, bid) {
+		return this.firestore.collection(`users/${uid}/basket/${bid}/basket_items`).snapshotChanges();
+	}
+
 	createBasket(uid, data) {
 
 		var text = "";

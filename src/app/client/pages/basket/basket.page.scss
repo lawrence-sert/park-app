@@ -9,3 +9,26 @@
 	height: 50px;
 	line-height: 30px;
 }
+
+.created-date {
+	line-height : 30px;
+}
+.post {
+	height : 80px;
+	padding : 5px;
+	border-bottom:  1px solid #ccc;
+	margin-bottom: 5px;
+}
+.post-image {
+	border-radius : 5px;
+}
+
+.post-image
+{
+  position: relative;
+}
+
+.title-text {
+	font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}

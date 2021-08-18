@@ -9,6 +9,9 @@ import { map } from 'rxjs/operators';
 import { BasketService } from 'src/app/client/services/basket.service';
 import {Basket} from 'src/app/client/models/basket.model';
 
+import { RecipesService } from 'src/app/client/services/recipes.service';
+import { Recipes } from 'src/app/client/models/recipes.model';
+
 @Component({
 	selector: 'app-basket',
 	templateUrl: './basket.page.html',
@@ -39,12 +42,16 @@ export class BasketPage implements OnInit {
 
 	products : any;
 
+	recipes : any;
+
 	bassketItems: Basket[] = [];
 	items : any;
+	basketItems : any;
 
 	constructor(
 		public usersService: UserService,
 		public basketService: BasketService,
+		private recipesService: RecipesService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore
@@ -76,7 +83,7 @@ export class BasketPage implements OnInit {
 
 	ngOnInit() {
 
-		this.type = 'vegitables';
+		this.type = 'basket-items';
 
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -92,6 +99,26 @@ export class BasketPage implements OnInit {
 				return { id, ...data };
 			}))
 			);
+
+		//read Posts 
+		this.basketService.getBasketItem(id, param).subscribe((data) => {
+			this.basketItems = data.map((e) => {
+				return {
+					id: e.payload.doc.id,
+					...(e.payload.doc.data() as {}),
+				} as Basket;
+			});
+		});
+
+		//read products 
+		this.recipesService.getRecipes().subscribe((data) => {
+			this.recipes = data.map((e) => {
+				return {
+					id: e.payload.doc.id,
+					...(e.payload.doc.data() as {}),
+				} as Recipes;
+			});
+		});
 
 	}
 
