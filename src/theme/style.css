@@ -93,9 +93,9 @@ fieldset[disabled] .s-btn {
 /* Sizes
 ------------------------------ */
 .s-btn--xs {
-  font-size: 0.75rem;
-  font-weight: 400;
-  padding: 0.5rem 1.25rem;
+  font-size: 10px;
+  font-weight: 300;
+  padding: 0.3rem 1.0rem;
 }
 
 .s-btn--sm {

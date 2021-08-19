@@ -30,9 +30,11 @@
 <span *ngFor="let post of posts">
 <ion-row class="post" [routerLink]="['/post', post.id]">
 	<ion-col size="9">
-		<span class="g-font-size-12--xs g-color--primary title-text">{{post.post_title}}</span>
+		<span class="g-font-size-12--xs g-color--primary title-text cap-me">{{post.post_title | slice:0:30}}</span>
 		<span class="g-font-size-10--xs g-color--primary pull-right">{{post.post_category}}</span>
-		<p class="g-font-size-10--xs">Need to make this text at least this small so that user can understand</p>
+		<p class="g-font-size-10--xs">
+			{{post.post_main | slice:0:80}} ...
+		</p>
 	</ion-col>
 	<ion-col size="3">
 		<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_name}}">
@@ -40,9 +42,7 @@
 </ion-row>
 </span>
 
-<ion-button expand="block" (click)="sendLocalNotification()">
-	Send Local notification
-</ion-button>
+
 
 
 

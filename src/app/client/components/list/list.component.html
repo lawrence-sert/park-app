@@ -22,9 +22,6 @@
 						<h3>{{basket.basket_name}}</h3>
 						<p class="g-font-size-10--xs">
 							{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
-							<span class="pull-right">
-								<span class="g-color--primary">(12)</span> 
-							Items</span>
 						</p>
 					</ion-label>
 					<i class="ti-angle-right g-font-size-12--xs g-color--primary" slot="end"></i>
@@ -65,8 +62,3 @@
 
 
 
-<ion-fab vertical="bottom" horizontal="start" slot="fixed" edge>
-	<ion-fab-button (click)="presentAlertPrompt()" size="small">
-		<i class="fas fa-shopping-basket g-font-size-18--xs"></i>
-	</ion-fab-button>
-</ion-fab>

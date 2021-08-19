@@ -69,34 +69,27 @@
 
 	<div [ngSwitch]="type">
 
-		<ion-row *ngSwitchCase="'basket-items'">
-			<ion-col>
-				<span *ngFor="let basketItem of basketItems; index as i">
-					{{basketItem.product_id}}
-				</span>
-			</ion-col>
-		</ion-row>
+		<div *ngSwitchCase="'basket-items'">
+			<div *ngIf="basketItems?.length > 0; else emptyBasket">		
+			</div>
 
-		<ion-row *ngSwitchCase="'basket-history'">
-
-			
-		</ion-row>
-
-		<ion-row *ngSwitchCase="'recipes'">
-			<span *ngFor="let recipe of recipes; index as i">
-				<ion-row class="post" [routerLink]="['/recipe', recipe.id]">
-					<ion-col size="9">
-						<span class="g-font-size-12--xs g-color--primary title-text">{{recipe.recipe_name}}</span>
-						<span class="g-font-size-10--xs g-color--primary pull-right">here</span>
-						<p class="g-font-size-10--xs">Need to make this text at least this small so that user can understand</p>
-					</ion-col>
-					<ion-col size="3">
-						<img class="img-responsive post-image" src="{{recipe.recipe_image}}" alt="{{recipe.recipe_name}}">
+			<ng-template #emptyBasket>
+				<ion-row class="emptyImage">
+					<ion-col>
+						<img class="img-responsive g-margin-b-30--xs" src="assets/svg/empty-basket.svg">
 					</ion-col>
 				</ion-row>
-			</span>
-		</ion-row>
+			</ng-template>
+		</div>
 
+
+		<!-- Basket history activity -->
+		<div  *ngSwitchCase="'basket-history'">			
+		</div>
+
+		<!-- Basket history activity -->
+		<div  *ngSwitchCase="'recipe'">			
+		</div>
 
 	</div>
 	
@@ -105,7 +98,7 @@
 <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
 <ion-fab vertical="bottom" horizontal="start" slot="fixed">
 	<ion-fab-button>
-		<i class="ti-view-list g-font-size-18--xs"></i>
+		<i class="ti-list g-font-size-18--xs"></i>
 	</ion-fab-button>
 	<ion-fab-list side="end">
 		<ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
@@ -114,8 +107,8 @@
 
 <!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-	<ion-fab-button size="small">
-		<ion-icon name="settings"></ion-icon>
+	<ion-fab-button size="small" (click)="openCalModal()">
+		<i class="ti-plus"></i>
 	</ion-fab-button>
 </ion-fab>
 

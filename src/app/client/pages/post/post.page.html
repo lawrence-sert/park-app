@@ -1,36 +1,66 @@
 <ion-header [translucent]="true" class="ion-no-border">
-	<ion-toolbar class="header-color">
 
-		<ion-buttons slot="start">
-			<ion-back-button></ion-back-button>
-		</ion-buttons>
+	<div *ngFor="let post of post$ | async; index as i">
+		<ion-toolbar>
+			<ion-buttons slot="start" class="g-font-size-18--xs">
+				<ion-back-button>
+					<i class="ti-arrow-left g-font-size-18--xs"></i>
+				</ion-back-button>
+			</ion-buttons>
+			<span slot="end" class="g-padding-r-10--xs">
+				<i class="ti-share g-font-size-18--xs g-padding-r-10--xs"></i>
+			</span>
+			<span slot="end" class="g-padding-r-10--xs">
+				<i class="ti-bookmark g-font-size-18--xs g-padding-r-10--xs"></i>
+			</span>
+			<span slot="end" class="g-padding-r-10--xs">
+				<i class="ti-list g-font-size-18--xs g-padding-r-10--xs"></i>
+			</span>
+		</ion-toolbar>
 
-		<ion-title class="ion-text-center">
+		<ion-toolbar>
+			<div class="row">
+				<div class="col-xs-6">
+					<span class="g-display-block--xs g-display-inline-block--sm g-margin-b-10--xs g-margin-b-0--sm">
+						<a  class=" s-btn s-btn--xs s-btn--primary-bg g-radius--50 ">
+							<i class="ti-agenda"></i>	{{post.post_category}}
+						</a>
+					</span>
+				</div>
+				<div class="col-xs-6">
+					<span class="pull-right g-font-size-12--xs">
+						{{post.post_date.toDate() | date:'dd MMM yyyy h:mm'}}
+					</span> 
+				</div>
+			</div>
+		</ion-toolbar>
 
-		</ion-title>
+	</div>
 
-		<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
-			<img class="profile-user-img-main  img-circle "
-			src="assets/img/header-logo.png"
-			alt="Park&Pick Logo">
-		</span>
-
-	</ion-toolbar>
 </ion-header>
 
 <ion-content>
+
 	<div *ngFor="let post of post$ | async; index as i">
-		<div class="post-titled">
-			<ion-row>
-				<ion-col class="g-text-center--xs">
-					<h2 class="g-color--white g-font-size-20--xs">This is the title os the post</h2>
-				</ion-col>
-			</ion-row>
+			
+		<div class="post_title g-padding-x-10--xs">
+			<h2 class="g-font-size-18--xs g-color--primary g-text-left--xs cap-me">
+				{{post.post_title}}
+			</h2>
 		</div>
-		<div class="page-content">
-			<div class="post-image">
-				<img src="assets/img/post/1.png" class="img-responsive">
-			</div>
+
+		<div class="post_image">
+			<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_name}}">
 		</div>
+
+		<div class="post_main g-padding-x-10--xs">
+			<p class="">
+				{{post.post_main}}
+			</p>
+		</div>	
+
 	</div>
+
 </ion-content>
+
+

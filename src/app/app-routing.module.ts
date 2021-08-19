@@ -85,7 +85,11 @@ const routes: Routes = [
   {
     path: 'cookie',
     loadChildren: () => import('src/app/legal/cookie/cookie.module').then( m => m.CookiePageModule)
+  },  {
+    path: 'add-basket',
+    loadChildren: () => import('./client/modals/add-basket/add-basket.module').then( m => m.AddBasketPageModule)
   }
+
 
   
 ];

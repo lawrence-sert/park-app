@@ -13,9 +13,9 @@ export class LocalNotificationService {
 		LocalNotifications.schedule({
 			notifications:[
 			{
+				id : id,
 				title : title,
-				body : text,
-				id : id
+				body : text
 			}
 			]
 		});

@@ -38,4 +38,9 @@ export class ProductsService {
 	deleteProducts(beefId: string) {
 		this.firestore.doc('product/' + beefId).delete();
 	}
+
+	//products categories
+	getProductCategories() {
+		return this.firestore.collection('products_categories').snapshotChanges();
+	}
 }

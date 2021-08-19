@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AlertController, ModalController } from '@ionic/angular';
+import { AddBasketPage } from 'src/app/client/modals/add-basket/add-basket.page';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -54,7 +56,8 @@ export class BasketPage implements OnInit {
 		private recipesService: RecipesService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		public db: AngularFirestore
+		public db: AngularFirestore,
+		private modalCtrl: ModalController
 		) { 
 
 		// Local storage information
@@ -125,6 +128,18 @@ export class BasketPage implements OnInit {
 	segmentChanged(ev: any) {
 		console.log('Segment changed', ev);
 	}
+
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: AddBasketPage,
+			cssClass: 'app-add-basket',
+			backdropDismiss: false
+		});
+
+		await modal.present();
+
+	}
+
 
 
 }

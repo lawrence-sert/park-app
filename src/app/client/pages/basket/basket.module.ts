@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { BasketPageRoutingModule } from './basket-routing.module';
 
+import { AddBasketPageModule } from 'src/app/client/modals/add-basket/add-basket.module';
+
 import { BasketPage } from './basket.page';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { BasketPage } from './basket.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    BasketPageRoutingModule
+    BasketPageRoutingModule,
+    AddBasketPageModule
   ],
   declarations: [BasketPage]
 })

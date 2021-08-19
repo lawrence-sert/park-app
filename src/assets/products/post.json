@@ -3,7 +3,7 @@
    "posts": {
 
      "1" : {
-      "id": 1,
+      "id": "1",
       "post_title": "this is a tip",
       "post_date": "02102021",
       "post_image": "assets/img/post/1.png",
@@ -15,7 +15,7 @@
 
    },
    "2" : {
-      "id": 2,
+      "id": "2",
       "post_title": "Second Article",
       "post_date": "02102021",
       "post_image": "assets/img/post/2.png",
@@ -27,7 +27,7 @@
 
    },
    "3" : {
-      "id": 3,
+      "id": "3",
       "post_title": "Third Article",
       "post_date": "02102021",
       "post_image": "assets/img/post/3.png",
@@ -40,7 +40,7 @@
    }
    ,
    "4" : {
-      "id": 4,
+      "id": "4",
       "post_title": "Forth Article",
       "post_date": "02102021",
       "post_image": "assets/img/post/4.png",
