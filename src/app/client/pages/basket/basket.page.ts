@@ -7,12 +7,20 @@ import { AddBasketPage } from 'src/app/client/modals/add-basket/add-basket.page'
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { BasketService } from 'src/app/client/services/basket.service';
 import {Basket} from 'src/app/client/models/basket.model';
 
+//get basket items
+import { BasketItemsService } from 'src/app/client/services/basket-items.service';
+import {BasketItems} from 'src/app/client/models/basket-items.model';
+
 import { RecipesService } from 'src/app/client/services/recipes.service';
 import { Recipes } from 'src/app/client/models/recipes.model';
+
+import { ProductsService } from 'src/app/client/services/products.service';
+import { Product } from 'src/app/client/models/product.model';
 
 @Component({
 	selector: 'app-basket',
@@ -43,6 +51,7 @@ export class BasketPage implements OnInit {
 	type: string;
 
 	products : any;
+	product : any;
 
 	recipes : any;
 
@@ -50,9 +59,12 @@ export class BasketPage implements OnInit {
 	items : any;
 	basketItems : any;
 
+	allSubscriptions: Subscription[] = [];
+
 	constructor(
 		public usersService: UserService,
 		public basketService: BasketService,
+		public basketItemsService: BasketItemsService,
 		private recipesService: RecipesService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
@@ -103,8 +115,8 @@ export class BasketPage implements OnInit {
 			}))
 			);
 
-		//read Posts 
-		this.basketService.getBasketItem(id, param).subscribe((data) => {
+		//get all basket items for this param
+		this.basketItemsService.getBasketItem(id, param).subscribe((data) => {
 			this.basketItems = data.map((e) => {
 				return {
 					id: e.payload.doc.id,
@@ -113,7 +125,7 @@ export class BasketPage implements OnInit {
 			});
 		});
 
-		//read products 
+		//read all recipes 
 		this.recipesService.getRecipes().subscribe((data) => {
 			this.recipes = data.map((e) => {
 				return {
@@ -128,6 +140,8 @@ export class BasketPage implements OnInit {
 	segmentChanged(ev: any) {
 		console.log('Segment changed', ev);
 	}
+
+
 
 	async openCalModal() {
 		const modal = await this.modalCtrl.create({

@@ -10,6 +10,10 @@ import {Product} from 'src/app/client/models/product.model';
 import { ProductCategoriesService } from 'src/app/client/services/product-categories.service';
 import {ProductCategories} from 'src/app/client/models/product-categories.model';
 
+//basket items
+import { BasketItemsService } from 'src/app/client/services/basket-items.service';
+import {BasketItems} from 'src/app/client/models/basket-items.model';
+
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -55,6 +59,8 @@ export class AddBasketPage implements OnInit {
 		public usersService: UserService,
 		public formBuilder: FormBuilder,
 		private productService: ProductsService,
+		private productCategoriesService: ProductCategoriesService,
+		private basketItemsService: BasketItemsService,
 		public afs: AngularFirestore,
 		) { }
 
@@ -85,9 +91,9 @@ export class AddBasketPage implements OnInit {
 		});
 
 
-      this.allSubscriptions.push(this.productsCategory.valueChanges.subscribe((value) => {
-        this.selectedCountry();
-      }));
+		this.allSubscriptions.push(this.productsCategory.valueChanges.subscribe((value) => {
+			this.selectedCountry();
+		}));
 
 	}
 
@@ -109,12 +115,12 @@ export class AddBasketPage implements OnInit {
 	}
 
 	selectedCountry(){
-    this.categorySubscription.unsubscribe();
-    this.categorySubscription = this.afs.collection<Product>('products', ref => ref.where('Category', '==', this.productsCategory.value))
-    .valueChanges({ idField: 'id'}).subscribe((products) => {
-      this.producted = products;
-    })
-  }
+		this.categorySubscription.unsubscribe();
+		this.categorySubscription = this.afs.collection<Product>('products', ref => ref.where('Category', '==', this.productsCategory.value))
+		.valueChanges({ idField: 'id'}).subscribe((products) => {
+			this.producted = products;
+		})
+	}
 
 
 	//get all categories
@@ -125,5 +131,14 @@ export class AddBasketPage implements OnInit {
 			this.productList = products
 		})
 	}
+
+	onSubmit() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		let cati = "RXJDP";
+		this.basketItemsService.createBasketItem(id);
+	};
+
+
 
 }

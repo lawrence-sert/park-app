@@ -70,7 +70,23 @@
 	<div [ngSwitch]="type">
 
 		<div *ngSwitchCase="'basket-items'">
-			<div *ngIf="basketItems?.length > 0; else emptyBasket">		
+			<div *ngIf="basketItems?.length > 0; else emptyBasket">	
+
+				<ion-item lines="full" *ngFor="let basketItem of basketItems">
+					<ion-avatar slot="start">
+						<img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+					</ion-avatar>
+					<ion-label>
+						<h2>This</h2>
+						<p>we are here</p>
+					</ion-label>
+					<span class="" slot="end">
+						<span class="g-font-size-12--xs pull-right">X {{basketItem.quantity}}</span><br>
+						2200
+						<span class="g-color--primary g-font-size-12--xs">RWF</span>
+					</span>
+				</ion-item>
+
 			</div>
 
 			<ng-template #emptyBasket>

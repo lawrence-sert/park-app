@@ -11,7 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 //ngx addons
 import { ToastrModule } from 'ngx-toastr';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSelectModule } from 'ngx-select-ex'
 
 //firestore
 import { AngularFireModule } from '@angular/fire';
@@ -38,6 +39,7 @@ import { VendorMenuComponent } from 'src/app/vendor/components/vendor-menu/vendo
 		BrowserAnimationsModule, // required animations module
 		ToastrModule.forRoot(), // ToastrModule added
 		NgxPaginationModule,
+		NgxSelectModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireDatabaseModule,
 		AngularFireAuthModule,

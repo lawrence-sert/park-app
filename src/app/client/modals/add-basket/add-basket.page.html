@@ -31,28 +31,38 @@
 	<div class="search_filter"></div>
 
 	<div class="products">
-		<ion-list *ngFor="let prodcts of producted" [value]="prodcts.id">
-			<ion-item lines="full">
-				<ion-thumbnail slot="start">
-					<img src="assets/img/products/black-tea.png" class="img-responsive" style="width: 50%;">
-				</ion-thumbnail>
-				<ion-label>
-					<h2>Apo</h2>
-					<p class="g-font-size-10--xs">hello</p>
-				</ion-label>
+		<div class="row">
+			<div class="col-xs-12">
+				<ion-list>
+					<ion-item>
+						<ion-label>Select Market Category</ion-label>
+						<ion-select 
+						value="brown" 
+						okText="Okay" 
+						cancelText="Dismiss"
+						formControlName="product"
+						>
+						<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
+							{{prodcts.Item}}
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
 
-				<span slot="end">RWF 2000</span>
-			</ion-item>
-		</ion-list>
-	</div>
-
-
-	<div class="send g-padding-x-20--xs">
-		<div class="bot">
-			<button class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-			>Add To Basket</button>
+			</ion-list>
 		</div>
 	</div>
+</div>
+
+
+<div class="send g-padding-x-20--xs">
+	<div class="bot">
+		<button  type="submit" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+		>Add To Basket</button>
+	</div>
+</div>
 
 </form>
 </ion-content>
+
+
+

@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Basket } from 'src/app/client/models/basket.model';
+import { BasketItems } from 'src/app/client/models/basket-items.model';
 import { UserService } from 'src/app/auth/services/user.service';
 import * as firebase from 'firebase';
 
-
-
 @Injectable({
-	providedIn: 'root'
+  providedIn: 'root'
 })
-export class BasketService {
+export class BasketItemsService {
 
 	uid: any;
 	crrntUsr: any;
 
-
-	constructor(
+  constructor(
 		private firestore: AngularFirestore,
 		public usersService: UserService,
 		
@@ -25,13 +22,11 @@ export class BasketService {
 		const id = this.crrntUsr.uid;
 	}
 
-	getBasket(uid) {
-		return this.firestore.collection(`users/${uid}/basket`).snapshotChanges();
+	getBasketItem(uid, bid) {
+		return this.firestore.collection(`users/${uid}/basket/${bid}/basket_items`).snapshotChanges();
 	}
 
-	
-
-	createBasket(uid, data) {
+	createBasketItem(uid) {
 
 		var text = "";
 		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -39,18 +34,16 @@ export class BasketService {
 		for (var i = 0; i < 5; i++)
 			text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-		const basket_id = text;
-
+		const basketItem_id = text;
+		const basket  = "RXJDP";
 		// Add a new document in collection "cities"
 		return this.firestore
-		.collection(`users/${uid}/basket`).doc(basket_id).set({
-			basket_id : basket_id,
-			basket_name : data.basket_name,
-			basket_date : firebase.default.firestore.FieldValue.serverTimestamp(),
-			basket_cost : 'dummy',
-			basket_items : 'dummy',
-			basket_completed : false,
-			basket_save : false
+		.collection(`users/${uid}/basket/${basket}/basket_items/`).doc(basketItem_id).set({
+			id : basketItem_id,
+			category : 'fruits',
+			date : firebase.default.firestore.FieldValue.serverTimestamp(),
+			product_id : '15',
+			quantity : 3
 		})
 		.then(() => {
 			console.log("Document successfully written!");
@@ -59,5 +52,4 @@ export class BasketService {
 			console.error("Error writing document: ", error);
 		});
 	}
-
 }

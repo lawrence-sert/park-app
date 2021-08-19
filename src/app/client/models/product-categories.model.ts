@@ -3,4 +3,5 @@ export class ProductCategories {
 	category_image?: string;
 	id?: string;
 	category_name?: string;
+
 }
