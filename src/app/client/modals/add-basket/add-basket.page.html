@@ -1,71 +1,58 @@
 <ion-header [translucent]="true" class="ion-no-border">
 	<ion-toolbar class="header-color">
 
-		<ion-buttons slot="start" class="g-font-size-18--xs">
-			<ion-back-button>
-				<i class="ti-arrow-left g-font-size-18--xs"></i>
-			</ion-back-button>
-		</ion-buttons>
-
-		<ion-title class="ion-text-center">
-			Add Items To Basket
-		</ion-title>
-
-		<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
-			<img class="profile-user-img-main  img-circle "
-			src="assets/img/header-logo.png"
-			alt="Park&Pick Logo">
+		<span slot="end"  class="g-padding-r-10--xs">
+			<i class="ti-close g-font-size-18--xs"></i>
 		</span>
-
 	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-
 	<form [formGroup]="basketForm" (ngSubmit)="onSubmit()">
+		<div class="total_price"></div>
+		<div class="select_cat">
+			<ion-list>
+				<ion-item>
+					<ion-label>Select Market Category</ion-label>
+					<ion-select 
+					value="brown" 
+					okText="Okay" 
+					cancelText="Dismiss"
+					formControlName="products_category"
+					>
+					<ion-select-option class="cap-me" *ngFor="let category of categoryList" [value]="category.category_name">
+						<span class="cap-me">{{category?.category_name}}</span>
+					</ion-select-option>
+				</ion-select>
+			</ion-item>
 
-		<div class="row">
-			<div class="col-xs-12">
-				<ion-list>
-					<ion-item>
-						<ion-label>Select Market Category</ion-label>
-						<ion-select 
-							value="brown" 
-							okText="Okay" 
-							cancelText="Dismiss"
-							formControlName="products_category"
-						>
-							<ion-select-option *ngFor="let category of categoryList" [value]="category.category_name">
-								{{category?.category_name}}
-							</ion-select-option>
-						</ion-select>
-					</ion-item>
+		</ion-list>
+	</div>
+	<div class="search_filter"></div>
 
-				</ion-list>
-			</div>
+	<div class="products">
+		<ion-list *ngFor="let prodcts of producted" [value]="prodcts.id">
+			<ion-item lines="full">
+				<ion-thumbnail slot="start">
+					<img src="assets/img/products/black-tea.png" class="img-responsive" style="width: 50%;">
+				</ion-thumbnail>
+				<ion-label>
+					<h2>Apo</h2>
+					<p class="g-font-size-10--xs">hello</p>
+				</ion-label>
+
+				<span slot="end">RWF 2000</span>
+			</ion-item>
+		</ion-list>
+	</div>
+
+
+	<div class="send g-padding-x-20--xs">
+		<div class="bot">
+			<button class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
+			>Add To Basket</button>
 		</div>
+	</div>
 
-		<div class="row">
-			<div class="col-xs-12">
-				<ion-list>
-					<ion-item>
-						<ion-label>Select Market Category</ion-label>
-						<ion-select 
-							value="brown" 
-							okText="Okay" 
-							cancelText="Dismiss"
-							formControlName="product"
-						>
-							<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
-								{{prodcts.Item}}
-							</ion-select-option>
-						</ion-select>
-					</ion-item>
-
-				</ion-list>
-			</div>
-		</div>
-		
-	</form>
-
+</form>
 </ion-content>
