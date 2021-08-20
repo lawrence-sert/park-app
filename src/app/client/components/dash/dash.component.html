@@ -18,7 +18,7 @@
 	<ion-col>
 		<ion-slides class="slides" [options]='slideOpts'>
 				<ion-slide *ngFor="let post_cat of posts_cat; index as i">
-					<div [routerLink]="['/postcat', post_cat.id]">
+					<div [routerLink]="['/postcat', post_cat.post_category]">
 						<img src="{{post_cat.postc_image}}">
 					</div>
 				</ion-slide>

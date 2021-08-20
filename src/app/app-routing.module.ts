@@ -72,6 +72,10 @@ const routes: Routes = [
     path: 'post/:postID',
     loadChildren: () => import('src/app/client/pages/post/post.module').then( m => m.PostPageModule)
   },
+  {
+    path: 'postcat/:postCatID',
+    loadChildren: () => import('src/app/client/pages/postcat/postcat.module').then( m => m.PostcatPageModule)
+  },
 
   //legal pages
    {
@@ -85,7 +89,8 @@ const routes: Routes = [
   {
     path: 'cookie',
     loadChildren: () => import('src/app/legal/cookie/cookie.module').then( m => m.CookiePageModule)
-  },  {
+  },
+  {
     path: 'add-basket',
     loadChildren: () => import('./client/modals/add-basket/add-basket.module').then( m => m.AddBasketPageModule)
   }
