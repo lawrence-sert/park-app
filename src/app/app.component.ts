@@ -25,6 +25,7 @@ export class AppComponent {
   accountType?: any;
   location?: any;
   firstrun : any;
+  photoUrl : any;
 
 
   constructor(
@@ -51,6 +52,7 @@ export class AppComponent {
           this.emailVerified = this.userRef.emailVerified;
           this.accountType = this.userRef.accountType;
           this.location = this.userRef.location; 
+          this.photoUrl = this.userRef.photoUrl; 
         });
 
 

@@ -12,6 +12,8 @@ import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
 import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
+
 @Component({
   selector: 'app-info',
   templateUrl: './info.page.html',
@@ -100,6 +102,17 @@ export class InfoPage implements OnInit {
     this.userService.updateUser(this.editForm.value, id);
     this.router.navigate(['/dashboard']);  
   }
+
+async openCalModal() {
+  const modal = await this.modalCtrl.create({
+    component: ImageUpPage,
+    cssClass: 'app-image-up',
+    backdropDismiss: false
+  });
+ 
+  await modal.present();
+ 
+}
 
   
 

@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { InfoPageRoutingModule } from './info-routing.module';
 
+import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+
 import { InfoPage } from './info.page';
 
 @NgModule({
@@ -14,7 +16,8 @@ import { InfoPage } from './info.page';
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    InfoPageRoutingModule
+    InfoPageRoutingModule,
+    ImageUpPageModule
   ],
   declarations: [InfoPage]
 })

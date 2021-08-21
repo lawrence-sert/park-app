@@ -32,7 +32,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('src/app/auth/dashboard/dashboard.module').then( m => m.DashboardPageModule),
-    canLoad: [AuthGuard] // Secure all child pages
+    canActivate: [AuthGuard] // Secure all child pages
   },
   {
     path: 'info',
@@ -93,7 +93,11 @@ const routes: Routes = [
   {
     path: 'add-basket',
     loadChildren: () => import('./client/modals/add-basket/add-basket.module').then( m => m.AddBasketPageModule)
+  },  {
+    path: 'image-up',
+    loadChildren: () => import('./auth/image-up/image-up.module').then( m => m.ImageUpPageModule)
   }
+
 
 
   
