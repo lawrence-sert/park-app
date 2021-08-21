@@ -43,6 +43,18 @@ export class RecipePage implements OnInit {
 	ingredientRef: AngularFirestoreCollection<Recipes>;
 	ingredient$: Observable<Recipes[]>;
 
+	methodRef: AngularFirestoreCollection<Recipes>;
+	method$: Observable<Recipes[]>;
+
+	nutritionRef: AngularFirestoreCollection<Recipes>;
+	nutrition$: Observable<Recipes[]>;
+
+	nutritionInfo: AngularFirestoreCollection<Recipes>;
+	nutritionInfo$: Observable<Recipes[]>;
+
+	commentsRef: AngularFirestoreCollection<Recipes>;
+	comments$: Observable<Recipes[]>;
+
 	chefRef: AngularFirestoreCollection<Chefs>;
 	chef$: Observable<Recipes[]>;
 	chef_id: any[] = [];
@@ -96,6 +108,44 @@ export class RecipePage implements OnInit {
 
 		this.ingredientRef = this.db.collection<{}>(`recipes/${this.parameterValue}/ingredient`);
 		this.ingredient$ = this.ingredientRef.snapshotChanges().pipe(
+			map(actions => actions.map(a => {
+				const data = a.payload.doc.data(); // DB Questions
+				const id = a.payload.doc.id;
+				return { id, ...data };
+			}))
+			);
+
+		this.methodRef = this.db.collection<{}>(`recipes/${this.parameterValue}/method`, ref => ref.orderBy('method_number','asc'));
+		this.method$ = this.methodRef.snapshotChanges().pipe(
+			map(actions => actions.map(a => {
+				const data = a.payload.doc.data(); // DB Questions
+				const id = a.payload.doc.id;
+				return { id, ...data };
+			}))
+			);
+
+		this.nutritionRef = this.db.collection<{}>(`recipes/${this.parameterValue}/nutrition`);
+		this.nutrition$ = this.nutritionRef.snapshotChanges().pipe(
+			map(actions => actions.map(a => {
+				const data = a.payload.doc.data(); // DB Questions
+				const id = a.payload.doc.id;
+				return { id, ...data };
+			}))
+			);
+
+		//nutrient value info
+		this.nutritionInfo = this.db.collection<{}>(`recipes/${this.parameterValue}/nutrition/${this.parameterValue}/nutritionValue`);
+		this.nutritionInfo$ = this.nutritionInfo.snapshotChanges().pipe(
+			map(actions => actions.map(a => {
+				const data = a.payload.doc.data(); // DB Questions
+				const id = a.payload.doc.id;
+				return { id, ...data };
+			}))
+			);
+
+		//nutrient value info
+		this.commentsRef = this.db.collection<{}>(`recipes/${this.parameterValue}/comments`);
+		this.comments$ = this.commentsRef.snapshotChanges().pipe(
 			map(actions => actions.map(a => {
 				const data = a.payload.doc.data(); // DB Questions
 				const id = a.payload.doc.id;

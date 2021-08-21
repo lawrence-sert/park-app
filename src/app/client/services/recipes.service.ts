@@ -72,4 +72,8 @@ export class RecipesService {
 	getIngredients(pageId) {
 		return this.firestore.collection(`recipes/${pageId}/ingredient`).snapshotChanges();
 	}
+
+	getMethod(pageId) {
+		return this.firestore.collection(`recipes/${pageId}/method`).snapshotChanges();
+	}
 }

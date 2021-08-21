@@ -101,40 +101,143 @@
 
 		<div [ngSwitch]="type">
 
-			<div class="row" *ngSwitchCase="'ingredients'">
-				<div class="col-xs-12">
-					<h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2>
+			<div *ngSwitchCase="'ingredients'">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2>
+					</div>
+				</div>
 
-					<span *ngFor="let ingredient of ingredient$ | async; index as i">
-						hie
-					</span>
+				<div class="row">
+					<div class="col-xs-12">
+						<ion-list>
+							<ion-item lines="full" *ngFor="let ingredient of ingredient$ | async; index as i">
+								<i class="ti-control-record g-color--primary " slot="start"></i>
+								<ion-label>
+									<span class="g-font-size-12--xs g-line-height--30">{{ingredient.ingredient_name}}</span>
+								</ion-label>
+							</ion-item>
+						</ion-list>
+					</div>
 				</div>
 			</div>
 
-			<div class="row" *ngSwitchCase="'directions'">
-				<div class="col-xs-12">
-					<h2 class="pull-right g-color--primary g-font-size-14--xs">Method </h2>
+			<div *ngSwitchCase="'directions'">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="pull-right g-color--primary g-font-size-14--xs">Method </h2>
+					</div>
+				</div>
+
+				<div class="row g-margin-b-10--xs" *ngFor="let method of method$ | async; index as i">
+					<div class="col-xs-1 g-text-center--xs">
+						<span class="g-font-size-24--xs g-color--primary"> {{method.method_number}}</span>
+					</div>
+					<div class="col-xs-11">
+						<span class="g-font-size-12--xs">{{method.method_main}}</span>
+					</div>
 				</div>
 			</div>
 
-			<div class="row" *ngSwitchCase="'nutrition'">
-				<div class="col-xs-12">
-					<h2 class="pull-right g-color--primary g-font-size-14--xs">Nutritional Value </h2>
+			<div *ngSwitchCase="'nutrition'">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="pull-right g-color--primary g-font-size-14--xs">Nutrition </h2>
+					</div>
+				</div>
+
+				<div class="row" *ngFor="let nutrition of nutrition$ | async; index as i">
+					<div class="col-xs-4">
+						<div class="nutrition-circle g-text-center--xs">
+							<span class="g-font-size-24--xs">{{nutrition.nutrition_value}}</span>
+						</div>
+					</div>
+
+					<div class="col-xs-8">
+						<div class="row">
+							<div class="col-xs-6">
+								<i class="fab fa-envira g-font-size-48--xs pull-right my-green"></i>
+							</div>
+							<div class="col-xs-6">
+								<span>Future<br>
+								50 Foods</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="g-font-size-14--xs g-color--primary">Nutritional information</h2>
+
+						<table class="table table-sm">
+							<thead>
+								<tr>
+									<th style="width: 50%"></th>
+									<th style="width: 30%">Performance</th>
+									<th style="width: 20%">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let nutritionValue of nutritionInfo$ | async; index as i" class="g-font-size-12--xs">
+									<td>{{nutritionValue.nutritionV_name}}</td>
+									<td>{{nutritionValue.nutritionV_perfomance}}</td>
+									<td>{{nutritionValue.nutritionV_total}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 
-			<div class="row" *ngSwitchCase="'description'">
-				<div class="col-xs-12">
-					<h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2>
-					<p>
-						{{recipe.recipe_description}}
-					</p>
+			<div *ngSwitchCase="'description'">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<p class="g-font-size-12--xs">
+							{{recipe.recipe_description}}
+						</p>
+					</div>
 				</div>
 			</div>
 
-			<div class="row" *ngSwitchCase="'comments'">
-				<div class="col-xs-12">
-					<h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2>
+			<div *ngSwitchCase="'comments'">
+				<div class="row">
+					<div class="col-xs-12">
+						<h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2>
+					</div>
+				</div>
+
+				<div class="row" *ngFor="let comment of comments$ | async; index as i">
+					<div class="col-xs-2">
+						<img src="assets/img/director2.png" class="comment-user-img img-circle img-responsive">
+					</div>
+
+					<div class="col-xs-10">
+						<div class="comment-main">
+							<span class="g-font-size-12--xs">
+								{{comment.comment_main}}
+							</span> 
+						</div>
+					</div>
+				</div>
+
+				<div class="row message-send">
+					<div class="col-xs-2">
+						
+					</div>
+
+					<div class="col-xs-8">
+						hello
+					</div>
+
+					<div class="col-xs-2 g-text-center--xs">
+						<i class="far fa-paper-plane g-font-size-24--xs g-color--primary"></i>
+					</div>
 				</div>
 			</div>
 
