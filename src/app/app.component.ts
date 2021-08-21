@@ -30,7 +30,7 @@ export class AppComponent {
 
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
-    private authService: AuthService,
+    public authService: AuthService,
     public usersService: UserService,
     public router: Router
     ) {
@@ -54,10 +54,6 @@ export class AppComponent {
           this.location = this.userRef.location; 
           this.photoUrl = this.userRef.photoUrl; 
         });
-
-
-
-
       } else {
 
       }

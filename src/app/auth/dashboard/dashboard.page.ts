@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { Router } from "@angular/router";
 import User from 'src/app/auth/models/user.model';
 import { UserService } from 'src/app/auth/services/user.service';
 import { MenuController } from '@ionic/angular';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 
 
@@ -28,13 +31,20 @@ export class DashboardPage implements OnInit {
 	location: any;
 	accountType?: any;
 	firstrun : any;
+	photoUrl : any;
 
 	constructor(
 		public authService: AuthService,
 		private usersService: UserService,
 		public router: Router,
 		public menuCtrl: MenuController,
+		private modalCtrl : ModalController
 		) { 
+		
+	}
+
+	async ngOnInit() {
+		this.type = 'home';
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -47,17 +57,13 @@ export class DashboardPage implements OnInit {
 			this.emailVerified = this.userRef.emailVerified;
 			this.accountType = this.userRef.accountType;
 			this.location = this.userRef.location;
+			this.photoUrl = this.userRef.photoUrl;
 
 			console.log(this.firstrun);
-          if(this.firstrun==='0') {
-            this.router.navigate(['/info']);
-          }
+			if(this.firstrun==='0') {
+				this.router.navigate(['/info']);
+			}
 		});
-	}
-
-	async ngOnInit() {
-		//await LocalNotifications.requestPermission();
-		this.type = 'home';
 		
 	}
 
@@ -77,13 +83,24 @@ export class DashboardPage implements OnInit {
 	}
 
 	doRefresh(event) {
-    console.log('Begin async operation');
+		console.log('Begin async operation');
 
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
+		setTimeout(() => {
+			console.log('Async operation has ended');
+			event.target.complete();
+		}, 2000);
+	}
+
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: ImageUpPage,
+			cssClass: 'app-image-up',
+			backdropDismiss: false
+		});
+		
+		await modal.present();
+		
+	}
 
 
 

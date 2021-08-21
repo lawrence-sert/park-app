@@ -74,6 +74,15 @@ export class UserService {
 		});
 	}
 
+	changeEmail(uid, data) {
+    return this.db
+		.collection("users")
+		.doc(uid)
+		.update({
+			email: data.email
+		});
+	}
+
 	changeAccountType(uid, data) {
     return this.db
 		.collection("users")

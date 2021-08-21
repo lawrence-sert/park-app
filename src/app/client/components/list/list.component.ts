@@ -33,12 +33,16 @@ export class ListComponent implements OnInit {
   title : any;
 
   constructor(
-  	private authService: AuthService,
+  	public authService: AuthService,
     public usersService: UserService,
     private basketService: BasketService,
     private alertCtrl: AlertController,
   	) { 
-  	// Local storage information
+  	
+  }
+
+  ngOnInit() {
+    // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
     this.uid = this.crrntUsr.uid;
@@ -52,9 +56,6 @@ export class ListComponent implements OnInit {
       this.accountType = this.userRef.accountType;
       this.photoURL = this.userRef.photoURL;
     });
-  }
-
-  ngOnInit() {
   	//read my baskets 
     this.basketService.getBasket(this.uid).subscribe((data) => {
       this.basket = data.map((e) => {

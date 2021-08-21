@@ -5,4 +5,8 @@ export class Product {
 	Caption?:any;
 	Description?:any;
 	Price?:any;
+	Image?:any;
+	Likes?:any;
+	Comments?:any;
+
 }

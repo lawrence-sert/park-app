@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+
+import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+
 import { MessagingComponent } from 'src/app/client/components/messaging/messaging.component';
 import { RecipesComponent } from 'src/app/client/components/recipes/recipes.component';
 import { MapsComponent } from 'src/app/client/components/maps/maps.component';
@@ -18,7 +21,8 @@ import { ListComponent } from 'src/app/client/components/list/list.component';
 		CommonModule,
 		FormsModule,
 		IonicModule,
-		DashboardPageRoutingModule
+		DashboardPageRoutingModule,
+		ImageUpPageModule
 	],
 	declarations: [
 		DashboardPage,  

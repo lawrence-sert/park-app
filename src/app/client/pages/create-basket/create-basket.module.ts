@@ -8,12 +8,15 @@ import { CreateBasketPageRoutingModule } from './create-basket-routing.module';
 
 import { CreateBasketPage } from './create-basket.page';
 
+import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateBasketPageRoutingModule
+    CreateBasketPageRoutingModule,
+    ImageUpPageModule
   ],
   declarations: [CreateBasketPage]
 })

@@ -11,10 +11,9 @@
 			Market Place
 		</ion-title>
 
-		<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
+		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
 			<img class="profile-user-img-main  img-circle "
-			src="assets/img/header-logo.png"
-			alt="Park&Pick Logo">
+			src="{{photoUrl}}">
 		</span>
 
 	</ion-toolbar>

@@ -40,6 +40,9 @@ export class RecipePage implements OnInit {
 	recipeID: any[] = [];
 	public parameterValue: any[] = [];
 
+	ingredientRef: AngularFirestoreCollection<Recipes>;
+	ingredient$: Observable<Recipes[]>;
+
 	chefRef: AngularFirestoreCollection<Chefs>;
 	chef$: Observable<Recipes[]>;
 	chef_id: any[] = [];
@@ -90,6 +93,15 @@ export class RecipePage implements OnInit {
 				return { id, ...data };
 			}))
 			);
+
+		this.ingredientRef = this.db.collection<{}>(`recipes/${this.parameterValue}/ingredient`);
+		this.ingredient$ = this.ingredientRef.snapshotChanges().pipe(
+			map(actions => actions.map(a => {
+				const data = a.payload.doc.data(); // DB Questions
+				const id = a.payload.doc.id;
+				return { id, ...data };
+			}))
+			);
 	}
 
 	segmentChanged(ev: any) {
@@ -101,6 +113,10 @@ export class RecipePage implements OnInit {
 		const id = this.crrntUsr.uid;
 		const pageId = this.parameterValue;
 		this.recipesService.updateLike(pageId, id);
+	}
+
+	shareRecipe() {
+		
 	}
 
 }

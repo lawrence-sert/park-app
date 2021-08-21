@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage'
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {finalize} from 'rxjs/operators'
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -43,8 +44,9 @@ export class ImageUpPage implements OnInit {
 		private storage: AngularFireStorage,
 		private router: Router, 
 		private loading :LoadingController, 
-		private authservice: AuthService,
+		public authService: AuthService,
 		private userService: UserService,
+		private modalCtr: ModalController
 		) { 
 
 		this.isLoading = false;
@@ -116,5 +118,10 @@ export class ImageUpPage implements OnInit {
 	goToNextPage(){
 		this.router.navigate(['dashboard']);
 	}
+
+	async close() {
+    const closeModal: string = "Modal Closed";
+    await this.modalCtr.dismiss(closeModal);
+  }
 
 }

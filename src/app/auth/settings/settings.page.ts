@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
 import { AlertController, IonSlides } from '@ionic/angular';
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 @Component({
 	selector: 'app-settings',
@@ -24,14 +25,20 @@ export class SettingsPage implements OnInit {
 	accountType?: any;
 	firstrun : any;
 	phone : any;
+  photoUrl : any;
 
 	constructor(
 		public authService: AuthService,
 		public usersService: UserService,
 		public menuCtrl: MenuController,
 		private alertCtrl: AlertController,
+    private modalCtrl : ModalController
 	) { 
-		// Local storage information
+		
+	}
+
+	ngOnInit() {
+    // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
     this.uid = this.crrntUsr.uid;
@@ -46,10 +53,8 @@ export class SettingsPage implements OnInit {
       this.location = this.userRef.location;
       this.phone = this.userRef.phone;
       this.email = this.userRef.email;
+      this.photoUrl = this.userRef.photoUrl;
     });
-	}
-
-	ngOnInit() {
 	}
 
 	ionViewWillEnter() {
@@ -217,6 +222,54 @@ export class SettingsPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async changeEmail() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Change Your Email',
+      inputs: [
+        {
+          name: 'email',
+          type: 'text',
+          placeholder: 'Email Address'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Change',
+          handler: (data: any) => {
+            console.log('Saved Information', data);
+            this.usersService.changeEmail(this.uid , data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async openCalModal() {
+    const modal = await this.modalCtrl.create({
+      component: ImageUpPage,
+      cssClass: 'app-image-up',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+  }
+
+  async close() {
+    const closeModal: string = "Modal Closed";
+    await this.modalCtrl.dismiss(closeModal);
   }
 
 }

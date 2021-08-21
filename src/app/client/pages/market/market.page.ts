@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from 'src/app/auth/services/user.service';
 
@@ -7,6 +8,8 @@ import { Product } from 'src/app/client/models/product.model';
 
 import { PromotionsService } from 'src/app/client/services/promotions.service';
 import { Promotions } from 'src/app/client/models/promotions.model';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 @Component({
   selector: 'app-market',
@@ -24,9 +27,8 @@ export class MarketPage implements OnInit {
   displayName: any;
   email: any;
   emailVerified?: boolean;
-  photoURL: any;
+  photoUrl: any;
   accountType?: any;
-  firstrun : any;
 
   products : any;
 
@@ -57,7 +59,7 @@ export class MarketPage implements OnInit {
 
   type: string;
 
-    public slideOpts = {
+  public slideOpts = {
     slidesPerView: 1.2,
     spaceBetween: 50,
     centeredSlides: true,
@@ -128,9 +130,9 @@ export class MarketPage implements OnInit {
       setTransition(duration) {
         const swiper = this;
         swiper.slides
-          .transition(duration)
-          .find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left')
-          .transition(duration);
+        .transition(duration)
+        .find('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left')
+        .transition(duration);
       }
     }
   }
@@ -140,23 +142,26 @@ export class MarketPage implements OnInit {
     public usersService: UserService,
     private productsService: ProductsService,
     private promotionService: PromotionsService,
+    private modalCtrl : ModalController
     ) { 
+    
+  }
+
+  ngOnInit() {
+
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
-      this.firstrun = this.userRef.firstrun;
       this.firstname = this.userRef.firstname;
       this.lastname = this.userRef.surname;
       this.displayName = this.userRef.displayName;
       this.emailVerified = this.userRef.emailVerified;
       this.accountType = this.userRef.accountType;
-      this.photoURL = this.userRef.photoURL;
+      this.photoUrl = this.userRef.photoUrl;
     });
-  }
 
-  ngOnInit() {
     //get segment start
     this.type = 'vegitables';
     //read vegitables 
@@ -232,6 +237,22 @@ export class MarketPage implements OnInit {
 
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
+  }
+
+  async openCalModal() {
+    const modal = await this.modalCtrl.create({
+      component: ImageUpPage,
+      cssClass: 'app-image-up',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+  }
+
+  async close() {
+    const closeModal: string = "Modal Closed";
+    await this.modalCtrl.dismiss(closeModal);
   }
 
 

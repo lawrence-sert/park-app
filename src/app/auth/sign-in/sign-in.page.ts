@@ -11,7 +11,7 @@ import {  MenuController } from '@ionic/angular';
 export class SignInPage implements OnInit {
 
 	constructor(
-		private authService: AuthService,
+		public authService: AuthService,
 		public menuCtrl: MenuController,
 		) {
 

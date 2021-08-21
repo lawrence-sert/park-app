@@ -23,7 +23,7 @@
 			</div>
 		</div>
 
-		<ion-row>
+		<ion-row >
 			<ion-col class="g-text-center--xs">
 				<h2 class="g-font-size-16--xs g-color--primary">
 					{{recipe.recipe_name}}
@@ -39,28 +39,20 @@
 	<div *ngFor="let recipe of recipe$ | async; index as i">
 
 		
-		<ion-row class="recipe-stats">
-			<ion-col size="3">
+		<div class="row g-padding-y-10--xs">
+			<div class="col-xs-3">
 				<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
 				<span class="g-font-size-12--xs">{{recipe.recipe_like}}</span>
-			</ion-col>
-			<ion-col size="3">
+			</div>
+			<div class="col-xs-3">
 				<i class="ti-comments g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
 				<span class="g-font-size-12--xs">100</span>
-			</ion-col>
-
-			<!-- chef small profile here -->
-			<ion-col size="6">
-				<ion-row>
-					<ion-col size="3">
-						<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
-					</ion-col>
-					<ion-col size="9">
-						<small>Lawrence Gumbo</small>
-					</ion-col>
-				</ion-row>
-			</ion-col>
-		</ion-row>
+			</div>
+			<div class="col-xs-6">
+				<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
+				<span class="g-padding-x-10--xs g-font-size-12--xs">Lawrence Gumbo</span>
+			</div>
+		</div>
 
 		<ion-row class="recipe-details">
 			<ion-col size="4" class="g-text-center--xs">
@@ -80,8 +72,9 @@
 
 		</ion-row>
 
-		<ion-row class="g-margin-t-10--xs">
-			<ion-col>
+
+		<div class="row">
+			<div class="col-xs-12">
 				<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
 					<ion-segment-button value="ingredients" checked>
 						<span>Ingred</span>
@@ -103,59 +96,47 @@
 						<span>Comments</span>
 					</ion-segment-button>
 				</ion-segment>
-			</ion-col>
-		</ion-row>
+			</div>
+		</div>
 
 		<div [ngSwitch]="type">
 
-			<ion-row *ngSwitchCase="'ingredients'">
-				<ion-col>
-					<ion-row>
-						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2></ion-col>
-					</ion-row>
-					{{recipe.recipe_ingredients}}
-				</ion-col>
-			</ion-row>
+			<div class="row" *ngSwitchCase="'ingredients'">
+				<div class="col-xs-12">
+					<h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2>
 
-			<ion-row *ngSwitchCase="'directions'">
-				<ion-col>
-					<ion-row>
-						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Method </h2></ion-col>
-					</ion-row>
-				</ion-col>
-			</ion-row>
+					<span *ngFor="let ingredient of ingredient$ | async; index as i">
+						hie
+					</span>
+				</div>
+			</div>
 
-			<ion-row *ngSwitchCase="'nutrition'">
-				<ion-col>
-					<ion-row>
-						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Nutritional Value </h2></ion-col>
-					</ion-row>
-				</ion-col>
-			</ion-row>
+			<div class="row" *ngSwitchCase="'directions'">
+				<div class="col-xs-12">
+					<h2 class="pull-right g-color--primary g-font-size-14--xs">Method </h2>
+				</div>
+			</div>
 
-			<ion-row *ngSwitchCase="'description'">
-				<ion-col>
-					<ion-row>
-						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2></ion-col>
-					</ion-row>
-					{{recipe.recipe_description}}
-				</ion-col>
-			</ion-row>
+			<div class="row" *ngSwitchCase="'nutrition'">
+				<div class="col-xs-12">
+					<h2 class="pull-right g-color--primary g-font-size-14--xs">Nutritional Value </h2>
+				</div>
+			</div>
 
-			<ion-row *ngSwitchCase="'comments'">
-				<ion-col>
-					<ion-row>
-						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2></ion-col>
-					</ion-row>
-					<!-- show comments here -->
-					<ion-row>
-						<ion-col>
-							
-						</ion-col>
-					</ion-row>
+			<div class="row" *ngSwitchCase="'description'">
+				<div class="col-xs-12">
+					<h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2>
+					<p>
+						{{recipe.recipe_description}}
+					</p>
+				</div>
+			</div>
 
-				</ion-col>
-			</ion-row>
+			<div class="row" *ngSwitchCase="'comments'">
+				<div class="col-xs-12">
+					<h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2>
+				</div>
+			</div>
 
 		</div>
 

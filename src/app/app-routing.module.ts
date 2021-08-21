@@ -96,6 +96,10 @@ const routes: Routes = [
   },  {
     path: 'image-up',
     loadChildren: () => import('./auth/image-up/image-up.module').then( m => m.ImageUpPageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./client/pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
 
 

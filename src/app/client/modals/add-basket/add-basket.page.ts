@@ -55,7 +55,7 @@ export class AddBasketPage implements OnInit {
 
 
 	constructor(
-		private authService: AuthService,
+		public authService: AuthService,
 		public usersService: UserService,
 		public formBuilder: FormBuilder,
 		private productService: ProductsService,

@@ -37,7 +37,7 @@ export class InfoPage implements OnInit {
 
   constructor(
     private modalCtrl : ModalController,
-    private authService: AuthService,
+    public authService: AuthService,
     private userService: UserService,
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,

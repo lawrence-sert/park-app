@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MarketPageRoutingModule } from './market-routing.module';
+import { NotificationsPageRoutingModule } from './notifications-routing.module';
 
-import { MarketPage } from './market.page';
+import { NotificationsPage } from './notifications.page';
 
 import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
 
@@ -15,9 +15,9 @@ import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    MarketPageRoutingModule,
+    NotificationsPageRoutingModule,
     ImageUpPageModule
   ],
-  declarations: [MarketPage]
+  declarations: [NotificationsPage]
 })
-export class MarketPageModule {}
+export class NotificationsPageModule {}

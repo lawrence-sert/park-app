@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
 
 import { AlertController, IonSlides } from '@ionic/angular';
 
-//
 import { BasketService } from 'src/app/client/services/basket.service';
 import { Basket } from 'src/app/client/models/basket.model';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 @Component({
   selector: 'app-create-basket',
@@ -26,7 +28,7 @@ export class CreateBasketPage implements OnInit {
   displayName: any;
   email: any;
   emailVerified?: boolean;
-  photoURL: any;
+  photoUrl: any;
   accountType?: any;
   firstrun : any;
 
@@ -47,12 +49,17 @@ export class CreateBasketPage implements OnInit {
   };
 
   constructor(
-  	private authService: AuthService,
+  	public authService: AuthService,
     public usersService: UserService,
     private basketService: BasketService,
     private alertCtrl: AlertController,
+    private modalCtrl : ModalController
 
     ) { 
+    
+  }
+
+  ngOnInit() {
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
@@ -65,13 +72,8 @@ export class CreateBasketPage implements OnInit {
       this.displayName = this.userRef.displayName;
       this.emailVerified = this.userRef.emailVerified;
       this.accountType = this.userRef.accountType;
-      this.photoURL = this.userRef.photoURL;
+      this.photoUrl = this.userRef.photoUrl;
     });
-
-   
-  }
-
-  ngOnInit() {
     //read my baskets 
     this.basketService.getBasket(this.uid).subscribe((data) => {
       this.basket = data.map((e) => {
@@ -117,8 +119,21 @@ async presentAlertPrompt() {
     await alert.present();
   }
 
-  viewBasket() {
-    
+
+  async openCalModal() {
+    const modal = await this.modalCtrl.create({
+      component: ImageUpPage,
+      cssClass: 'app-image-up',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+  }
+
+  async close() {
+    const closeModal: string = "Modal Closed";
+    await this.modalCtrl.dismiss(closeModal);
   }
 
 

@@ -36,21 +36,31 @@
 
 <div class="mid-second">
 
-  <div class="menu-header g-text-center--xs">
+  <div class="menu-header g-text-center--xs" routerLink="/notifications">
     <span class="g-font-size-12--xs g-color--white">
       <i class="far fa-bell g-font-size-16--xs g-color--white g-padding-r-5--xs" ></i>
       Notifications (12)
     </span>
   </div>
 
-  <ion-item button (click)="testClick()" lines="full">
-    <i class="far fa-bell g-font-size-18--xs g-color--primary" slot="start"></i>
-    <ion-label class="g-padding-l-20--xs">
-      <h3 class="g-font-size-14--xs g-color--primary">H3 Title Text</h3>
-      <p class="g-font-size-12--xs">Icon on right</p>
-    </ion-label>
-    <i class="fas fa-times-circle g-font-size-14--xs" slot="end"></i>
-  </ion-item>
+  <ion-list>
+    <ion-item-sliding *ngFor="let notification of notifications">
+      <ion-item lines="full" routerLink="/notifications">
+        <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">{{notification.type}}</h2>
+          <p class="g-font-size-12--xs">A new message in your network</p>
+        </ion-label>
+        <ion-note slot="end">
+          {{notification.date.toDate() | date:'dd/MM/yyy h:mm'}}
+        </ion-note>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteNotification(notification.id)">
+          <i class="ti-trash g-font-size-18--xs"></i>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalNotificationService } from "src/app/client/services/local-notification.service";
 import { UserService } from 'src/app/auth/services/user.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { TipsService } from 'src/app/client/services/tips.service';
 import { Tips } from 'src/app/client/models/tips.model';
@@ -34,6 +35,9 @@ export class DashComponent implements OnInit {
 	firstrun : any;
 
 	tips : any;
+	oneTip : any;
+	allTips: Tips[] = [];
+
 	posts : any;
 	posts_cat : any;
 
@@ -121,7 +125,13 @@ export class DashComponent implements OnInit {
 		private tipsService: TipsService,
 		private postsService: PostsService,
 		private posts_catService: PostsCatService,
+		private db: AngularFirestore,
 		) { 
+		
+	}
+
+	ngOnInit() {
+
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -135,17 +145,14 @@ export class DashComponent implements OnInit {
 			this.accountType = this.userRef.accountType;
 			this.location = this.userRef.location;
 		});
-	}
 
-	ngOnInit() {
 		//read Tips 
-		this.tipsService.getTips().subscribe((data) => {
-			this.tips = data.map((e) => {
-				return {
-					id: e.payload.doc.id,
-					...(e.payload.doc.data() as {}),
-				} as Tips;
-			});
+		//Veggies Queries
+		this.tips = this.db.collection('/tips')
+		.valueChanges({ idField: 'id'})
+		.subscribe((tips) => {
+			this.allTips = tips;
+			
 		});
 
 		//read Posts 
