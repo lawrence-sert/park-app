@@ -228,3 +228,13 @@ ion-segment-button {
     bottom: 2px;
     width : 95%;
 }
+
+.app-comment {
+    --height: 100%;
+    --border-radius: 10px 10px 0px 0px;
+    padding : 30px 10px 0px 10px;
+}
+
+.comment_img {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}

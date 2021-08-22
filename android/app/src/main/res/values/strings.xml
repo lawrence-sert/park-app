@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">park-app</string>
-    <string name="title_activity_main">park-app</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">Park</string>
+    <string name="title_activity_main">Park</string>
+    <string name="package_name">com.park.app</string>
+    <string name="custom_url_scheme">com.park.app</string>
 </resources>

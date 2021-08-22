@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -11,6 +12,8 @@ import {Recipes} from 'src/app/client/models/recipes.model';
 
 import { ChefsService } from 'src/app/client/services/chefs.service';
 import {Chefs} from 'src/app/client/models/chefs.model';
+
+import { CommentPage } from 'src/app/client/modals/comment/comment.page';
 
 
 
@@ -34,6 +37,8 @@ export class RecipePage implements OnInit {
 	accountType?: any;
 	firstrun : any;
 	phone : any;
+
+	modelData: any;
 
 	recipeRef: AngularFirestoreCollection<Recipes>;
 	recipe$: Observable<Recipes[]>;
@@ -67,7 +72,8 @@ export class RecipePage implements OnInit {
 		public recipesService: RecipesService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		public db: AngularFirestore
+		public db: AngularFirestore,
+		private modalCtrl : ModalController,
 		) { 
 
 		// Local storage information
@@ -144,7 +150,7 @@ export class RecipePage implements OnInit {
 			);
 
 		//nutrient value info
-		this.commentsRef = this.db.collection<{}>(`recipes/${this.parameterValue}/comments`);
+		this.commentsRef = this.db.collection<{}>(`recipes/${this.parameterValue}/comments`, ref => ref.orderBy('date','desc'));
 		this.comments$ = this.commentsRef.snapshotChanges().pipe(
 			map(actions => actions.map(a => {
 				const data = a.payload.doc.data(); // DB Questions
@@ -167,6 +173,30 @@ export class RecipePage implements OnInit {
 
 	shareRecipe() {
 		
+	}
+
+	async openCalModal() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = this.parameterValue;
+		const modal = await this.modalCtrl.create({
+			component: CommentPage,
+			cssClass: 'app-comment',
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
+			}
+		});
+
+		modal.onDidDismiss().then((modelData) => {
+			if (modelData !== null) {
+				this.modelData = modelData.data;
+				console.log('Modal Data : ' + modelData.data);
+			}
+		});
+
+		await modal.present();
+
 	}
 
 }

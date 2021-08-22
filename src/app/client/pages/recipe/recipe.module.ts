@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { RecipePageRoutingModule } from './recipe-routing.module';
 
+import { CommentPageModule } from 'src/app/client/modals/comment/comment.module';
+
 import { RecipePage } from './recipe.page';
 
 @NgModule({
@@ -13,7 +15,8 @@ import { RecipePage } from './recipe.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RecipePageRoutingModule
+    RecipePageRoutingModule,
+    CommentPageModule
   ],
   declarations: [RecipePage]
 })

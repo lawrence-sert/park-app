@@ -100,6 +100,10 @@ const routes: Routes = [
   {
     path: 'notifications',
     loadChildren: () => import('./client/pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'comment',
+    loadChildren: () => import('./client/modals/comment/comment.module').then( m => m.CommentPageModule)
   }
 
 

@@ -24,8 +24,8 @@
 		</div>
 
 		<ion-row >
-			<ion-col class="g-text-center--xs">
-				<h2 class="g-font-size-16--xs g-color--primary">
+			<ion-col class="g-text-center--xs g-bg-color--primary">
+				<h2 class="g-font-size-16--xs g-color--white">
 					{{recipe.recipe_name}}
 				</h2>
 			</ion-col>
@@ -62,7 +62,7 @@
 
 			<ion-col size="4" class="g-text-center--xs">
 				<i class="ti-time g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
-				<span class="g-font-size-12--xs">{{recipe.recipe_time}}</span>
+				<span class="g-font-size-12--xs">{{recipe.recipe_time}} min</span>
 			</ion-col>
 
 			<ion-col size="4" class="g-text-center--xs">
@@ -130,10 +130,10 @@
 				</div>
 
 				<div class="row g-margin-b-10--xs" *ngFor="let method of method$ | async; index as i">
-					<div class="col-xs-1 g-text-center--xs">
+					<div class="col-xs-2 g-text-center--xs">
 						<span class="g-font-size-24--xs g-color--primary"> {{method.method_number}}</span>
 					</div>
-					<div class="col-xs-11">
+					<div class="col-xs-10">
 						<span class="g-font-size-12--xs">{{method.method_main}}</span>
 					</div>
 				</div>
@@ -244,29 +244,24 @@
 		</div>
 
 
-
-		<!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
-		<ion-fab vertical="bottom" horizontal="start"  slot="fixed">
-			<ion-fab-button>
-				<i class="fab fa-angellist g-font-size-24--xs"></i>
-			</ion-fab-button>
-			<ion-fab-list side="end">
-				<ion-fab-button (click)="shareRecipe()">
-					<i class="far fa-share-square"></i>
-				</ion-fab-button>
-
-				<ion-fab-button (click)="addLike()">
-					<i class="far fa-thumbs-up"></i>
-				</ion-fab-button>
-
-				<ion-fab-button>
-					<i class="fas fa-shopping-basket"></i>
-				</ion-fab-button>
-				
-			</ion-fab-list>
-		</ion-fab>
-
-
-
 	</div>
 </ion-content>
+
+
+<ion-footer>
+	<div class="row g-padding-y-10--xs">
+		<div class="col-xs-4 g-text-center--xs" (click)="addLike()">
+			<i class="ti-heart g-font-size-18--xs g-padding-r-5--xs"></i>
+			<span class="g-font-size-12--xs">Like</span>
+		</div>
+		<div class="col-xs-4 g-text-center--xs" (click)="openCalModal()">
+			<i class="ti-comments g-font-size-18--xs g-padding-r-10--xs"></i>
+			<span class="g-font-size-12--xs">Comment</span>
+		</div>
+		<div class="col-xs-4 g-text-center--xs">
+			<i class="ti-share g-font-size-18--xs g-padding-r-10--xs"></i>
+			<span class="g-font-size-12--xs">Share</span>
+		</div>
+	</div>
+</ion-footer>
+

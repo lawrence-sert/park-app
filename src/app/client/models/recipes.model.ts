@@ -11,4 +11,16 @@ export class Recipes {
 	recipe_nutrition?	:	any;
 	recipe_people?	:	any;
 	recipe_time?	:	any;
+	comment_id?	: any;
+	comment_main?	: any;
+	date?	: any;
+	userId?	: any;
+	ingredient_name?	: any;
+	method_main? : any;
+	method_number? : any;
+	nutrition_value? : any;
+	nutritionV_name? : any;
+	nutritionV_perfomance? : any;
+	nutritionV_total? : any;
+
 }

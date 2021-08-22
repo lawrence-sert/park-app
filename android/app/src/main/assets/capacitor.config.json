@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "park-app",
+	"appId": "com.park.app",
+	"appName": "Park",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

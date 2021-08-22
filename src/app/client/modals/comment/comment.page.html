@@ -1,0 +1,56 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar>
+		<span slot="end" class="g-padding-r-10--xs">
+			<i class="ti-heart g-font-size-24--xs"></i>
+		</span>
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content class="ion-padding">
+
+<div *ngFor="let comment of comment$ | async; index as i">
+	<div class="row">
+		<div class="col-xs-10 user_comment g-margin-b-10--xs">
+			<span class="g-font-size-12--xs">{{comment.comment_main}}</span>
+		</div>
+		<div class="col-xs-2">
+			<img src="{{photoUrl}}" class="comment_img img-responsive img-circle">
+		</div>
+	</div>
+</div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+	<div class="row g-padding-y-10--xs">
+		<div class="col-xs-2">
+			<img src="{{photoUrl}}" class="comment_img img-responsive img-circle">
+		</div>
+
+		<form [formGroup]="commentForm" (ngSubmit)="onSubmit()" novalidate>
+			<div class="col-xs-10 comments-main">
+				<div class="row">
+					<div class="col-xs-10">
+						<div class="formGroup">
+							<input 
+							type="text" 
+							class="form-control s-form-v2__input g-radius--10" 
+							formControlName="comment"
+							placeholder="Write a comment" 
+							required
+							>
+						</div>
+					</div>
+					<div class="col-xs-2">
+						<button (click)="onSubmit()">
+							<i class="fas fa-paper-plane g-font-size-14--xs"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+
+	</div>
+</ion-footer>
