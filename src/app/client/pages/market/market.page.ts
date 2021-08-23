@@ -160,7 +160,9 @@ export class MarketPage implements OnInit {
       this.emailVerified = this.userRef.emailVerified;
       this.accountType = this.userRef.accountType;
       this.photoUrl = this.userRef.photoUrl;
+      console.log(this.photoUrl);
     });
+
 
     //get segment start
     this.type = 'vegitables';

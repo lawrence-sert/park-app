@@ -28,7 +28,7 @@
 @import "src/theme/fonts.scss";
 
 * {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
@@ -47,6 +47,10 @@
 .header-color {
 	--background: #DE323A;
 	color : #fff;
+}
+
+p {
+	color : #020202;
 }
 
 

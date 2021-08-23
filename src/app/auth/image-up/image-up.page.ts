@@ -109,7 +109,9 @@ export class ImageUpPage implements OnInit {
 
 
 	goToNextPage(){
-		this.router.navigate(['/info']);
+		this.modalCtr.dismiss({
+			'dismissed': true
+		});
 	}
 
 	closeModal() {

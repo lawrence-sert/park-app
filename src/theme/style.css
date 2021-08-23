@@ -24,6 +24,13 @@ h3 {
   font-weight: 700;
 }
 
+p {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  color : #020202;
+  font-size : 12px;
+}
+
 
 /*----------------------------------
   Selection

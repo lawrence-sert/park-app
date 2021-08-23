@@ -1,6 +1,5 @@
 <ion-header [translucent]="true" class="ion-no-border">
 	<ion-toolbar class="header-color">
-
 		<ion-buttons slot="start">
 			<ion-menu-button>
 				<i class="fas fa-store g-font-size-16--xs"></i>
@@ -15,30 +14,29 @@
 			<img class="profile-user-img-main  img-circle "
 			src="{{photoUrl}}">
 		</span>
-
 	</ion-toolbar>
 
 	<ion-toolbar>
 		<!-- Scrollable Segment -->
 		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
 			<ion-segment-button value="home" checked>
-				<i class="fas fa-home g-font-size-18--xs"></i>
+				<i class="fas fa-home g-font-size-22--xs"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="list">
-				<i class="far fa-list-alt g-font-size-18--xs"></i>
+				<i class="far fa-list-alt g-font-size-22--xs"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="recipe">
-				<i class="fas fa-concierge-bell g-font-size-18--xs"></i>
+				<i class="fas fa-concierge-bell g-font-size-22--xs"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="messages">
-				<i class="far fa-comments g-font-size-18--xs"></i>
+				<i class="far fa-comment-alt g-font-size-22--xs"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="delivery">
-				<i class="fas fa-map-marker-alt"></i>
+				<i class="fas fa-map-marker-alt g-font-size-22--xs"></i>
 			</ion-segment-button>
 
 		</ion-segment>

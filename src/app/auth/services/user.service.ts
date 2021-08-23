@@ -48,9 +48,6 @@ export class UserService {
 	updateUser(user: User, id) {
 		let FirstRun: string;
 		FirstRun = '1';
-		let photoUrl : string;
-		photoUrl = 'assets/img/default-user.png';
-
     return this.db
 		.collection("users")
 		.doc(id)
@@ -61,8 +58,7 @@ export class UserService {
 			phone: user.phone,
 			accountType: user.accountType,
 			firstrun: FirstRun,
-			location : user.location,
-			photoUrl : photoUrl
+			location : user.location
 		});
 	}
 

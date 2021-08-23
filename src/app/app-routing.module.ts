@@ -105,7 +105,11 @@ const routes: Routes = [
   {
     path: 'comment',
     loadChildren: () => import('./client/modals/comment/comment.module').then( m => m.CommentPageModule)
+  },  {
+    path: 'info',
+    loadChildren: () => import('./auth/info/info.module').then( m => m.InfoPageModule)
   }
+
   
 ];
 
