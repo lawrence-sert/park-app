@@ -6,7 +6,6 @@ import { LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {finalize} from 'rxjs/operators'
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from 'src/app/auth/services/user.service';
 export interface imageData{
 	fileName: string;
@@ -26,7 +25,6 @@ export class ImageUpPage implements OnInit {
 	userRef : any;
 	photoUrl: any;
 
-
 	fileName:string;
 	fileSize: string;
 	isLoading:boolean;
@@ -44,7 +42,6 @@ export class ImageUpPage implements OnInit {
 		private storage: AngularFireStorage,
 		private router: Router, 
 		private loading :LoadingController, 
-		public authService: AuthService,
 		private userService: UserService,
 		private modalCtr: ModalController
 		) { 
@@ -108,20 +105,17 @@ export class ImageUpPage implements OnInit {
 				});
 			})
 		})
-
-
-
 	}
-
 
 
 	goToNextPage(){
-		this.router.navigate(['dashboard']);
+		this.router.navigate(['/info']);
 	}
 
-	async close() {
-    const closeModal: string = "Modal Closed";
-    await this.modalCtr.dismiss(closeModal);
-  }
+	closeModal() {
+		this.modalCtr.dismiss({
+			'dismissed': true
+		});
+	}
 
 }

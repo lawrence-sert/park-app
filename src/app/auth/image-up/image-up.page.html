@@ -1,25 +1,16 @@
 <ion-header [translucent]="true" class="ion-no-border">
-  <ion-toolbar>
-    <span slot="end" class="g-padding-r-10--xs" (click)="close()">
-      <i class="ti-close g-font-size-18--xs"></i>
+  <ion-toolbar class="header-color">
+    <span slot="end" class="g-padding-r-10--xs" (click)="closeModal()">
+      <i class="ti-close g-font-size-18--xs g-color--white"></i>
     </span>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
   <div class="profile-image">
     <img src="{{photoUrl}}" class="image-uploaded img-responsive img-circle center">
   </div>
-
-  <!-- <div class="progressed" *ngIf="percentage | async as percent">
-    <div class="progress progress-xs">
-                  <div class="progress-bar bg-warning progress-bar-striped" role="progressbar"
-                       aria-valuenow="{{percent}}" aria-valuemin="0" aria-valuemax="100" style="width: {{percent}}%">
-                    <span class="sr-only">Progress: {{percent |  number}}%</span>
-                  </div>
-                </div>
-  </div> -->
 
   <div class="profile-buttons">
     <div class="row">
@@ -30,18 +21,20 @@
         </a>
       </div>
       <div class="col-xs-6 g-text-center--xs">
-         <a class="btn btn-app" style="height: 80px;" *ngIf="!isLoading  && !isLoaded">
+        <label class="btn btn-default btn-file" *ngIf="!isLoading  && !isLoaded">
           <i class="ti-gallery g-font-size-18--xs g-color--primary"></i>
           <h2 class="g-color--primary g-font-size-14--xs">Select File</h2>
-        </a>
-        <input type="file" (change)="uploadImagetoFirebase($event)" id="file-input"  accept="image/png, image/jpg">
+          <input type="file" style="display: none;" (change)="uploadImagetoFirebase($event)" id="file-input"  accept="image/png, image/jpg" required>
+        </label>
+
       </div>
     </div>
+
   </div>
 
-  <div class="bot" *ngIf="isLoading && !isLoaded">
-      <button (click)="goToNextPage()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-      >Continue</button>
-    </div>
+
+  <span (click)="goToNextPage()" class="g-text-center--xs g-display-block--xs g-display-inline-block--sm g-padding-x-5--xs g-margin-b-10--xs g-margin-b-0--sm" *ngIf="isLoading && !isLoaded">
+    <a href="#" class="text-uppercase s-btn s-btn-icon--md s-btn--white-brd g-radius--50 g-padding-x-65--xs">Save Image</a>
+  </span>
 
 </ion-content>

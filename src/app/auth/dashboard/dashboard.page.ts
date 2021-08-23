@@ -22,6 +22,7 @@ export class DashboardPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
+	firstrun : any;
 	userEmail: any;
 	firstname: any;
 	lastname: any;
@@ -30,7 +31,6 @@ export class DashboardPage implements OnInit {
 	emailVerified?: boolean;
 	location: any;
 	accountType?: any;
-	firstrun : any;
 	photoUrl : any;
 
 	constructor(
@@ -51,14 +51,7 @@ export class DashboardPage implements OnInit {
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
 			this.firstrun = this.userRef.firstrun;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
-			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
-			this.accountType = this.userRef.accountType;
-			this.location = this.userRef.location;
 			this.photoUrl = this.userRef.photoUrl;
-
 			console.log(this.firstrun);
 			if(this.firstrun==='0') {
 				this.router.navigate(['/info']);

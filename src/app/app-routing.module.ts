@@ -93,7 +93,8 @@ const routes: Routes = [
   {
     path: 'add-basket',
     loadChildren: () => import('./client/modals/add-basket/add-basket.module').then( m => m.AddBasketPageModule)
-  },  {
+  },
+  {
     path: 'image-up',
     loadChildren: () => import('./auth/image-up/image-up.module').then( m => m.ImageUpPageModule)
   },
@@ -105,9 +106,6 @@ const routes: Routes = [
     path: 'comment',
     loadChildren: () => import('./client/modals/comment/comment.module').then( m => m.CommentPageModule)
   }
-
-
-
   
 ];
 

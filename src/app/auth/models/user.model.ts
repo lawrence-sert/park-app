@@ -9,4 +9,5 @@ export default class User {
   accountType?: string;
   firstrun? : string;
   location? : string;
+  photoUrl? : string;
 }

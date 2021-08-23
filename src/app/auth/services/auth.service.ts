@@ -89,6 +89,9 @@ export class AuthService {
   sign up with username/password and sign in with social auth  
   provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
   SetUserData(user) {
+    let photoUrl : string;
+    photoUrl = 'assets/img/default-user.png';
+
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
       uid: user.uid,
@@ -97,7 +100,8 @@ export class AuthService {
       emailVerified: user.emailVerified,
       firstrun : '0',
       accountType : '0',
-      location : '-'
+      location : '-',
+      photoUrl : photoUrl
     }
     return userRef.set(userData, {
       merge: true

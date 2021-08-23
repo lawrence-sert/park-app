@@ -42,6 +42,11 @@ export class PostPage implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore
 		) { 
+		
+	}
+
+	ngOnInit() {
+
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -62,9 +67,6 @@ export class PostPage implements OnInit {
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.postID
 		});
-	}
-
-	ngOnInit() {
 
 
 		this.postRef = this.db.collection<{}>('posts', ref => ref.where('id', '==', this.parameterValue));
