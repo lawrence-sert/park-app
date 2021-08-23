@@ -15,17 +15,3 @@ ion-segment-button {
   }
 }
 
-.segment-button-checked {
-  color: #DE323A;
-}
-
-.segment-button-checked:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  border-bottom: 2px solid #DE323A;
-  
-
-
-}

@@ -87,9 +87,10 @@ export class CommentPage implements OnInit {
 
 
 
-  async closeModel() {
-    const close: string = "Modal Removed";
-    await this.modalCtrl.dismiss(close);
+  closeModal() {
+    this.modalCtrl.dismiss({
+      'dismissed': true
+    });
   }
 
 }

@@ -1,7 +1,11 @@
 <ion-header [translucent]="true" class="ion-no-border">
-	<ion-toolbar>
-		<span slot="end" class="g-padding-r-10--xs">
+	<ion-toolbar class="ion-padding">
+		<span slot="start" class="g-padding-r-10--xs">
 			<i class="ti-heart g-font-size-24--xs"></i>
+		</span>
+
+		<span slot="end" class="g-padding-r-10--xs" (click)="closeModal()">
+			<i class="ti-close g-font-size-24--xs"></i>
 		</span>
 	</ion-toolbar>
 
