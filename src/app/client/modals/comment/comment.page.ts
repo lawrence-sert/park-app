@@ -37,6 +37,8 @@ export class CommentPage implements OnInit {
   photoUrl : any;
   userRef : any;
 
+  thatUser : any;
+
 
 
   constructor(
