@@ -17,16 +17,17 @@ export class BasketItemsService {
 		public usersService: UserService,
 		
 		) { 
-		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
+
 	}
 
 	getBasketItem(uid, bid) {
 		return this.firestore.collection(`users/${uid}/basket/${bid}/basket_items`).snapshotChanges();
 	}
 
-	createBasketItem(uid) {
+	createBasketItem(data, pageId) {
+
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
 
 		var text = "";
 		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -38,11 +39,11 @@ export class BasketItemsService {
 		const basket  = "RXJDP";
 		// Add a new document in collection "cities"
 		return this.firestore
-		.collection(`users/${uid}/basket/${basket}/basket_items/`).doc(basketItem_id).set({
+		.collection(`users/${id}/basket/${pageId}/basket_items/`).doc(basketItem_id).set({
 			id : basketItem_id,
-			category : 'fruits',
+			category : data.products_category,
 			date : firebase.default.firestore.FieldValue.serverTimestamp(),
-			product_id : '15',
+			product_id : data.product,
 			quantity : 3
 		})
 		.then(() => {

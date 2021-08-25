@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -23,6 +24,9 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./add-basket.page.scss'],
 })
 export class AddBasketPage implements OnInit {
+
+	// Data passed in by componentProps
+  @Input() pageId: string;
 
 	uid: any;
 	crrntUsr: any;
@@ -61,6 +65,7 @@ export class AddBasketPage implements OnInit {
 		private productService: ProductsService,
 		private productCategoriesService: ProductCategoriesService,
 		private basketItemsService: BasketItemsService,
+		private modalCtrl : ModalController,
 		public afs: AngularFirestore,
 		) { }
 
@@ -136,8 +141,15 @@ export class AddBasketPage implements OnInit {
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
 		let cati = "RXJDP";
-		this.basketItemsService.createBasketItem(id);
+		this.basketItemsService.createBasketItem(this.basketForm.value, this.pageId);
 	};
+
+
+
+	async closeModel() {
+		const close: string = "Modal Removed";
+		await this.modalCtrl.dismiss(close);
+	}
 
 
 

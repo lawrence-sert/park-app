@@ -20,6 +20,10 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from '../environments/environment';
 import { AuthService } from "src/app/auth/services/auth.service";
 
+//geo maps
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 //different user menus
 import { UserMenuComponent } from 'src/app/client/components/user-menu/user-menu.component';
 import { FarmerMenuComponent } from 'src/app/farmer/components/farmer-menu/farmer-menu.component';
@@ -29,22 +33,24 @@ import { VendorMenuComponent } from 'src/app/vendor/components/vendor-menu/vendo
 	declarations: [AppComponent, UserMenuComponent, FarmerMenuComponent, VendorMenuComponent],
 	entryComponents: [],
 	imports: [
-		BrowserModule, 
-		IonicModule.forRoot(), 
-		AppRoutingModule,
-		ReactiveFormsModule,
-		FormsModule,
-		HttpClientModule,
-		BrowserAnimationsModule, // required animations module
-		ToastrModule.forRoot(), // ToastrModule added
-		NgxPaginationModule,
-		AngularFireModule.initializeApp(environment.firebase),
-		AngularFireDatabaseModule,
-		AngularFireAuthModule,
+	BrowserModule, 
+	IonicModule.forRoot(), 
+	AppRoutingModule,
+	ReactiveFormsModule,
+	FormsModule,
+	HttpClientModule,
+	BrowserAnimationsModule, // required animations module
+	ToastrModule.forRoot(), // ToastrModule added
+	NgxPaginationModule,
+	AngularFireModule.initializeApp(environment.firebase),
+	AngularFireDatabaseModule,
+	AngularFireAuthModule,
 
 	],
 	providers: [
-		AuthService,
+	AuthService,
+	Geolocation,
+	NativeGeocoder,
 	{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
 	],
 	bootstrap: [AppComponent],

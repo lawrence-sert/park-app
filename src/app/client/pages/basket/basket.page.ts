@@ -59,6 +59,8 @@ export class BasketPage implements OnInit {
 	items : any;
 	basketItems : any;
 
+	modelData: any;
+
 	allSubscriptions: Subscription[] = [];
 
 	constructor(
@@ -144,10 +146,23 @@ export class BasketPage implements OnInit {
 
 
 	async openCalModal() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = this.parameterValue;
 		const modal = await this.modalCtrl.create({
 			component: AddBasketPage,
-			cssClass: 'app-add-basket',
-			backdropDismiss: false
+			cssClass: 'app-comment',
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
+			}
+		});
+
+		modal.onDidDismiss().then((modelData) => {
+			if (modelData !== null) {
+				this.modelData = modelData.data;
+				console.log('Modal Data : ' + modelData.data);
+			}
 		});
 
 		await modal.present();

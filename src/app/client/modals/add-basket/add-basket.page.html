@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" class="ion-no-border">
-	<ion-toolbar class="header-color">
+	<ion-toolbar>
 
-		<span slot="end"  class="g-padding-r-10--xs">
+		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModel()">
 			<i class="ti-close g-font-size-18--xs"></i>
 		</span>
 	</ion-toolbar>
@@ -31,6 +31,29 @@
 	<div class="search_filter"></div>
 
 	<div class="products">
+		<div class="row">
+			<div class="col-xs-12">
+				<ion-list>
+					<ion-item>
+						<ion-label>Select Market Category</ion-label>
+						<ion-select 
+						value="brown" 
+						okText="Okay" 
+						cancelText="Dismiss"
+						formControlName="product"
+						>
+						<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
+							{{prodcts.Item}}
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+
+			</ion-list>
+		</div>
+	</div>
+</div>
+
+<div class="products">
 		<div class="row">
 			<div class="col-xs-12">
 				<ion-list>

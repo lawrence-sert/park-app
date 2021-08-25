@@ -47,8 +47,7 @@ export class BasketService {
 			basket_id : basket_id,
 			basket_name : data.basket_name,
 			basket_date : firebase.default.firestore.FieldValue.serverTimestamp(),
-			basket_cost : 'dummy',
-			basket_items : 'dummy',
+			basket_cost : 0,
 			basket_completed : false,
 			basket_save : false
 		})
