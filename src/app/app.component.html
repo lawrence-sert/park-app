@@ -48,10 +48,8 @@
       </span>
     </div>
 
-
-    <div class="bot">
-      <button (click)="authService.SignOut()" class="btn-block s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs g-margin-b-20--xs g-font-size-14--xs"
-      >Log Out</button>
+    <div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
+      <button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs" (click)="authService.SignOut()">Log Out</button>
     </div>
 
   </ion-content>

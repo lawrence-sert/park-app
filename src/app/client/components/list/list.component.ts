@@ -68,7 +68,7 @@ export class ListComponent implements OnInit {
   }
 
 
-  async presentAlertPrompt() {
+  async createBasketPrompt() {
 
     const alert = await this.alertCtrl.create({
 

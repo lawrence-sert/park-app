@@ -85,11 +85,11 @@ export class CreateBasketPage implements OnInit {
     });
   }
 
-async presentAlertPrompt() {
+async createBasketPrompt() {
 
     const alert = await this.alertCtrl.create({
 
-      cssClass: 'my-custom-class',
+      cssClass: 'alertHeader',
       header: 'Create A Basket',
       inputs: [
         {

@@ -2,10 +2,10 @@
 	<ion-toolbar class="header-color">
 
 		<ion-buttons slot="start" class="g-font-size-18--xs">
-      <ion-back-button>
-      	<i class="ti-arrow-left g-font-size-18--xs"></i>
-      </ion-back-button>
-    </ion-buttons>
+			<ion-back-button>
+				<i class="ti-arrow-left g-font-size-18--xs"></i>
+			</ion-back-button>
+		</ion-buttons>
 
 		<ion-title class="ion-text-center">
 			Create Basket
@@ -83,15 +83,15 @@
 			</ion-col>
 		</ion-row>
 
+		<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
+			<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+				<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
+				Create Basket
+			</button>
+		</div>
+
 	</ng-template>
 
-
-
-	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-		<ion-fab-button (click)="presentAlertPrompt()">
-			<i class="fas fa-shopping-basket g-font-size-18--xs"></i>
-		</ion-fab-button>
-	</ion-fab>
 
 
 </ion-content>

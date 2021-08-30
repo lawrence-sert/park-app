@@ -28,6 +28,8 @@ export class AddBasketPage implements OnInit {
 	// Data passed in by componentProps
   @Input() pageId: string;
 
+  	basket_quantity = [1,2,3,4,5];
+
 	uid: any;
 	crrntUsr: any;
 	userRef: any;

@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Basket } from 'src/app/client/models/basket.model';
 import { UserService } from 'src/app/auth/services/user.service';
 import * as firebase from 'firebase';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -18,6 +19,7 @@ export class BasketService {
 	constructor(
 		private firestore: AngularFirestore,
 		public usersService: UserService,
+		private toastr: ToastrService,
 		
 		) { 
 		// Local storage information
@@ -58,5 +60,16 @@ export class BasketService {
 			console.error("Error writing document: ", error);
 		});
 	}
+
+
+	deleteBasket(uid, Basketid:string): Promise<void> {
+		return this.firestore.collection(`users/${uid}/basket/`).doc(Basketid).delete()
+		.then(() => {
+			this.toastr.success('Basket Removed', '');
+		}).catch((error) => {
+			this.toastr.warning(error.message, 'Something Wrong');
+		})
+	}
+
 
 }

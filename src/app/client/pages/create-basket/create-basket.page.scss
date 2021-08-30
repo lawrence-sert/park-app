@@ -49,3 +49,9 @@
 .emptyImage {
   width: 100%;
 }
+
+.my-custom-class {
+  .header {
+    color : red;
+  }
+}

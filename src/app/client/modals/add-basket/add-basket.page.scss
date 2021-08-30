@@ -1,28 +1,27 @@
-.app-add-basket {
-    --height: 80%;
-    --border-radius: 10px;
-    padding: 25px;
-}
+// .total_price {
+// 	height : 15%;
+// 	background-color: #DE323A;
+// }
 
-.total_price {
-	height : 15%;
-	background-color: #DE323A;
-}
+// .select_cat {
+// 	height : 7%;
+// 	background-color: #000;
+// }
 
-.select_cat {
-	height : 7%;
-	background-color: #000;
-}
+// .search_filter {
+// 	height : 7%;
+// 	background-color: #ccc;
+// }
+// .products {
+// 	height : 64%;
+// 	overflow: scroll;
+// }
 
-.search_filter {
-	height : 7%;
-	background-color: #ccc;
-}
-.products {
-	height : 64%;
-	overflow: scroll;
-}
+// .send {
+// 	height : 7%;
+// }
 
-.send {
-	height : 7%;
+.price_total {
+	height : 80px;
+	text-align: center;
 }
