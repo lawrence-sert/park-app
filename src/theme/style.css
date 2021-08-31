@@ -342,7 +342,7 @@ fieldset[disabled] .s-btn {
   font-size: 0.875rem;
   font-weight: 300;
   color: #656565;
-  border: 1px solid #DE323A;
+  border: 2px solid #DE323A;
   box-shadow: none;
   letter-spacing: .1rem;
   padding: .625rem 1.25rem;

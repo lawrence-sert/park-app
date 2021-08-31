@@ -11,23 +11,22 @@
  </ion-header>
 
 
- <ion-content>
+ <ion-content class="ion-padding">
 
 
  	<form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
 
- 		<ion-row>
- 			<ion-col size="9">
+ 		<div class="row">
+ 			<div class="col-xs-9">
  				<h2 class="g-font-size-24--xs g-color--primary">
  					Tell Us More <br>
  					<span class="light">About You</span>
  				</h2>
- 			</ion-col>
-
- 			<ion-col size="3" class="g-text-center--xs g-padding-t-20--xs">
+ 			</div>
+ 			<div class="col-xs-3 g-text-center--xs g-padding-t-20--xs">
  				<i class="ti-comment-alt g-font-size-40--xs g-color--primary"></i>
- 			</ion-col>
- 		</ion-row>
+ 			</div>
+ 		</div>
 
  		<div class="row">
  			<div class="col-xs-12" (click)="openCalModal()">
@@ -35,10 +34,9 @@
  			</div>
  		</div>
 
- 		<ion-row>
- 			<ion-col>
+ 		<div class="row">
+ 			<div class="col-xs-12">
  				<div class="formGroup">
- 					<label>First Name</label>
  					<input 
  					type="text" 
  					class="form-control s-form-v2__input g-radius--10" 
@@ -47,13 +45,12 @@
  					required
  					>
  				</div>
- 			</ion-col>
- 		</ion-row>
+ 			</div>
+ 		</div>
 
- 		<ion-row>
- 			<ion-col>
+ 		<div class="row">
+ 			<div class="col-xs-12">
  				<div class="formGroup">
- 					<label>Last Name</label>
  					<input 
  					type="text" 
  					class="form-control s-form-v2__input g-radius--10" 
@@ -62,14 +59,12 @@
  					required
  					>
  				</div>
- 			</ion-col>
- 		</ion-row>
+ 			</div>
+ 		</div>
 
- 		<ion-row>
- 			<label>Phone Number</label>
- 			<ion-col size="12">
+ 		<div class="row">
+ 			<div class="col-xs-12">
  				<div class="formGroup">
- 					
  					<input 
  					type="text" 
  					class="form-control s-form-v2__input g-radius--10" 
@@ -78,8 +73,9 @@
  					required
  					>
  				</div>
- 			</ion-col>
- 		</ion-row>
+ 			</div>
+ 		</div>
+
 
  		<ion-row>
  			<ion-col>
@@ -128,12 +124,9 @@
 
 
 
- <div class="row g-margin-t-60--xs">
- 	<div class="col-xs-12 g-text-center--xs">
- 		<span (click)="onSubmit()"  class="g-display-block--xs g-display-inline-block--sm g-padding-x-5--xs g-margin-b-10--xs g-margin-b-0--sm">
- 			<a class="text-uppercase s-btn s-btn-icon--md s-btn--primary-bg g-radius--50 g-padding-x-65--xs">Update Profile</a>
- 		</span>
- 	</div>
+
+ <div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
+ 	<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs" (click)="onSubmit()">Update Profile</button>
  </div>
 
 
