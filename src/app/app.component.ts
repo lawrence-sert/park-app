@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AuthService } from "src/app/auth/services/auth.service";
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from 'src/app/auth/services/user.service';
 @Component({
   selector: 'app-root',
@@ -24,8 +24,8 @@ export class AppComponent {
   emailVerified?: boolean;
   accountType?: any;
   location?: any;
-  firstrun : any;
-  photoUrl : any;
+  firstrun: any;
+  photoUrl: any;
 
 
   constructor(
@@ -41,7 +41,7 @@ export class AppComponent {
         this.userInfo = JSON.parse(localStorage.getItem('user')|| '{}');
 
         // Local storage information
-        this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+        this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
         const id = this.crrntUsr.uid;
         this.usersService.getUserDoc(id).subscribe(res => {
           this.userRef = res;
@@ -51,17 +51,13 @@ export class AppComponent {
           this.displayName = this.userRef.displayName;
           this.emailVerified = this.userRef.emailVerified;
           this.accountType = this.userRef.accountType;
-          this.location = this.userRef.location; 
-          this.photoUrl = this.userRef.photoUrl; 
+          this.location = this.userRef.location;
+          this.photoUrl = this.userRef.photoUrl;
         });
       } else {
 
       }
-    })
+    });
   }
 
-  ngOnInit() {
-
-
-  }
 }

@@ -108,6 +108,10 @@ const routes: Routes = [
   },  {
     path: 'info',
     loadChildren: () => import('./auth/info/info.module').then( m => m.InfoPageModule)
+  },
+  {
+    path: 'phone',
+    loadChildren: () => import('./auth/phone/phone.module').then( m => m.PhonePageModule)
   }
 
   
