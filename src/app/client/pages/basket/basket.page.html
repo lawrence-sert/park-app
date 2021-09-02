@@ -16,8 +16,7 @@
 
 			<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
 				<img class="profile-user-img-main  img-circle "
-				src="assets/img/header-logo.png"
-				alt="Park&Pick Logo">
+			src="{{photoUrl}}">
 			</span>
 
 		</ion-toolbar>
@@ -47,15 +46,15 @@
 		</div>
 
 		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
-			<ion-segment-button value="basket-items" size="3" checked>
+			<ion-segment-button value="basket-items" size="4" checked>
 				Basket Items
 			</ion-segment-button>
 
-			<ion-segment-button value="basket-history" size="3">
+			<ion-segment-button value="basket-history" size="4">
 				Basket History
 			</ion-segment-button>
 
-			<ion-segment-button value="recipes" size="3">
+			<ion-segment-button value="recipes" size="4">
 				Recipes
 			</ion-segment-button>
 

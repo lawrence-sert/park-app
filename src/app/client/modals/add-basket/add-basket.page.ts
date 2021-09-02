@@ -115,9 +115,11 @@ export class AddBasketPage implements OnInit {
 	//get all categories
 	getCategories(){
 		return this.afs.collection<ProductCategories>('products_categories', ref => ref.orderBy('category_name'))
-		.valueChanges({ idField: 'id'})
+		.valueChanges({ id: 'id'})
 		.subscribe((products_categories) => {
-			this.categoryList = products_categories
+			this.categoryList = products_categories;
+
+			console.log(this.categoryList)
 		})
 	}
 

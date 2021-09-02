@@ -41,6 +41,7 @@ export class BasketPage implements OnInit {
 	location: any;
 	accountType?: any;
 	firstrun : any;
+	photoUrl: any;
 	phone : any;
 
 	basketRef: AngularFirestoreCollection<Basket>;
@@ -89,6 +90,7 @@ export class BasketPage implements OnInit {
 			this.location = this.userRef.location;
 			this.phone = this.userRef.phone;
 			this.email = this.userRef.email;
+			this.photoUrl = this.userRef.photoUrl;
 		});
 
 		this.activatedRoute.params.subscribe(parameter => {
