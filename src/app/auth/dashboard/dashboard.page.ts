@@ -9,13 +9,15 @@ import { MenuController } from '@ionic/angular';
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 import {
-  ActionPerformed,
-  PushNotificationSchema,
-  PushNotifications,
-  Token,
+	ActionPerformed,
+	PushNotificationSchema,
+	PushNotifications,
+	Token,
 } from '@capacitor/push-notifications';
 
+import { Capacitor } from '@capacitor/core';
 
+const isPushNotificationsAvailable = Capacitor.isPluginAvailable('PushNotifications');
 
 @Component({
 	selector: 'app-dashboard',
@@ -23,6 +25,8 @@ import {
 	styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+
+
 
 	type: string;
 
@@ -66,48 +70,49 @@ export class DashboardPage implements OnInit {
 		});
 
 
-		console.log('Initializing HomePage');
+		if (isPushNotificationsAvailable) {
 
-    // Request permission to use push notifications
-    // iOS will prompt user and return if they granted permission or not
-    // Android will just grant without prompting
-    PushNotifications.requestPermissions().then(result => {
-      if (result.receive === 'granted') {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
+			// Request permission to use push notifications
+			// iOS will prompt user and return if they granted permission or not
+			// Android will just grant without prompting
+			PushNotifications.requestPermissions().then(result => {
+				if (result.receive === 'granted') {
+					// Register with Apple / Google to receive push via APNS/FCM
+					PushNotifications.register();
+				} else {
+					// Show some error
+				}
+			});
 
-    // On success, we should be able to receive notifications
-    PushNotifications.addListener('registration',
-      (token: Token) => {
-        alert('Push registration success, token: ' + token.value);
-      }
-    );
+			// On success, we should be able to receive notifications
+			PushNotifications.addListener('registration',
+				(token: Token) => {
+					alert('Push registration success, token: ' + token.value);
+				}
+				);
 
-    // Some issue with our setup and push will not work
-    PushNotifications.addListener('registrationError',
-      (error: any) => {
-        alert('Error on registration: ' + JSON.stringify(error));
-      }
-    );
+			// Some issue with our setup and push will not work
+			PushNotifications.addListener('registrationError',
+				(error: any) => {
+					alert('Error on registration: ' + JSON.stringify(error));
+				}
+				);
 
-    // Show us the notification payload if the app is open on our device
-    PushNotifications.addListener('pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        alert('Push received: ' + JSON.stringify(notification));
-      }
-    );
+			// Show us the notification payload if the app is open on our device
+			PushNotifications.addListener('pushNotificationReceived',
+				(notification: PushNotificationSchema) => {
+					alert('Push received: ' + JSON.stringify(notification));
+				}
+				);
 
-    // Method called when tapping on a notification
-    PushNotifications.addListener('pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        alert('Push action performed: ' + JSON.stringify(notification));
-      }
-    );
-		
+			// Method called when tapping on a notification
+			PushNotifications.addListener('pushNotificationActionPerformed',
+				(notification: ActionPerformed) => {
+					alert('Push action performed: ' + JSON.stringify(notification));
+				}
+				);
+
+		}
 	}
 
 	ionViewWillEnter() {
