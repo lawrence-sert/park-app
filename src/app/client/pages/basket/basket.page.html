@@ -29,7 +29,7 @@
 				<div class="row"> 
 					<div class="col-xs-6 created-date g-padding-t-20--xs">
 						<span class="g-color--white g-font-size-12--xs">
-							<i class="ti-calendar"></i> {{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
+							<i class="ti-calendar"></i> 
 						</span>
 					</div>
 
@@ -71,22 +71,58 @@
 
 				<ion-list>
 					<ion-item-sliding *ngFor="let basketItem of basketItems">
-						<ion-item lines="full" routerLink="/notifications">
+						<ion-item lines="full">
 							<ion-label>
 								<h2 class="g-font-size-12--xs g-color--primary">{{basketItem.product_id}}</h2>
-								<p class="g-font-size-12--xs"></p>
+								<p class="g-font-size-12--xs">{{basketItem.id}}</p>
 							</ion-label>
 							<ion-note slot="end">
-								{{basketItem.date.toDate() | date:'dd/MM/yyy h:mm'}}
+								
 							</ion-note>
 						</ion-item>
 						<ion-item-options side="end">
-							<ion-item-option color="danger" (click)="deleteBasket(basketItem.basket_id)">
+							<ion-item-option color="success" (click)="editBasketItem(basketItem.id)">
+								<i class="ti-pencil-alt g-font-size-18--xs"></i>
+							</ion-item-option>
+							<ion-item-option color="warning" (click)="deleteBasketItem(basketItem.id)">
 								<i class="ti-trash g-font-size-18--xs"></i>
 							</ion-item-option>
 						</ion-item-options>
 					</ion-item-sliding>
 				</ion-list>
+
+
+				<br>
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+<br>
+<p>
+  <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+</p>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of filteredProducts">
+        <td>{{ p.data.title }}</td>
+        <td>{{ p.data.price }}</td>
+        <td>
+            <a [routerLink]="['/admin/products/', p.key]">Edit</a> ✍️ 
+        </td>
+        <td>
+            <a (click)="delete(p.key)" id="delete">Delete</a> 🗑 
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 			</div>
 

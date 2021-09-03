@@ -28,8 +28,6 @@ export class AddBasketPage implements OnInit {
 	// Data passed in by componentProps
   @Input() pageId: string;
 
-  	basket_quantity = [1,2,3,4,5];
-
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
@@ -41,24 +39,25 @@ export class AddBasketPage implements OnInit {
 	emailVerified?: boolean;
 	photoURL: any;
 	accountType?: any;
-	firstrun : any;
 
 	//basket
 	products_categories : any;
 	products : any;
 	title : any;
 	producted : any;
+	product_selected : any;
+
 
 	//form information comes here
 	public basketForm: FormGroup;
 
 	allSubscriptions: Subscription[] = [];
 	categorySubscription: Subscription = new Subscription();
+	productSubscription: Subscription = new Subscription();
 
 	categoryList: ProductCategories[] = [];
 	productList: Product[] = [];
 	productListed: Product[] = [];
-
 
 	constructor(
 		public authService: AuthService,
@@ -67,8 +66,8 @@ export class AddBasketPage implements OnInit {
 		private productService: ProductsService,
 		private productCategoriesService: ProductCategoriesService,
 		private basketItemsService: BasketItemsService,
-		private modalCtrl : ModalController,
 		public afs: AngularFirestore,
+		private modalCtrl : ModalController,
 		) { }
 
 	ngOnInit() {
@@ -83,7 +82,6 @@ export class AddBasketPage implements OnInit {
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstrun = this.userRef.firstrun;
 			this.firstname = this.userRef.firstname;
 			this.lastname = this.userRef.surname;
 			this.displayName = this.userRef.displayName;
@@ -94,13 +92,20 @@ export class AddBasketPage implements OnInit {
 
 		this.basketForm = this.formBuilder.group({
 			products_category: [''],
-			product: ['']
+			product: [''],
+			quantity: [''],
 		});
 
 
 		this.allSubscriptions.push(this.productsCategory.valueChanges.subscribe((value) => {
-			this.selectedCountry();
+			this.selectedCategory();
 		}));
+
+		this.allSubscriptions.push(this.product.valueChanges.subscribe((value) => {
+			this.selectedProduct();
+		}));
+
+
 
 	}
 
@@ -109,6 +114,10 @@ export class AddBasketPage implements OnInit {
 	}
 	get product(){
 		return this.basketForm.get('product')
+	}
+
+	get quantity(){
+		return this.basketForm.get('quantity')
 	}
 
 
@@ -121,11 +130,19 @@ export class AddBasketPage implements OnInit {
 		})
 	}
 
-	selectedCountry(){
+	selectedCategory(){
 		this.categorySubscription.unsubscribe();
 		this.categorySubscription = this.afs.collection<Product>('products', ref => ref.where('Category', '==', this.productsCategory.value))
 		.valueChanges({ idField: 'id'}).subscribe((products) => {
 			this.producted = products;
+		})
+	}
+
+	selectedProduct(){
+		this.productSubscription.unsubscribe();
+		this.productSubscription = this.afs.collection<Product>('products', ref => ref.where('id', '==', this.product.value))
+		.valueChanges({ idField: 'id'}).subscribe((products) => {
+			this.product_selected = products;
 		})
 	}
 
@@ -142,16 +159,15 @@ export class AddBasketPage implements OnInit {
 	onSubmit() {
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
-		let cati = "RXJDP";
 		this.basketItemsService.createBasketItem(this.basketForm.value, this.pageId);
 	};
 
-
-
-	async closeModel() {
-		const close: string = "Modal Removed";
-		await this.modalCtrl.dismiss(close);
+	closeModal() {
+		this.modalCtrl.dismiss({
+			'dismissed': true
+		});
 	}
+
 
 
 

@@ -156,7 +156,7 @@ export class CreateBasketPage implements OnInit {
           console.log(basket_id);
           this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
           const id = this.crrntUsr.uid;
-          this.basketService.deleteBasket(id, basket_id );
+          this.basketService.deleteBasket(id, basket_id);
         }
       }
       ]

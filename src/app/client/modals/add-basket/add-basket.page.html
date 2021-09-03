@@ -1,88 +1,85 @@
 <ion-header [translucent]="true" class="ion-no-border">
-	<ion-toolbar>
-		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModel()">
-			<i class="ti-close g-font-size-16--xs"></i>
+	<ion-toolbar class="header-color">
+		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModal()">
+			<i class="ti-close g-font-size-18--xs"></i>
 		</span>
 	</ion-toolbar>
+	<div class="price_total g-padding-y-30--xs g-font-size-24--xs" *ngIf="basketForm.value.quantity">
+		<span class="light g-font-size-14--xs">RWF</span> 
+			<span *ngFor="let prdct of product_selected;let i = index">
+				{{basketForm.value.quantity * prdct.Price}}
+			</span>
+		<span class="light g-font-size-14--xs">.00</span>
+	</div>
 </ion-header>
 
 <ion-content>
-
-	<div *ngFor="let category of categoryList">
-		sds
-	</div>
-
-
-
 	<form [formGroup]="basketForm" (ngSubmit)="onSubmit()">
 
-		<div class="price_total g-padding-y-30--xs g-font-size-24--xs">
-			<span class="light g-font-size-14--xs">RWF</span> 2000000<span class="light g-font-size-14--xs">.00</span>
-		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ion-list>
+					<ion-item>
+						<ion-label>Market Category</ion-label>
+						<ion-select 
+						value="brown" 
+						okText="Okay" 
+						cancelText="Dismiss"
+						formControlName="products_category"
+						>
+						<ion-select-option class="cap-me" *ngFor="let category of categoryList" [value]="category.category_name">
+							<span class="cap-me">{{category?.category_name}}</span>
+						</ion-select-option>
+					</ion-select>
+				</ion-item>
+			</ion-list>
 
-
-		<div class="select_cat">
-			<ion-list>
+			<ion-list *ngIf="basketForm.value.products_category">
 				<ion-item>
-					<ion-label><small>Market Category</small></ion-label>
+					<ion-label>Products</ion-label>
 					<ion-select 
 					value="brown" 
 					okText="Okay" 
 					cancelText="Dismiss"
-					formControlName="products_category"
+					formControlName="product"
 					>
-					<ion-select-option class="cap-me" *ngFor="let category of categoryList" [value]="category.category_name">
-						<span class="cap-me">{{category?.category_name}}</span>
+					<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
+						{{prodcts.Item}}
 					</ion-select-option>
 				</ion-select>
-			</ion-item>
+			</ion-item> 
 		</ion-list>
 
-		<ion-list>
+		<ion-list *ngIf="basketForm.value.product">
 			<ion-item>
-				<ion-label><small>Product</small></ion-label>
-				<ion-select 
-				value="" 
-				okText="Okay" 
-				cancelText="Dismiss"
-				formControlName="product"
+				<ion-input 
+				type="number" 
+				value="1" 
+				min="1" 
+				max="9"
+				formControlName="quantity"
 				>
-				<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
-					{{prodcts.Item}}
-				</ion-select-option>
-			</ion-select>
-		</ion-item>
-	</ion-list>
+				</ion-input>
+			</ion-item> 
+		</ion-list>
 
-	<ion-list>
-		<ion-item>
-			<ion-label><small>Quantity</small></ion-label>
-			<ion-select 
-			value="" 
-			okText="Okay" 
-			cancelText="Dismiss"
-			formControlName="product"
-			>
-			<ion-select-option *ngFor="let quantity of basket_quantity" [value]="prodcts.id">
-				{{quantity.Item}}
-			</ion-select-option>
-		</ion-select>
-	</ion-item>
-</ion-list>
+		
+		<div class="product-image g-text-center--xs" *ngIf="basketForm.value.product">
+			<span *ngFor="let prdct of product_selected">
+				<img src="{{prdct.Image}}" class="img-responsive">
+			</span>
+		</div>
+
+	</div>
 </div>
 
 
-
-<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
+<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" *ngIf="basketForm.value.quantity&&basketForm.value.product">
 	<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
 		<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
-		Add To Basket
+		Add Item
 	</button>
 </div>
 
-
 </form>
 </ion-content>
-
-
-

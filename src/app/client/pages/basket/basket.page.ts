@@ -53,6 +53,7 @@ export class BasketPage implements OnInit {
 
 	products : any;
 	product : any;
+	product_detail : any;
 
 	recipes : any;
 
@@ -63,6 +64,11 @@ export class BasketPage implements OnInit {
 	modelData: any;
 
 	allSubscriptions: Subscription[] = [];
+
+
+	productts!: { title: string; }[] | any;
+	filteredProducts!: any[];
+	subscription: Subscription;
 
 	constructor(
 		public usersService: UserService,
@@ -78,6 +84,7 @@ export class BasketPage implements OnInit {
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
+
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
@@ -94,21 +101,37 @@ export class BasketPage implements OnInit {
 		});
 
 		this.activatedRoute.params.subscribe(parameter => {
-			this.parameterValue = parameter.basketID
+			this.parameterValue = parameter.basketID;
+		});
+
+
+
+		this.subscription = this.basketService.getAll().subscribe(productts => {
+			this.filteredProducts = this.productts = productts; 
+
+			console.log(this.filteredProducts);
 		});
 
 		
 	}
 
+	filter(query: string){
+    
+    this.filteredProducts = (query) ? 
+    this.productts.filter((p: { data: {product_id:string}, key: string }) => p.data.product_id.toLocaleLowerCase().includes(query.toLocaleLowerCase())) : 
+    this.productts;
+
+
+  }
+
 	ngOnInit() {
 
 		this.type = 'basket-items';
 
+
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
 		const param = this.parameterValue;
-
-		console.log(id);
 
 		this.basketRef = this.db.collection<{}>(`users/${id}/basket`, ref => ref.where('basket_id', '==', this.parameterValue));
 		this.basket$ = this.basketRef.snapshotChanges().pipe(
@@ -127,6 +150,7 @@ export class BasketPage implements OnInit {
 					...(e.payload.doc.data() as {}),
 				} as Basket;
 			});
+			
 		});
 
 		//read all recipes 
@@ -140,6 +164,11 @@ export class BasketPage implements OnInit {
 		});
 
 	}
+
+
+
+
+
 
 	segmentChanged(ev: any) {
 		console.log('Segment changed', ev);
@@ -172,14 +201,23 @@ export class BasketPage implements OnInit {
 	}
 
 
-	deleteBasket(basketItemid) {
-    this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-    const id = this.crrntUsr.uid;
-    this.basketService.deleteBasket(id, basketItemid );
+	deleteBasket( basketItemid) {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		this.basketService.deleteBasket(id, basketItemid );
+	}
+
+	deleteBasketItem(basketItemid) {
+		const param = this.parameterValue;
+		this.basketItemsService.deleteBasketItem(param,basketItemid);
+	}
+
+
+
+
+ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
-
-
-
 
 
 }

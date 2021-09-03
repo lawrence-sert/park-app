@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Basket } from 'src/app/client/models/basket.model';
 import { UserService } from 'src/app/auth/services/user.service';
 import * as firebase from 'firebase';
 import { ToastrService } from 'ngx-toastr';
+
+
+import { map } from 'rxjs/operators';
 
 
 
@@ -20,6 +24,7 @@ export class BasketService {
 		private firestore: AngularFirestore,
 		public usersService: UserService,
 		private toastr: ToastrService,
+		public db: AngularFireDatabase,
 		
 		) { 
 		// Local storage information
@@ -69,6 +74,21 @@ export class BasketService {
 		}).catch((error) => {
 			this.toastr.warning(error.message, 'Something Wrong');
 		})
+	}
+
+
+	getAll(){
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const ndini = 'xI9T5'
+		return this.db.list(`users/${id}/basket/xI9T5/basket_items`).snapshotChanges().pipe(map(actions => {
+			return actions.map(a => {
+				const key = a.payload.key;
+				console.log(key);
+				const data = a.payload.val();
+				return {data, key};
+			})
+		}));
 	}
 
 
