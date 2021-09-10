@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera/ngx';
 import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -51,6 +52,7 @@ import { VendorMenuComponent } from 'src/app/vendor/components/vendor-menu/vendo
 	AuthService,
 	Geolocation,
 	NativeGeocoder,
+	Camera,
 	{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
 	],
 	bootstrap: [AppComponent],

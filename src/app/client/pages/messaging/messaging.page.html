@@ -1,0 +1,70 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="header-color">
+
+		<ion-buttons slot="start" class="g-font-size-18--xs">
+			<ion-back-button>
+				<i class="ti-arrow-left g-font-size-18--xs"></i>
+			</ion-back-button>
+		</ion-buttons>
+
+		<ion-title class="ion-text-center">
+			Talk With Seller
+		</ion-title>
+
+		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
+			<img class="profile-user-img-main  img-circle "
+			src="{{photoUrl}}">
+		</span>
+
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	<div class="top">
+		<div class="row">
+			<div class="col-xs-9">
+				<h2 class="g-font-size-24--xs g-color--primary">
+					We Are <br>
+					<span class="light">Always Here.</span>
+				</h2>
+			</div>
+			<div class="col-xs-3 g-text-center--xs g-padding-t-20--xs">
+				<i class="ti-comments g-font-size-40--xs g-color--primary"></i>
+			</div>
+		</div>
+	</div>
+	<div class="chat">
+		<div class="chat-box">
+
+			<div class="chat-l" *ngFor="let message of messages">
+				<div class="mess">
+					<p>
+						Me too. <img src="img/heart.png"  class="emoji">
+					</p>
+					<div class="check">
+						<span>4:00 PM</span>
+					</div>
+				</div>
+				<div class="sp"></div>
+			</div>
+
+		</div>
+
+
+		<form [formGroup]="messageForm" (ngSubmit)="onSubmit()" novalidate>
+			<div class="chat-footer">
+				<i class="ti-camera emo g-font-size-20--xs g-text-center--xs g-color--primary"></i>
+				<textarea 
+				placeholder="Type a message"
+				type="text" 
+				formControlName="message"
+				required
+				>
+			</textarea>
+			<i class="ti-share mic g-font-size-20--xs g-text-center--xs g-line-height--30" (click)="onSubmit()"></i>
+		</div>
+	</form>
+</div>
+
+</ion-content>

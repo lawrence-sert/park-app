@@ -16,20 +16,20 @@
 
 			<span slot="end" routerLink="/dashboard" class="g-padding-r-10--xs">
 				<img class="profile-user-img-main  img-circle "
-			src="{{photoUrl}}">
+				src="{{photoUrl}}">
 			</span>
 
 		</ion-toolbar>
 
 		<div class="header-basket">
 			<div class="basket-icon g-text-center--xs">
-				<i class="fas fa-shopping-basket g-font-size-80--xs g-color--white"></i>
+				<i class="ti-shopping-cart-full g-font-size-80--xs g-color--white"></i>
 			</div>
 			<div class="basket-cost">
 				<div class="row"> 
 					<div class="col-xs-6 created-date g-padding-t-20--xs">
 						<span class="g-color--white g-font-size-12--xs">
-							<i class="ti-calendar"></i> 
+							<i class="ti-calendar g-font-size-18--xs"></i> 
 						</span>
 					</div>
 
@@ -37,7 +37,7 @@
 						<span class="pull-right">
 							<h2 class="g-font-size-18--xs g-color--white">
 								{{basket.basket_cost}}
-								<span class="light">RWF</span>
+								<small><span class="light g-color--white">RWF</span></small>
 							</h2>
 						</span>
 					</div>
@@ -47,11 +47,11 @@
 
 		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
 			<ion-segment-button value="basket-items" size="4" checked>
-				Basket Items
+				Items
 			</ion-segment-button>
 
 			<ion-segment-button value="basket-history" size="4">
-				Basket History
+				History
 			</ion-segment-button>
 
 			<ion-segment-button value="recipes" size="4">
@@ -92,37 +92,7 @@
 				</ion-list>
 
 
-				<br>
-<p>
-    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
-</p>
-<br>
-<p>
-  <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
-</p>
-<br>
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Price</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of filteredProducts">
-        <td>{{ p.data.title }}</td>
-        <td>{{ p.data.price }}</td>
-        <td>
-            <a [routerLink]="['/admin/products/', p.key]">Edit</a> ✍️ 
-        </td>
-        <td>
-            <a (click)="delete(p.key)" id="delete">Delete</a> 🗑 
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
 
 			</div>
 
@@ -137,11 +107,34 @@
 
 
 		<!-- Basket history activity -->
-		<div  *ngSwitchCase="'basket-history'">			
+		<div  *ngSwitchCase="'basket-history'">	
+			ssa		
 		</div>
 
 		<!-- Basket history activity -->
-		<div  *ngSwitchCase="'recipe'">			
+		<div  *ngSwitchCase="'recipes'">
+			<ion-list>
+				<ion-item *ngFor="let recipe of recipes; index as i">
+					<ion-avatar slot="start">
+						<img src="{{recipe.recipe_image}}">
+					</ion-avatar>
+					<ion-label class="ion-text-wrap">
+						<ion-text color="primary">
+							<h3 class="g-font-size-12--xs">{{recipe.recipe_name | slice:0:30}}</h3>
+						</ion-text>
+						<ion-text color="secondary">
+							<p class="g-font-size-10--xs">{{recipe.recipe_level}}</p>
+						</ion-text>
+					</ion-label>
+					<span slot="end">
+						<i class="ti-star g-font-size-12--xs"></i>
+						<i class="ti-star g-font-size-12--xs"></i>
+						<i class="ti-star g-font-size-12--xs"></i>
+						<i class="ti-star g-font-size-12--xs"></i>
+					</span>
+				</ion-item>
+			</ion-list>	
+
 		</div>
 
 	</div>

@@ -105,14 +105,24 @@ const routes: Routes = [
   {
     path: 'comment',
     loadChildren: () => import('./client/modals/comment/comment.module').then( m => m.CommentPageModule)
-  },  {
+  },
+  {
     path: 'info',
     loadChildren: () => import('./auth/info/info.module').then( m => m.InfoPageModule)
   },
   {
     path: 'phone',
     loadChildren: () => import('./auth/phone/phone.module').then( m => m.PhonePageModule)
+  },
+  {
+    path: 'messaging',
+    loadChildren: () => import('./client/pages/messaging/messaging.module').then( m => m.MessagingPageModule)
+  },
+  {
+    path: 'chef/:chefID',
+    loadChildren: () => import('./client/pages/chef/chef.module').then( m => m.ChefPageModule)
   }
+
 
   
 ];

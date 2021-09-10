@@ -10,4 +10,9 @@ export default class User {
   firstrun? : string;
   location? : string;
   photoUrl? : string;
+  province? : string;
+  district? : string;
+  sector? : string;
+  cell? : string;
+  village? : string;
 }

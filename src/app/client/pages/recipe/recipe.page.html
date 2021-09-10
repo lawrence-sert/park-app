@@ -35,39 +35,41 @@
 </ion-header>
 
 
-<ion-content class="ion-padding">
+<ion-content>
 	<div *ngFor="let recipe of recipe$ | async; index as i">
 
 		
 		<div class="row g-padding-y-10--xs">
-			<div class="col-xs-3">
+			<div class="col-xs-3" (click)="addLike()">
 				<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
-				<span class="g-font-size-12--xs">{{recipe.recipe_like}}</span>
+				<span class="g-font-size-10--xs">{{recipe.recipe_like}}</span>
 			</div>
 			<div class="col-xs-3">
 				<i class="ti-comments g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
-				<span class="g-font-size-12--xs">100</span>
+				<span class="g-font-size-10--xs">100</span>
 			</div>
 			<div class="col-xs-6">
-				<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
-				<span class="g-padding-x-10--xs g-font-size-12--xs">Lawrence Gumbo</span>
+				<span [routerLink]="['/chef', recipe.recipe_chef]">
+					<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
+					<span class="g-padding-x-10--xs g-font-size-10--xs">Lawrence Gumbo</span>
+				</span>
 			</div>
 		</div>
 
 		<ion-row class="recipe-details">
 			<ion-col size="4" class="g-text-center--xs">
 				<i class="ti-user g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
-				<span class="g-font-size-12--xs">Serves {{recipe.recipe_people}}</span>
+				<span class="g-font-size-10--xs light">Serves {{recipe.recipe_people}}</span>
 			</ion-col>
 
 			<ion-col size="4" class="g-text-center--xs">
 				<i class="ti-time g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
-				<span class="g-font-size-12--xs">{{recipe.recipe_time}} min</span>
+				<span class="g-font-size-10--xs light">{{recipe.recipe_time}} min</span>
 			</ion-col>
 
 			<ion-col size="4" class="g-text-center--xs">
 				<i class="ti-crown g-color--grey g-font-size-12--xs g-padding-r-5--xs"></i>
-				<span class="g-font-size-12--xs">{{recipe.recipe_level}}</span>
+				<span class="g-font-size-10--xs light">{{recipe.recipe_level}}</span>
 			</ion-col>
 
 		</ion-row>
@@ -104,12 +106,6 @@
 			<div *ngSwitchCase="'ingredients'">
 				<div class="row">
 					<div class="col-xs-12">
-						<h2 class="pull-right g-color--primary g-font-size-14--xs">Ingredients </h2>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-xs-12">
 						<ion-list>
 							<ion-item lines="full" *ngFor="let ingredient of ingredient$ | async; index as i">
 								<i class="ti-control-record g-color--primary " slot="start"></i>
@@ -123,12 +119,6 @@
 			</div>
 
 			<div *ngSwitchCase="'directions'">
-				<div class="row">
-					<div class="col-xs-12">
-						<h2 class="pull-right g-color--primary g-font-size-14--xs">Method </h2>
-					</div>
-				</div>
-
 				<div class="row g-margin-b-10--xs" *ngFor="let method of method$ | async; index as i">
 					<div class="col-xs-2 g-text-center--xs">
 						<span class="g-font-size-24--xs g-color--primary"> {{method.method_number}}</span>
@@ -140,12 +130,6 @@
 			</div>
 
 			<div *ngSwitchCase="'nutrition'">
-				<div class="row">
-					<div class="col-xs-12">
-						<h2 class="pull-right g-color--primary g-font-size-14--xs">Nutrition </h2>
-					</div>
-				</div>
-
 				<div class="row" *ngFor="let nutrition of nutrition$ | async; index as i">
 					<div class="col-xs-4">
 						<div class="nutrition-circle g-text-center--xs">
@@ -193,11 +177,6 @@
 			<div *ngSwitchCase="'description'">
 				<div class="row">
 					<div class="col-xs-12">
-						<h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
 						<p class="g-font-size-12--xs">
 							{{recipe.recipe_description}}
 						</p>
@@ -206,37 +185,13 @@
 			</div>
 
 			<div *ngSwitchCase="'comments'">
-				<div class="row">
-					<div class="col-xs-12">
-						<h2 class="pull-right g-color--primary g-font-size-14--xs">Comments </h2>
-					</div>
-				</div>
 
 				<div class="row" *ngFor="let comment of comments$ | async; index as i">
 					<div class="col-xs-2">
-						<img src="assets/img/director2.png" class="comment-user-img img-circle img-responsive">
+						<img src="assets/img/director2.png" class="comment_img img-responsive img-circle">
 					</div>
-
-					<div class="col-xs-10">
-						<div class="comment-main">
-							<span class="g-font-size-12--xs">
-								{{comment.comment_main}}
-							</span> 
-						</div>
-					</div>
-				</div>
-
-				<div class="row message-send">
-					<div class="col-xs-2">
-						
-					</div>
-
-					<div class="col-xs-8">
-						hello
-					</div>
-
-					<div class="col-xs-2 g-text-center--xs">
-						<i class="far fa-paper-plane g-font-size-24--xs g-color--primary"></i>
+					<div class="col-xs-10 user_comment g-margin-b-10--xs">
+						<span class="g-font-size-10--xs light">{{comment.comment_main}}</span>
 					</div>
 				</div>
 			</div>
@@ -251,15 +206,15 @@
 <ion-footer>
 	<div class="row g-padding-y-10--xs">
 		<div class="col-xs-4 g-text-center--xs" (click)="addLike()">
-			<i class="ti-heart g-font-size-18--xs g-padding-r-5--xs"></i>
+			<i class="ti-heart g-font-size-18--xs g-color--primary g-padding-r-5--xs"></i>
 			<span class="g-font-size-12--xs">Like</span>
 		</div>
 		<div class="col-xs-4 g-text-center--xs" (click)="openCalModal()">
-			<i class="ti-comments g-font-size-18--xs g-padding-r-10--xs"></i>
+			<i class="ti-comments g-font-size-18--xs g-color--primary g-padding-r-10--xs"></i>
 			<span class="g-font-size-12--xs">Comment</span>
 		</div>
 		<div class="col-xs-4 g-text-center--xs">
-			<i class="ti-share g-font-size-18--xs g-padding-r-10--xs"></i>
+			<i class="ti-share g-font-size-18--xs g-color--primary g-padding-r-10--xs"></i>
 			<span class="g-font-size-12--xs">Share</span>
 		</div>
 	</div>

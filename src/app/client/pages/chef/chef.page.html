@@ -1,0 +1,14 @@
+<ion-header>
+	<div *ngFor="let chef of chef$ | async; index as i">
+		<ion-toolbar>
+			<ion-title>chef</ion-title>
+		</ion-toolbar>
+	</div>
+</ion-header>
+
+<ion-content>
+	<div *ngFor="let chef of chef$ | async; index as i">
+		<div class="chef_top"></div>
+		<div class="chef_content"></div>
+	</div>
+</ion-content>

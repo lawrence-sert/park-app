@@ -1,66 +1,55 @@
 <div class="mid-first">
 
-  <ion-card class="g-bg-color--white">
-    <ion-card-content class="no-padding">
-      <ion-row routerLink="/create-basket">
-        <ion-col size="1" class="g-text-center--xs">
-          <i class="fas fa-shopping-basket g-font-size-18--xs g-color--primary"></i>
-        </ion-col>
-        <ion-col size="10" class="g-text-center--xs">
-          <h3 class="g-font-size-16--xs g-color--primary">Create Basket</h3>
-        </ion-col>
-        <ion-col size="1" class="g-text-center--xs">
-          <i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card class="g-bg-color--white">
-    <ion-card-content>
-      <ion-row routerLink="/market">
-        <ion-col size="1" class="g-text-center--xs">
-          <i class="fas fa-store g-font-size-18--xs g-color--primary"></i>
-        </ion-col>
-        <ion-col size="10" class="g-text-center--xs">
-          <h3 class="g-font-size-16--xs g-color--primary">Visit Market</h3>
-        </ion-col>
-        <ion-col size="1" class="g-text-center--xs">
-          <i class="ti-angle-right g-font-size-18--xs g-color--primary"></i>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-
-</div>
-
-<div class="mid-second">
-
-  <div class="menu-header g-text-center--xs" routerLink="/notifications">
-    <span class="g-font-size-12--xs g-color--white">
-      <i class="far fa-bell g-font-size-16--xs g-color--white g-padding-r-5--xs" ></i>
-      Notifications (12)
-    </span>
-  </div>
-
   <ion-list>
-    <ion-item-sliding *ngFor="let notification of notifications">
-      <ion-item lines="full" routerLink="/notifications">
-        <ion-label>
-          <h2 class="g-font-size-12--xs g-color--primary">{{notification.type}}</h2>
-          <p class="g-font-size-12--xs">A new message in your network</p>
+    <ion-item lines="none" routerLink="/dashboard">
+      <i class="ti-home g-font-size-16--xs g-color--primary" slot="start"></i>
+      <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">Home</h2>
+          <p class="g-font-size-10--xs">A new message in your network</p>
         </ion-label>
-        <ion-note slot="end">
-          {{notification.date.toDate() | date:'dd/MM/yyy h:mm'}}
-        </ion-note>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteNotification(notification.id)">
-          <i class="ti-trash g-font-size-18--xs"></i>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    </ion-item>
+
+    <ion-item lines="none" routerLink="/create-basket">
+      <i class="ti-shopping-cart-full g-font-size-16--xs g-color--primary" slot="start"></i>
+      <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">Create Basket</h2>
+          <p class="g-font-size-10--xs">A new message in your network</p>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" routerLink="/market">
+      <i class="ti-direction-alt g-font-size-18--xs g-color--primary" slot="start"></i>
+      <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">Visit Our Market</h2>
+          <p class="g-font-size-10--xs">A new message in your network</p>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" routerLink="/messaging">
+      <i class="ti-comments g-font-size-16--xs g-color--primary" slot="start"></i>
+      <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">Talk To Seller</h2>
+          <p class="g-font-size-10--xs">A new message in your network</p>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" routerLink="/notifications">
+      <i class="ti-bell g-font-size-16--xs g-color--primary" slot="start"></i>
+      <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">Notifications</h2>
+          <p class="g-font-size-10--xs">A new message in your network</p>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" routerLink="/settings">
+      <i class="ti-settings g-font-size-16--xs g-color--primary" slot="start"></i>
+      <ion-label>
+          <h2 class="g-font-size-12--xs g-color--primary">Settings</h2>
+          <p class="g-font-size-10--xs">A new message in your network</p>
+        </ion-label>
+    </ion-item>
+
   </ion-list>
 
-
 </div>
+

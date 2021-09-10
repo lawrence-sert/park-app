@@ -31,10 +31,6 @@
 				<i class="fas fa-concierge-bell g-font-size-22--xs"></i>
 			</ion-segment-button>
 
-			<ion-segment-button value="messages">
-				<i class="far fa-comment-alt g-font-size-22--xs"></i>
-			</ion-segment-button>
-
 			<ion-segment-button value="delivery">
 				<i class="fas fa-map-marker-alt g-font-size-22--xs"></i>
 			</ion-segment-button>
@@ -51,7 +47,7 @@
 
 		<ion-row *ngSwitchCase="'home'">
 			<ion-col>
-				<app-messaging></app-messaging>
+				<app-dash></app-dash>
 			</ion-col>
 		</ion-row>
 
@@ -67,11 +63,6 @@
 			</ion-col>
 		</ion-row>
 
-		<ion-row *ngSwitchCase="'messages'">
-			<ion-col>
-				<!-- <app-messaging></app-messaging> -->
-			</ion-col>
-		</ion-row>
 
 		<ion-row *ngSwitchCase="'delivery'">
 			<ion-col>

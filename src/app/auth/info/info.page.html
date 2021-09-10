@@ -1,40 +1,15 @@
- <ion-header [translucent]="true" class="ion-no-border">
- 	<ion-toolbar class="header-color">
- 		<ion-buttons slot="start" class="g-padding-l-20--xs g-font-size-18--xs">
- 			<i class="fas fa-info-circle"></i>
- 		</ion-buttons>
-
- 		<ion-title class="ion-text-center">
- 			Account Information
- 		</ion-title>
- 	</ion-toolbar>
- </ion-header>
-
-
  <ion-content class="ion-padding">
 
 
  	<form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
 
- 		<div class="row">
- 			<div class="col-xs-9">
- 				<h2 class="g-font-size-24--xs g-color--primary">
- 					Tell Us More <br>
- 					<span class="light">About You</span>
- 				</h2>
- 			</div>
- 			<div class="col-xs-3 g-text-center--xs g-padding-t-20--xs">
- 				<i class="ti-comment-alt g-font-size-40--xs g-color--primary"></i>
- 			</div>
- 		</div>
-
- 		<div class="row">
+ 		<div class="row g-margin-b-10--xs">
  			<div class="col-xs-12" (click)="openCalModal()">
  				<img src="{{photoUrl}}" class="upload-user-img img-circle img-responsive">
  			</div>
  		</div>
 
- 		<div class="row">
+ 		<div class="row g-margin-b-10--xs">
  			<div class="col-xs-12">
  				<div class="formGroup">
  					<input 
@@ -48,7 +23,7 @@
  			</div>
  		</div>
 
- 		<div class="row">
+ 		<div class="row g-margin-b-10--xs">
  			<div class="col-xs-12">
  				<div class="formGroup">
  					<input 
@@ -62,7 +37,7 @@
  			</div>
  		</div>
 
- 		<div class="row">
+ 		<div class="row g-margin-b-10--xs">
  			<div class="col-xs-12">
  				<div class="formGroup">
  					<input 
@@ -77,31 +52,89 @@
  		</div>
 
 
- 		<ion-row>
- 			<ion-col>
- 				<ion-list>
+ 		<ion-list>
  					<ion-item>
- 						<ion-label>Location</ion-label>
+ 						<ion-label>Province</ion-label>
  						<ion-select 
- 						value="Location" 
+ 						value="Province" 
  						okText="Okay" 
  						cancelText="Dismiss"
- 						formControlName="location"
- 						placeholder="City Location"
+ 						formControlName="province"
+ 						placeholder=""
  						>
- 						<ion-select-option value="Kigali">Kigali</ion-select-option>
- 						<ion-select-option value="Eastern Province">Eastern Province</ion-select-option>
- 						<ion-select-option value="Northern Province">Northern Province</ion-select-option>
- 						<ion-select-option value="Southern Province">Southern Province</ion-select-option>
- 						<ion-select-option value="Western Province">Western Province</ion-select-option>
+ 						<ion-select-option *ngFor="let province of provinceList" [value]="province.id">
+ 							{{province.name}}
+ 						</ion-select-option>
+
  					</ion-select>
  				</ion-item>
- 			</ion-list>
- 		</ion-col>
- 	</ion-row>
 
- 	<ion-row>
- 		<ion-col>
+ 				<ion-item *ngIf="editForm.value.province">
+ 					<ion-label>District</ion-label>
+ 					<ion-select 
+ 					value="Discrict" 
+ 					okText="Okay" 
+ 					cancelText="Dismiss"
+ 					formControlName="district"
+ 					placeholder=""
+ 					>
+ 					<ion-select-option *ngFor="let district of districtSelect" [value]="district.id">
+ 						{{district.name}}
+ 					</ion-select-option>
+
+ 				</ion-select>
+ 			</ion-item>
+
+ 			<ion-item *ngIf="editForm.value.district">
+ 					<ion-label>Sector</ion-label>
+ 					<ion-select 
+ 					value="Sector" 
+ 					okText="Okay" 
+ 					cancelText="Dismiss"
+ 					formControlName="sector"
+ 					placeholder=""
+ 					>
+ 					<ion-select-option *ngFor="let sector of sectorSelect" [value]="sector.id">
+ 						{{sector.name}}
+ 					</ion-select-option>
+
+ 				</ion-select>
+ 			</ion-item>
+
+ 			<ion-item *ngIf="editForm.value.sector">
+ 					<ion-label>Cell</ion-label>
+ 					<ion-select 
+ 					value="Cell" 
+ 					okText="Okay" 
+ 					cancelText="Dismiss"
+ 					formControlName="cell"
+ 					placeholder=""
+ 					>
+ 					<ion-select-option *ngFor="let cell of cellSelect" [value]="cell.id">
+ 						{{cell.name}}
+ 					</ion-select-option>
+
+ 				</ion-select>
+ 			</ion-item>
+
+ 			<ion-item *ngIf="editForm.value.sector">
+ 					<ion-label>Village</ion-label>
+ 					<ion-select 
+ 					value="Village" 
+ 					okText="Okay" 
+ 					cancelText="Dismiss"
+ 					formControlName="village"
+ 					placeholder=""
+ 					>
+ 					<ion-select-option *ngFor="let village of villageSelect" [value]="village.id">
+ 						{{village.name}}
+ 					</ion-select-option>
+
+ 				</ion-select>
+ 			</ion-item>
+
+ 			</ion-list>
+
  			<ion-list>
  				<ion-item>
  					<ion-label>Account Type</ion-label>
@@ -118,16 +151,19 @@
  				</ion-select>
  			</ion-item>
  		</ion-list>
- 	</ion-col>
- </ion-row>
+
+
+
+
+ 
 
 
 
 
 
- <div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
- 	<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs" (click)="onSubmit()">Update Profile</button>
- </div>
+<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" *ngIf="editForm.value.accountType">
+	<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs" (click)="onSubmit()">Update Profile</button>
+</div>
 
 
 

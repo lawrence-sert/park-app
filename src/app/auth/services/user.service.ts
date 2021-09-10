@@ -58,7 +58,11 @@ export class UserService {
 			phone: user.phone,
 			accountType: user.accountType,
 			firstrun: FirstRun,
-			location : user.location
+			province : user.province,
+			district : user.district,
+			sector : user.sector,
+			cell : user.cell,
+			village : user.village
 		});
 	}
 

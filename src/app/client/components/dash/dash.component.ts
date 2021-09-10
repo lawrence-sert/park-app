@@ -146,9 +146,12 @@ export class DashComponent implements OnInit {
 			this.location = this.userRef.location;
 		});
 
+		const randomNumber = Math.floor(Math.random() * 3) + 1;
+
+		console.log(randomNumber);
+
 		//read Tips 
-		//Veggies Queries
-		this.tips = this.db.collection('/tips')
+		this.tips = this.db.collection('/tips', ref => ref.where('id', '==', randomNumber))
 		.valueChanges({ idField: 'id'})
 		.subscribe((tips) => {
 			this.allTips = tips;

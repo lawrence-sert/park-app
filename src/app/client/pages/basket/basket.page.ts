@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AddBasketPage } from 'src/app/client/modals/add-basket/add-basket.page';
 
@@ -65,10 +66,9 @@ export class BasketPage implements OnInit {
 
 	allSubscriptions: Subscription[] = [];
 
-
-	productts!: { title: string; }[] | any;
-	filteredProducts!: any[];
-	subscription: Subscription;
+	pdctId: any;
+	pdctIded: any;
+	
 
 	constructor(
 		public usersService: UserService,
@@ -78,6 +78,7 @@ export class BasketPage implements OnInit {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore,
+		public database: AngularFireDatabase,
 		private modalCtrl: ModalController
 		) { 
 
@@ -99,35 +100,28 @@ export class BasketPage implements OnInit {
 			this.email = this.userRef.email;
 			this.photoUrl = this.userRef.photoUrl;
 		});
-
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.basketID;
 		});
 
 
+		const m = this.db.collection(`users/${id}/basket/xI9T5/basket_items`).snapshotChanges();
+		m.subscribe(res =>{
+			console.log(res)
+			res.forEach(res => {
+				const value = res.payload.doc.data();
+				const id = res.payload.doc.id;
+				console.log(value," ",id)
+			});
+		})
 
-		this.subscription = this.basketService.getAll().subscribe(productts => {
-			this.filteredProducts = this.productts = productts; 
-
-			console.log(this.filteredProducts);
-		});
-
-		
 	}
 
-	filter(query: string){
-    
-    this.filteredProducts = (query) ? 
-    this.productts.filter((p: { data: {product_id:string}, key: string }) => p.data.product_id.toLocaleLowerCase().includes(query.toLocaleLowerCase())) : 
-    this.productts;
-
-
-  }
 
 	ngOnInit() {
 
 		this.type = 'basket-items';
-
+		console.log('here');
 
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -212,12 +206,6 @@ export class BasketPage implements OnInit {
 		this.basketItemsService.deleteBasketItem(param,basketItemid);
 	}
 
-
-
-
-ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 
 
 }

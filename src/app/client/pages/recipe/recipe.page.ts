@@ -11,7 +11,7 @@ import { RecipesService } from 'src/app/client/services/recipes.service';
 import {Recipes} from 'src/app/client/models/recipes.model';
 
 import { ChefsService } from 'src/app/client/services/chefs.service';
-import {Chefs} from 'src/app/client/models/chefs.model';
+import { Chefs } from 'src/app/client/models/chefs.model';
 
 import { CommentPage } from 'src/app/client/modals/comment/comment.page';
 
@@ -61,7 +61,7 @@ export class RecipePage implements OnInit {
 	comments$: Observable<Recipes[]>;
 
 	chefRef: AngularFirestoreCollection<Chefs>;
-	chef$: Observable<Recipes[]>;
+	chef$: Observable<Chefs[]>;
 	chef_id: any[] = [];
 
 

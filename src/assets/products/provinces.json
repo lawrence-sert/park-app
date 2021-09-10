@@ -1,0 +1,11 @@
+{
+ "__collections__": {
+   "provinces": {
+      "5":{"id":"5","name":"EAST"},
+      "1":{"id":"1","name":"KIGALI"},
+      "4":{"id":"4","name":"NORTH"},
+      "2":{"id":"2","name":"SOUTH"},
+      "3":{"id":"3","name":"WEST"}
+   }
+}
+}
