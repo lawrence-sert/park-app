@@ -68,4 +68,8 @@ export class MessagingPage implements OnInit {
 		this.messageService.createMessage(this.messageForm.value);
 	}
 
+	openCalModal() {
+		
+	}
+
 }

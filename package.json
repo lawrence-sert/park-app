@@ -46,6 +46,9 @@
     "ngx-image-cropper": "^4.0.1",
     "ngx-pagination": "^5.1.1",
     "ngx-toastr": "^14.0.0",
+    "chart.js": "^3.2.1",
+    "chartjs": "^0.3.24",
+    "highcharts": "^9.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

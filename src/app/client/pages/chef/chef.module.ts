@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ChefPageRoutingModule } from './chef-routing.module';
 
 import { ChefPage } from './chef.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChefPageRoutingModule
+    ChefPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ChefPage]
 })

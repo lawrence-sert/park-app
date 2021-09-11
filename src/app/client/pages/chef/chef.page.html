@@ -1,14 +1,76 @@
-<ion-header>
+<ion-header class="ion-no-border">
 	<div *ngFor="let chef of chef$ | async; index as i">
-		<ion-toolbar>
-			<ion-title>chef</ion-title>
+		<ion-toolbar class="header-color">
+
+			<ion-buttons slot="start" class="g-font-size-18--xs">
+				<ion-back-button>
+					<i class="ti-arrow-left g-font-size-18--xs"></i>
+				</ion-back-button>
+			</ion-buttons>
+
+			<ion-title class="ion-text-center">
+				
+			</ion-title>
+
+			<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
+				<img class="profile-user-img-main  img-circle "
+				src="{{photoUrl}}">
+			</span>
+
 		</ion-toolbar>
+
+		<app-shrink-header [scrollArea]="myContent" [headerHeight]="230">
+			<img src="assets/img/test.png">
+
+
+			<ion-list>
+				<ion-item lines="none">
+					<ion-avatar slot="start">
+						<img src="assets/img/director2.png">
+					</ion-avatar>
+					<ion-label>
+						<h3>{{chef.chef_name}}</h3>
+					</ion-label>
+					<ion-button slot="end">
+						<i class="far fa-thumbs-up g-font-size-18--xs"></i>
+					</ion-button>
+				</ion-item>
+			</ion-list>
+
+			<div class="row">
+				<div class="col-xs-8">
+					<ion-button expand="block" size="small">Small</ion-button>
+				</div>
+				<div class="col-xs-2 g-line-height--40">
+					<i class="ti-comments g-font-size-20--xs"></i>
+				</div>
+				<div class="col-xs-2 g-line-height--40">
+					<i class="ti-panel g-font-size-20--xs"></i>
+				</div>
+			</div>
+		</app-shrink-header>
+
+		<div (ionChange)="segmentChanged($event)">
+			<ion-segment [value]="segmentValue">
+				<ion-segment-button value="about">
+					<span>About</span>
+				</ion-segment-button>
+				<ion-segment-button value="recipes">
+					<span>Recipes</span>
+				</ion-segment-button>
+				<ion-segment-button value="videos">
+					<span>Videos</span>
+				</ion-segment-button>
+				<ion-segment-button value="comments">
+					<span>Comments</span>
+				</ion-segment-button>
+			</ion-segment>
+		</div>
 	</div>
 </ion-header>
 
-<ion-content>
-	<div *ngFor="let chef of chef$ | async; index as i">
-		<div class="chef_top"></div>
-		<div class="chef_content"></div>
-	</div>
+<ion-content [scrollEvents]="true" (ionScroll)="scroll($event)" #myContent>
+
+
+
 </ion-content>

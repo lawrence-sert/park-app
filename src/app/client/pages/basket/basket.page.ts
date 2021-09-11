@@ -206,6 +206,10 @@ export class BasketPage implements OnInit {
 		this.basketItemsService.deleteBasketItem(param,basketItemid);
 	}
 
+	editBasketItem(basketItemid) {
+		
+	}
+
 
 
 }

@@ -1,5 +1,25 @@
-.chef_top {
-	height: 200px;
-	background-color: red;
-	width : 100%;
+ion-header {
+	app-shrink-header {
+		display: block;
+		overflow: hidden;
+	}
+}
+
+
+.chef_info {
+	height: 100px;
+}
+
+.chef_info_image {
+	width: 20%;
+	float: left;
+}
+.chef_info_name {
+	width: 68%;
+	float: left;
+	padding: 10px;
+}
+.chef_info_like {
+	width: 10%;
+	float: left;
 }
