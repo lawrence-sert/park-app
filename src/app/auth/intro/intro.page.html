@@ -3,74 +3,71 @@
 
     <ion-slide>
       <div class="slide g-text-center--xs">
-       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/welcome.svg">
-       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Welcome To Park&Pick</h2>
-       <p class="g-font-size-14--xs">Introduction</p>
+       <img class="img-responsive g-margin-b-60--xs" src="assets/svg/welcome.svg">
+       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs g-margin-b-30--xs">Welcome To Park&Pick</h2>
+       <p class="g-font-size-12--xs ">Welcome to <strong>Park&Pick Store</strong> mobile application. We are here to bridge the gap between farmers and consumers. 
+        This platform will allow you to get the freshest farm produce straight from the farm. We aim to improve
+      how our users consume their food by providing daily tips and nutritious recipes. </p>
+      <ion-fab class="g-padding-r-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+        <span class="g-font-size-14--xs g-padding-r-10--xs">Next</span> <i class="ti-angle-right  g-font-size-12--xs g-color--primary"></i>
+      </ion-fab>
 
-       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="ti-angle-right g-font-size-22--xs g-color--white"></i>
-        </ion-fab-button>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+    <div class="slide g-text-center--xs">
+      <img class="img-responsive g-margin-b-60--xs" src="assets/svg/farmer.svg">
+      <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Be A Farmer </h2>
+      <p class="g-font-size-12--xs">
+        The application allows you to join as a farmer. Where you will be able to get daily statistics on the demand 
+        of your produce. This will help in planing what exactly to farm in relation to what the market is demanding.
+      </p>
+
+      <ion-fab class="g-padding-l-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
+          <i class="ti-angle-left g-font-size-12--xs g-color--primary"></i> <span class="g-font-size-14--xs g-padding-l-10--xs">Previous</span>
+      </ion-fab>
+
+      <ion-fab class="g-padding-r-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+        <span class="g-font-size-14--xs g-padding-r-10--xs">Next</span> <i class="ti-angle-right  g-font-size-12--xs g-color--primary"></i>
       </ion-fab>
     </div>
   </ion-slide>
 
   <ion-slide>
-      <div class="slide g-text-center--xs">
-       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/farmer.svg">
-       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Be A Farmer </h2>
-       <p class="g-font-size-14--xs">Farmer Intro</p>
+    <div class="slide g-text-center--xs">
+      <img class="img-responsive g-margin-b-60--xs" src="assets/svg/vendor.svg">
+      <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Be A Local Vendor</h2>
+      <p class="g-font-size-12--xs">You can be a registered local vendor and earn extra money, through getting consumer orders and supplying. 
+        Vendors will earn a commission from all their completed sales. This initiative is to also help create passive
+      income for lady vendors.</p>
 
-       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="ti-angle-right g-font-size-22--xs g-color--white"></i>
-        </ion-fab-button>
+      <ion-fab class="g-padding-l-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
+          <i class="ti-angle-left g-font-size-12--xs g-color--primary"></i> <span class="g-font-size-14--xs g-padding-l-10--xs">Previous</span>
       </ion-fab>
 
-      <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="ti-angle-left g-font-size-22--xs g-color--white"></i> 
-        </ion-fab-button>
+      <ion-fab class="g-padding-r-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+        <span class="g-font-size-14--xs g-padding-r-10--xs">Next</span> <i class="ti-angle-right  g-font-size-12--xs g-color--primary"></i>
       </ion-fab>
     </div>
   </ion-slide>
 
   <ion-slide>
-      <div class="slide g-text-center--xs">
-       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/vendor.svg">
-       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Be A Local Vendor</h2>
-       <p class="g-font-size-14--xs">Use the application to remind you when to take your daily reading.</p>
+    <div class="slide g-text-center--xs">
+      <img class="img-responsive g-margin-b-60--xs" src="assets/svg/family.svg">
+      <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Happy Family</h2>
+      <p class="g-font-size-13--xs">
+        It is our goal to make sure we put a plate of nutritious food on every home table in Rwanda. Will archive this by 
+making sure that our farmers get the right information on what the market requires and can consume. Sharing information 
+on alternative recipes that families can try.
+      </p>
 
-       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="ti-angle-right g-font-size-22--xs g-color--white"></i>
-        </ion-fab-button>
+      <ion-fab class="g-padding-r-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="end" slot="fixed" (click)="start()">
+        <span class="g-font-size-14--xs g-padding-r-10--xs">Start</span> <i class="ti-check g-font-size-16--xs g-color--primary"></i>
       </ion-fab>
 
-      <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="ti-angle-left g-font-size-22--xs g-color--white"></i> 
-        </ion-fab-button>
-      </ion-fab>
-    </div>
-  </ion-slide>
-
-  <ion-slide>
-      <div class="slide g-text-center--xs">
-       <img class="img-responsive g-margin-b-30--xs" src="assets/svg/family.svg">
-       <h2 class="g-text-center--xs g-color--primary g-font-size-22--xs">Happy Family</h2>
-       <p class="g-font-size-14--xs">brief here.</p>
-
-       <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="start()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="far fa-thumbs-up g-font-size-22--xs g-color--white"></i> 
-        </ion-fab-button>
-      </ion-fab>
-
-      <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
-        <ion-fab-button color="tertiary" size="small">
-          <i class="ti-angle-left g-font-size-22--xs g-color--white"></i> 
-        </ion-fab-button>
+      <ion-fab class="g-padding-l-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="start" slot="fixed" (click)="previous()">
+          <i class="ti-angle-left g-font-size-12--xs g-color--primary"></i> <span class="g-font-size-14--xs g-padding-l-10--xs">Previous</span>
       </ion-fab>
     </div>
   </ion-slide>
