@@ -30,6 +30,7 @@ export class DashboardPage implements OnInit {
 
 	type: string;
 
+
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
@@ -140,6 +141,8 @@ export class DashboardPage implements OnInit {
 		await modal.present();
 		
 	}
+
+
 
 
 

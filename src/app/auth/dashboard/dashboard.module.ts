@@ -15,13 +15,16 @@ import { MapsComponent } from 'src/app/client/components/maps/maps.component';
 import { DashComponent } from 'src/app/client/components/dash/dash.component';
 import { ListComponent } from 'src/app/client/components/list/list.component';
 
+import { ComponentsModule } from 'src/app/components/components.module';
+
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
 		IonicModule,
 		DashboardPageRoutingModule,
-		ImageUpPageModule
+		ImageUpPageModule,
+		ComponentsModule
 	],
 	declarations: [
 		DashboardPage,  
