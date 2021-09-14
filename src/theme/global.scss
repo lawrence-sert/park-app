@@ -28,8 +28,8 @@
 @import "src/theme/fonts.scss";
 
 * {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
 }
 
 .cap-me {
@@ -143,7 +143,7 @@ label {
 
 
 .img-circle {
-  border-radius: 50%;
+	border-radius: 50%;
 }
 
 .icon-circle {
@@ -159,23 +159,23 @@ label {
 
 
 .g-line-height--lg {
-  line-height: 1.6;
+	line-height: 1.6;
 }
 .g-padding-t-20--xs {
-  padding-top: 20px;
+	padding-top: 20px;
 }
 .g-padding-b-100-xs {
-  padding-bottom: 100px;
+	padding-bottom: 100px;
 }
 
 ion-segment-button {
- text-transform: none;
+	text-transform: none;
 }
 
 .center-image {
 	display: block;
-  margin-left: auto;
-  margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .search-button {
@@ -184,46 +184,55 @@ ion-segment-button {
 }
 
 ion-segment {
-  margin: 0 10px;
+	margin: 0 10px;
 }
 
 ion-segment-button {
-  text-transform: capitalize;
-  transform: scale(.8,.8);
-  --indicator-color: transparent;
-  color: #969696;
+	text-transform: capitalize;
+	transform: scale(.8,.8);
+	--indicator-color: transparent;
+	color: #969696;
 
-  ion-label {
-    position: relative;
-    left: -17px;
-    font-weight: bolder;
-  }
+	ion-label {
+		position: relative;
+		left: -17px;
+		font-weight: bolder;
+	}
 }
 
 .segment-button-checked {
-  color: #DE323A;
+	color: #DE323A;
 }
 
 .segment-button-checked:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50%;
-  border-bottom: 1px solid #DE323A;
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 50%;
+	border-bottom: 1px solid #DE323A;
 
 }
 
 .app-add-basket {
-    --height: 90%;
-    --border-radius: 10px;
-    padding: 25px;
+	--height: 90%;
+	--border-radius: 10px;
+	padding: 25px;
+}
+
+.app-post-options {
+	--height: 50%;
+	--border-radius: 10px;
+	padding: 15px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
 
 .app-image-up {
-    --height: 100%;
-    --border-radius: 10px 10px 0px 0px;
-    padding : 70px 10px 0px 10px;
+	--height: 100%;
+	--border-radius: 10px 10px 0px 0px;
+	padding : 70px 10px 0px 10px;
 }
 
 .my-green {
@@ -243,15 +252,15 @@ ion-segment-button {
 	padding-left: 20px;
 	padding-right: 20px;
 	line-height: 30px;
-	 position: absolute;
-    bottom: 2px;
-    width : 95%;
+	position: absolute;
+	bottom: 2px;
+	width : 95%;
 }
 
 .app-comment {
-    --height: 100%;
-    --border-radius: 10px 10px 0px 0px;
-    padding : 30px 10px 0px 10px;
+	--height: 100%;
+	--border-radius: 10px 10px 0px 0px;
+	padding : 30px 10px 0px 10px;
 }
 
 .comment_img {
@@ -261,16 +270,16 @@ ion-segment-button {
 
 //Add basket modal
 .alertHeader {
-   color: #b52024 !important;
+	color: #b52024 !important;
   // --color: #b52024 !important;
 }
 h2.alertHeader {
-  color: #b52024 !important;
-  font-size: 18px;
+	color: #b52024 !important;
+	font-size: 18px;
  // --color: #b52024 !important;
 }
 
 //this works for alertHeader when inspecting in the browser
 .alert-sub-title.sc-ion-alert-md, .alert-title.sc-ion-alert-md {
-  color: #b32224;
+	color: #b32224;
 }

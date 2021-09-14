@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -8,6 +9,8 @@ import { map } from 'rxjs/operators';
 
 import { PostsService } from 'src/app/client/services/posts.service';
 import {Posts} from 'src/app/client/models/posts.model';
+
+import { PostOptionsPage } from 'src/app/client/modals/post-options/post-options.page';
 
 @Component({
 	selector: 'app-post',
@@ -37,10 +40,12 @@ export class PostPage implements OnInit {
 
 	constructor(
 		public usersService: UserService,
-		public recipesService: PostsService,
+		public postService: PostsService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		public db: AngularFirestore
+		public db: AngularFirestore,
+		private alertCtrl: AlertController,
+		private modalCtrl : ModalController
 		) { 
 		
 	}
@@ -77,6 +82,49 @@ export class PostPage implements OnInit {
 				return { id, ...data };
 			}))
 			);
+	}
+
+	async bookMarkPost() {
+
+    const alert = await this.alertCtrl.create({
+
+      cssClass: 'alertHeader',
+      header: 'Bookmark This Article',
+      inputs: [
+      {
+        name: 'basket_name',
+        type: 'text',
+        placeholder: 'Basket Name ?'
+      }
+      ],
+      buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          console.log('Confirm Cancel');
+        }
+      }, {
+        text: 'Create',
+        handler: (data: any) => {
+          console.log('Saved Information', data);
+          this.postService.createPostBookmark(this.uid , data);
+        }
+      }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async openOptionsModal() {
+		const modal = await this.modalCtrl.create({
+			component: PostOptionsPage,
+			cssClass: 'app-post-options',
+			backdropDismiss: false
+		});
+		await modal.present();
 	}
 
 }

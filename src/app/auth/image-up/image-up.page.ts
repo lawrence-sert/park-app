@@ -46,6 +46,11 @@ export class ImageUpPage implements OnInit {
 		private modalCtr: ModalController
 		) { 
 
+		
+
+	}
+
+	ngOnInit() {
 		this.isLoading = false;
 		this.isLoaded = false;
 		this.imageCollection = this.database.collection<imageData>('loginUploads');
@@ -58,10 +63,6 @@ export class ImageUpPage implements OnInit {
 			this.photoUrl = this.userRef.photoUrl;
 
 		});
-
-	}
-
-	ngOnInit() {
 	}
 
 	async uploadImagetoFirebase(event){

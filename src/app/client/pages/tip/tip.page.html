@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>tip</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="header-color">
+		<ion-buttons slot="start" class="g-font-size-18--xs">
+			<ion-back-button>
+				<i class="ti-arrow-left g-font-size-18--xs"></i>
+			</ion-back-button>
+		</ion-buttons>
+
+		<ion-title class="ion-text-center">
+			Tip
+		</ion-title>
+
+		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
+			<img class="profile-user-img-main  img-circle "
+			src="{{photoUrl}}">
+		</span>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+	<div  *ngFor="let tip of tip$ | async; index as i">
+		<img src="{{tip.image}}" >
+
+		{{tip.image}}
+	</div>
 
 </ion-content>

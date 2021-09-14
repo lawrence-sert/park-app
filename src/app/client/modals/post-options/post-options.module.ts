@@ -4,18 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TipPageRoutingModule } from './tip-routing.module';
-import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+import { PostOptionsPageRoutingModule } from './post-options-routing.module';
 
-import { TipPage } from './tip.page';
+import { PostOptionsPage } from './post-options.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TipPageRoutingModule
+    PostOptionsPageRoutingModule
   ],
-  declarations: [TipPage]
+  declarations: [PostOptionsPage]
 })
-export class TipPageModule {}
+export class PostOptionsPageModule {}

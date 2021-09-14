@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
 
-import { AlertController, IonSlides } from '@ionic/angular';
+
 
 import { BasketService } from 'src/app/client/services/basket.service';
 import { Basket } from 'src/app/client/models/basket.model';

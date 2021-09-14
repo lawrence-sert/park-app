@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "src/app/auth/services/auth.service";
 import {  MenuController } from '@ionic/angular';
+import { IonLoaderService } from 'src/app/client/services/ion-loader.service';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class SignInPage implements OnInit {
 	constructor(
 		public authService: AuthService,
 		public menuCtrl: MenuController,
+		private ionLoaderService: IonLoaderService
 		) {
 
 	}
@@ -23,5 +25,21 @@ export class SignInPage implements OnInit {
 	ionViewWillEnter() {
 		this.menuCtrl.enable(false);
 	}
+
+	displayAutoLoader() {
+    this.ionLoaderService.autoLoader();
+  }
+
+  showLoader() {
+    this.ionLoaderService.simpleLoader();
+  }
+
+  hideLoader() {
+    this.ionLoaderService.dismissLoader();
+  }
+
+  customizeLoader() {
+    this.ionLoaderService.customLoader();
+  }
 
 }

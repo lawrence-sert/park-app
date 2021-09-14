@@ -8,12 +8,15 @@ import { PostPageRoutingModule } from './post-routing.module';
 
 import { PostPage } from './post.page';
 
+import { PostOptionsPageModule } from 'src/app/client/modals/post-options/post-options.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PostPageRoutingModule
+    PostPageRoutingModule,
+    PostOptionsPageModule
   ],
   declarations: [PostPage]
 })

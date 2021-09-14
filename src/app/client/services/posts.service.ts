@@ -21,4 +21,8 @@ export class PostsService {
   	 getPosts() {
 		return this.firestore.collection('posts').snapshotChanges();
 	}
+
+  createPostBookmark(id, data) {
+
+  }
 }

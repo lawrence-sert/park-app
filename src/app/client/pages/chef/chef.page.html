@@ -71,6 +71,24 @@
 
 <ion-content [scrollEvents]="true" (ionScroll)="scroll($event)" #myContent>
 
+	<div [ngSwitch]="segmentValue">
 
+		<div class="row" *ngSwitchCase="'about'">
+			<div class="col-xs-12"></div>			
+		</div>
+
+		<div class="row" *ngSwitchCase="'recipes'">
+			<div class="col-xs-12"></div>			
+		</div>
+
+		<div class="row" *ngSwitchCase="'videos'">
+			<div class="col-xs-12"></div>			
+		</div>
+
+		<div class="row" *ngSwitchCase="'comments'">
+			<div class="col-xs-12"></div>			
+		</div>
+
+	</div>
 
 </ion-content>
