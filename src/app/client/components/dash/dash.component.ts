@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalNotificationService } from "src/app/client/services/local-notification.service";
+import { LocalNotificationService } from 'src/app/client/services/local-notification.service';
 import { UserService } from 'src/app/auth/services/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -32,14 +32,14 @@ export class DashComponent implements OnInit {
 	emailVerified?: boolean;
 	location: any;
 	accountType?: any;
-	firstrun : any;
+	firstrun: any;
 
-	tips : any;
-	oneTip : any;
+	tips: any;
+	oneTip: any;
 	allTips: Tips[] = [];
 
-	posts : any;
-	posts_cat : any;
+	posts: any;
+	postsCat: any;
 
 	public slideOpts = {
 		slidesPerView: 3,
@@ -96,7 +96,8 @@ export class DashComponent implements OnInit {
 					if (Math.abs(rotateY) < 0.001) rotateY = 0;
 					if (Math.abs(rotateX) < 0.001) rotateX = 0;
 
-					const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+					const slideTransform =
+					`translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
 					$slideEl.transform(slideTransform);
 					$slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
@@ -118,22 +119,20 @@ export class DashComponent implements OnInit {
 			}
 		}
 	}
-
 	constructor(
-		private localNotification : LocalNotificationService,
+		private localNotification: LocalNotificationService,
 		public  usersService: UserService,
 		private tipsService: TipsService,
 		private postsService: PostsService,
-		private posts_catService: PostsCatService,
+		private postsCatService: PostsCatService,
 		private db: AngularFirestore,
-		) { 
-		
+		) {
 	}
 
 	ngOnInit() {
 
 		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
@@ -150,17 +149,16 @@ export class DashComponent implements OnInit {
 
 		console.log(randomNumber);
 
-		//read Tips 
+		//read Tips
 		this.tips = this.db.collection('/tips', ref => ref.where('id', '==', randomNumber))
 		.valueChanges({ idField: 'id'})
 		.subscribe((tips) => {
 			this.allTips = tips;
-			
 		});
 
-		//read Posts 
+		//read Posts
 		this.postsService.getPosts().subscribe((data) => {
-			this.posts = data.map((e) => {
+			this.posts = data.map((e)=>{
 				return {
 					id: e.payload.doc.id,
 					...(e.payload.doc.data() as {}),
@@ -168,9 +166,9 @@ export class DashComponent implements OnInit {
 			});
 		});
 
-		//read Posts Categories 
-		this.posts_catService.getPostsCat().subscribe((data) => {
-			this.posts_cat = data.map((e) => {
+		//read Posts Categories
+		this.postsCatService.getPostsCat().subscribe((data) => {
+			this.postsCat = data.map((e) => {
 				return {
 					id: e.payload.doc.id,
 					...(e.payload.doc.data() as {}),
@@ -180,11 +178,11 @@ export class DashComponent implements OnInit {
 
 	}
 
-	sendLocalNotification () {
-		this.localNotification.showLocalNotification (  
-			1, 
-			"title", 
-			"TEST NOTIFICATION"
+	sendLocalNotification() {
+		this.localNotification.showLocalNotification (
+			1,
+			'title',
+			'TEST NOTIFICATION'
 			);
 	}
 

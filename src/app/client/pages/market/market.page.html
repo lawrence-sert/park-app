@@ -33,19 +33,19 @@
 		</ion-segment-button>
 
 		<ion-segment-button value="care" size="3">
-			Home Care
+			Home
 		</ion-segment-button>
 
 	</ion-segment>
 
-	<div class="row">
-		<div class="col-xs-10">
-			<ion-searchbar  cancelButtonText="Custom Cancel"></ion-searchbar>
-		</div>
-
-		<div class="col-xs-2">
-			<i class="ti-panel g-font-size-24--xs"></i>
-		</div>
+	<div class="search">
+		<ion-item lines="none" class="ion-no-padding">
+			<ion-icon slot="start" name="search-outline"></ion-icon>
+			<ion-input placeholder="Search Posts"></ion-input>
+			<span slot='end'>
+				<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+			</span>
+		</ion-item>
 	</div>
 	
 
@@ -55,9 +55,6 @@
 
 
 <ion-content>
-
-	
-
 
 	<div [ngSwitch]="type">
 
@@ -71,7 +68,6 @@
 						</h2>
 					</ion-col>
 					<ion-col size="3">
-						<img class="img-responsive center-image" src="assets/svg/vegetable.svg" style="width: 40%;">
 					</ion-col>
 				</ion-row>
 
@@ -114,7 +110,6 @@
 						</h2>
 					</ion-col>
 					<ion-col size="3">
-						<img class="img-responsive center-image" src="assets/svg/fruits.svg" style="width: 40%;">
 					</ion-col>
 				</ion-row>
 
@@ -158,7 +153,6 @@
 						</h2>
 					</ion-col>
 					<ion-col size="3">
-						<img class="img-responsive" src="assets/svg/processed.svg" style="width: 40%;">
 					</ion-col>
 				</ion-row>
 
@@ -202,7 +196,6 @@
 						</h2>
 					</ion-col>
 					<ion-col size="3">
-						<img class="img-responsive" src="assets/svg/cleaning.svg" style="width: 40%;">
 					</ion-col>
 				</ion-row>
 

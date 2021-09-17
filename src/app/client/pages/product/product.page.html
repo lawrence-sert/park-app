@@ -49,11 +49,11 @@
 				<ion-row>
 					<ion-col>
 						<span class="product-detail-list g-font-size-12--xs">
-							<span class="pull-left">Category</span>
+							<span class="pull-left heavy dashed">Category</span>
 							<span class="pull-right g-color--primary heavy cap-me">{{product.Category}}</span>
 						</span><br>
-						<span class="product-detail-list g-font-size-12--xs">
-							<span class="pull-left">Caption</span>
+						<span class="product-detail-list g-font-size-12--xs ">
+							<span class="pull-left heavy dashed">Caption</span>
 							<span class="pull-right g-color--primary heavy cap-me">{{product.Caption}}</span>
 						</span>
 					</ion-col>
@@ -105,16 +105,18 @@
 		<div [ngSwitch]="type">
 
 
-			
+			<div class="row" *ngSwitchCase="'description'">
+				<div class="col-xs-12">
+					<p class="g-font-size-12--xs">
+						{{product.Description}}
+					</p>
+				</div>
+			</div>
 
-			<ion-row *ngSwitchCase="'description'">
-				<ion-col>
-					<ion-row>
-						<ion-col><h2 class="pull-right g-color--primary g-font-size-14--xs">Description </h2></ion-col>
-					</ion-row>
-					{{product.Description}}
-				</ion-col>
-			</ion-row>
+
+
+
+
 
 			<ion-row *ngSwitchCase="'comments'">
 				<ion-col>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AuthService } from "src/app/auth/services/auth.service";
-import { Router } from "@angular/router";
-import User from 'src/app/auth/models/user.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/auth/services/user.service';
 import { MenuController } from '@ionic/angular';
 
@@ -34,7 +33,7 @@ export class DashboardPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	firstrun : any;
+	firstrun: any;
 	userEmail: any;
 	firstname: any;
 	lastname: any;
@@ -43,22 +42,20 @@ export class DashboardPage implements OnInit {
 	emailVerified?: boolean;
 	location: any;
 	accountType?: any;
-	photoUrl : any;
+	photoUrl: any;
 
 	constructor(
 		public authService: AuthService,
 		private usersService: UserService,
 		public router: Router,
 		public menuCtrl: MenuController,
-		private modalCtrl : ModalController
-		) { 
-		
-	}
+		private modalCtrl: ModalController
+		) {	}
 
 	async ngOnInit() {
 		this.type = 'home';
 		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;

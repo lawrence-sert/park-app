@@ -39,7 +39,6 @@ export class AppComponent {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         this.userInfo = JSON.parse(localStorage.getItem('user')|| '{}');
-
         // Local storage information
         this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
         const id = this.crrntUsr.uid;

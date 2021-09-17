@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { UserService } from 'src/app/auth/services/user.service';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { ToastrService } from 'ngx-toastr';
 import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
@@ -35,8 +35,8 @@ export class InfoPage implements OnInit {
 	displayName: any;
 	email: any;
 	emailVerified?: boolean;
-	firstrun : any;
-	photoUrl : any;
+	firstrun: any;
+	photoUrl: any;
 
 	allSubscriptions: Subscription[] = [];
 	provinceSubscription: Subscription = new Subscription();
@@ -48,28 +48,25 @@ export class InfoPage implements OnInit {
 	districtList: Districts[] = [];
 
 
-	districtSelect : any;
-	sectorSelect : any;
-	cellSelect : any;
-	villageSelect : any;
+	districtSelect: any;
+	sectorSelect: any;
+	cellSelect: any;
+	villageSelect: any;
 
 	constructor(
-		private db : AngularFirestore,
+		private db: AngularFirestore,
 		public usersService: UserService,
-		private modalCtrl : ModalController,
+		private modalCtrl: ModalController,
 		public formBuilder: FormBuilder,
 		public router: Router
 		) { }
 
 	ngOnInit() {
 		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;
 
 		this.allSubscriptions.push(this.getProvinces());
-
-
-
 
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
@@ -110,31 +107,31 @@ export class InfoPage implements OnInit {
 
 	// Form Getters
 	get firstname(){
-		return this.editForm.get('firstname')
+		return this.editForm.get('firstname');
 	}
 	get lastname(){
-		return this.editForm.get('lastname')
+		return this.editForm.get('lastname');
 	}
 	get phone(){
-		return this.editForm.get('phone')
+		return this.editForm.get('phone');
 	}
 	get accountType(){
-		return this.editForm.get('accountType')
+		return this.editForm.get('accountType');
 	}
 	get province(){
-		return this.editForm.get('province')
+		return this.editForm.get('province');
 	}
 	get district(){
-		return this.editForm.get('district')
+		return this.editForm.get('district');
 	}
 	get sector(){
-		return this.editForm.get('sector')
+		return this.editForm.get('sector');
 	}
 	get cell(){
-		return this.editForm.get('cell')
+		return this.editForm.get('cell');
 	}
 	get village(){
-		return this.editForm.get('village')
+		return this.editForm.get('village');
 	}
 
 
@@ -144,7 +141,7 @@ export class InfoPage implements OnInit {
 		return this.db.collection<Provinces>('provinces', ref => ref.orderBy('id'))
 		.valueChanges({ idField: 'id'})
 		.subscribe((provinces) => {
-			this.provinceList = provinces
+			this.provinceList = provinces;
 		});
 	}
 
@@ -182,10 +179,10 @@ export class InfoPage implements OnInit {
 
 
 	onSubmit() {
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;
 		this.usersService.updateUser(this.editForm.value, id);
-		this.router.navigate(['/dashboard']);  
+		this.router.navigate(['/dashboard']);
 	}
 
 	async openCalModal() {

@@ -129,14 +129,11 @@ const routes: Routes = [
 {
   path: 'phone',
   loadChildren: () => import('./auth/phone/phone.module').then( m => m.PhonePageModule)
-},  {
-    path: 'post-options',
-    loadChildren: () => import('./client/modals/post-options/post-options.module').then( m => m.PostOptionsPageModule)
-  }
-
-
-
-
+},
+{
+  path: 'post-options',
+  loadChildren: () => import('./client/modals/post-options/post-options.module').then( m => m.PostOptionsPageModule)
+}
 
 ];
 
