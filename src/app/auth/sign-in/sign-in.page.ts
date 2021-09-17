@@ -15,9 +15,7 @@ export class SignInPage implements OnInit {
 		public authService: AuthService,
 		public menuCtrl: MenuController,
 		private ionLoaderService: IonLoaderService
-		) {
-
-	}
+		) {}
 
 	ngOnInit() {
 	}

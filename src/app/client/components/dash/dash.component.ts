@@ -21,10 +21,7 @@ import { PostsCat } from 'src/app/client/models/posts-cat.model';
 })
 export class DashComponent implements OnInit {
 
-	uid: any;
-	crrntUsr: any;
-	userRef: any;
-	displayName: any;
+
 
 	tips: any;
 	oneTip: any;
@@ -121,15 +118,6 @@ export class DashComponent implements OnInit {
 		) {}
 
 	ngOnInit() {
-
-		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
-		const id = this.crrntUsr.uid;
-		this.usersService.getUserDoc(id).subscribe(res => {
-			this.userRef = res;
-			this.displayName = this.userRef.displayName;
-		});
-
 		const randomNumber = Math.floor(Math.random() * 3) + 1;
 
 		console.log(randomNumber);

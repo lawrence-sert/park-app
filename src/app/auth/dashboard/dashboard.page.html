@@ -20,19 +20,27 @@
 		<!-- Scrollable Segment -->
 		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
 			<ion-segment-button value="home" checked>
-				<i class="fas fa-home g-font-size-22--xs"></i>
+				<i class="ti-home g-font-size-24--xs g-color--primary"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="list">
-				<i class="far fa-list-alt g-font-size-22--xs"></i>
+				<i class="ti-menu-alt g-font-size-24--xs g-color--primary"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="recipe">
-				<i class="fas fa-concierge-bell g-font-size-22--xs"></i>
+				<i class="ti-book g-font-size-24--xs g-color--primary"></i>
+			</ion-segment-button>
+
+			<ion-segment-button value="combo">
+				<i class="ti-gift g-font-size-24--xs g-color--primary"></i>
+			</ion-segment-button>
+
+			<ion-segment-button value="watch">
+				<i class="ti-video-clapper g-font-size-24--xs g-color--primary"></i>
 			</ion-segment-button>
 
 			<ion-segment-button value="delivery">
-				<i class="fas fa-map-marker-alt g-font-size-22--xs"></i>
+				<i class="ti-location-pin g-font-size-24--xs g-color--primary"></i>
 			</ion-segment-button>
 
 		</ion-segment>
@@ -63,6 +71,18 @@
 			</ion-col>
 		</ion-row>
 
+
+		<ion-row *ngSwitchCase="'combo'">
+			<ion-col>
+				<app-combo></app-combo>
+			</ion-col>
+		</ion-row>
+
+		<ion-row *ngSwitchCase="'watch'">
+			<ion-col>
+				<app-watch></app-watch>
+			</ion-col>
+		</ion-row>
 
 		<ion-row *ngSwitchCase="'delivery'">
 			<ion-col>

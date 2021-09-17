@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import User from 'src/app/auth/models/user.model';
 import  auth  from 'firebase/app';
-import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
@@ -21,8 +21,7 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,  
     public ngZone: NgZone, // NgZone service to remove outside scope warning
-    private toastr: ToastrService,
-    private ionLoaderService: IonLoaderService
+    private toastr: ToastrService
   ) {    
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -35,7 +34,7 @@ export class AuthService {
       } else {
 
       }
-    })
+    });
   }
 
 
@@ -44,7 +43,6 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.ionLoaderService.customLoader();
           this.toastr.success(email, 'Welcome Back');
           this.router.navigate(['/dashboard']);
         });
@@ -59,7 +57,6 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
-        this.ionLoaderService.customLoader();
         this.SetUserData(result.user);
         this.SendVerificationMail();
       }).catch((error) => {

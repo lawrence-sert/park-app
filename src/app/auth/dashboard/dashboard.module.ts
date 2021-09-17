@@ -14,6 +14,8 @@ import { RecipesComponent } from 'src/app/client/components/recipes/recipes.comp
 import { MapsComponent } from 'src/app/client/components/maps/maps.component';
 import { DashComponent } from 'src/app/client/components/dash/dash.component';
 import { ListComponent } from 'src/app/client/components/list/list.component';
+import { WatchComponent } from 'src/app/client/components/watch/watch.component';
+import { ComboComponent } from 'src/app/client/components/combo/combo.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ListComponent } from 'src/app/client/components/list/list.component';
 		RecipesComponent,
 		MapsComponent,
 		ListComponent,
-		DashComponent
+		DashComponent,
+		WatchComponent,
+		ComboComponent
 	]
 })
 export class DashboardPageModule {}

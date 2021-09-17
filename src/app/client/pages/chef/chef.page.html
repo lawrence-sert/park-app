@@ -19,35 +19,6 @@
 
 		</ion-toolbar>
 
-		<app-shrink-header [scrollArea]="myContent" [headerHeight]="230">
-			<img src="{{chef.chef_cover}}">
-			<ion-list>
-				<ion-item lines="none">
-					<ion-avatar slot="start">
-						<img src="{{chef.chef_image}}">
-					</ion-avatar>
-					<ion-label>
-						<h3>{{chef.chef_name}}</h3>
-					</ion-label>
-					<ion-button slot="end">
-						<i class="far fa-thumbs-up g-font-size-18--xs"></i>
-					</ion-button>
-				</ion-item>
-			</ion-list>
-
-			<div class="row">
-				<div class="col-xs-8">
-					<ion-button expand="block" size="small">Small</ion-button>
-				</div>
-				<div class="col-xs-2 g-line-height--40">
-					<i class="ti-comments g-font-size-20--xs"></i>
-				</div>
-				<div class="col-xs-2 g-line-height--40">
-					<i class="ti-panel g-font-size-20--xs"></i>
-				</div>
-			</div>
-		</app-shrink-header>
-
 		<div (ionChange)="segmentChanged($event)">
 			<ion-segment [value]="segmentValue">
 				<ion-segment-button value="about">

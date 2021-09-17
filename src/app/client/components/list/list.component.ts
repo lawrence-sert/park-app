@@ -18,14 +18,12 @@ export class ListComponent implements OnInit {
 	uid: any;
   crrntUsr: any;
   userRef: any;
-  photoURL: any;
 
   //basket
   basket : any;
   title : any;
 
   constructor(
-  	public authService: AuthService,
     public usersService: UserService,
     private basketService: BasketService,
     private alertCtrl: AlertController,
@@ -35,13 +33,8 @@ export class ListComponent implements OnInit {
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
-    this.uid = this.crrntUsr.uid;
-    this.usersService.getUserDoc(id).subscribe(res => {
-      this.userRef = res;
-      this.photoURL = this.userRef.photoURL;
-    });
   	//read my baskets 
-    this.basketService.getBasket(this.uid).subscribe((data) => {
+    this.basketService.getBasket(id).subscribe((data) => {
       this.basket = data.map((e) => {
         return {
           id: e.payload.doc.id,

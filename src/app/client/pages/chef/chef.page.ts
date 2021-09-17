@@ -16,8 +16,6 @@ import { map } from 'rxjs/operators';
 	styleUrls: ['./chef.page.scss'],
 })
 export class ChefPage implements OnInit {
-
-	newHeight = 0;
 	segmentValue = '1';
 	uid: any;
 	crrntUsr: any;
@@ -71,19 +69,6 @@ export class ChefPage implements OnInit {
 	segmentChanged(event) {
 		console.log(event);
 		this.segmentValue = event.detail.value;
-	}
-
-	scroll(event) {
-		const value = event.detail.scrollTop;
-		console.log(value, this.newHeight);
-		if(value > 40) {
-			this.newHeight += 5; // this.newHeight = this.newHeight + 5
-		} else {
-			this.newHeight = 0;
-		}
-		if(value > 180 && this.newHeight <= 65) {
-			this.newHeight += 50;
-		}
 	}
 
 	openCalModal() {
