@@ -21,14 +21,8 @@ export class MarketPage implements OnInit {
 	uid: any;
   crrntUsr: any;
   userRef: any;
-  userEmail: any;
-  firstname: any;
-  lastname: any;
-  displayName: any;
-  email: any;
-  emailVerified?: boolean;
   photoUrl: any;
-  accountType?: any;
+
 
   products : any;
 
@@ -152,11 +146,6 @@ export class MarketPage implements OnInit {
     const id = this.crrntUsr.uid;
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
-      this.firstname = this.userRef.firstname;
-      this.lastname = this.userRef.surname;
-      this.displayName = this.userRef.displayName;
-      this.emailVerified = this.userRef.emailVerified;
-      this.accountType = this.userRef.accountType;
       this.photoUrl = this.userRef.photoUrl;
       console.log(this.photoUrl);
     });

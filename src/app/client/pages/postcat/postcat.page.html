@@ -1,59 +1,26 @@
 <ion-header [translucent]="true" class="ion-no-border">
-
-	<ion-toolbar>
-		<ion-toolbar>
+	<div *ngFor="let postCat of postCat$ | async; index as i">
+		<ion-toolbar class="header-color">
 			<ion-buttons slot="start" class="g-font-size-18--xs">
 				<ion-back-button>
 					<i class="ti-arrow-left g-font-size-18--xs"></i>
 				</ion-back-button>
 			</ion-buttons>
-			<span slot="end" class="g-padding-r-10--xs">
-				<i class="ti-share g-font-size-18--xs g-padding-r-10--xs"></i>
-			</span>
-			<span slot="end" class="g-padding-r-10--xs">
-				<i class="ti-bookmark g-font-size-18--xs g-padding-r-10--xs"></i>
-			</span>
-			<span slot="end" class="g-padding-r-10--xs">
-				<i class="ti-list g-font-size-18--xs g-padding-r-10--xs"></i>
+
+			<ion-title class="ion-text-center">
+				{{postCat.post_category}}
+			</ion-title>
+
+			<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
+				<img class="profile-user-img-main  img-circle "
+				src="{{photoUrl}}">
 			</span>
 		</ion-toolbar>
-
-		<ion-toolbar>
-			<div class="row g-padding-x-10--xs">
-				<div class="col-xs-4">
-					<img src="assets/img/post/long-farmer.png" class="img-responsive">
-				</div>
-				<div class="col-xs-8">
-					<h2 class="g-color--primary">Post Category Title</h2>
-					<p class="listed">
-						hie
-					</p>
-					<p class="listed">
-						hie
-					</p>
-				</div>
-			</div>
-		</ion-toolbar>
-
-	</ion-toolbar>
-
+	</div>
 </ion-header>
 
 <ion-content>
 
-	<span *ngFor="let post of allPost">
-		<ion-row class="post" [routerLink]="['/post', post.id]">
-			<ion-col size="9">
-				<span class="g-font-size-12--xs g-color--primary title-text cap-me">{{post.post_title | slice:0:30}}</span>
-				<span class="g-font-size-10--xs g-color--primary pull-right">{{post.post_category}}</span>
-				<p class="g-font-size-10--xs">
-					{{post.post_main | slice:0:80}} ...
-				</p>
-			</ion-col>
-			<ion-col size="3">
-				<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_title}}">
-			</ion-col>
-		</ion-row>
-	</span>
+
 
 </ion-content>

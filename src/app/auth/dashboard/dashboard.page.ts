@@ -20,14 +20,7 @@ export class DashboardPage implements OnInit {
 	crrntUsr: any;
 	userRef: any;
 	firstrun: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
-	displayName: any;
-	email: any;
-	emailVerified?: boolean;
-	location: any;
-	accountType?: any;
+	accountType: any;
 	photoUrl: any;
 
 	constructor(
@@ -78,11 +71,10 @@ export class DashboardPage implements OnInit {
 		await modal.present();
 		
 	}
-
-
-
-
-
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
+	}
 
 
 }

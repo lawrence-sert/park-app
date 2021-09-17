@@ -25,9 +25,7 @@ export class CommentsService {
 		private toastr: ToastrService,
 		private modalCtrl : ModalController,
 		public usersService: UserService,
-		) { 
-
-	}
+		) { }
 
 	createComment(data, pageId) {
 

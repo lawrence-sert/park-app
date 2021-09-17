@@ -8,6 +8,8 @@ import { Messages } from 'src/app/client/models/messages.model';
 
 import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
+
 @Component({
 	selector: 'app-messaging',
 	templateUrl: './messaging.page.html',
@@ -20,7 +22,6 @@ export class MessagingPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
 	photoUrl: any;
 	messages: any;
 
@@ -30,6 +31,7 @@ export class MessagingPage implements OnInit {
 		public usersService: UserService,
 		private messageService: MessagesService,
 		public formBuilder: FormBuilder,
+		private modalCtrl : ModalController
 		) { 
 		this.messageForm = this.formBuilder.group({
 			message: ['']
@@ -68,8 +70,20 @@ export class MessagingPage implements OnInit {
 		this.messageService.createMessage(this.messageForm.value);
 	}
 
-	openCalModal() {
-		
-	}
+	async openCalModal() {
+    const modal = await this.modalCtrl.create({
+      component: ImageUpPage,
+      cssClass: 'app-image-up',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+  }
+
+  async close() {
+    const closeModal: string = "Modal Closed";
+    await this.modalCtrl.dismiss(closeModal);
+  }
 
 }

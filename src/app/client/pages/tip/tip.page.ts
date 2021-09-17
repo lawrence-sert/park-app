@@ -21,7 +21,6 @@ export class TipPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	phone : any;
 	photoUrl : any;
 
 	tipRef: AngularFirestoreCollection<Tips>;
@@ -37,7 +36,10 @@ export class TipPage implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore,
 		private modalCtrl : ModalController,
-		) { 
+		) {}
+
+	ngOnInit() {
+
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -50,9 +52,6 @@ export class TipPage implements OnInit {
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.tipID
 		});
-	}
-
-	ngOnInit() {
 
 		this.tipRef = this.db.collection<{}>('tips', ref => ref.where('id', '==', this.parameterValue));
 		this.tip$ = this.tipRef.snapshotChanges().pipe(
@@ -71,6 +70,10 @@ export class TipPage implements OnInit {
 			backdropDismiss: false
 		});
 		await modal.present();
+	}
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
 	}
 
 }

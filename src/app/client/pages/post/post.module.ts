@@ -9,7 +9,7 @@ import { PostPageRoutingModule } from './post-routing.module';
 import { PostPage } from './post.page';
 
 import { PostOptionsPageModule } from 'src/app/client/modals/post-options/post-options.module';
-import { ComponentsModule } from 'src/app/components/components.module';
+
 
 @NgModule({
   imports: [
@@ -17,8 +17,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     PostPageRoutingModule,
-    PostOptionsPageModule,
-    ComponentsModule
+    PostOptionsPageModule
   ],
   declarations: [PostPage]
 })

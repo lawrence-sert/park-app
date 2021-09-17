@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AddBasketPage } from 'src/app/client/modals/add-basket/add-basket.page';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -23,6 +24,8 @@ import { Recipes } from 'src/app/client/models/recipes.model';
 import { ProductsService } from 'src/app/client/services/products.service';
 import { Product } from 'src/app/client/models/product.model';
 
+
+
 @Component({
 	selector: 'app-basket',
 	templateUrl: './basket.page.html',
@@ -33,17 +36,7 @@ export class BasketPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
-	displayName: any;
-	email: any;
-	emailVerified?: boolean;
-	location: any;
-	accountType?: any;
-	firstrun : any;
 	photoUrl: any;
-	phone : any;
 
 	basketRef: AngularFirestoreCollection<Basket>;
 	basket$: Observable<Basket[]>;
@@ -78,7 +71,6 @@ export class BasketPage implements OnInit {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore,
-		public database: AngularFireDatabase,
 		private modalCtrl: ModalController
 		) {}
 
@@ -99,15 +91,6 @@ export class BasketPage implements OnInit {
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstrun = this.userRef.firstrun;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
-			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
-			this.accountType = this.userRef.accountType;
-			this.location = this.userRef.location;
-			this.phone = this.userRef.phone;
-			this.email = this.userRef.email;
 			this.photoUrl = this.userRef.photoUrl;
 		});
 		
@@ -149,7 +132,7 @@ export class BasketPage implements OnInit {
 		console.log('Segment changed', ev);
 	}
 
-	async openCalModal() {
+	async openCalModalBasket() {
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
 		const pageId = this.parameterValue;
@@ -171,6 +154,23 @@ export class BasketPage implements OnInit {
 
 		await modal.present();
 
+	}
+
+
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: ImageUpPage,
+			cssClass: 'app-image-up',
+			backdropDismiss: false
+		});
+
+		await modal.present();
+
+	}
+
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
 	}
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
@@ -22,31 +22,11 @@ export class CreateBasketPage implements OnInit {
   uid: any;
   crrntUsr: any;
   userRef: any;
-  userEmail: any;
-  firstname: any;
-  lastname: any;
-  displayName: any;
-  email: any;
-  emailVerified?: boolean;
   photoUrl: any;
-  accountType?: any;
-  firstrun : any;
 
   //basket
   basket : any;
   title : any;
-
-
-  @ViewChild('slideWithNav2', { static: false }) slideWithNav2: IonSlides;
-
-  sliderTwo: any;
-  slideOptsTwo = {
-    initialSlide: 1,
-    slidesPerView: 4,
-    loop: true,
-    centeredSlides: true,
-    spaceBetween: 10
-  };
 
   constructor(
   	public authService: AuthService,
@@ -61,15 +41,8 @@ export class CreateBasketPage implements OnInit {
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
-    this.uid = this.crrntUsr.uid;
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
-      this.firstrun = this.userRef.firstrun;
-      this.firstname = this.userRef.firstname;
-      this.lastname = this.userRef.surname;
-      this.displayName = this.userRef.displayName;
-      this.emailVerified = this.userRef.emailVerified;
-      this.accountType = this.userRef.accountType;
       this.photoUrl = this.userRef.photoUrl;
     });
     //read my baskets 

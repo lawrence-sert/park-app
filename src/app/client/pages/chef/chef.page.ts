@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController, AnimationController } from '@ionic/angular';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
@@ -6,6 +6,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 import { ChefsService } from 'src/app/client/services/chefs.service';
 import { Chefs } from 'src/app/client/models/chefs.model';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -20,7 +22,6 @@ export class ChefPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
 	photoUrl: any;
 
 
@@ -71,8 +72,20 @@ export class ChefPage implements OnInit {
 		this.segmentValue = event.detail.value;
 	}
 
-	openCalModal() {
-		
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: ImageUpPage,
+			cssClass: 'app-image-up',
+			backdropDismiss: false
+		});
+
+		await modal.present();
+
+	}
+
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
 	}
 
 

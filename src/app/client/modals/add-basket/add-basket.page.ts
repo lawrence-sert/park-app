@@ -31,14 +31,7 @@ export class AddBasketPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
-	displayName: any;
-	email: any;
-	emailVerified?: boolean;
 	photoURL: any;
-	accountType?: any;
 
 	//basket
 	products_categories : any;
@@ -82,11 +75,6 @@ export class AddBasketPage implements OnInit {
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
-			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
-			this.accountType = this.userRef.accountType;
 			this.photoURL = this.userRef.photoURL;
 		});
 

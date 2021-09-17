@@ -6,16 +6,16 @@
 		<div class="g-fullheight--md js__parallax-window" style="background: url({{recipe.recipe_image}}) 0% 0 no-repeat fixed;">
 			<div class="g-container--md g-text-center--xs g-ver-center--md g-padding-y-0--md">
 				<div class="g-margin-b-60--xs g-padding-b-100-xs">
-					<ion-toolbar >
-						<ion-buttons slot="start">
+					<ion-toolbar class="header-color">
+						<ion-buttons slot="start" class="g-font-size-18--xs">
 							<ion-back-button>
 								<i class="ti-arrow-left g-font-size-18--xs g-color--primary"></i>
 							</ion-back-button>
 						</ion-buttons>
-						<span slot="end" class="g-padding-r-10--xs">
+
+						<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
 							<img class="profile-user-img-main  img-circle "
-							src="assets/img/header-logo.png"
-							alt="Park&Pick Logo">
+							src="{{photoUrl}}">
 						</span>
 					</ion-toolbar>
 				</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -10,7 +11,9 @@ import { PostsCatService } from 'src/app/client/services/posts-cat.service';
 import {PostsCat} from 'src/app/client/models/posts-cat.model';
 
 import { PostsService } from 'src/app/client/services/posts.service';
-import {Posts} from 'src/app/client/models/posts.model';
+import { Posts } from 'src/app/client/models/posts.model';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 @Component({
 	selector: 'app-postcat',
@@ -22,16 +25,8 @@ export class PostcatPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
-	displayName: any;
-	email: any;
-	emailVerified?: boolean;
-	location: any;
-	accountType?: any;
-	firstrun : any;
-	phone : any;
+	photoUrl: any;
+
 
 	postCat: AngularFirestoreCollection<PostsCat>;
 	postCat$: Observable<PostsCat[]>;
@@ -46,7 +41,8 @@ export class PostcatPage implements OnInit {
 		public recipesService: PostsService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		public db: AngularFirestore
+		public db: AngularFirestore,
+		private modalCtrl : ModalController
 		) {}
 
 	ngOnInit() {
@@ -54,22 +50,15 @@ export class PostcatPage implements OnInit {
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
-		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstrun = this.userRef.firstrun;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
-			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
-			this.accountType = this.userRef.accountType;
-			this.location = this.userRef.location;
-			this.phone = this.userRef.phone;
-			this.email = this.userRef.email;
+			this.photoUrl = this.userRef.photoUrl;
+
 		});
 
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.postCatID
+			console.log(this.parameterValue);
 		});
 
 
@@ -81,13 +70,22 @@ export class PostcatPage implements OnInit {
 				return { id, ...data };
 			}))
 			);
+	}
 
-		//Veggies Queries
-		this.post = this.db.collection('/posts', ref => ref.where('post_category', '==', this.parameterValue))
-		.valueChanges({ idField: 'id'})
-		.subscribe((posts_cat) => {
-			this.allPost = posts_cat;
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: ImageUpPage,
+			cssClass: 'app-image-up',
+			backdropDismiss: false
 		});
+
+		await modal.present();
+
+	}
+
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
 	}
 
 }

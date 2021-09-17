@@ -19,7 +19,7 @@
   </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
  <div *ngFor="let post of post$ | async; index as i">
   <div class="banner">
     <img src="{{post.post_image}}" />
