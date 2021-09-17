@@ -1,52 +1,68 @@
-<ion-card class="g-bg-color--white" *ngFor="let tip of allTips | slice:0:1; let i=index">
-		<ion-item lines="full">
-			<i class="ti-face-smile g-font-size-16--xs g-color--primary" slot="start"></i>
-			<ion-label>
-				<h2 class="g-font-size-12--xs" [routerLink]="['/tip', tip.id]">{{tip.tip}}</h2>
-			</ion-label>
-			<i class="ti-more-alt g-font-size-16--xs g-color--primary" slot="end"></i>
-		</ion-item>
-		<ion-card-content [routerLink]="['/tip', tip.id]">
-			<img src="assets/img/test.png" alt="">
-			<p class="g-font-size-12--xs">{{tip.main}}</p>
-		</ion-card-content>
-</ion-card>
+<ion-content [fullscreen]="true">
+	<div class="banner" *ngFor="let tip of allTips | slice:0:1; let i=index">
+		<img src="../../assets/banner.svg" />
 
-<ion-row class="post_cat">
-	<ion-col>
-		<ion-slides class="slides" [options]='slideOpts'>
-			<ion-slide *ngFor="let post_cat of posts_cat; index as i">
-				<div [routerLink]="['/postcat', post_cat.post_category]">
-					<img src="{{post_cat.postc_image}}">
-				</div>
-			</ion-slide>
-		</ion-slides>
-	</ion-col>
-</ion-row>
+		<div class="caption ion-padding">
+			{{tip.tip}}
+		</div>
+
+		<div class="search">
+			<ion-item lines="none" class="ion-no-padding">
+				<ion-icon slot="start" name="search-outline"></ion-icon>
+				<ion-input placeholder="Search Posts"></ion-input>
+				<span slot='end'>
+					<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+				</span>
+			</ion-item>
+		</div>
+	</div>
 
 
-<span *ngFor="let post of posts">
-	<ion-row class="post" [routerLink]="['/post', post.id]">
-		<ion-col size="9">
-			<span class="g-font-size-12--xs g-color--primary title-text cap-me">{{post.post_title | slice:0:30}}</span>
-			<span class="g-font-size-10--xs g-color--primary pull-right">{{post.post_category}}</span>
-			<p>
-				{{post.post_main | slice:0:80}} ...
-			</p>
+	<div class="row">
+		<div class="col-xs-12 g-margin-t-40--xs">
+			<ion-slides class="slides" [options]='slideOpts'>
+				<ion-slide *ngFor="let post_cat of posts_cat; index as i">
+					<div [routerLink]="['/postcat', post_cat.post_category]">
+						<img src="{{post_cat.postc_image}}">
+					</div>
+				</ion-slide>
+			</ion-slides>
+		</div>
+	</div>
+
+
+	<div class="event-slider">
+		<ion-col class="ion-text-left">
+			<ion-card *ngFor="let post of posts">
+				<ion-card-header class="ion-no-padding" [routerLink]="['/post', post.id]">
+					<img src="{{post.post_image}}" class="img-responsive" />
+				</ion-card-header>
+
+				<ion-card-content>
+					<br>
+					<h2 class="g-font-size-14--xs g-color--primary title-text cap-me g-padding-y-20-xs" [routerLink]="['/post', post.id]">{{post.post_title}}</h2>
+					<p class="g-font-size-12--xs">{{post.post_main | slice:0:80}} ...</p>
+
+					<div class="additional-info">
+						<div class="attendees">
+							<img src="../../assets/img/director2.png" class="img-circle" />
+							<img src="../../assets/persons/person2.svg" />
+							<img src="../../assets/persons/person3.svg" />
+							<img src="../../assets/persons/person4.svg" />
+							<div class="count">
+								<img src="../../assets/persons/person-placeholder.svg" />
+
+								<p>+7</p>
+							</div>
+						</div>
+
+						<p class="time g-font-size-12--xs" [routerLink]="['/post', post.id]">{{post.post_category}}</p>
+					</div>
+				</ion-card-content>
+			</ion-card>
 		</ion-col>
-		<ion-col size="3">
-			<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_name}}">
-		</ion-col>
-	</ion-row>
-</span>
+	</div>
 
 
 
-
-
-
-
-
-
-
-
+</ion-content>

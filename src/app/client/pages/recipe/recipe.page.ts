@@ -168,7 +168,7 @@ export class RecipePage implements OnInit {
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
 		const pageId = this.parameterValue;
-		this.recipesService.updateLike(pageId, id);
+		this.recipesService.updateLike(pageId);
 	}
 
 	shareRecipe() {

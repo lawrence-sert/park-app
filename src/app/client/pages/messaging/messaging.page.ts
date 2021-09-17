@@ -33,7 +33,7 @@ export class MessagingPage implements OnInit {
 		) { 
 		this.messageForm = this.formBuilder.group({
 			message: ['']
-		})
+		});
 	}
 
 	ngOnInit() {

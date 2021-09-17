@@ -3,4 +3,6 @@ export class Comments {
 	comment_main? : any;
 	date? : any;
 	userId? : any;
+	photoUrl? : any;
+	displayName? : any;
 }

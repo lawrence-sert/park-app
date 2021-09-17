@@ -59,6 +59,7 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
+        this.ionLoaderService.customLoader();
         this.SetUserData(result.user);
         this.SendVerificationMail();
       }).catch((error) => {

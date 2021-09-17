@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController, IonSlides, ModalController } from '@ionic/angular';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AlertController, IonSlides, ModalController, AnimationController } from '@ionic/angular';
 import { UserService } from 'src/app/auth/services/user.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { PostsService } from 'src/app/client/services/posts.service';
-import {Posts} from 'src/app/client/models/posts.model';
+import { Posts } from 'src/app/client/models/posts.model';
 
 import { PostOptionsPage } from 'src/app/client/modals/post-options/post-options.page';
 
@@ -19,19 +20,14 @@ import { PostOptionsPage } from 'src/app/client/modals/post-options/post-options
 })
 export class PostPage implements OnInit {
 
+
+
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
-	displayName: any;
-	email: any;
-	emailVerified?: boolean;
 	location: any;
 	accountType?: any;
-	firstrun : any;
-	phone : any;
+	photoUrl : any;
 
 	postRef: AngularFirestoreCollection<Posts>;
 	post$: Observable<Posts[]>;
@@ -58,15 +54,9 @@ export class PostPage implements OnInit {
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstrun = this.userRef.firstrun;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
-			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
 			this.accountType = this.userRef.accountType;
 			this.location = this.userRef.location;
-			this.phone = this.userRef.phone;
-			this.email = this.userRef.email;
+			this.photoUrl = this.userRef.photoUrl;
 		});
 
 		this.activatedRoute.params.subscribe(parameter => {
@@ -86,45 +76,63 @@ export class PostPage implements OnInit {
 
 	async bookMarkPost() {
 
-    const alert = await this.alertCtrl.create({
+		const alert = await this.alertCtrl.create({
 
-      cssClass: 'alertHeader',
-      header: 'Bookmark This Article',
-      inputs: [
-      {
-        name: 'basket_name',
-        type: 'text',
-        placeholder: 'Basket Name ?'
-      }
-      ],
-      buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-          console.log('Confirm Cancel');
-        }
-      }, {
-        text: 'Create',
-        handler: (data: any) => {
-          console.log('Saved Information', data);
-          this.postService.createPostBookmark(this.uid , data);
-        }
-      }
-      ]
-    });
+			cssClass: 'alertHeader',
+			header: 'Bookmark This Article',
+			inputs: [
+			{
+				name: 'basket_name',
+				type: 'text',
+				placeholder: 'Basket Name ?'
+			}
+			],
+			buttons: [
+			{
+				text: 'Cancel',
+				role: 'cancel',
+				cssClass: 'secondary',
+				handler: () => {
+					console.log('Confirm Cancel');
+				}
+			}, {
+				text: 'Create',
+				handler: (data: any) => {
+					console.log('Saved Information', data);
+					this.postService.createPostBookmark(this.uid , data);
+				}
+			}
+			]
+		});
 
-    await alert.present();
-  }
+		await alert.present();
+	}
 
-  async openOptionsModal() {
+	async openOptionsModal() {
+		const pageId = this.parameterValue;
 		const modal = await this.modalCtrl.create({
 			component: PostOptionsPage,
 			cssClass: 'app-post-options',
-			backdropDismiss: false
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
+			}
 		});
 		await modal.present();
 	}
+
+	addLike() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = this.parameterValue;
+		this.postService.updateLike(pageId, id);
+	}
+
+	openCalModal(){
+		
+	}
+
+
+
 
 }

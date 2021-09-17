@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { UserService } from 'src/app/auth/services/user.service';
 import { RecipesService } from 'src/app/client/services/recipes.service';
 import { Recipes } from 'src/app/client/models/recipes.model';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-recipes',
@@ -24,6 +28,22 @@ export class RecipesComponent implements OnInit {
   firstrun : any;
 
   recipes : any;
+
+  type: string;
+
+  allLikes: Recipes[] = [];
+  likes : any;
+
+  allBreakfast: Recipes[] = [];
+  breakfast : any;
+
+  allLunch: Recipes[] = [];
+  lunch : any;
+
+
+  allDiner: Recipes[] = [];
+  diner : any;
+
 
 	public slideOpts = {
     slidesPerView: 1.2,
@@ -105,7 +125,8 @@ export class RecipesComponent implements OnInit {
 
   constructor(
     public usersService: UserService,
-    private recipesService: RecipesService
+    private recipesService: RecipesService,
+    public db: AngularFirestore,
     ) { 
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -123,6 +144,7 @@ export class RecipesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.type = 'breakfast';
     //read products 
     this.recipesService.getRecipes().subscribe((data) => {
       this.recipes = data.map((e) => {
@@ -132,6 +154,32 @@ export class RecipesComponent implements OnInit {
         } as Recipes;
       });
     });
+
+    //Breakfast Queries
+    this.breakfast = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '1'))
+    .valueChanges({ idField: 'id'})
+    .subscribe((recipes) => {
+      this.allBreakfast = recipes;
+    });
+
+    //Breakfast Queries
+    this.lunch = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '2'))
+    .valueChanges({ idField: 'id'})
+    .subscribe((recipes) => {
+      this.allLunch = recipes;
+    });
+
+    //Breakfast Queries
+    this.diner = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '3'))
+    .valueChanges({ idField: 'id'})
+    .subscribe((recipes) => {
+      this.allDiner = recipes;
+    });
+
+  }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
   }
 
 }

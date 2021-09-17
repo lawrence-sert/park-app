@@ -1,66 +1,64 @@
-<ion-header [translucent]="true" class="ion-no-border">
+<ion-header class="ion-no-border">
+  <div *ngFor="let post of post$ | async; index as i">
+    <ion-toolbar color="primary" no-border>
+      <ion-buttons slot="start" class="g-font-size-18--xs">
+      <ion-back-button>
+        <i class="ti-arrow-left g-font-size-18--xs"></i>
+      </ion-back-button>
+    </ion-buttons>
 
-	<div *ngFor="let post of post$ | async; index as i">
-		<ion-toolbar>
-			<ion-buttons slot="start" class="g-font-size-18--xs">
-				<span class="g-display-block--xs g-display-inline-block--sm g-margin-b-10--xs g-margin-b-0--sm">
-					<a  class=" s-btn s-btn--xs s-btn--primary-bg g-radius--50 ">
-						<i class="ti-agenda"></i>	{{post.post_category}}
-					</a>
-				</span>
-			</ion-buttons>
-			<span slot="end" class="g-padding-r-10--xs" (click)="openOptionsModal()">
-				<i class="ti-more-alt g-font-size-18--xs g-padding-r-10--xs"></i>
-			</span>
-		</ion-toolbar>
+      <ion-title>
+        {{post.post_category}}
+      </ion-title>
 
-		<ion-toolbar>
-			<div class="row">
-				<div class="col-xs-12">
-					<h2 class="g-font-size-14--xs g-color--primary g-text-left--xs cap-me">
-						{{post.post_title}}
-						<span class="pull-right g-font-size-10--xs"> {{post.post_date}}</span>
-					</h2>
-				</div>
-			</div>
-		</ion-toolbar>
-
-	</div>
-
+      <span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
+        <img class="profile-user-img-main  img-circle "
+        src="{{photoUrl}}">
+      </span>
+    </ion-toolbar>
+  </div>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+ <div *ngFor="let post of post$ | async; index as i">
+  <div class="banner">
+    <img src="{{post.post_image}}" />
 
-	<div *ngFor="let post of post$ | async; index as i">
-		<div class="post_image">
-			<img class="img-responsive post-image" src="{{post.post_image}}" alt="{{post.post_title}}">
-		</div>
+    <div class="caption ion-padding">
 
-		<div class="post_main g-padding-x-10--xs">
-			<p class="">
-				{{post.post_main}}
-			</p>
-		</div>	
+    </div>
 
-	</div>
+    <div class="search">
+      <ion-item lines="none" class="ion-no-padding">
+        <div class="additional-info">
+            <div class="attendees">
+              <img src="../../assets/img/director2.png" class="img-circle" />
+              <img src="../../assets/persons/person2.svg" />
+              <img src="../../assets/persons/person3.svg" />
+              <img src="../../assets/persons/person4.svg" />
+              <div class="count">
+                <img src="../../assets/persons/person-placeholder.svg" />
 
-</ion-content>
+                <p>+7</p>
+              </div>
+            </div>
 
-<ion-footer class="ion-no-border">
-  <div class="row">
-  	<div class="col-xs-4">
-  		<i class="ti-heart g-font-size-18--xs g-color--primary"></i> 
-  		<span class="g-font-size-12--xs">Like</span>
-  	</div>
-  	<div class="col-xs-4">
-  		<i class="tti-comments g-font-size-18--xs g-color--primary"></i> 
-  		<span class="g-font-size-12--xs">Comment</span>
-  	</div>
-  	<div class="col-xs-4">
-  		<i class="ti-share g-font-size-18--xs g-color--primary"></i> 
-  		<span class="g-font-size-12--xs">Share</span>
-  	</div>
+            <p class="time g-font-size-12--xs" [routerLink]="['/post', post.id]">{{post.post_category}}</p>
+          </div>
+      </ion-item>
+    </div>
   </div>
-</ion-footer>
+
+  <div class="row g-padding-y-40--xs g-padding-x-20--xs">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+
+      <h2 class="g-font-size-16--xs g-color--primary title-text cap-me g-padding-y-20-xs">{{post.post_title}}</h2>
+      <p class="g-font-size-14--xs">
+        {{post.post_main}}
+      </p>
+    </div>
+  </div>
 
 
+</div>
+</ion-content>

@@ -11,7 +11,10 @@ import * as firebase from 'firebase';
 export class RecipesService {
 
 	uid: any;
+	userRef: any;
 	crrntUsr: any;
+	displayName: any;
+	photoUrl: any;
 
 	constructor(
 		private firestore: AngularFirestore,
@@ -27,8 +30,40 @@ export class RecipesService {
 		return this.firestore.collection('recipes').snapshotChanges();
 	}
 
-	updateLike(pageId, id) {
+	updateLike(pageId) {
 		//add a like to main recipes
+
+		// get user information
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		this.usersService.getUserDoc(id).subscribe(res => {
+			this.userRef = res;
+			this.displayName = this.userRef.displayName;
+			this.photoUrl = this.userRef.photoUrl;
+
+			var text = "";
+			var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			for (var i = 0; i < 5; i++)
+				text += possible.charAt(Math.floor(Math.random() * possible.length));
+			const like_id = text;
+
+			// Add a new document in collection "cities"
+			return this.firestore
+			.collection(`recipes/${pageId}/likes`).doc(like_id).set({
+				id : like_id,
+				displayName : this.displayName,
+				photoUrl : this.photoUrl,
+				date : firebase.default.firestore.FieldValue.serverTimestamp(),
+				userId : id
+			})
+			.then(() => {
+				console.log("Document successfully written!");
+			})
+			.catch((error) => {
+				console.error("Error writing document: ", error);
+			});
+		});
+		
 		var that = this;
 		this.firestore.firestore.collection("recipes").where("id", "==", pageId)
 		.get()
@@ -50,16 +85,14 @@ export class RecipesService {
 						transaction.update(doc.ref, { recipe_like: new_score });
 					});
 				}).then(function() {
-					this.toastr.success('Nice!', 'You Like This Recipe');
 					return this.firestore
 					.collection(`users/${id}/recipes`)
 					.add({
 						recipe_id : pageId,
 						date : firebase.default.firestore.FieldValue.serverTimestamp()
 					});
-
 				}).catch(function(error) {
-					this.toastr.warning('Oops!', 'Something Wrong');
+					console.log(error);
 				});
 
 			});

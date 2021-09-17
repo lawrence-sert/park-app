@@ -85,6 +85,7 @@ export class CommentPage implements OnInit {
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
     this.commentService.createComment(this.commentForm.value, this.pageId);
+    this.commentService.updateComment(this.commentForm.value, this.pageId);
   }
 
 
