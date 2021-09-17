@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import {finalize} from 'rxjs/operators'
+import { finalize } from 'rxjs/operators'
 import { UserService } from 'src/app/auth/services/user.service';
 export interface imageData{
 	fileName: string;
@@ -44,11 +44,7 @@ export class ImageUpPage implements OnInit {
 		private loading :LoadingController, 
 		private userService: UserService,
 		private modalCtr: ModalController
-		) { 
-
-		
-
-	}
+		) { }
 
 	ngOnInit() {
 		this.isLoading = false;
@@ -61,7 +57,6 @@ export class ImageUpPage implements OnInit {
 		this.userService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
 			this.photoUrl = this.userRef.photoUrl;
-
 		});
 	}
 

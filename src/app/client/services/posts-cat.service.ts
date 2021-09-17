@@ -14,11 +14,7 @@ export class PostsCatService {
 	constructor(
 		private firestore: AngularFirestore,
 		public usersService: UserService,
-		) { 
-		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-	}
+		) {}
 
 	getPostsCat() {
 		return this.firestore.collection('posts_cat').snapshotChanges();

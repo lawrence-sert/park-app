@@ -1,6 +1,5 @@
 // home.page.ts
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
@@ -20,9 +19,11 @@ export class MapsComponent implements OnInit {
   latitude: number;
   longitude: number;
 
-  constructor(
+  constructor
+  (
     private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder) {
+    private nativeGeocoder: NativeGeocoder
+    ) {
   }
 
 
@@ -68,23 +69,23 @@ export class MapsComponent implements OnInit {
     };
 
     this.nativeGeocoder.reverseGeocode(lattitude, longitude, options)
-      .then((result: NativeGeocoderResult[]) => {
-        this.address = "";
-        let responseAddress = [];
-        for (let [key, value] of Object.entries(result[0])) {
-          if (value.length > 0)
-            responseAddress.push(value);
+    .then((result: NativeGeocoderResult[]) => {
+      this.address = "";
+      let responseAddress = [];
+      for (let [key, value] of Object.entries(result[0])) {
+        if (value.length > 0)
+          responseAddress.push(value);
 
-        }
-        responseAddress.reverse();
-        for (let value of responseAddress) {
-          this.address += value + ", ";
-        }
-        this.address = this.address.slice(0, -2);
-      })
-      .catch((error: any) => {
-        this.address = "Address Not Available!";
-      });
+      }
+      responseAddress.reverse();
+      for (let value of responseAddress) {
+        this.address += value + ", ";
+      }
+      this.address = this.address.slice(0, -2);
+    })
+    .catch((error: any) => {
+      this.address = "Address Not Available!";
+    });
 
   }
 

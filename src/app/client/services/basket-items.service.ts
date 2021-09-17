@@ -19,9 +19,7 @@ export class BasketItemsService {
 		public usersService: UserService,
 		private toastr: ToastrService,
 		private modalCtrl : ModalController,
-		) { 
-
-	}
+		) {}
 
 	getBasketItem(uid, bid) {
 		return this.firestore.collection(`users/${uid}/basket/${bid}/basket_items`).snapshotChanges();

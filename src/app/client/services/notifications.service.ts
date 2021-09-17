@@ -15,11 +15,7 @@ export class NotificationsService {
 		private firestore: AngularFirestore,
 		public usersService: UserService,
 		private toastr: ToastrService
-		) { 
-		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-	}
+		) {}
 
 	//get user notifications
 	getUserNotifications(uid) {

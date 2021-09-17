@@ -47,9 +47,7 @@ export class PostcatPage implements OnInit {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore
-		) { 
-		
-	}
+		) {}
 
 	ngOnInit() {
 

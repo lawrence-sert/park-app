@@ -39,7 +39,9 @@ export class ChefPage implements OnInit {
 		public db: AngularFirestore,
 		private modalCtrl : ModalController,
 		private animationCtrl: AnimationController
-		) {
+		) {	}
+
+	ngOnInit() {
 
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -53,10 +55,6 @@ export class ChefPage implements OnInit {
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.chefID
 		});
-
-	}
-
-	ngOnInit() {
 
 		this.segmentValue = 'about';
 

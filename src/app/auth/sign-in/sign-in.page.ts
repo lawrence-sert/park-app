@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from "src/app/auth/services/auth.service";
-import {  MenuController } from '@ionic/angular';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { MenuController } from '@ionic/angular';
 import { IonLoaderService } from 'src/app/client/services/ion-loader.service';
 
 
@@ -25,18 +25,6 @@ export class SignInPage implements OnInit {
 	ionViewWillEnter() {
 		this.menuCtrl.enable(false);
 	}
-
-	displayAutoLoader() {
-    this.ionLoaderService.autoLoader();
-  }
-
-  showLoader() {
-    this.ionLoaderService.simpleLoader();
-  }
-
-  hideLoader() {
-    this.ionLoaderService.dismissLoader();
-  }
 
   customizeLoader() {
     this.ionLoaderService.customLoader();

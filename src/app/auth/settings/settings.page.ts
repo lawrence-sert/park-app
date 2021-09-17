@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, ModalController } from '@ionic/angular';
-import { AuthService } from "src/app/auth/services/auth.service";
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserService } from 'src/app/auth/services/user.service';
 import { AlertController, IonSlides } from '@ionic/angular';
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
@@ -33,9 +33,7 @@ export class SettingsPage implements OnInit {
 		public menuCtrl: MenuController,
 		private alertCtrl: AlertController,
     private modalCtrl : ModalController
-	) { 
-		
-	}
+	) {}
 
 	ngOnInit() {
     // Local storage information

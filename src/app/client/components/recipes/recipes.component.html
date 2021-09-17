@@ -1,13 +1,23 @@
 <div class="row">
-	<div class="col-xs-10">
+	<div class="col-xs-9">
 		<h2 class="g-font-size-24--xs g-color--primary">
 			Healthy Meals <br>
 			<span class="light">Everyday!</span>
 		</h2>
 	</div>
-	<div class="col-xs-2 g-text-center--xs g-text-center--xs g-padding-t-20--xs">
+	<div class="col-xs-3 g-text-center--xs g-text-center--xs g-padding-t-20--xs">
 		<i class="ti-face-smile g-font-size-40--xs g-color--primary"></i>
 	</div>
+</div>
+
+<div class="search">
+	<ion-item lines="none" class="ion-no-padding">
+		<ion-icon slot="start" name="search-outline"></ion-icon>
+		<ion-input placeholder="search recipes..."></ion-input>
+		<span slot='end'>
+			<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+		</span>
+	</ion-item>
 </div>
 
 <div class="row">
@@ -37,11 +47,11 @@
 				</ion-segment-button>
 
 				<ion-segment-button value="supper">
-					Supper
+					Diner
 				</ion-segment-button>
 
 				<ion-segment-button value="filtered">
-					<i class="ti-panel g-font-size-22--xs"></i>
+					Specials
 				</ion-segment-button>
 
 			</ion-segment>
@@ -58,22 +68,22 @@
 				<ion-card-header>
 					<ion-card-subtitle class="g-font-size-12--xs">
 						<div class="additional-info">
-						<div class="attendees">
-							<img src="../../assets/img/users/user2.png" class="img-circle" />
-							<img src="../../assets/img/users/user1.png" class="img-circle" />
-							<img src="../../assets/img/users/user3.png" class="img-circle" />
-							<div class="count">
-								<img src="../../assets/img/users/person-placeholder.svg" />
-								<p>+7</p>
+							<div class="attendees">
+								<img src="../../assets/img/users/user2.png" class="img-circle" />
+								<img src="../../assets/img/users/user1.png" class="img-circle" />
+								<img src="../../assets/img/users/user3.png" class="img-circle" />
+								<div class="count">
+									<img src="../../assets/img/users/person-placeholder.svg" />
+									<p>+7</p>
+								</div>
 							</div>
+							<span class="pull-right">
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
+							</span>
 						</div>
-						<span class="pull-right">
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
-						</span>
-					</div>
 						
 					</ion-card-subtitle>
 					<ion-card-title class="g-font-size-14--xs g-color--primary">{{breakfast.recipe_name}}</ion-card-title>
@@ -89,22 +99,22 @@
 				<ion-card-header>
 					<ion-card-subtitle class="g-font-size-12--xs">
 						<div class="additional-info">
-						<div class="attendees">
-							<img src="../../assets/img/users/user2.png" class="img-circle" />
-							<img src="../../assets/img/users/user1.png" class="img-circle" />
-							<img src="../../assets/img/users/user3.png" class="img-circle" />
-							<div class="count">
-								<img src="../../assets/img/users/person-placeholder.svg" />
-								<p>+7</p>
+							<div class="attendees">
+								<img src="../../assets/img/users/user2.png" class="img-circle" />
+								<img src="../../assets/img/users/user1.png" class="img-circle" />
+								<img src="../../assets/img/users/user3.png" class="img-circle" />
+								<div class="count">
+									<img src="../../assets/img/users/person-placeholder.svg" />
+									<p>+7</p>
+								</div>
 							</div>
+							<span class="pull-right">
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
+							</span>
 						</div>
-						<span class="pull-right">
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
-						</span>
-					</div>
 						
 					</ion-card-subtitle>
 					<ion-card-title class="g-font-size-14--xs g-color--primary">{{lunch.recipe_name}}</ion-card-title>
@@ -119,22 +129,22 @@
 				<ion-card-header>
 					<ion-card-subtitle class="g-font-size-12--xs">
 						<div class="additional-info">
-						<div class="attendees">
-							<img src="../../assets/img/users/user2.png" class="img-circle" />
-							<img src="../../assets/img/users/user1.png" class="img-circle" />
-							<img src="../../assets/img/users/user3.png" class="img-circle" />
-							<div class="count">
-								<img src="../../assets/img/users/person-placeholder.svg" />
-								<p>+7</p>
+							<div class="attendees">
+								<img src="../../assets/img/users/user2.png" class="img-circle" />
+								<img src="../../assets/img/users/user1.png" class="img-circle" />
+								<img src="../../assets/img/users/user3.png" class="img-circle" />
+								<div class="count">
+									<img src="../../assets/img/users/person-placeholder.svg" />
+									<p>+7</p>
+								</div>
 							</div>
+							<span class="pull-right">
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+								<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
+							</span>
 						</div>
-						<span class="pull-right">
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
-							<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
-						</span>
-					</div>
 						
 					</ion-card-subtitle>
 					<ion-card-title class="g-font-size-14--xs g-color--primary">{{diner.recipe_name}}</ion-card-title>

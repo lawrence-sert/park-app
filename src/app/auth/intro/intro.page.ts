@@ -4,7 +4,7 @@ import { INTRO_KEY } from 'src/app/auth/guards/intro.guard';
 import { Router } from '@angular/router';
 import { Plugins } from '@capacitor/core';
 import { Storage } from '@capacitor/storage';
-import {  MenuController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
  
 @Component({
   selector: 'app-intro',

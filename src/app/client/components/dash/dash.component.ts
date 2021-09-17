@@ -24,15 +24,7 @@ export class DashComponent implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
 	displayName: any;
-	email: any;
-	emailVerified?: boolean;
-	location: any;
-	accountType?: any;
-	firstrun: any;
 
 	tips: any;
 	oneTip: any;
@@ -126,8 +118,7 @@ export class DashComponent implements OnInit {
 		private postsService: PostsService,
 		private postsCatService: PostsCatService,
 		private db: AngularFirestore,
-		) {
-	}
+		) {}
 
 	ngOnInit() {
 
@@ -136,13 +127,7 @@ export class DashComponent implements OnInit {
 		const id = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstrun = this.userRef.firstrun;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
 			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
-			this.accountType = this.userRef.accountType;
-			this.location = this.userRef.location;
 		});
 
 		const randomNumber = Math.floor(Math.random() * 3) + 1;

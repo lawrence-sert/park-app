@@ -20,11 +20,7 @@ export class MessagesService {
 		public router: Router,  
 		private toastr: ToastrService,
 		private modalCtrl : ModalController,
-  	) { 
-  	// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-  }
+  	) {}
 
   //get user messages
 	getUserMessages(id) {

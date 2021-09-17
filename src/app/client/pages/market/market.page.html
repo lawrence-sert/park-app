@@ -41,7 +41,7 @@
 	<div class="search">
 		<ion-item lines="none" class="ion-no-padding">
 			<ion-icon slot="start" name="search-outline"></ion-icon>
-			<ion-input placeholder="Search Posts"></ion-input>
+			<ion-input placeholder="search market place..."></ion-input>
 			<span slot='end'>
 				<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
 			</span>
@@ -58,7 +58,7 @@
 
 	<div [ngSwitch]="type">
 
-		<ion-row *ngSwitchCase="'vegitables'">
+		<ion-row *ngSwitchCase="'vegitables'" class="g-margin-t-60--xs">
 			<ion-col>
 				<ion-row>
 					<ion-col size="9">
@@ -100,7 +100,7 @@
 			</ion-col>
 		</ion-row>
 
-		<ion-row *ngSwitchCase="'fruit'">
+		<ion-row *ngSwitchCase="'fruit'" class="g-margin-t-60--xs">
 			<ion-col>
 				<ion-row>
 					<ion-col size="9">
@@ -143,7 +143,7 @@
 			</ion-col>
 		</ion-row>
 
-		<ion-row *ngSwitchCase="'processed'">
+		<ion-row *ngSwitchCase="'processed'" class="g-margin-t-60--xs">
 			<ion-col>
 				<ion-row>
 					<ion-col size="9">
@@ -186,7 +186,7 @@
 			</ion-col>
 		</ion-row>
 
-		<ion-row *ngSwitchCase="'care'">
+		<ion-row *ngSwitchCase="'care'" class="g-margin-t-60--xs">
 			<ion-col>
 				<ion-row>
 					<ion-col size="9">

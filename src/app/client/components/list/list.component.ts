@@ -18,15 +18,7 @@ export class ListComponent implements OnInit {
 	uid: any;
   crrntUsr: any;
   userRef: any;
-  userEmail: any;
-  firstname: any;
-  lastname: any;
-  displayName: any;
-  email: any;
-  emailVerified?: boolean;
   photoURL: any;
-  accountType?: any;
-  firstrun : any;
 
   //basket
   basket : any;
@@ -37,9 +29,7 @@ export class ListComponent implements OnInit {
     public usersService: UserService,
     private basketService: BasketService,
     private alertCtrl: AlertController,
-  	) { 
-  	
-  }
+  	) { }
 
   ngOnInit() {
     // Local storage information
@@ -48,12 +38,6 @@ export class ListComponent implements OnInit {
     this.uid = this.crrntUsr.uid;
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
-      this.firstrun = this.userRef.firstrun;
-      this.firstname = this.userRef.firstname;
-      this.lastname = this.userRef.surname;
-      this.displayName = this.userRef.displayName;
-      this.emailVerified = this.userRef.emailVerified;
-      this.accountType = this.userRef.accountType;
       this.photoURL = this.userRef.photoURL;
     });
   	//read my baskets 
@@ -96,6 +80,35 @@ export class ListComponent implements OnInit {
             this.basketService.createBasket(this.uid , data);
           }
         }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async deleteBasket(basket_id) {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm Basket Delete',
+      message: '<small>You are about to delete a basket. This action can not be undone.<br> Are you sure to proceed</small>',
+      buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Delete',
+        handler: () => {
+          console.log('Confirm Okay');
+          console.log(basket_id);
+          this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+          const id = this.crrntUsr.uid;
+          this.basketService.deleteBasket(id, basket_id);
+        }
+      }
       ]
     });
 

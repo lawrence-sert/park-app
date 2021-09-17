@@ -143,9 +143,7 @@ export class MarketPage implements OnInit {
     private productsService: ProductsService,
     private promotionService: PromotionsService,
     private modalCtrl : ModalController
-    ) { 
-    
-  }
+    ) { }
 
   ngOnInit() {
 

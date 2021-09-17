@@ -127,7 +127,11 @@ export class RecipesComponent implements OnInit {
     public usersService: UserService,
     private recipesService: RecipesService,
     public db: AngularFirestore,
-    ) { 
+    ) { }
+
+  ngOnInit() {
+    this.type = 'breakfast';
+
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
@@ -141,10 +145,7 @@ export class RecipesComponent implements OnInit {
       this.accountType = this.userRef.accountType;
       this.location = this.userRef.location;
     });
-  }
-
-  ngOnInit() {
-    this.type = 'breakfast';
+    
     //read products 
     this.recipesService.getRecipes().subscribe((data) => {
       this.recipes = data.map((e) => {

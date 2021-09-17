@@ -43,7 +43,12 @@ export class ProductPage implements OnInit {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore
-		) { 
+		) {}
+
+	ngOnInit() {
+
+		this.type = 'description';
+
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -64,11 +69,6 @@ export class ProductPage implements OnInit {
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.productID
 		});
-	}
-
-	ngOnInit() {
-
-		this.type = 'description';
 
 		this.productRef = this.db.collection<{}>('products', ref => ref.where('id', '==', this.parameterValue));
 		this.product$ = this.productRef.snapshotChanges().pipe(

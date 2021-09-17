@@ -115,25 +115,36 @@
 		<div  *ngSwitchCase="'recipes'">
 			<ion-list>
 				<ion-item *ngFor="let recipe of recipes; index as i">
-					<ion-avatar slot="start">
+					<ion-avatar slot="start" [routerLink]="['/recipe', recipe.id]">
 						<img src="{{recipe.recipe_image}}">
 					</ion-avatar>
 					<ion-label class="ion-text-wrap">
 						<ion-text color="primary">
-							<h3 class="g-font-size-12--xs">{{recipe.recipe_name | slice:0:30}}</h3>
+							<h3 class="g-font-size-12--xs" [routerLink]="['/recipe', recipe.id]">{{recipe.recipe_name | slice:0:30}}</h3>
 						</ion-text>
 						<ion-text color="secondary">
 							<p class="g-font-size-10--xs">{{recipe.recipe_level}}</p>
 						</ion-text>
 					</ion-label>
 					<span slot="end">
-						<i class="ti-star g-font-size-12--xs"></i>
-						<i class="ti-star g-font-size-12--xs"></i>
-						<i class="ti-star g-font-size-12--xs"></i>
-						<i class="ti-star g-font-size-12--xs"></i>
+						<i class="fas fa-star g-color--primary g-font-size-12--xs"></i>
+						<i class="fas fa-star g-color--primary g-font-size-12--xs"></i>
+						<i class="fas fa-star g-color--primary g-font-size-12--xs"></i>
+						<i class="far fa-star g-color--primary g-font-size-12--xs"></i>
 					</span>
 				</ion-item>
 			</ion-list>	
+
+			<ionic-rating-component #rating
+        activeIcon = "ios-star"
+        defaultIcon = "ios-star-outline"
+        activeColor = "#488aff" 
+        defaultColor = "#f4f4f4"
+        readonly="false"
+        rating="3"
+        fontSize = "32px"
+        (ratingChanged)="onRatingChange($event)">
+    </ionic-rating-component>
 
 		</div>
 

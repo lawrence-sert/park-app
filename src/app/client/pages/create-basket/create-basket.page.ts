@@ -55,9 +55,7 @@ export class CreateBasketPage implements OnInit {
     private alertCtrl: AlertController,
     private modalCtrl : ModalController
 
-    ) { 
-    
-  }
+    ) { }
 
   ngOnInit() {
     // Local storage information

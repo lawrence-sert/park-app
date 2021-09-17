@@ -1,15 +1,16 @@
-<ion-content [fullscreen]="true">
-	<div class="banner" *ngFor="let tip of allTips | slice:0:1; let i=index">
-		<img src="../../assets/banner.svg" />
 
-		<div class="caption ion-padding">
+	<div class="banner" *ngFor="let tip of allTips | slice:0:1; let i=index">
+		<img src="assets/img/dash-banner.svg" />
+
+		<div class="caption ion-padding" [routerLink]="['/tip', tip.id]">
 			{{tip.tip}}
+			<i class="far fa-lightbulb g-font-size-22--xs"></i>
 		</div>
 
 		<div class="search">
 			<ion-item lines="none" class="ion-no-padding">
 				<ion-icon slot="start" name="search-outline"></ion-icon>
-				<ion-input placeholder="Search Posts"></ion-input>
+				<ion-input placeholder="search posts..."></ion-input>
 				<span slot='end'>
 					<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
 				</span>
@@ -21,7 +22,7 @@
 	<div class="row">
 		<div class="col-xs-12 g-margin-t-40--xs">
 			<ion-slides class="slides" [options]='slideOpts'>
-				<ion-slide *ngFor="let post_cat of posts_cat; index as i">
+				<ion-slide *ngFor="let post_cat of postsCat; index as i">
 					<div [routerLink]="['/postcat', post_cat.post_category]">
 						<img src="{{post_cat.postc_image}}">
 					</div>
@@ -63,4 +64,4 @@
 
 
 
-</ion-content>
+

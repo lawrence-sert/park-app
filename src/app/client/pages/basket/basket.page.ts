@@ -11,11 +11,11 @@ import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { BasketService } from 'src/app/client/services/basket.service';
-import {Basket} from 'src/app/client/models/basket.model';
+import { Basket } from 'src/app/client/models/basket.model';
 
 //get basket items
 import { BasketItemsService } from 'src/app/client/services/basket-items.service';
-import {BasketItems} from 'src/app/client/models/basket-items.model';
+import { BasketItems } from 'src/app/client/models/basket-items.model';
 
 import { RecipesService } from 'src/app/client/services/recipes.service';
 import { Recipes } from 'src/app/client/models/recipes.model';
@@ -80,8 +80,18 @@ export class BasketPage implements OnInit {
 		public db: AngularFirestore,
 		public database: AngularFireDatabase,
 		private modalCtrl: ModalController
-		) { 
+		) {}
 
+
+	ngOnInit() {
+
+		this.activatedRoute.params.subscribe(parameter => {
+			this.parameterValue = parameter.basketID;
+		});
+		const param = this.parameterValue;
+
+		this.type = 'basket-items';
+		
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -100,32 +110,7 @@ export class BasketPage implements OnInit {
 			this.email = this.userRef.email;
 			this.photoUrl = this.userRef.photoUrl;
 		});
-		this.activatedRoute.params.subscribe(parameter => {
-			this.parameterValue = parameter.basketID;
-		});
-
-
-		const m = this.db.collection(`users/${id}/basket/xI9T5/basket_items`).snapshotChanges();
-		m.subscribe(res =>{
-			console.log(res)
-			res.forEach(res => {
-				const value = res.payload.doc.data();
-				const id = res.payload.doc.id;
-				console.log(value," ",id)
-			});
-		})
-
-	}
-
-
-	ngOnInit() {
-
-		this.type = 'basket-items';
-		console.log('here');
-
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-		const param = this.parameterValue;
+		
 
 		this.basketRef = this.db.collection<{}>(`users/${id}/basket`, ref => ref.where('basket_id', '==', this.parameterValue));
 		this.basket$ = this.basketRef.snapshotChanges().pipe(
@@ -160,15 +145,9 @@ export class BasketPage implements OnInit {
 	}
 
 
-
-
-
-
 	segmentChanged(ev: any) {
 		console.log('Segment changed', ev);
 	}
-
-
 
 	async openCalModal() {
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));

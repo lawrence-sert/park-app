@@ -26,11 +26,7 @@ export class BasketService {
 		private toastr: ToastrService,
 		public db: AngularFireDatabase,
 		
-		) { 
-		// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-	}
+		) {}
 
 	getBasket(uid) {
 		return this.firestore.collection(`users/${uid}/basket`).snapshotChanges();

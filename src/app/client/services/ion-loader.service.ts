@@ -7,45 +7,13 @@ import { LoadingController } from '@ionic/angular';
 
 export class IonLoaderService {
 
-  constructor(public loadingController: LoadingController) { }
-
-
-  // Simple loader
-  simpleLoader() {
-    this.loadingController.create({
-      message: 'Loading...'
-    }).then((response) => {
-      response.present();
-    });
-  }
-
-  // Dismiss loader
-  dismissLoader() {
-    this.loadingController.dismiss().then((response) => {
-      console.log('Loader closed!', response);
-    }).catch((err) => {
-      console.log('Error occurred : ', err);
-    });
-  }
-
-  // Auto hide show loader
-  autoLoader() {
-    this.loadingController.create({
-      message: 'Loader hides after 4 seconds',
-      duration: 4000
-    }).then((response) => {
-      response.present();
-      response.onDidDismiss().then((response) => {
-        console.log('Loader dismissed', response);
-      });
-    });
-  }   
+  constructor(public loadingController: LoadingController) { } 
 
   // Custom style + hide on tap loader
   customLoader() {
     this.loadingController.create({
       message: '',
-      duration: 4000,
+      duration: 3000,
       cssClass:'loader-css-class',
       backdropDismiss:true
     }).then((res) => {

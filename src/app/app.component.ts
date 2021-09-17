@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -33,7 +33,9 @@ export class AppComponent {
     public authService: AuthService,
     public usersService: UserService,
     public router: Router
-    ) {
+    ) {}
+
+  ngOnInit() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.userData = user;

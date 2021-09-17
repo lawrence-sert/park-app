@@ -29,9 +29,7 @@ export class NotificationsPage implements OnInit {
   	private db : AngularFirestore,
     public usersService: UserService,
     private modalCtrl : ModalController
-  	) { 
-
-  }
+  	) {}
 
   ngOnInit() {
   	// Local storage information

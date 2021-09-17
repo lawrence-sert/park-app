@@ -20,13 +20,11 @@
 		</ion-toolbar>
 
 		<app-shrink-header [scrollArea]="myContent" [headerHeight]="230">
-			<img src="assets/img/test.png">
-
-
+			<img src="{{chef.chef_cover}}">
 			<ion-list>
 				<ion-item lines="none">
 					<ion-avatar slot="start">
-						<img src="assets/img/director2.png">
+						<img src="{{chef.chef_image}}">
 					</ion-avatar>
 					<ion-label>
 						<h3>{{chef.chef_name}}</h3>

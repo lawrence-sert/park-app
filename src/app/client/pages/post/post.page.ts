@@ -42,9 +42,7 @@ export class PostPage implements OnInit {
 		public db: AngularFirestore,
 		private alertCtrl: AlertController,
 		private modalCtrl : ModalController
-		) { 
-		
-	}
+		) {}
 
 	ngOnInit() {
 

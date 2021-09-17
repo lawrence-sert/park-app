@@ -37,8 +37,6 @@
 
 <ion-content>
 	<div *ngFor="let recipe of recipe$ | async; index as i">
-
-		
 		<div class="row g-padding-y-10--xs">
 			<div class="col-xs-3" (click)="addLike()">
 				<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
@@ -49,10 +47,19 @@
 				<span class="g-font-size-10--xs">{{recipe.recipe_comment}}</span>
 			</div>
 			<div class="col-xs-6">
-				<span [routerLink]="['/chef', recipe.recipe_chef]">
-					<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
-					<span class="g-padding-x-10--xs g-font-size-10--xs">Lawrence Gumbo</span>
+				<span *ngIf="recipe.recipe_chef == 1;else no_chef">
+					<span [routerLink]="['/chef', recipe.recipe_chef]">
+						<img src="assets/img/default-user.svg" class="chef-profile-img img-flud img-circle" />
+						<span class="g-padding-x-10--xs g-font-size-10--xs">Local Chef</span>
+					</span>
 				</span>
+				<ng-template #no_chef>
+					<span [routerLink]="['/chef', recipe.recipe_chef]">
+						<img src="assets/img/chef/lawrence.png" class="chef-profile-img img-flud img-circle" />
+						<span class="g-padding-x-10--xs g-font-size-10--xs">Lawrence Gumbo</span>
+					</span>
+				</ng-template>
+				
 			</div>
 		</div>
 

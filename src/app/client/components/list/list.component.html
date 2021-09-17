@@ -11,24 +11,54 @@
 	</ion-col>
 </ion-row>
 
+<div class="search" *ngIf="basket?.length > 0">
+	<ion-item lines="none" class="ion-no-padding">
+		<ion-icon slot="start" name="search-outline"></ion-icon>
+		<ion-input placeholder="search basket..."></ion-input>
+		<span slot='end'>
+			<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+		</span>
+	</ion-item>
+</div>
+
 
 <div *ngIf="basket?.length > 0; else emptyBasket">
-	<ion-row>
-		<ion-col>
-			<span *ngFor="let basket of basket">
-				<ion-item [routerLink]="['/basket', basket.basket_id]" lines="full">
-					<i class="fas fa-shopping-basket g-font-size-18--xs g-color--primary" slot="start"></i>
-					<ion-label class="g-padding-l-20--xs">
-						<h3>{{basket.basket_name}}</h3>
-						<p class="g-font-size-10--xs">
-							{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
-						</p>
-					</ion-label>
-					<i class="ti-angle-right g-font-size-12--xs g-color--primary" slot="end"></i>
-				</ion-item>
-			</span>
-		</ion-col>
-	</ion-row>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<ion-list>
+				<ion-item-sliding *ngFor="let basket of basket">
+					<ion-item lines="full" [routerLink]="['/basket', basket.basket_id]">
+						<span slot="start">
+							<i class="fas fa-shopping-basket g-font-size-18--xs g-color--primary"></i>
+						</span>
+						<ion-label>
+							<h2 class="g-font-size-12--xs g-color--primary heavy">{{basket.basket_name}}</h2>
+							<p class="g-font-size-10--xs">{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}</p>
+						</ion-label>
+						<ion-note slot="end">
+							<span class="g-font-size-14--xs g-color--primary">
+								<strong>{{basket.basket_cost}}</strong>RWF
+							</span>
+						</ion-note>
+					</ion-item>
+					<ion-item-options side="end">
+						<ion-item-option color="danger" (click)="deleteBasket(basket.basket_id)">
+							<i class="ti-trash g-font-size-18--xs"></i>
+						</ion-item-option>
+					</ion-item-options>
+				</ion-item-sliding>
+			</ion-list>
+		</div>
+	</div>
+
+	<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
+		<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+			<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
+			Create Basket
+		</button>
+	</div>
+
 </div>
 <ng-template #emptyBasket>
 

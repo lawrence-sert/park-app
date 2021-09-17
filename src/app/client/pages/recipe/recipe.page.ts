@@ -74,8 +74,12 @@ export class RecipePage implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		public db: AngularFirestore,
 		private modalCtrl : ModalController,
-		) { 
+		) {}
 
+	
+
+	ngOnInit() {
+		this.type = 'ingredients';
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
@@ -96,12 +100,6 @@ export class RecipePage implements OnInit {
 		this.activatedRoute.params.subscribe(parameter => {
 			this.parameterValue = parameter.recipeID
 		});
-
-		
-	}
-
-	ngOnInit() {
-		this.type = 'ingredients';
 
 		this.recipeRef = this.db.collection<{}>('recipes', ref => ref.where('id', '==', this.parameterValue));
 		this.recipe$ = this.recipeRef.snapshotChanges().pipe(
