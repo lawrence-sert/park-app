@@ -7,7 +7,7 @@ import { AutoLoginGuard } from 'src/app/auth/guards/auto-login.guard';
 const routes: Routes = [
 {
   path: '',
-  redirectTo: 'sign-in',
+  redirectTo: 'dashboard',
   pathMatch: 'full'
 },
 

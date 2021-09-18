@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalNotificationService } from 'src/app/client/services/local-notification.service';
-import { UserService } from 'src/app/auth/services/user.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 import { TipsService } from 'src/app/client/services/tips.service';
@@ -109,8 +107,6 @@ export class DashComponent implements OnInit {
 		}
 	}
 	constructor(
-		private localNotification: LocalNotificationService,
-		public  usersService: UserService,
 		private tipsService: TipsService,
 		private postsService: PostsService,
 		private postsCatService: PostsCatService,
@@ -151,12 +147,5 @@ export class DashComponent implements OnInit {
 
 	}
 
-	sendLocalNotification() {
-		this.localNotification.showLocalNotification (
-			1,
-			'title',
-			'TEST NOTIFICATION'
-			);
-	}
 
 }

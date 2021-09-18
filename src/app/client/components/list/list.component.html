@@ -24,7 +24,7 @@
 
 
 
-<div *ngIf="basket?.length > 0; else emptyBasket">
+<div *ngIf="basket?.length > 0; else emptyBasket" class="g-margin-t-60--xs">
 	<div class="row">
 		<div class="col-xs-12">
 			<ion-list>
@@ -60,10 +60,35 @@
 		</button>
 	</div>
 
+
 </div>
 <ng-template #emptyBasket>
 
-	
+	<ion-row class="emptybasket">
+		<ion-col>
+
+			<ion-row class="emptyImage">
+				<ion-col>
+					<img class="img-responsive g-margin-b-30--xs" src="assets/svg/no-basket.svg">
+				</ion-col>
+			</ion-row>
+
+			<ion-row class="emptyImage">
+				<ion-col class="g-text-center--xs">
+					<h2 class="g-font-size-18--xs g-color--primary">No Basket Yet</h2>
+					<p>
+						Seems like you have not yet created a basket. Please click the button below to create your first basket.
+						<br>
+						<br>
+						Not sure how the Park&Pick basket works click here to 
+						<a routerLink="/basket-tour">take a tour</a>
+						of the basket experience.
+					</p>
+				</ion-col>
+			</ion-row>
+
+		</ion-col>
+	</ion-row>
 
 	<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
 		<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">

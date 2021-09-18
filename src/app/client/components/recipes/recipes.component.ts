@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { UserService } from 'src/app/auth/services/user.service';
+
 import { RecipesService } from 'src/app/client/services/recipes.service';
 import { Recipes } from 'src/app/client/models/recipes.model';
 
@@ -116,7 +116,6 @@ export class RecipesComponent implements OnInit {
   }
 
   constructor(
-    public usersService: UserService,
     private recipesService: RecipesService,
     public db: AngularFirestore,
     ) { }

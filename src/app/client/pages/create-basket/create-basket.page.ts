@@ -3,8 +3,6 @@ import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
 
-
-
 import { BasketService } from 'src/app/client/services/basket.service';
 import { Basket } from 'src/app/client/models/basket.model';
 
@@ -17,7 +15,6 @@ import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 })
 export class CreateBasketPage implements OnInit {
 
-  myDate = new Date();
 
   uid: any;
   crrntUsr: any;
