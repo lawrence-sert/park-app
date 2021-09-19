@@ -120,7 +120,7 @@ export class AddBasketPage implements OnInit {
 
 	selectedCategory(){
 		this.categorySubscription.unsubscribe();
-		this.categorySubscription = this.afs.collection<Product>('products', ref => ref.where('Category', '==', this.productsCategory.value))
+		this.categorySubscription = this.afs.collection<Product>('products', ref => ref.where('category', '==', this.productsCategory.value))
 		.valueChanges({ idField: 'id'}).subscribe((products) => {
 			this.producted = products;
 		})
@@ -137,7 +137,7 @@ export class AddBasketPage implements OnInit {
 
 	//get all categories
 	getProducts(){
-		return this.afs.collection<Product>('products', ref => ref.orderBy('Item'))
+		return this.afs.collection<Product>('products', ref => ref.orderBy('item'))
 		.valueChanges({ idField: 'id'})
 		.subscribe((products) => {
 			this.productList = products

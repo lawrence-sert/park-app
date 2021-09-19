@@ -165,7 +165,7 @@ export class MarketPage implements OnInit {
 
 
     //Veggies Queries
-    this.veggies = this.db.collection('/products', ref => ref.where('Category', '==', 'vegetables'))
+    this.veggies = this.db.collection('/products', ref => ref.where('category', '==', 'vegetables'))
     .valueChanges({ idField: 'id'})
     .subscribe((products) => {
       this.allVeggies = products;
@@ -180,7 +180,7 @@ export class MarketPage implements OnInit {
 
 
     //Fruits queries
-    this.fruits = this.db.collection('/products', ref => ref.where('Category', '==', 'fruits'))
+    this.fruits = this.db.collection('/products', ref => ref.where('category', '==', 'fruits'))
     .valueChanges({ idField: 'id'})
     .subscribe((products) => {
       this.allFruits = products;
@@ -194,7 +194,7 @@ export class MarketPage implements OnInit {
 
 
     //Processed food queries
-    this.foods = this.db.collection('/products', ref => ref.where('Category', '==', 'foods'))
+    this.foods = this.db.collection('/products', ref => ref.where('category', '==', 'foods'))
     .valueChanges({ idField: 'id'})
     .subscribe((products) => {
       this.allFoods = products;
@@ -208,7 +208,7 @@ export class MarketPage implements OnInit {
 
 
     //Home Care Queries
-    this.care = this.db.collection('/products', ref => ref.where('Category', '==', 'care'))
+    this.care = this.db.collection('/products', ref => ref.where('category', '==', 'care'))
     .valueChanges({ idField: 'id'})
     .subscribe((products) => {
       this.allCare = products;

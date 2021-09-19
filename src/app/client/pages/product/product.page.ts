@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/auth/services/user.service';
+import { AlertController, IonSlides, ModalController, AnimationController } from '@ionic/angular';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
@@ -8,6 +9,8 @@ import {Product} from 'src/app/client/models/product.model';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
 @Component({
 	selector: 'app-product',
@@ -19,16 +22,7 @@ export class ProductPage implements OnInit {
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
-	userEmail: any;
-	firstname: any;
-	lastname: any;
-	displayName: any;
-	email: any;
-	emailVerified?: boolean;
-	location: any;
-	accountType?: any;
-	firstrun : any;
-	phone : any;
+	photoUrl : any;
 
 	type : any;
 
@@ -42,7 +36,8 @@ export class ProductPage implements OnInit {
 		public productService: ProductsService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		public db: AngularFirestore
+		public db: AngularFirestore,
+		private modalCtrl : ModalController
 		) {}
 
 	ngOnInit() {
@@ -55,15 +50,7 @@ export class ProductPage implements OnInit {
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
-			this.firstrun = this.userRef.firstrun;
-			this.firstname = this.userRef.firstname;
-			this.lastname = this.userRef.surname;
-			this.displayName = this.userRef.displayName;
-			this.emailVerified = this.userRef.emailVerified;
-			this.accountType = this.userRef.accountType;
-			this.location = this.userRef.location;
-			this.phone = this.userRef.phone;
-			this.email = this.userRef.email;
+			this.photoUrl = this.userRef.photoUrl;
 		});
 
 		this.activatedRoute.params.subscribe(parameter => {
@@ -82,6 +69,22 @@ export class ProductPage implements OnInit {
 
 	segmentChanged(ev: any) {
 		console.log('Segment changed', ev);
+	}
+
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: ImageUpPage,
+			cssClass: 'app-image-up',
+			backdropDismiss: false
+		});
+
+		await modal.present();
+
+	}
+
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
 	}
 
 }

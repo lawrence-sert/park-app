@@ -1128,6 +1128,10 @@
   line-height: 40px;
 }
 
+.g-line-height--60 {
+  line-height: 60px;
+}
+
 .g-line-height--normal {
   line-height: normal;
 }

@@ -36,6 +36,9 @@ export class BasketService {
 
 	createBasket(uid, data) {
 
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+
 		var text = "";
 		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -46,7 +49,7 @@ export class BasketService {
 
 		// Add a new document in collection "cities"
 		return this.firestore
-		.collection(`users/${uid}/basket`).doc(basket_id).set({
+		.collection(`users/${id}/basket`).doc(basket_id).set({
 			basket_id : basket_id,
 			basket_name : data.basket_name,
 			basket_date : firebase.default.firestore.FieldValue.serverTimestamp(),

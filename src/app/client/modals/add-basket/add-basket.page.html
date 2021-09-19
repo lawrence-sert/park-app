@@ -7,7 +7,7 @@
 	<div class="price_total g-padding-y-30--xs g-font-size-24--xs" *ngIf="basketForm.value.quantity">
 		<span class="light g-font-size-14--xs">RWF</span> 
 			<span *ngFor="let prdct of product_selected;let i = index">
-				{{basketForm.value.quantity * prdct.Price}}
+				{{basketForm.value.quantity * prdct.price}}
 			</span>
 		<span class="light g-font-size-14--xs">.00</span>
 	</div>
@@ -44,7 +44,7 @@
 					formControlName="product"
 					>
 					<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
-						{{prodcts.Item}}
+						{{prodcts.item}}
 					</ion-select-option>
 				</ion-select>
 			</ion-item> 
@@ -66,7 +66,7 @@
 		
 		<div class="product-image g-text-center--xs" *ngIf="basketForm.value.product">
 			<span *ngFor="let prdct of product_selected">
-				<img src="{{prdct.Image}}" class="img-responsive">
+				<img src="{{prdct.image}}" class="img-responsive">
 			</span>
 		</div>
 

@@ -3,17 +3,16 @@
 
 	<div *ngFor="let product of product$ | async; index as i">
 		<!--========== PROMO BLOCK ==========-->
-		<div class="g-fullheight--md js__parallax-window" style="background: url({{product.Image}}) 0% 0 no-repeat fixed;">
+		<div class="g-fullheight--md js__parallax-window" style="background: url({{product.image}}) 0% 0 no-repeat fixed;">
 			<div class="g-container--md g-text-center--xs g-ver-center--md g-padding-y-0--md">
 				<div class="g-margin-b-60--xs g-padding-b-100-xs">
 					<ion-toolbar >
 						<ion-buttons slot="start">
 							<ion-back-button></ion-back-button>
 						</ion-buttons>
-						<span slot="end" class="g-padding-r-10--xs">
+						<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
 							<img class="profile-user-img-main  img-circle "
-							src="assets/img/header-logo.png"
-							alt="Park&Pick Logo">
+							src="{{photoUrl}}">
 						</span>
 					</ion-toolbar>
 				</div>
@@ -24,12 +23,12 @@
 		<ion-row>
 			<ion-col size="8" class="pull-left">
 				<h2 class="g-font-size-16--xs g-color--primary">
-					{{product.Item}}
+					{{product.item}}
 				</h2>
 			</ion-col>
 			<ion-col size="4">
 				<h2 class="g-font-size-16--xs g-color--primary pull-right">
-					{{product.Price}} <span class="light">RWF</span>
+					{{product.price}} <span class="light">RWF</span>
 				</h2>
 			</ion-col>
 		</ion-row>
@@ -42,7 +41,7 @@
 
 		<ion-row class="g-margin-t-20--xs">
 			<ion-col size="4">
-				<img src="{{product.Image}}" class="product-image-thumb img-responsive" />
+				<img src="{{product.image}}" class="product-image-thumb img-responsive" />
 			</ion-col>
 			<ion-col size="8">
 
@@ -50,11 +49,11 @@
 					<ion-col>
 						<span class="product-detail-list g-font-size-12--xs">
 							<span class="pull-left heavy dashed">Category</span>
-							<span class="pull-right g-color--primary heavy cap-me">{{product.Category}}</span>
+							<span class="pull-right g-color--primary heavy cap-me">{{product.category}}</span>
 						</span><br>
 						<span class="product-detail-list g-font-size-12--xs ">
 							<span class="pull-left heavy dashed">Caption</span>
-							<span class="pull-right g-color--primary heavy cap-me">{{product.Caption}}</span>
+							<span class="pull-right g-color--primary heavy cap-me">{{product.caption}}</span>
 						</span>
 					</ion-col>
 				</ion-row>
@@ -62,11 +61,11 @@
 				<ion-row class="recipe-stats">
 					<ion-col size="4">
 						<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
-						<span class="g-font-size-12--xs">{{product.Likes}}</span>
+						<span class="g-font-size-12--xs">{{product.likes}}</span>
 					</ion-col>
 					<ion-col size="4">
 						<i class="ti-comments g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>
-						<span class="g-font-size-12--xs">{{product.Comments}}</span>
+						<span class="g-font-size-12--xs">{{product.comments}}</span>
 					</ion-col>
 
 					<!-- chef small profile here -->
@@ -108,7 +107,7 @@
 			<div class="row" *ngSwitchCase="'description'">
 				<div class="col-xs-12">
 					<p class="g-font-size-12--xs">
-						{{product.Description}}
+						{{product.description}}
 					</p>
 				</div>
 			</div>

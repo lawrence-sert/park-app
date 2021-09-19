@@ -1,3 +1,43 @@
-<p>
-  watch works!
-</p>
+<div class="row">
+	<div class="col-xs-9">
+		<h2 class="g-font-size-24--xs g-color--primary">
+			In Moving<br>
+			<span class="light">Picture</span>
+		</h2>
+	</div>
+	<div class="col-xs-3 g-text-center--xs g-text-center--xs g-padding-t-20--xs">
+		<i class="ti-face-smile g-font-size-40--xs g-color--primary"></i>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-10">
+		<ion-toolbar>
+			<!-- Scrollable Segment -->
+			<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+				<ion-segment-button value="breakfast" checked>
+					Cooking
+				</ion-segment-button>
+
+				<ion-segment-button value="lunch">
+					Live
+				</ion-segment-button>
+
+				<ion-segment-button value="supper">
+					Tips
+				</ion-segment-button>
+
+
+			</ion-segment>
+
+		</ion-toolbar>
+	</div>
+	<div class="col-xs-2">
+		<i class="ti-panel g-font-size-18--xs g-text-center--xs g-line-height--60"></i>
+	</div>
+
+</div>
+
+<div class="row" [ngSwitch]="type">
+	<div class="col-xs-12" *ngSwitchCase="'breakfast'"></div>
+</div>

@@ -44,35 +44,9 @@ ion-slide{
   }
 }
 
-ion-segment {
-  margin: 0 10px;
-}
 
-ion-segment-button {
-  text-transform: capitalize;
-  transform: scale(.8,.8);
-  --indicator-color: transparent;
-  color: #969696;
 
-  ion-label {
-    position: relative;
-    left: -17px;
-    font-weight: bolder;
-  }
-}
 
-.segment-button-checked {
-  color: #DE323A;
-}
-
-.segment-button-checked:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 50%;
-  border-bottom: 2px solid #DE323A;
-}
 
 .search {
       position: absolute;
@@ -110,3 +84,5 @@ ion-segment-button {
         }
       }
     }
+
+
