@@ -21,11 +21,11 @@ export class ProductsService {
 		.collection("product")
 		.add({
 			id: product.id,
-			Item: product.Item,
-			Category: product.Category,
-			Caption: product.Caption,
-			Description: product.Description,
-			Price: product.Price
+			Item: product.item,
+			Category: product.category,
+			Caption: product.caption,
+			Description: product.description,
+			Price: product.price
 		});
 	}
 
