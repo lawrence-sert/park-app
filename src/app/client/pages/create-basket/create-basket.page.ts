@@ -7,6 +7,7 @@ import { BasketService } from 'src/app/client/services/basket.service';
 import { Basket } from 'src/app/client/models/basket.model';
 
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
+import { AddPointsPage } from 'src/app/client/modals/add-points/add-points.page';
 
 @Component({
   selector: 'app-create-basket',
@@ -25,6 +26,8 @@ export class CreateBasketPage implements OnInit {
   basket : any;
   title : any;
 
+  type: string;
+
   constructor(
   	public authService: AuthService,
     public usersService: UserService,
@@ -35,6 +38,9 @@ export class CreateBasketPage implements OnInit {
     ) { }
 
   ngOnInit() {
+
+    this.type = 'account';
+
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
     const id = this.crrntUsr.uid;
@@ -43,7 +49,7 @@ export class CreateBasketPage implements OnInit {
       this.photoUrl = this.userRef.photoUrl;
     });
     //read my baskets 
-    this.basketService.getBasket(this.uid).subscribe((data) => {
+    this.basketService.getBasket(id).subscribe((data) => {
       this.basket = data.map((e) => {
         return {
           id: e.payload.doc.id,
@@ -132,6 +138,22 @@ export class CreateBasketPage implements OnInit {
 
     await alert.present();
   }
+
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+  }
+
+  async buyPoints() {
+    const modal = await this.modalCtrl.create({
+      component: AddPointsPage,
+      cssClass: 'app-comment',
+      backdropDismiss: false
+    });
+
+    await modal.present();
+
+  }
+
 
 
 }

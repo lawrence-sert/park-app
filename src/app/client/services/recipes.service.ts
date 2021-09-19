@@ -27,7 +27,7 @@ export class RecipesService {
 	}
 
 	getRecipes() {
-		return this.firestore.collection('recipes').snapshotChanges();
+		return this.firestore.collection('recipes', ref => ref.orderBy('recipe_date', 'desc')).snapshotChanges();
 	}
 
 	updateLike(pageId) {

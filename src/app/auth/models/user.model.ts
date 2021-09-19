@@ -15,4 +15,5 @@ export default class User {
   sector? : string;
   cell? : string;
   village? : string;
+  points? : number;
 }

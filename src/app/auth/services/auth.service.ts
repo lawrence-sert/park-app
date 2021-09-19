@@ -102,7 +102,8 @@ export class AuthService {
       firstrun : '0',
       accountType : '0',
       location : '-',
-      photoUrl : photoUrl
+      photoUrl : photoUrl,
+      points : 0
     }
     return userRef.set(userData, {
       merge: true

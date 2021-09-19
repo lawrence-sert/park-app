@@ -1,0 +1,48 @@
+<ion-content>
+	<div class="points-top">
+		<div class="rate g-padding-y-20--xs g-padding-x-20--xs">
+			<i class="ti-close pull-right g-font-size-18--xs g-color--primary" (click)="closeModal()"></i>
+		</div>
+		<div class="current-points g-padding-y-60--xs g-margin-t-30--xs">
+			<p class="g-text-center--xs g-color--white ">
+				<small>POINTS</small><br>
+				<span class="g-font-size-28--xs heavy">{{point}}</span>
+			</div>
+		</div>
+
+		<form [formGroup]="pointsForm" (ngSubmit)="onSubmit()" novalidate>
+			<div class="points-bot">
+
+				<div class="row">
+					<div class="col-xs-12 g-text-center--xs">
+						<div class="form-group">
+							<label class="g-font-size-32--xs">Buy Point</label>
+							<input 
+							type="number" 
+							class="form-control points-input" 
+							formControlName="points"
+							placeholder="0"
+							>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="points-diplay">
+							<p class="g-text-center--xs">1 Point = 100 RWF</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
+					<button type="submit" class="s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+						Buy Now
+					</button>
+				</div>
+				
+			</div>
+		</form>
+
+
+	</ion-content>

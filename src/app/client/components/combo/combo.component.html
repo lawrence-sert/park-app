@@ -1,3 +1,16 @@
-<p>
+<ion-row>
+	<ion-col size="9">
+		<h2 class="g-font-size-24--xs g-color--primary">
+			The Perfect <br>
+			<span class="light">Gift.</span>
+		</h2>
+	</ion-col>
 
-</p>
+	<ion-col size="3" class="g-text-center--xs g-padding-t-20--xs">
+		<i class="ti-gift g-font-size-40--xs g-color--primary"></i>
+	</ion-col>
+</ion-row>
+
+<div class="slides g-padding-x-10--xs g-margin-b-20--xs" *ngFor="let combo of combos">
+	<img src="{{combo.combo_image}}" [routerLink]="['/combo', combo.id]">
+</div>

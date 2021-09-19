@@ -1,0 +1,18 @@
+{
+ "__collections__": {
+   "tips": {
+
+     "1" : {
+      "id": 1,
+      "tip": "this is a tip",
+      "image": "Bret"
+   },
+   "2" : {
+      "id": 2,
+      "tip": "this is a tip the second",
+      "image": "Bret"
+   }
+
+}
+}
+}

@@ -138,21 +138,21 @@ export class RecipesComponent implements OnInit {
     });
 
     //Breakfast Queries
-    this.breakfast = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '1'))
+    this.breakfast = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '1').orderBy('recipe_date', 'desc')) 
     .valueChanges({ idField: 'id'})
     .subscribe((recipes) => {
       this.allBreakfast = recipes;
     });
 
     //Breakfast Queries
-    this.lunch = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '2'))
+    this.lunch = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '2').orderBy('recipe_date', 'desc'))
     .valueChanges({ idField: 'id'})
     .subscribe((recipes) => {
       this.allLunch = recipes;
     });
 
     //Breakfast Queries
-    this.diner = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '3'))
+    this.diner = this.db.collection('/recipes', ref => ref.where('recipe_category', '==', '3').orderBy('recipe_date', 'desc'))
     .valueChanges({ idField: 'id'})
     .subscribe((recipes) => {
       this.allDiner = recipes;

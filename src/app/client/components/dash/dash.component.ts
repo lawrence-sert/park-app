@@ -119,7 +119,7 @@ export class DashComponent implements OnInit {
 		console.log(randomNumber);
 
 		//read Tips
-		this.tips = this.db.collection('/tips')
+		this.tips = this.db.collection('/tips', ref => ref.orderBy('date', 'desc'))
 		.valueChanges({ idField: 'id'})
 		.subscribe((tips) => {
 			this.allTips = tips;

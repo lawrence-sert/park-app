@@ -41,7 +41,7 @@ export class ListComponent implements OnInit {
       this.photoUrl = this.userRef.photoUrl;
     });
     //read my baskets 
-    this.basketService.getBasket(this.uid).subscribe((data) => {
+    this.basketService.getBasket(id).subscribe((data) => {
       this.basket = data.map((e) => {
         return {
           id: e.payload.doc.id,

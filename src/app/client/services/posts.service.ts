@@ -22,7 +22,7 @@ export class PostsService {
   	 }
 
   	 getPosts() {
-		return this.firestore.collection('posts').snapshotChanges();
+		return this.firestore.collection('posts', ref => ref.orderBy('post_date', 'desc')).snapshotChanges();
 	}
 
   createPostBookmark(id, data) {

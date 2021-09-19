@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Basket } from 'src/app/client/models/basket.model';
+import { Router } from "@angular/router";
 import { UserService } from 'src/app/auth/services/user.service';
 import * as firebase from 'firebase';
 import { ToastrService } from 'ngx-toastr';
@@ -25,11 +26,12 @@ export class BasketService {
 		public usersService: UserService,
 		private toastr: ToastrService,
 		public db: AngularFireDatabase,
-		
-		) {}
+		public router: Router, 
+		) {
+	}
 
 	getBasket(uid) {
-		return this.firestore.collection(`users/${uid}/basket`).snapshotChanges();
+		return this.firestore.collection(`users/${uid}/basket`, ref => ref.orderBy('basket_date', 'desc')).snapshotChanges();
 	}
 
 	
@@ -69,7 +71,11 @@ export class BasketService {
 	deleteBasket(uid, Basketid:string): Promise<void> {
 		return this.firestore.collection(`users/${uid}/basket/`).doc(Basketid).delete()
 		.then(() => {
+
+			//create a record in recent activity
+
 			this.toastr.success('Basket Removed', '');
+			this.router.navigate(['/create-basket']);
 		}).catch((error) => {
 			this.toastr.warning(error.message, 'Something Wrong');
 		})

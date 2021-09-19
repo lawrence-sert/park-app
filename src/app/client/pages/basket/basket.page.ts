@@ -174,7 +174,7 @@ export class BasketPage implements OnInit {
 	}
 
 
-	deleteBasket( basketItemid) {
+	deleteBasket(basketItemid) {
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
 		this.basketService.deleteBasket(id, basketItemid );

@@ -9,6 +9,7 @@ import { CreateBasketPageRoutingModule } from './create-basket-routing.module';
 import { CreateBasketPage } from './create-basket.page';
 
 import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+import { AddPointsPageModule } from 'src/app/client/modals/add-points/add-points.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
     FormsModule,
     IonicModule,
     CreateBasketPageRoutingModule,
-    ImageUpPageModule
+    ImageUpPageModule,
+    AddPointsPageModule
   ],
   declarations: [CreateBasketPage]
 })

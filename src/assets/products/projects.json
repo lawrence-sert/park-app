@@ -1,0 +1,68 @@
+{
+ "__collections__": {
+   "recipes": {
+
+     "1" : {
+      "id": "1",
+      "recipe_name": "Lentil And Pea Curry with Wild Rice",
+      "recipe_date": "02102021",
+      "recipe_image": "assets/img/recipes/curry.png",
+      "recipe_description": "A simple, comforting vegetarian curry with mild spicing. If you would like a hotter dish, add more cayenne pepper, or use a stronger curry power, or add some chopped fresh chillies. And if you’re in a hurry, you can use tinned, drained lentils instead of cooking them from scratch. Serve with delicious, nutritious wild rice which (like lentils) is one of the ingredients in our list of KNORR Future 50 Foods!",
+      "recipe_category": "1",
+      "recipe_people": "4",
+      "recipe_time": "40",
+      "recipe_like": "0",
+      "recipe_chef": "1",
+      "recipe_level": "Intermediate",
+      "recipe_ingredients" : {
+         "ingredient1" : "1",
+         "ingredient1" : "2",
+         "ingredient1" : "3",
+         "ingredient1" : "4",
+         "ingredient1" : "5"
+      },
+      "recipe_method" : {
+         "method1" : "this",
+         "method1" : "and",
+         "method1" : "then"
+      },
+      "recipe_nutrition" : {
+         "nutrition1" : "1",
+         "nutrition1" : "2",
+         "nutrition1" : "3"
+      }
+   },
+   "2" : {
+      "id": "2",
+      "recipe_name": "Baked Creamy Spinach",
+      "recipe_date": "02102021",
+      "recipe_image": "assets/img/recipes/second.png",
+      "recipe_description": "Look no further if you want to try a healthy veggie bake that won’t take longer than 35 minutes from prep to plate. Flavoured with Knorr Veggie Bake Creamy Cheese, this bake is a favourite with the kids (and adults).",
+      "recipe_category": "1",
+      "recipe_people": "3",
+      "recipe_time": "35",
+      "recipe_like": "0",
+      "recipe_chef": "2",
+      "recipe_level": "Intermediate",
+      "recipe_ingredients" : {
+         "ingredient1" : "1",
+         "ingredient1" : "2",
+         "ingredient1" : "3",
+         "ingredient1" : "4",
+         "ingredient1" : "5"
+      },
+      "recipe_method" : {
+         "method1" : "this",
+         "method1" : "and",
+         "method1" : "then"
+      },
+      "recipe_nutrition" : {
+         "nutrition1" : "1",
+         "nutrition1" : "2",
+         "nutrition1" : "3"
+      }
+   }
+
+}
+}
+}

@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import User from 'src/app/auth/models/user.model';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -11,6 +12,12 @@ import { ToastrService } from 'ngx-toastr';
 export class UserService {
 
 	private dbPath = '/users';
+
+	uid: any;
+	userRef: any;
+	crrntUsr: any;
+	displayName: any;
+	photoUrl: any;
 
 
 	UsersRef: AngularFirestoreCollection<User>;
@@ -99,6 +106,49 @@ export class UserService {
 		.doc(uid)
 		.update({
 			location: data
+		});
+	}
+
+
+	addPoints(data) {
+		// get user information
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;		
+		var that = this;
+		this.db.firestore.collection("users").where("uid", "==", id)
+		.get()
+		.then(function(querySnapshot) {
+			querySnapshot.forEach(function(doc) {
+				// doc.data() is never undefined for query doc snapshots
+				console.log(doc.id, " => ", doc.data());
+
+				return that.db.firestore.runTransaction(function(transaction) {
+					// This code may get re-run multiple times if there are conflicts.
+					return transaction.get(doc.ref).then(function(doc) {
+						if (!doc.exists) {
+							throw "Document does not exist!";
+						}
+						//THIS IS WHERE TO DO THE INCREMENT
+						var new_score = doc.data().points + data.points;
+						transaction.update(doc.ref, { points: new_score });
+					});
+				}).then(function() {
+					return that.db.firestore
+					.collection(`users/${id}/account`)
+					.add({
+						action : "add",
+						complete : false,
+						points : data.points,
+						date : firebase.default.firestore.FieldValue.serverTimestamp()
+					});
+				}).catch(function(error) {
+					console.log(error);
+				});
+
+			});
+		})
+		.catch(function(error) {
+			console.log("Error getting documents: ", error);
 		});
 	}
 

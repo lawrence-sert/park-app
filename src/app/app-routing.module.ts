@@ -133,7 +133,16 @@ const routes: Routes = [
 {
   path: 'post-options',
   loadChildren: () => import('./client/modals/post-options/post-options.module').then( m => m.PostOptionsPageModule)
+},
+{
+  path: 'add-points',
+  loadChildren: () => import('./client/modals/add-points/add-points.module').then( m => m.AddPointsPageModule)
+},
+{
+  path: 'combo/:comboID',
+  loadChildren: () => import('./client/pages/combo/combo.module').then( m => m.ComboPageModule)
 }
+
 
 ];
 

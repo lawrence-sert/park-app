@@ -24,7 +24,7 @@ export class MessagesService {
 
   //get user messages
 	getUserMessages(id) {
-		return this.firestore.collection(`users/${id}/messages`).snapshotChanges();
+		return this.firestore.collection(`users/${id}/messages`, ref => ref.orderBy('date', 'desc')).snapshotChanges();
 	}
 
   createMessage(data) {

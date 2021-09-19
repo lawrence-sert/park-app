@@ -8,7 +8,7 @@
 		</ion-buttons>
 
 		<ion-title class="ion-text-center">
-			Create Basket
+			Your Basket
 		</ion-title>
 
 		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
@@ -30,97 +30,136 @@
 		</div>
 	</div>
 
-	<div class="search" *ngIf="basket?.length > 0">
-		<ion-item lines="none" class="ion-no-padding">
-			<ion-icon slot="start" name="search-outline"></ion-icon>
-			<ion-input placeholder="search basket..."></ion-input>
-			<span slot='end'>
-				<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
-			</span>
-		</ion-item>
-	</div>
+	
+
+	<!-- Scrollable Segment -->
+	<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+		<ion-segment-button value="recent" size="3" checked>
+			Recent
+		</ion-segment-button>
+
+		<ion-segment-button value="baskets" size="3">
+			Baskets
+		</ion-segment-button>
+
+		<ion-segment-button value="combos" size="3">
+			Combos
+		</ion-segment-button>
+
+		<ion-segment-button value="account" size="3">
+			Account
+		</ion-segment-button>
+
+	</ion-segment>
 
 </ion-header>
 
 
 <ion-content>
 
-	<div *ngIf="basket?.length > 0; else emptyBasket" class="g-margin-t-60--xs">
-		<div class="row">
-			<div class="col-xs-12">
-				<ion-list>
-					<ion-item-sliding *ngFor="let basket of basket">
-						<ion-item lines="full" [routerLink]="['/basket', basket.basket_id]">
-							<span slot="start">
-								<i class="fas fa-shopping-basket g-font-size-18--xs g-color--primary"></i>
-							</span>
-							<ion-label>
-								<h2 class="g-font-size-12--xs g-color--primary heavy">{{basket.basket_name}}</h2>
-								<p class="g-font-size-10--xs">{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}</p>
-							</ion-label>
-							<ion-note slot="end">
-								<span class="g-font-size-14--xs g-color--primary">
-									<strong>{{basket.basket_cost}}</strong>RWF
-								</span>
-							</ion-note>
-						</ion-item>
-						<ion-item-options side="end">
-							<ion-item-option color="danger" (click)="deleteBasket(basket.basket_id)">
-								<i class="ti-trash g-font-size-18--xs"></i>
-							</ion-item-option>
-						</ion-item-options>
-					</ion-item-sliding>
-				</ion-list>
+	<div class="row" [ngSwitch]="type">
+		<div class="col-xs-12" *ngSwitchCase="'recent'"></div>
+
+		<div class="col-xs-12" *ngSwitchCase="'baskets'">
+			<div *ngIf="basket?.length > 0; else emptyBasket" class="g-margin-t-60--xs">
+				<div class="search" *ngIf="basket?.length > 0">
+					<ion-item lines="none" class="ion-no-padding">
+						<ion-icon slot="start" name="search-outline"></ion-icon>
+						<ion-input placeholder="search basket..."></ion-input>
+						<span slot='end'>
+							<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+						</span>
+					</ion-item>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<ion-list>
+							<ion-item-sliding *ngFor="let basket of basket">
+								<ion-item lines="full" [routerLink]="['/basket', basket.basket_id]">
+									<span slot="start">
+										<i class="fas fa-shopping-basket g-font-size-18--xs g-color--primary"></i>
+									</span>
+									<ion-label>
+										<h2 class="g-font-size-12--xs g-color--primary heavy">{{basket.basket_name}}</h2>
+										<p class="g-font-size-10--xs">{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}</p>
+									</ion-label>
+									<ion-note slot="end">
+										<span class="g-font-size-14--xs g-color--primary">
+											<strong>{{basket.basket_cost}}</strong>RWF
+										</span>
+									</ion-note>
+								</ion-item>
+								<ion-item-options side="end">
+									<ion-item-option color="danger" (click)="deleteBasket(basket.basket_id)">
+										<i class="ti-trash g-font-size-18--xs"></i>
+									</ion-item-option>
+								</ion-item-options>
+							</ion-item-sliding>
+						</ion-list>
+					</div>
+				</div>
+
+				<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
+					<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+						<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
+						Create Basket
+					</button>
+				</div>
+
+
 			</div>
-		</div>
+			<ng-template #emptyBasket>
 
-		<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
-			<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
-				<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
-				Create Basket
-			</button>
-		</div>
-
-
-	</div>
-	<ng-template #emptyBasket>
-
-		<ion-row class="emptybasket">
-			<ion-col>
-
-				<ion-row class="emptyImage">
+				<ion-row class="emptybasket">
 					<ion-col>
-						<img class="img-responsive g-margin-b-30--xs" src="assets/svg/no-basket.svg">
+
+						<ion-row class="emptyImage">
+							<ion-col>
+								<img class="img-responsive g-margin-b-30--xs" src="assets/svg/no-basket.svg">
+							</ion-col>
+						</ion-row>
+
+						<ion-row class="emptyImage">
+							<ion-col class="g-text-center--xs">
+								<h2 class="g-font-size-18--xs g-color--primary">No Basket Yet</h2>
+								<p>
+									Seems like you have not yet created a basket. Please click the button below to create your first basket.
+									<br>
+									<br>
+									Not sure how the Park&Pick basket works click here to 
+									<a routerLink="/basket-tour">take a tour</a>
+									of the basket experience.
+								</p>
+							</ion-col>
+						</ion-row>
+
 					</ion-col>
 				</ion-row>
 
-				<ion-row class="emptyImage">
-					<ion-col class="g-text-center--xs">
-						<h2 class="g-font-size-18--xs g-color--primary">No Basket Yet</h2>
-						<p>
-							Seems like you have not yet created a basket. Please click the button below to create your first basket.
-							<br>
-							<br>
-							Not sure how the Park&Pick basket works click here to 
-							<a routerLink="/basket-tour">take a tour</a>
-							of the basket experience.
-						</p>
-					</ion-col>
-				</ion-row>
+				<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
+					<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+						<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
+						Create Basket
+					</button>
+				</div>
 
-			</ion-col>
-		</ion-row>
-
-		<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
-			<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
-				<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
-				Create Basket
-			</button>
+			</ng-template>
 		</div>
 
-	</ng-template>
+		<div class="col-xs-12" *ngSwitchCase="'combos'"></div>
 
+		<div class="col-xs-12" *ngSwitchCase="'account'">
+			
 
+			<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="buyPoints()">
+					<button type="submit" class="s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+						<i class="ti-money g-font-size-18--xs"></i> 
+						Get Park&Pick Points
+					</button>
+				</div>
+		</div>
+	</div>
 
 </ion-content>
 

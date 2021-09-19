@@ -22,14 +22,12 @@
 		</ion-toolbar>
 
 		<div class="header-basket">
-			<div class="basket-icon g-text-center--xs">
-				<i class="ti-shopping-cart-full g-font-size-80--xs g-color--white"></i>
-			</div>
 			<div class="basket-cost">
 				<div class="row"> 
 					<div class="col-xs-6 created-date g-padding-t-20--xs">
 						<span class="g-color--white g-font-size-12--xs">
 							<i class="ti-calendar g-font-size-18--xs"></i> 
+							{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
 						</span>
 					</div>
 
@@ -112,48 +110,7 @@
 
 		<!-- Basket history activity -->
 		<div *ngSwitchCase="'basket-history'">	
-				<ion-searchbar></ion-searchbar>
 
-<!-- Searchbar with cancel button always shown -->
-<ion-searchbar showCancelButton="always"></ion-searchbar>
-
-<!-- Searchbar with cancel button never shown -->
-<ion-searchbar showCancelButton="never"></ion-searchbar>
-
-<!-- Searchbar with cancel button shown on focus -->
-<ion-searchbar showCancelButton="focus"></ion-searchbar>
-
-<!-- Searchbar with danger color -->
-<ion-searchbar color="danger"></ion-searchbar>
-
-<!-- Searchbar with value -->
-<ion-searchbar value="Ionic"></ion-searchbar>
-
-<!-- Searchbar with telephone type -->
-<ion-searchbar type="tel"></ion-searchbar>
-
-<!-- Searchbar with numeric inputmode -->
-<ion-searchbar inputmode="numeric"></ion-searchbar>
-
-<!-- Searchbar disabled -->
-<ion-searchbar disabled="true"></ion-searchbar>
-
-<!-- Searchbar with a cancel button and custom cancel button text -->
-<ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
-
-<!-- Searchbar with a custom debounce -->
-<ion-searchbar debounce="500"></ion-searchbar>
-
-<!-- Animated Searchbar -->
-<ion-searchbar animated></ion-searchbar>
-
-<!-- Searchbar with a placeholder -->
-<ion-searchbar placeholder="Filter Schedules"></ion-searchbar>
-
-<!-- Searchbar in a Toolbar -->
-<ion-toolbar>
-  <ion-searchbar></ion-searchbar>
-</ion-toolbar>
 		</div>
 
 		<!-- Basket history activity -->
@@ -185,22 +142,25 @@
 	
 </ion-content>
 
-<!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
-<ion-fab vertical="bottom" horizontal="start" slot="fixed">
-	<ion-fab-button>
-		<i class="ti-list g-font-size-18--xs"></i>
-	</ion-fab-button>
-	<ion-fab-list side="end">
-		<ion-fab-button >
-			<i class="ti-trash g-font-size-18--xs"></i>
-		</ion-fab-button>
+<div *ngFor="let basket of basket$ | async; index as i">
+	<ion-fab vertical="bottom" horizontal="start" slot="fixed">
 		<ion-fab-button>
-			<i class="ti-trash g-font-size-18--xs"></i>
+			<i class="ti-list g-font-size-18--xs"></i>
 		</ion-fab-button>
-	</ion-fab-list>
-</ion-fab>
+		<ion-fab-list side="end">
+			<ion-fab-button color="secondary">
+				<i class="ti-pencil-alt g-font-size-18--xs"></i>
+			</ion-fab-button>
+			<ion-fab-button color="medium">
+				<i class="ti-share g-font-size-18--xs"></i>
+			</ion-fab-button>
+			<ion-fab-button color="warning" (click)="deleteBasket(basket.basket_id)">
+				<i class="ti-trash g-font-size-18--xs"></i>
+			</ion-fab-button>
+		</ion-fab-list>
+	</ion-fab>
+</div>
 
-<!-- fab placed to the bottom and start and on the bottom edge of the content overlapping footer with a list to the right -->
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
 	<ion-fab-button size="small" (click)="openCalModalBasket()">
 		<i class="ti-plus"></i>
