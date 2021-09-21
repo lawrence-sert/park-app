@@ -21,13 +21,13 @@ export interface imageData{
 export class ImageUpPage implements OnInit {
 
 	uid: any;
-	crrntUsr : any;
-	userRef : any;
+	crrntUsr: any;
+	userRef: any;
 	photoUrl: any;
 
-	fileName:string;
+	fileName: string;
 	fileSize: string;
-	isLoading:boolean;
+	isLoading: boolean;
 	isLoaded: boolean;
 	private imageCollection: AngularFirestoreCollection<imageData>;
 	imagefile: Observable<imageData[]>;
@@ -37,11 +37,11 @@ export class ImageUpPage implements OnInit {
 	FileImageUPload: Observable<any>;
 	UserUID: AngularFirestoreDocument;
 
-	constructor( 
-		private database: AngularFirestore, 
+	constructor(
+		private database: AngularFirestore,
 		private storage: AngularFireStorage,
-		private router: Router, 
-		private loading :LoadingController, 
+		private router: Router,
+		private loading: LoadingController,
 		private userService: UserService,
 		private modalCtr: ModalController
 		) { }
@@ -52,7 +52,7 @@ export class ImageUpPage implements OnInit {
 		this.imageCollection = this.database.collection<imageData>('loginUploads');
 		this.imagefile = this.imageCollection.valueChanges();
 
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;
 		this.userService.getUserDoc(id).subscribe(res => {
 			this.userRef = res;
@@ -62,13 +62,13 @@ export class ImageUpPage implements OnInit {
 
 	async uploadImagetoFirebase(event){
 
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;
 
 		const load = await this.loading.create({
 			spinner:'dots',
 		})
-		load.present();
+				load.present();
 
 		const file = event.target.files;
 		console.log(file);

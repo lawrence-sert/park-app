@@ -4,10 +4,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/auth/services/user.service';
 import { MenuController } from '@ionic/angular';
-
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
-
-
 
 @Component({
 	selector: 'app-dashboard',
@@ -54,7 +51,6 @@ export class DashboardPage implements OnInit {
 		else {
 			this.menuCtrl.enable(true);
 		}
-		
 	}
 
 	segmentChanged(ev: any) {
@@ -67,12 +63,10 @@ export class DashboardPage implements OnInit {
 			cssClass: 'app-image-up',
 			backdropDismiss: false
 		});
-		
 		await modal.present();
-		
 	}
 	async close() {
-		const closeModal: string = "Modal Closed";
+		const closeModal: string = 'Modal Closed';
 		await this.modalCtrl.dismiss(closeModal);
 	}
 
