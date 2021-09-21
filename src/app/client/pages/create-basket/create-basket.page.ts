@@ -2,6 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
+import User from 'src/app/auth/models/user.model';
+
 
 import { BasketService } from 'src/app/client/services/basket.service';
 import { Basket } from 'src/app/client/models/basket.model';
@@ -21,12 +23,18 @@ export class CreateBasketPage implements OnInit {
   crrntUsr: any;
   userRef: any;
   photoUrl: any;
+  userEmail: any;
+  email: any;
+  phone: any;
+  points: any;
 
   //basket
   basket : any;
   title : any;
 
   type: string;
+
+  account_activity: any;
 
   constructor(
   	public authService: AuthService,
@@ -47,6 +55,9 @@ export class CreateBasketPage implements OnInit {
     this.usersService.getUserDoc(id).subscribe(res => {
       this.userRef = res;
       this.photoUrl = this.userRef.photoUrl;
+      this.email = this.userRef.email;
+      this.phone = this.userRef.phone;
+      this.points = this.userRef.points;
     });
     //read my baskets 
     this.basketService.getBasket(id).subscribe((data) => {
@@ -57,6 +68,17 @@ export class CreateBasketPage implements OnInit {
         } as Basket;
       });
     });
+
+    //read my baskets 
+    this.usersService.getAccountActivity(id).subscribe((data) => {
+      this.account_activity = data.map((e) => {
+        return {
+          id: e.payload.doc.id,
+          ...(e.payload.doc.data() as {}),
+        } as User;
+      });
+    });
+
   }
 
   async createBasketPrompt() {
@@ -152,6 +174,72 @@ export class CreateBasketPage implements OnInit {
 
     await modal.present();
 
+  }
+
+
+  async changePhone() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Change Your Phone Number',
+      inputs: [
+        {
+          name: 'phone',
+          type: 'text',
+          placeholder: 'Phone Number'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Change',
+          handler: (data: any) => {
+            console.log('Saved Information', data);
+            this.usersService.changePhone(this.uid , data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+
+  async changeEmail() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Change Your Email',
+      inputs: [
+        {
+          name: 'email',
+          type: 'text',
+          placeholder: 'Email Address'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Change',
+          handler: (data: any) => {
+            console.log('Saved Information', data);
+            this.usersService.changeEmail(this.uid , data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 

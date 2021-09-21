@@ -10,6 +10,7 @@ import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 import { BasketService } from 'src/app/client/services/basket.service';
 import { Basket } from 'src/app/client/models/basket.model';
@@ -61,6 +62,10 @@ export class BasketPage implements OnInit {
 
 	pdctId: any;
 	pdctIded: any;
+
+	users : any;
+	Pdct_id : any;
+	challenges : any;
 	
 
 	constructor(
@@ -83,10 +88,26 @@ export class BasketPage implements OnInit {
 		const param = this.parameterValue;
 
 		this.type = 'basket-items';
-		
+
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
+
+
+		this.users = this.db.collection(`users/${id}/basket/$param/basket_items`).snapshotChanges();
+		this.users.subscribe((results) => {
+			//console.log(results)
+			results.forEach(el => {
+				console.log('Keys:',el.key,el.payload.val().product_id)
+				this.Pdct_id = el.payload.val().product_id;
+				console.log(this.Pdct_id);
+				console.log('here');
+			});
+		}
+		);
+
+
+
 
 		this.uid = this.crrntUsr.uid;
 		this.usersService.getUserDoc(id).subscribe(res => {
@@ -188,6 +209,8 @@ export class BasketPage implements OnInit {
 	editBasketItem(basketItemid) {
 		
 	}
+
+
 
 
 

@@ -58,7 +58,7 @@
 
 <div class="row" [ngSwitch]="type">
 	<div class="col-xs-12" *ngSwitchCase="'breakfast'">
-		<span *ngFor="let breakfast of allBreakfast">
+		<span *ngFor="let breakfast of allBreakfast; index as i">
 			<ion-card [routerLink]="['/recipe', breakfast.id]">
 				<img src="{{breakfast.recipe_image}}" alt="">
 				<ion-card-header>
@@ -89,7 +89,7 @@
 	</div>
 
 	<div class="col-xs-12" *ngSwitchCase="'lunch'">
-		<span *ngFor="let lunch of allLunch">
+		<span *ngFor="let lunch of allLunch; index as i">
 			<ion-card [routerLink]="['/recipe', lunch.id]">
 				<img src="{{lunch.recipe_image}}" alt="">
 				<ion-card-header>
@@ -119,7 +119,7 @@
 		</span>
 	</div>
 	<div class="col-xs-12" *ngSwitchCase="'supper'">
-		<span *ngFor="let diner of allDiner">
+		<span *ngFor="let diner of allDiner; index as i">
 			<ion-card [routerLink]="['/recipe', diner.id]">
 				<img src="{{diner.recipe_image}}" alt="">
 				<ion-card-header>

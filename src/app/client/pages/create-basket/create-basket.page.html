@@ -101,7 +101,7 @@
 				</div>
 
 				<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="createBasketPrompt()">
-					<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+					<button class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
 						<i class="fas fa-shopping-basket g-font-size-18--xs"></i> 
 						Create Basket
 					</button>
@@ -147,17 +147,86 @@
 			</ng-template>
 		</div>
 
-		<div class="col-xs-12" *ngSwitchCase="'combos'"></div>
+
+
+		<div class="col-xs-12" *ngSwitchCase="'combos'">
+			
+
+		</div>
+
+
 
 		<div class="col-xs-12" *ngSwitchCase="'account'">
+
+			<div class="row">
+				<div class="col-xs-12 g-padding-y-20--xs g-text-center--xs g-color--primary">
+					<i class="ti-wallet g-font-size-18--xs"></i>
+					<span class="g-font-size-42--xs">
+						{{points}}
+					</span>
+					<span class="g-font-size-12--xs ">
+						Points
+					</span>
+				</div>
+			</div>
+
+			<div class="account-recent">
+
+				<span *ngFor="let acc_act of account_activity">
+
+					<div class="transaction-true" *ngIf="acc_act.complete;else other_content">
+						<ion-item lines="none" class="ion-no-padding">
+							<i class="ti-upload" slot="start" *ngIf="acc_act.action==='add'"></i>
+							<i class="ti-download" slot="start" *ngIf="acc_act.action==='remove'"></i>
+							<span class="pull-left g-padding-r-10--xs">{{acc_act.points}} Points</span>
+							<span class="g-font-size-10--xs g-color--primary">{{acc_act.date.toDate() | date:'dd MMM yyyy h:mm'}}</span>
+							<span slot='end'>
+								<i class="ti-check-box g-font-size-22--xs g-color--success"></i>
+							</span>
+						</ion-item>
+					</div>
+
+					<ng-template #other_content>
+						<div class="transaction-false">
+							<ion-item lines="none" class="ion-no-padding">
+								<i class="ti-upload" slot="start" *ngIf="acc_act.action==='add'"></i>
+								<i class="ti-download" slot="start" *ngIf="acc_act.action==='remove'"></i>
+								<span class="pull-left g-padding-r-10--xs">{{acc_act.points}} Points</span>
+								<span class="g-font-size-10--xs g-color--primary">{{acc_act.date.toDate() | date:'dd MMM yyyy h:mm'}}</span>
+								<span slot='end'>
+									<i class="ti-face-sad g-font-size-22--xs g-color--warning"></i>
+								</span>
+							</ion-item>
+						</div>
+					</ng-template>
+
+				</span>
+
+			</div>
+
+			<div class="account-info">
+				<ion-list>
+					<ion-item lines="full">
+						<i class="ti-mobile g-font-size-18--xs g-color--primary" slot="start"></i>
+						<span> {{phone}}</span>
+						<span slot="end" (click)="changePhone()">  <i class="ti-pencil-alt"></i> </span>
+					</ion-item>
+
+					<ion-item lines="full" style="padding:0px !important;">
+						<i class="ti-email g-font-size-18--xs g-color--primary" slot="start"></i>
+						<span> {{email}}</span>
+						<span slot="end" (click)="changeEmail()"> <i class="ti-pencil-alt"></i> </span>
+					</ion-item>
+
+				</ion-list>
+			</div>
 			
 
 			<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="buyPoints()">
-					<button type="submit" class="s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
-						<i class="ti-money g-font-size-18--xs"></i> 
-						Get Park&Pick Points
-					</button>
-				</div>
+				<button type="submit" class="s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+					Buy Points
+				</button>
+			</div>
 		</div>
 	</div>
 

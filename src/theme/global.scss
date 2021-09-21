@@ -28,8 +28,24 @@
 @import "src/theme/fonts.scss";
 
 * {
-	font-family: 'Poppins', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	font-weight: 400;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  color : #020202;
+  font-size : 12px;
 }
 
 .cap-me {

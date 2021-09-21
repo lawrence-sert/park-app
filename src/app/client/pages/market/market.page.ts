@@ -200,7 +200,7 @@ export class MarketPage implements OnInit {
       this.allFoods = products;
     });
 
-    this.foodProms = this.db.collection('/promotions', ref => ref.where('promotion_category', '==', 'processed'))
+    this.foodProms = this.db.collection('/promotions', ref => ref.where('promotion_category', '==', 'foods'))
     .valueChanges({ idField: 'id'})
     .subscribe((promotions) => {
       this.foodList = promotions;

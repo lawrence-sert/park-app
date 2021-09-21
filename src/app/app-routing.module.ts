@@ -141,7 +141,17 @@ const routes: Routes = [
 {
   path: 'combo/:comboID',
   loadChildren: () => import('./client/pages/combo/combo.module').then( m => m.ComboPageModule)
-}
+},
+  {
+    path: 'promotion/:promotionID',
+    loadChildren: () => import('./client/pages/promotion/promotion.module').then( m => m.PromotionPageModule)
+  },
+  {
+    path: 'pay-points/:accountID',
+    loadChildren: () => import('./client/pages/pay-points/pay-points.module').then( m => m.PayPointsPageModule)
+  }
+
+
 
 
 ];

@@ -76,7 +76,7 @@
 						<div>
 							<ion-slides class="slides" [options]='slideOpts'>
 								<ion-slide *ngFor="let vegProm of veggieList; index as i">
-									<div [routerLink]="['/promotions', vegProm.id]">
+									<div [routerLink]="['/promotion', vegProm.id]">
 										<img src="{{vegProm.promotion_image}}">
 										<p class="title">{{vegProm.promotion_name}}</p>
 									</div>
@@ -118,7 +118,7 @@
 						<div>
 							<ion-slides class="slides" [options]='slideOpts'>
 								<ion-slide *ngFor="let fruitProm of fruitList; index as i">
-									<div [routerLink]="['/promotions', fruitProm.id]">
+									<div [routerLink]="['/promotion', fruitProm.id]">
 										<img src="{{fruitProm.promotion_image}}">
 										<p class="title">{{fruitProm.promotion_name}}</p>
 									</div>
@@ -161,7 +161,7 @@
 						<div>
 							<ion-slides class="slides" [options]='slideOpts'>
 								<ion-slide *ngFor="let foodProm of foodList; index as i">
-									<div [routerLink]="['/promotions', foodProm.id]">
+									<div [routerLink]="['/promotion', foodProm.id]">
 										<img src="{{foodProm.promotion_image}}">
 										<p class="title">{{foodProm.promotion_name}}</p>
 									</div>
@@ -204,7 +204,7 @@
 						<div>
 							<ion-slides class="slides" [options]='slideOpts'>
 								<ion-slide *ngFor="let careProm of careList; index as i">
-									<div [routerLink]="['/promotions', careProm.id]">
+									<div [routerLink]="['/promotion', careProm.id]">
 										<img src="{{careProm.promotion_image}}">
 										<p class="title">{{careProm.promotion_name}}</p>
 									</div>

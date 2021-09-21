@@ -40,6 +40,9 @@ export class AddBasketPage implements OnInit {
 	producted : any;
 	product_selected : any;
 
+	currentNumber = 0;
+
+
 
 	//form information comes here
 	public basketForm: FormGroup;
@@ -106,6 +109,16 @@ export class AddBasketPage implements OnInit {
 
 	get quantity(){
 		return this.basketForm.get('quantity')
+	}
+
+
+	removeProduct() {
+		this.currentNumber--; 
+		console.log(this.currentNumber);
+	}
+
+	addProduct() {
+		this.currentNumber++;
 	}
 
 

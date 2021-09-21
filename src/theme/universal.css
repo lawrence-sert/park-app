@@ -1,6 +1,11 @@
 /*----------------------------------
   Font Size
 ------------------------------------*/
+
+.g-font-size-10--xs-menu {
+  font-size: 12px !important;
+}
+
 .g-font-size-10--xs {
   font-size: 0.625rem !important;
 }
@@ -7236,6 +7241,14 @@
 }
 .g-color--red {
   color: #DE323A !important;
+}
+
+.g-color--success {
+  color: #009444 !important;
+}
+
+.g-color--warning {
+  color: #F7941D !important;
 }
 
 

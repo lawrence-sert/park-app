@@ -1,0 +1,84 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="header-color">
+		<ion-buttons slot="start" class="g-font-size-18--xs">
+			<ion-back-button>
+				<i class="ti-arrow-left g-font-size-18--xs"></i>
+			</ion-back-button>
+		</ion-buttons>
+
+		<ion-title class="ion-text-center">
+			Make Payment
+		</ion-title>
+
+		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
+			<img class="profile-user-img-main  img-circle "
+			src="{{photoUrl}}">
+		</span>
+	</ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+	<div *ngFor="let pay of pay$ | async; index as i">
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="s-plan-v1 g-text-center--xs g-bg-color--white g-padding-y-10--xs g-margin-t-20--xs">
+					<h3 class="g-font-size-18--xs g-color--primary">Amount Due</h3>
+					<span class="s-plan-v1__price-tag">{{pay.points * 100}}</span>
+					<span class="s-plan-v1__price-mark">RWF</span>
+				</div>
+			</div>
+		</div>
+
+		<form [formGroup]="payForm" (ngSubmit)="onSubmit()" novalidate>
+
+			<div class="row">
+				<div class="col-xs-12 g-margin-t-20--xs">
+					<p class="g-font-size-18--xs text-uppercase">Select Payment Method</p>
+				</div>
+			</div>
+
+			<div class="transaction-true" (click)="presentAlertRadio()">
+				<ion-item lines="none" class="ion-no-padding">
+					<i class="ti-mobile g-font-size-24--xs" slot="start"></i>
+					<span>Mobile Money</span>
+					<img src="assets/img/mtn.svg" class="img-responsive" alt="" slot='end'>
+				</ion-item>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 g-margin-t-20--xs">
+					<p class="g-font-size-18--xs text-uppercase">Payment Details</p>
+
+					<div class="row">
+						<div class="col-xs-12">
+							<ion-list>
+								<ion-item lines="full">
+									<ion-label>
+										Phone Number
+										<span class="pull-right">0781554658</span>
+									</ion-label>
+									<span slot="end">
+										<i class="ti-pencil-alt"></i>
+									</span>
+								</ion-item>
+							</ion-list>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
+				<button class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs" (click)="onSubmit()">
+					Make Payment
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+
+</ion-content>

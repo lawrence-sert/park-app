@@ -1,54 +1,95 @@
 <ion-header [translucent]="true" class="ion-no-border">
-	<ion-toolbar class="header-color">
+	<ion-toolbar class="">
 		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModal()">
-			<i class="ti-close g-font-size-18--xs"></i>
+			<i class="ti-close g-font-size-18--xs g-color--primary"></i>
 		</span>
 	</ion-toolbar>
-	<div class="price_total g-padding-y-30--xs g-font-size-24--xs" *ngIf="basketForm.value.quantity">
-		<span class="light g-font-size-14--xs">RWF</span> 
-			<span *ngFor="let prdct of product_selected;let i = index">
-				{{basketForm.value.quantity * prdct.price}}
-			</span>
-		<span class="light g-font-size-14--xs">.00</span>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="s-plan-v1 g-text-center--xs g-bg-color--white g-padding-y-10--xs g-margin-t-20--xs">
+				<h3 class="g-font-size-18--xs g-color--primary">Amount Due</h3>
+
+				<span *ngIf="basketForm.value.quantity; else empty">
+					<span *ngFor="let prdct of product_selected;let i = index">
+						<span class="s-plan-v1__price-tag">{{basketForm.value.quantity * prdct.price}}.00</span>
+						<span class="s-plan-v1__price-mark">RWF</span>
+					</span>
+				</span>
+				<ng-template #empty>
+						<span class="s-plan-v1__price-tag">0.00</span>
+						<span class="s-plan-v1__price-mark">RWF</span>
+				</ng-template>
+			</div>
+		</div>
 	</div>
 </ion-header>
 
 <ion-content>
 	<form [formGroup]="basketForm" (ngSubmit)="onSubmit()">
 
+
 		<div class="row">
 			<div class="col-xs-12">
-				<ion-list>
+				<div class="transaction-true">
 					<ion-item>
-						<ion-label>Market Category</ion-label>
+						<i class="fas fa-store g-color--primary" slot="start" ></i>
 						<ion-select 
 						value="brown" 
 						okText="Okay" 
 						cancelText="Dismiss"
 						formControlName="products_category"
+						placeholder="Select Market Category"
 						>
-						<ion-select-option class="cap-me" *ngFor="let category of categoryList" [value]="category.category_name">
+						<ion-select-option class="cap-me" *ngFor="let category of categoryList" [value]="category.category_name" >
 							<span class="cap-me">{{category?.category_name}}</span>
 						</ion-select-option>
 					</ion-select>
 				</ion-item>
-			</ion-list>
+				</div>
+			</div>
 
-			<ion-list *ngIf="basketForm.value.products_category">
-				<ion-item>
-					<ion-label>Products</ion-label>
-					<ion-select 
-					value="brown" 
-					okText="Okay" 
-					cancelText="Dismiss"
-					formControlName="product"
-					>
-					<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
+			<div class="col-xs-12" *ngIf="basketForm.value.products_category">
+				<div class="transaction-true">
+					<ion-item>
+						<i class="fas fa-carrot g-color--primary" slot="start" ></i>
+						<ion-select 
+						value="brown" 
+						okText="Okay" 
+						cancelText="Dismiss"
+						formControlName="product"
+						placeholder="Select Product"
+						>
+						<ion-select-option *ngFor="let prodcts of producted" [value]="prodcts.id">
 						{{prodcts.item}}
 					</ion-select-option>
-				</ion-select>
-			</ion-item> 
-		</ion-list>
+					</ion-select>
+				</ion-item>
+				</div>
+			</div>
+
+			<div class="col-xs-12" *ngIf="basketForm.value.product">
+				<div class="transaction-true">
+					<ion-item>
+						<i class="fas fa-minus g-color--primary" slot="start"></i>
+							<ion-input 
+							type="number" 
+							value="0" 
+							min="1" 
+							max="9"
+							formControlName="quantity"
+							placeholder ="0"
+							>
+						</ion-input>
+						<i class="fas fa-plus g-color--primary" slot="end"></i>
+					</ion-item> 
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+
 
 		<ion-list *ngIf="basketForm.value.product">
 			<ion-item>
@@ -59,18 +100,18 @@
 				max="9"
 				formControlName="quantity"
 				>
-				</ion-input>
-			</ion-item> 
-		</ion-list>
+			</ion-input>
+		</ion-item> 
+	</ion-list>
 
-		
-		<div class="product-image g-text-center--xs" *ngIf="basketForm.value.product">
-			<span *ngFor="let prdct of product_selected">
-				<img src="{{prdct.image}}" class="img-responsive">
-			</span>
-		</div>
 
+	<div class="product-image g-text-center--xs" *ngIf="basketForm.value.product">
+		<span *ngFor="let prdct of product_selected">
+			<img src="{{prdct.image}}" class="img-responsive">
+		</span>
 	</div>
+
+</div>
 </div>
 
 

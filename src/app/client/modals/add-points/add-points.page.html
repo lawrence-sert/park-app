@@ -29,9 +29,14 @@
 
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="points-diplay">
-							<p class="g-text-center--xs">1 Point = 100 RWF</p>
+						<div class="points-diplay activated" *ngIf="points.value != ''; else calculate">
+							<p class="g-text-center--xs">{{points.value}} Point = {{points.value * 100}} RWF</p>
 						</div>
+						<ng-template #calculate>
+							<div class="points-diplay">
+								<p class="g-text-center--xs">1 Point = 100 RWF</p>
+							</div>
+						</ng-template>
 					</div>
 				</div>
 

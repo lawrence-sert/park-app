@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { ModalController } from '@ionic/angular';
 import User from 'src/app/auth/models/user.model';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
@@ -25,12 +26,12 @@ export class UserService {
 	constructor(
 		private db: AngularFirestore,
 		private toastr: ToastrService,
-		 public router: Router 
+		public router: Router,
+		private modalCtrl : ModalController, 
 		) {
 		this.UsersRef = db.collection(this.dbPath);
 	}
 
-	
 
 	create(users: User): any {
 		return this.UsersRef.add({ ...users });
@@ -55,7 +56,7 @@ export class UserService {
 	updateUser(user: User, id) {
 		let FirstRun: string;
 		FirstRun = '1';
-    return this.db
+		return this.db
 		.collection("users")
 		.doc(id)
 		.update({
@@ -74,7 +75,7 @@ export class UserService {
 	}
 
 	changePhone(uid, data) {
-    return this.db
+		return this.db
 		.collection("users")
 		.doc(uid)
 		.update({
@@ -83,7 +84,7 @@ export class UserService {
 	}
 
 	changeEmail(uid, data) {
-    return this.db
+		return this.db
 		.collection("users")
 		.doc(uid)
 		.update({
@@ -92,7 +93,7 @@ export class UserService {
 	}
 
 	changeAccountType(uid, data) {
-    return this.db
+		return this.db
 		.collection("users")
 		.doc(uid)
 		.update({
@@ -101,7 +102,7 @@ export class UserService {
 	}
 
 	changeLocation(uid, data) {
-    return this.db
+		return this.db
 		.collection("users")
 		.doc(uid)
 		.update({
@@ -111,45 +112,44 @@ export class UserService {
 
 
 	addPoints(data) {
-		// get user information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;		
-		var that = this;
-		this.db.firestore.collection("users").where("uid", "==", id)
-		.get()
-		.then(function(querySnapshot) {
-			querySnapshot.forEach(function(doc) {
-				// doc.data() is never undefined for query doc snapshots
-				console.log(doc.id, " => ", doc.data());
+		const id = this.crrntUsr.uid;
 
-				return that.db.firestore.runTransaction(function(transaction) {
-					// This code may get re-run multiple times if there are conflicts.
-					return transaction.get(doc.ref).then(function(doc) {
-						if (!doc.exists) {
-							throw "Document does not exist!";
-						}
-						//THIS IS WHERE TO DO THE INCREMENT
-						var new_score = doc.data().points + data.points;
-						transaction.update(doc.ref, { points: new_score });
-					});
-				}).then(function() {
-					return that.db.firestore
-					.collection(`users/${id}/account`)
-					.add({
-						action : "add",
-						complete : false,
-						points : data.points,
-						date : firebase.default.firestore.FieldValue.serverTimestamp()
-					});
-				}).catch(function(error) {
-					console.log(error);
-				});
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-			});
+		for (var i = 0; i < 5; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		const acc_id = text;
+
+		// Add a new document in collection "cities"
+		return this.db
+		.collection(`users/${id}/account`).doc(acc_id).set({
+			id : acc_id,
+			action : "add",
+			complete : false,
+			points : data.points,
+			date : firebase.default.firestore.FieldValue.serverTimestamp()
 		})
-		.catch(function(error) {
-			console.log("Error getting documents: ", error);
+		.then(() => {
+			console.log("Document successfully written!");
+			this.closeModel();
+			this.router.navigate(['/pay-points', acc_id]);
+
+		})
+		.catch((error) => {
+			console.error("Error writing document: ", error);
 		});
+	}
+
+	getAccountActivity(uid) {
+		return this.db.collection(`users/${uid}/account`, ref => ref.orderBy('date', 'desc')).snapshotChanges();
+	}
+
+	async closeModel() {
+		const close: string = "Modal Removed";
+		await this.modalCtrl.dismiss(close);
 	}
 
 
