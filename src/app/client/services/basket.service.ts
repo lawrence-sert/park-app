@@ -84,19 +84,57 @@ export class BasketService {
 	}
 
 
-	getAll(){
+
+
+
+
+
+
+
+	getCartGoodsData(param) {
+
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
-		const ndini = 'xI9T5'
-		return this.db.list(`users/${id}/basket/xI9T5/basket_items`).snapshotChanges().pipe(map(actions => {
-			return actions.map(a => {
-				const key = a.payload.key;
-				console.log(key);
-				const data = a.payload.val();
-				return {data, key};
-			})
-		}));
+
+		const goodsIDs: string[] = [];
+
+
+		return new Promise((resolve) => {
+			this.firestore.firestore.collection(`users/${id}/basket/${param}/basket_items`).get()
+			.then(querySnapshot => {
+				querySnapshot.forEach(doc => {
+					var obj = JSON.parse(JSON.stringify(doc.data()));
+					obj.$key = doc.id;
+					const pdctID = obj.product_id;
+					goodsIDs.push(doc.id);
+					this.teste(pdctID);
+					console.log(pdctID);
+				});
+
+				const getDocs = goodsIDs.map((pdctID) => {
+					this.firestore.firestore.collection('products').doc('iYKJn').get()
+					.then((docData) => {
+						const her = docData.data();
+						console.log(her);
+					});
+				});
+
+			
+			});
+		});
 	}
+
+
+
+	teste(pdctID) {
+		return this.firestore.collection(`products`, ref => ref.where('id', '==' , pdctID)).snapshotChanges();
+	}
+
+
+
+
+
+
 
 
 }

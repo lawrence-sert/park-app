@@ -29,7 +29,7 @@ export class DashboardPage implements OnInit {
 		) {	}
 
 	ngOnInit() {
-		this.type = 'home';
+		this.type = 'messages';
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
 		const id = this.crrntUsr.uid;

@@ -142,16 +142,21 @@ const routes: Routes = [
   path: 'combo/:comboID',
   loadChildren: () => import('./client/pages/combo/combo.module').then( m => m.ComboPageModule)
 },
-  {
-    path: 'promotion/:promotionID',
-    loadChildren: () => import('./client/pages/promotion/promotion.module').then( m => m.PromotionPageModule)
-  },
-  {
-    path: 'pay-points/:accountID',
-    loadChildren: () => import('./client/pages/pay-points/pay-points.module').then( m => m.PayPointsPageModule)
+{
+  path: 'promotion/:promotionID',
+  loadChildren: () => import('./client/pages/promotion/promotion.module').then( m => m.PromotionPageModule)
+},
+{
+  path: 'pay-points/:accountID',
+  loadChildren: () => import('./client/pages/pay-points/pay-points.module').then( m => m.PayPointsPageModule)
+},
+{
+  path: 'basket-item-edit',
+  loadChildren: () => import('./client/modals/basket-item-edit/basket-item-edit.module').then( m => m.BasketItemEditPageModule)
+},  {
+    path: 'faq',
+    loadChildren: () => import('./client/modals/faq/faq.module').then( m => m.FaqPageModule)
   }
-
-
 
 
 ];

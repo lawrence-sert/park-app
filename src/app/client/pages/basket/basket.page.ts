@@ -64,6 +64,7 @@ export class BasketPage implements OnInit {
 
 	pdcts: any;
 	item: any;
+	challenges: any;
 
 
 	constructor(
@@ -77,158 +78,123 @@ export class BasketPage implements OnInit {
 		public 	db: AngularFirestore,
 		public 	ngData: AngularFireDatabase,
 		private modalCtrl: ModalController
-		) {
+		) {	}
 
-		// this.pdcts = this.db.collection("/products").snapshotChanges();
-		// this.pdcts.subscribe((results) => {
-			// 	//console.log(results)
-			// 	results.forEach(el => {
-				// 		console.log('Keys:',el.key,el.payload.val().item)
-				// 		this.item = el.payload.val().item;
-				// 		console.log(this.item);
-				// 	});
 
-				// 	}
-				// );
+	ngOnInit() {
 
-				// Local storage information
-				this.crrntUsr = JSON.parse(window.localStorage.getItem('user'));
-				const id = this.crrntUsr.uid;
+		this.type = 'basket-items';
 
-				this.db
-				.collection(`users/${id}/basket`, ref => ref.where('basket_id', '==', this.parameterValue))
-				.snapshotChanges()
-				.subscribe((data) => {
-					const myArray = [];
-					data.forEach((doc) => {
-						const y = doc.payload.doc.data()["id"];
-						console.log(y);
-						myArray.push(y);
-					});
-					console.log(myArray);
-				});
+		// Active Param information
+		this.activatedRoute.params.subscribe(parameter => {
+			this.parameterValue = parameter.basketID;
+		});
+		const param = this.parameterValue;
+
+
+
+		// Local storage information
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+
+		this.uid = this.crrntUsr.uid;
+		this.usersService.getUserDoc(id).subscribe(res => {
+			this.userRef = res;
+			this.photoUrl = this.userRef.photoUrl;
+		});
+
+
+		this.basketRef = this.db.collection<{}>(`users/${id}/basket`, ref => ref.where('basket_id', '==', this.parameterValue));
+		this.basket$ = this.basketRef.snapshotChanges().pipe(
+			map(actions => actions.map(a => {
+				const data = a.payload.doc.data(); // DB Questions
+				const id = a.payload.doc.id;
+				return { id, ...data };
+			}))
+			);
+
+		//get all basket items for this param
+		this.basketItemsService.getBasketItem(id, param).subscribe((data) => {
+			this.basketItems = data.map((e) => {
+				return {
+					id: e.payload.doc.id,
+					...(e.payload.doc.data() as {}),
+				} as Basket;
+			});
+
+		});
+
+		//read all recipes 
+		this.recipesService.getRecipes().subscribe((data) => {
+			this.recipes = data.map((e) => {
+				return {
+					id: e.payload.doc.id,
+					...(e.payload.doc.data() as {}),
+				} as Recipes;
+			});
+		});
+
+		this.basketService.getCartGoodsData(param);
+
+	}
+
+	segmentChanged(ev: any) {
+		console.log('Segment changed', ev);
+	}
+
+	async openCalModalBasket() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = this.parameterValue;
+		const modal = await this.modalCtrl.create({
+			component: AddBasketPage,
+			cssClass: 'app-comment',
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
 			}
-
-
-			ngOnInit() {
-
-				this.activatedRoute.params.subscribe(parameter => {
-					this.parameterValue = parameter.basketID;
-				});
-				const param = this.parameterValue;
-
-				this.type = 'basket-items';
-
-				// Local storage information
-				this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-				const id = this.crrntUsr.uid;
-
-
-				this.uid = this.crrntUsr.uid;
-				this.usersService.getUserDoc(id).subscribe(res => {
-					this.userRef = res;
-					this.photoUrl = this.userRef.photoUrl;
-				});
-
-
-				this.basketRef = this.db.collection<{}>(`users/${id}/basket`, ref => ref.where('basket_id', '==', this.parameterValue));
-				this.basket$ = this.basketRef.snapshotChanges().pipe(
-					map(actions => actions.map(a => {
-						const data = a.payload.doc.data(); // DB Questions
-						const id = a.payload.doc.id;
-						return { id, ...data };
-					}))
-					);
-
-				//get all basket items for this param
-				this.basketItemsService.getBasketItem(id, param).subscribe((data) => {
-					this.basketItems = data.map((e) => {
-						return {
-							id: e.payload.doc.id,
-							...(e.payload.doc.data() as {}),
-						} as Basket;
-					});
-
-				});
-
-				//read all recipes 
-				this.recipesService.getRecipes().subscribe((data) => {
-					this.recipes = data.map((e) => {
-						return {
-							id: e.payload.doc.id,
-							...(e.payload.doc.data() as {}),
-						} as Recipes;
-					});
-				});
-
-
-
-
+		});
+		modal.onDidDismiss().then((modelData) => {
+			if (modelData !== null) {
+				this.modelData = modelData.data;
+				console.log('Modal Data : ' + modelData.data);
 			}
-
-			segmentChanged(ev: any) {
-				console.log('Segment changed', ev);
-			}
-
-			async openCalModalBasket() {
-				this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-				const id = this.crrntUsr.uid;
-				const pageId = this.parameterValue;
-				const modal = await this.modalCtrl.create({
-					component: AddBasketPage,
-					cssClass: 'app-comment',
-					backdropDismiss: false,
-					componentProps: {
-						'pageId': pageId
-					}
-				});
-				modal.onDidDismiss().then((modelData) => {
-					if (modelData !== null) {
-						this.modelData = modelData.data;
-						console.log('Modal Data : ' + modelData.data);
-					}
-				});
-				await modal.present();
-			}
+		});
+		await modal.present();
+	}
 
 
-			async openCalModal() {
-				const modal = await this.modalCtrl.create({
-					component: ImageUpPage,
-					cssClass: 'app-image-up',
-					backdropDismiss: false
-				});
+	async openCalModal() {
+		const modal = await this.modalCtrl.create({
+			component: ImageUpPage,
+			cssClass: 'app-image-up',
+			backdropDismiss: false
+		});
 
-				await modal.present();
+		await modal.present();
 
-			}
-			async close() {
-				const closeModal: string = "Modal Closed";
-				await this.modalCtrl.dismiss(closeModal);
-			}
+	}
+	async close() {
+		const closeModal: string = "Modal Closed";
+		await this.modalCtrl.dismiss(closeModal);
+	}
 
 
-			deleteBasket(basketItemid) {
-				this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-				const id = this.crrntUsr.uid;
-				this.basketService.deleteBasket(id, basketItemid );
-			}
+	deleteBasket(basketItemid) {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		this.basketService.deleteBasket(id, basketItemid );
+	}
 
-			deleteBasketItem(basketItemid) {
-				const param = this.parameterValue;
-				this.basketItemsService.deleteBasketItem(param,basketItemid);
-			}
+	deleteBasketItem(basketItemid) {
+		const param = this.parameterValue;
+		this.basketItemsService.deleteBasketItem(param,basketItemid);
+	}
 
-			editBasketItem(basketItemid) {
+	editBasketItem(basketItemid) {
 
-			}
+	}
 
 
 
-
-
-
-
-
-
-		}
+}

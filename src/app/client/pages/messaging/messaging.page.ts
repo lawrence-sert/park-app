@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController} from '@ionic/angular';
 import { AuthService } from "src/app/auth/services/auth.service";
 import { UserService } from 'src/app/auth/services/user.service';
 
 import { MessagesService } from 'src/app/client/services/messages.service';
 import { Messages } from 'src/app/client/models/messages.model';
 
+import { FaqsService } from 'src/app/client/services/faqs.service';
+import { Faqs } from 'src/app/client/models/faqs.model';
+
 import { FormArray, FormControl, FormBuilder, FormGroup } from '@angular/forms';
 
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
+
+import { FaqPage } from 'src/app/client/modals/faq/faq.page';
 
 @Component({
 	selector: 'app-messaging',
@@ -19,19 +24,30 @@ export class MessagingPage implements OnInit {
 
 	public messageForm: FormGroup;
 
+
+	type: string;
+
+	modelData: any;
+
 	uid: any;
 	crrntUsr: any;
 	userRef: any;
 	photoUrl: any;
+
 	messages: any;
+	faqs: any;
+
+	messageSent : false;
 
 
 	constructor(
 		public authService: AuthService,
 		public usersService: UserService,
 		private messageService: MessagesService,
+		private faqsService: FaqsService,
 		public formBuilder: FormBuilder,
-		private modalCtrl : ModalController
+		private modalCtrl : ModalController,
+		public alertCtrl: AlertController
 		) { 
 		this.messageForm = this.formBuilder.group({
 			message: ['']
@@ -39,6 +55,8 @@ export class MessagingPage implements OnInit {
 	}
 
 	ngOnInit() {
+
+		this.type = 'messaging';
 
 		// Local storage information
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -55,6 +73,16 @@ export class MessagingPage implements OnInit {
 					id: e.payload.doc.id,
 					...(e.payload.doc.data() as {}),
 				} as Messages;
+			});
+		});
+
+		//read faqs 
+		this.faqsService.getFaq().subscribe((data) => {
+			this.faqs = data.map((e) => {
+				return {
+					id: e.payload.doc.id,
+					...(e.payload.doc.data() as {}),
+				} as Faqs;
 			});
 		});
 	}
@@ -81,9 +109,65 @@ export class MessagingPage implements OnInit {
 
   }
 
+  async openFaqModal(faqId) {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = faqId;
+		const modal = await this.modalCtrl.create({
+			component: FaqPage,
+			cssClass: 'app-faq',
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
+			}
+		});
+
+		modal.onDidDismiss().then((modelData) => {
+			if (modelData !== null) {
+				this.modelData = modelData.data;
+				console.log('Modal Data : ' + modelData.data);
+			}
+		});
+
+		await modal.present();
+
+	}
+
   async close() {
     const closeModal: string = "Modal Closed";
     await this.modalCtrl.dismiss(closeModal);
+  }
+
+
+  segmentChanged(ev: any) {
+		console.log('Segment changed', ev);
+	}
+
+
+	async messageConfirm() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Messaging',
+      message: 'Welcome to our customer chat platform',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'I Agree',
+          handler: () => {
+            messageSent : true
+            console.log(this.messageSent);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

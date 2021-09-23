@@ -75,7 +75,7 @@
 								<p class="g-font-size-12--xs">{{basketItem.id}}</p>
 							</ion-label>
 							<ion-note slot="end">
-								
+								{{basketItem.quantity}}
 							</ion-note>
 						</ion-item>
 						<ion-item-options side="end">
@@ -92,7 +92,9 @@
 
 				<!-- Default Searchbar -->
 
-
+				<span *ngFor="let challenge of challenges">
+					{{challenge.item}}
+				</span>
 
 
 

@@ -17,54 +17,141 @@
 		</span>
 
 	</ion-toolbar>
+
+	<div class="row">
+		<div class="col-xs-9">
+			<h2 class="g-font-size-24--xs g-color--primary">
+				We Are <br>
+				<span class="light">Always Here.</span>
+			</h2>
+		</div>
+		<div class="col-xs-3 g-text-center--xs g-padding-t-20--xs">
+			<i class="ti-comments g-font-size-40--xs g-color--primary"></i>
+		</div>
+	</div>
+
+	<ion-toolbar>
+		<!-- Scrollable Segment -->
+		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+			<ion-segment-button value="messaging">
+				Chats
+			</ion-segment-button>
+
+			<ion-segment-button value="faq">
+				FAQs
+			</ion-segment-button>
+
+			<ion-segment-button value="contacts">
+				Contacts
+			</ion-segment-button>
+
+		</ion-segment>
+
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-	<div class="top">
-		<div class="row">
-			<div class="col-xs-9">
-				<h2 class="g-font-size-24--xs g-color--primary">
-					We Are <br>
-					<span class="light">Always Here.</span>
-				</h2>
-			</div>
-			<div class="col-xs-3 g-text-center--xs g-padding-t-20--xs">
-				<i class="ti-comments g-font-size-40--xs g-color--primary"></i>
-			</div>
-		</div>
-	</div>
-	<div class="chat">
-		<div class="chat-box">
 
-			<div class="chat-l" *ngFor="let message of messages">
-				<div class="mess">
-					<p>
-						Me too. <img src="img/heart.png"  class="emoji">
-					</p>
-					<div class="check">
-						<span>4:00 PM</span>
+	<div class="row" [ngSwitch]="type">
+		<div class="col-xs-12" *ngSwitchCase="'messaging'">
+
+			<div *ngIf="messageSent; else emptyBasket" class="g-margin-t-60--xs">
+				<div class="chat">
+					<div class="chat-box">
+
+						<div class="chat-l" *ngFor="let message of messages">
+							<div class="mess">
+								<p>
+									Me too. <img src="img/heart.png"  class="emoji">
+								</p>
+								<div class="check">
+									<span>4:00 PM</span>
+								</div>
+							</div>
+							<div class="sp"></div>
+						</div>
+
 					</div>
+
+
+					<form [formGroup]="messageForm" (ngSubmit)="onSubmit()" novalidate>
+						<div class="chat-footer">
+							<i class="ti-camera emo g-font-size-20--xs g-text-center--xs g-color--primary"></i>
+							<textarea 
+							placeholder="Type a message"
+							type="text" 
+							formControlName="message"
+							required
+							>
+						</textarea>
+						<i class="ti-share mic g-font-size-20--xs g-text-center--xs g-line-height--30" (click)="onSubmit()"></i>
+					</div>
+				</form>
+			</div>
+		</div>
+		<ng-template #emptyBasket>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<img class="img-responsive g-margin-b-30--xs" src="assets/svg/no-message.svg">
 				</div>
-				<div class="sp"></div>
 			</div>
 
-		</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="g-font-size-18--xs g-color--primary">No Message Yet</h2>
+					<p>
+						Send our representative a message.
+						<br>
+						Not sure how the Park&Pick message works click here to 
+						<a routerLink="/basket-tour">take a tour</a>
+						of the message experience.
+					</p>
+				</div>
+			</div>
 
 
-		<form [formGroup]="messageForm" (ngSubmit)="onSubmit()" novalidate>
-			<div class="chat-footer">
-				<i class="ti-camera emo g-font-size-20--xs g-text-center--xs g-color--primary"></i>
-				<textarea 
-				placeholder="Type a message"
-				type="text" 
-				formControlName="message"
-				required
-				>
-			</textarea>
-			<i class="ti-share mic g-font-size-20--xs g-text-center--xs g-line-height--30" (click)="onSubmit()"></i>
+			<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="messageConfirm()">
+					<button class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+						<i class="ti-comments g-font-size-18--xs"></i> 
+						Send Us A Message
+					</button>
+				</div>
+
+		</ng-template>
+
+
+
+	</div>
+	<div class="col-xs-12" *ngSwitchCase="'faq'">
+		
+		<div class="search" *ngIf="basket?.length > 0">
+			<ion-item lines="none" class="ion-no-padding">
+				<ion-icon slot="start" name="search-outline"></ion-icon>
+				<ion-input placeholder="search question..."></ion-input>
+				<span slot='end'>
+					<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+				</span>
+			</ion-item>
 		</div>
-	</form>
+
+		<ion-list>
+			<span *ngFor="let faq of faqs">
+				<ion-item lines="full" (click)="openFaqModal(faq.id)">
+					<i class="ti-help-alt g-font-size-18--xs g-color--primary" slot="start"></i>
+					<ion-label>
+						<h2 class="g-font-size-12--xs g-color--primary heavy">{{faq.faq_question}}</h2>
+						<p class="g-font-size-10--xs-menu">{{faq.faq_response | slice:0:120 }}</p>
+					</ion-label>
+				</ion-item>
+			</span>
+		</ion-list>
+
+	</div>
+	<div class="col-xs-12" *ngSwitchCase="'contacts'"></div>
 </div>
+
+
 
 </ion-content>

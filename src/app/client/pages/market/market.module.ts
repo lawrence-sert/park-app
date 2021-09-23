@@ -10,6 +10,8 @@ import { MarketPage } from './market.page';
 
 import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
 
+
+
 @NgModule({
   imports: [
     CommonModule,

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true"  class=" no-border">
+	<div *ngFor="let faq of faq$ | async; index as i">
+		<!--========== PROMO BLOCK ==========-->
+		<div class="g-fullheight--md js__parallax-window">
+			<div class="g-container--md g-text-center--xs g-ver-center--md g-padding-y-20--xs">
+				<div class="g-padding-b-10-xs">
+					<img src="{{faq.faq_image}}" class="img-responsive" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</ion-header>
+
+<ion-content>
+	<div *ngFor="let faq of faq$ | async; index as i">
+		<h3 class="g-text-center--xs g-color--primary g-font-size-16--xs heavy">{{faq.faq_question}}</h3>
+		<p class="g-text-center--xs g-font-size-14--xs">{{faq.faq_response}}</p>
+	</div>
+
+	<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
+
+		<div class="row">
+			<div class="col-xs-6">
+				<p>Rate Response</p>
+				<span>
+					<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+					<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+					<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
+					<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
+				</span>
+			</div>
+			<div class="col-xs-6">
+				<button class="text-uppercase s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs" (click)="closeModal()">
+					<i class="ti-close g-font-size-12--xs"></i> 
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</ion-content>

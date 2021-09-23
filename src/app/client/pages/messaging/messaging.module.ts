@@ -8,13 +8,18 @@ import { MessagingPageRoutingModule } from './messaging-routing.module';
 
 import { MessagingPage } from './messaging.page';
 
+import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+
+import { FaqPageModule } from 'src/app/client/modals/faq/faq.module';
+
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     IonicModule,
-    MessagingPageRoutingModule
+    MessagingPageRoutingModule,
+    ImageUpPageModule
   ],
   declarations: [MessagingPage]
 })

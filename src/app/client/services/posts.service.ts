@@ -15,15 +15,15 @@ export class PostsService {
   	private firestore: AngularFirestore,
   	public usersService: UserService,
     private toastr: ToastrService
-  	) {
+    ) {
   	// Local storage information
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-  	 }
+    this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+    const id = this.crrntUsr.uid;
+  }
 
-  	 getPosts() {
-		return this.firestore.collection('posts', ref => ref.orderBy('post_date', 'desc')).snapshotChanges();
-	}
+  getPosts() {
+    return this.firestore.collection('posts', ref => ref.orderBy('post_date', 'desc')).snapshotChanges();
+  }
 
   createPostBookmark(id, data) {
 
