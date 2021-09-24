@@ -21,25 +21,31 @@
 
 		</ion-toolbar>
 
-		<div class="header-basket">
-			<div class="basket-cost">
-				<div class="row"> 
-					<div class="col-xs-6 created-date g-padding-t-20--xs">
-						<span class="g-color--white g-font-size-12--xs">
-							<i class="ti-calendar g-font-size-18--xs"></i> 
-							{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
-						</span>
-					</div>
 
-					<div class="col-xs-6">
-						<span class="pull-right">
-							<h2 class="g-font-size-18--xs g-color--white">
-								{{basket.basket_cost}}
-								<small><span class="light g-color--white">RWF</span></small>
-							</h2>
-						</span>
-					</div>
+		<div class="basket-cost">
+			<div class="row"> 
+				<div class="col-xs-6 created-date g-padding-t-20--xs">
+					<span class="g-color--white g-font-size-10--xs">
+						<i class="ti-calendar g-font-size-12--xs"></i> 
+						{{basket.basket_date.toDate() | date:'dd MMM yyyy h:mm'}}
+					</span>
 				</div>
+
+				<div class="col-xs-6">
+					<span class="pull-right">
+						<h2 class="g-font-size-18--xs g-color--white">
+							{{basket.basket_cost}}
+							<small><span class="light g-color--white">RWF</span></small>
+						</h2>
+					</span>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row g-margin-t-10--xs">
+			<div class="col-md-12 col-sm-12 col-xs-12 g-text-center--xs">
+				<button  class="s-btn s-btn--xs s-btn--primary-bg g-radius--50" (click)="openBuyBasket()">Buy Basket</button>
 			</div>
 		</div>
 
@@ -95,6 +101,10 @@
 				<span *ngFor="let challenge of challenges">
 					{{challenge.item}}
 				</span>
+
+				<!-- <span *ngFor="let psd of pdcItems">
+					{{psd.item}}
+				</span> -->
 
 
 

@@ -6,8 +6,6 @@ import { Router } from "@angular/router";
 import { UserService } from 'src/app/auth/services/user.service';
 import * as firebase from 'firebase';
 import { ToastrService } from 'ngx-toastr';
-
-
 import { map } from 'rxjs/operators';
 
 
@@ -30,13 +28,9 @@ export class BasketService {
 		) {
 	}
 
-	
-
 	getBasket(uid) {
 		return this.firestore.collection(`users/${uid}/basket`, ref => ref.orderBy('basket_date', 'desc')).snapshotChanges();
 	}
-
-	
 
 	createBasket(uid, data) {
 
@@ -84,19 +78,13 @@ export class BasketService {
 	}
 
 
-
-
-
-
-
-
-
 	getCartGoodsData(param) {
 
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
 		const id = this.crrntUsr.uid;
 
 		const goodsIDs: string[] = [];
+
 
 
 		return new Promise((resolve) => {
@@ -107,16 +95,17 @@ export class BasketService {
 					obj.$key = doc.id;
 					const pdctID = obj.product_id;
 					goodsIDs.push(doc.id);
-					this.teste(pdctID);
-					console.log(pdctID);
-				});
 
-				const getDocs = goodsIDs.map((pdctID) => {
-					this.firestore.firestore.collection('products').doc('iYKJn').get()
-					.then((docData) => {
-						const her = docData.data();
-						console.log(her);
+
+					const getDocs = goodsIDs.map(() => {
+						this.firestore.firestore.collection('products').doc(pdctID).get()
+						.then((docData) => {
+							const her = docData.data();
+							console.log(her);
+						});
 					});
+
+					
 				});
 
 			
@@ -125,12 +114,9 @@ export class BasketService {
 	}
 
 
+	payBasket(data) {
 
-	teste(pdctID) {
-		return this.firestore.collection(`products`, ref => ref.where('id', '==' , pdctID)).snapshotChanges();
 	}
-
-
 
 
 

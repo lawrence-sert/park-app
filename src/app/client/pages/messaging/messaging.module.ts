@@ -9,8 +9,8 @@ import { MessagingPageRoutingModule } from './messaging-routing.module';
 import { MessagingPage } from './messaging.page';
 
 import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
-
 import { FaqPageModule } from 'src/app/client/modals/faq/faq.module';
+import { TutorialPageModule } from 'src/app/client/modals/tutorial/tutorial.module';
 
 @NgModule({
   imports: [
@@ -19,7 +19,9 @@ import { FaqPageModule } from 'src/app/client/modals/faq/faq.module';
     FormsModule,
     IonicModule,
     MessagingPageRoutingModule,
-    ImageUpPageModule
+    ImageUpPageModule,
+    FaqPageModule,
+    TutorialPageModule
   ],
   declarations: [MessagingPage]
 })

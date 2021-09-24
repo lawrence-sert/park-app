@@ -16,4 +16,5 @@ export default class User {
   cell? : string;
   village? : string;
   points? : number;
+  messagecreated? : boolean;
 }

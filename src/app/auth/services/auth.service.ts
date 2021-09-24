@@ -103,7 +103,8 @@ export class AuthService {
       accountType : '0',
       location : '-',
       photoUrl : photoUrl,
-      points : 0
+      points : 0,
+      messagecreated : false
     }
     return userRef.set(userData, {
       merge: true

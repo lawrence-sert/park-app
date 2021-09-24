@@ -1,4 +1,9 @@
-<ion-header [translucent]="true"  class=" no-border">
+<ion-header [translucent]="true"  class="ion-no-border">
+	<ion-toolbar class="">
+		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModal()">
+			<i class="ti-close g-font-size-18--xs g-color--primary"></i>
+		</span>
+	</ion-toolbar>
 	<div *ngFor="let faq of faq$ | async; index as i">
 		<!--========== PROMO BLOCK ==========-->
 		<div class="g-fullheight--md js__parallax-window">
@@ -20,8 +25,8 @@
 	<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
 
 		<div class="row">
-			<div class="col-xs-6">
-				<p>Rate Response</p>
+			<div class="col-xs-12 g-text-center--xs">
+				<p class="heavy">How Helpful Was This Article</p>
 				<span>
 					<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
 					<i class="fas fa-star g-font-size-12--xs g-color--primary"></i>
@@ -29,12 +34,7 @@
 					<i class="far fa-star g-font-size-12--xs g-color--primary"></i>
 				</span>
 			</div>
-			<div class="col-xs-6">
-				<button class="text-uppercase s-btn s-btn--xs s-btn--primary-bg g-radius--50 g-padding-x-20--xs" (click)="closeModal()">
-					<i class="ti-close g-font-size-12--xs"></i> 
-					Close
-				</button>
-			</div>
+
 		</div>
 	</div>
 </ion-content>

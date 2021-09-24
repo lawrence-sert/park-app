@@ -1,0 +1,122 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="">
+		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModal()">
+			<i class="ti-close g-font-size-18--xs g-color--primary"></i>
+		</span>
+	</ion-toolbar>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="s-plan-v1 g-text-center--xs g-bg-color--white g-padding-y-10--xs g-margin-t-20--xs">
+				<h3 class="g-font-size-18--xs g-color--primary">Amount Due</h3>
+				<span>
+					<span class="s-plan-v1__price-tag">0.00</span>
+					<span class="s-plan-v1__price-mark">RWF</span>
+				</span>
+
+				<ng-template #empty>
+					<span class="s-plan-v1__price-tag">0.00</span>
+					<span class="s-plan-v1__price-mark">RWF</span>
+				</ng-template>
+			</div>
+		</div>
+	</div>
+</ion-header>
+
+<ion-content>
+
+	<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+
+
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="g-font-size-12--xs g-color--primary">Payment Details</h3>
+				<p class="g-font-size-10--xs">Select a method from the below list and the system will us your saved information to complete the transaction</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="transaction-true">
+					<ion-item>
+						<i class="ti-mobile g-color--primary g-font-size-18--xs" slot="start" *ngIf="paymentForm.value.method_name==='Mobile Money'"></i>
+						<i class="ti-home g-color--primary g-font-size-18--xs" slot="start" *ngIf="paymentForm.value.method_name==='Bank'"></i>
+						<ion-select 
+						value="brown" 
+						okText="Okay" 
+						cancelText="Dismiss"
+						formControlName="method_name"
+						placeholder="Select Payment Method"
+						>
+						<ion-select-option class="cap-me" *ngFor="let category of paymentList" [value]="category.method_name" >
+							<span class="cap-me">{{category?.method_name}}</span>
+						</ion-select-option>
+					</ion-select>
+					<img src="assets/img/mtn.svg" class="img-responsive" slot='end' *ngIf="paymentForm.value.method_name==='Mobile Money'">
+					<img src="assets/img/bk.svg" class="img-responsive" slot='end' *ngIf="paymentForm.value.method_name==='Bank'">
+				</ion-item>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12" *ngIf="paymentForm.value.method_name==='Mobile Money'">
+			<h3 class="g-font-size-12--xs g-color--primary">Mobile Details</h3>
+			<ion-list>
+				<ion-item lines="full">
+					<span slot="start" class="g-font-size-12--xs">
+						<i class="ti-home g-color--primary g-font-size-18--xs"></i> Provider
+					</span>
+					<span class="g-font-size-12--xs" slot="end">MTN</span>
+				</ion-item>
+				<ion-item lines="full">
+					<span slot="start" class="g-font-size-12--xs">
+						<i class="ti-mobile g-color--primary g-font-size-18--xs"></i> Number
+					</span>
+					<span class="g-font-size-12--xs">{{phone}}</span>
+					<i class="ti-pencil-alt g-color--primary g-font-size-18--xs" slot="end"></i>
+				</ion-item>
+			</ion-list>
+		</div>
+
+		<div class="col-xs-12" *ngIf="paymentForm.value.method_name==='Bank'">
+			<h3 class="g-font-size-12--xs g-color--primary">Banking Details</h3>
+			<ion-list>
+				<ion-item lines="full">
+					<i class="ti-home g-color--primary g-font-size-18--xs" slot="start"></i>
+					<span class="g-font-size-12--xs">Bank</span>
+					<span class="g-font-size-12--xs" slot="end">Bank Of Kigali</span>
+				</ion-item>
+
+				<ion-item lines="full">
+					<i class="ti-home g-color--primary g-font-size-18--xs" slot="start"></i>
+					<span class="g-font-size-12--xs">Account Number</span>
+					<span class="g-font-size-12--xs" slot="end">0123456789</span>
+				</ion-item>
+
+			</ion-list>
+		</div>
+	</div>
+
+	<div class="row">
+		<ion-list>
+			<ion-item>
+				<span class="g-font-size-12--xs">I Accept Terms And Conditions</span>
+				<ion-checkbox slot="start"></ion-checkbox>
+			</ion-item>
+		</ion-list>
+	</div>
+
+
+
+
+
+	<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
+		<button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+			<i class="ti-check-box g-font-size-18--xs"></i> 
+			Make Payment
+		</button>
+	</div>
+</form>
+
+</ion-content>

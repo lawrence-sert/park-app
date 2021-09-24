@@ -143,6 +143,76 @@ export class UserService {
 		});
 	}
 
+	openMessage() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for (var i = 0; i < 5; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		const message_id = text;
+
+		// Add a new document in collection "cities"
+		return this.db
+		.collection(`messages`).doc(id).set({
+			id : id,
+			message_open : true,
+			date : firebase.default.firestore.FieldValue.serverTimestamp()
+		})
+		.then(() => {
+			console.log("Messages Created!");
+
+		})
+		.catch((error) => {
+			console.error("Error writing document: ", error);
+		});
+	}
+
+	addMessages() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for (var i = 0; i < 5; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		const message_id = text;
+
+		// Add a new document in collection "cities"
+		return this.db
+		.collection(`messages/${id}/main`).doc(message_id).set({
+			message_id : message_id,
+			message_main : "Welcome, this is you very own direct message board",
+			date : firebase.default.firestore.FieldValue.serverTimestamp(),
+			user_account : 1,
+		})
+		.then(() => {
+			console.log("First message Created!");
+
+		})
+		.catch((error) => {
+			console.error("Error writing document: ", error);
+		});
+	}
+
+	updateMessage() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		return this.db
+		.collection("users")
+		.doc(id)
+		.update({
+			messagecreated: true
+		});
+	}
+
+
+
 	getAccountActivity(uid) {
 		return this.db.collection(`users/${uid}/account`, ref => ref.orderBy('date', 'desc')).snapshotChanges();
 	}

@@ -153,10 +153,19 @@ const routes: Routes = [
 {
   path: 'basket-item-edit',
   loadChildren: () => import('./client/modals/basket-item-edit/basket-item-edit.module').then( m => m.BasketItemEditPageModule)
+},
+{
+  path: 'faq',
+  loadChildren: () => import('./client/modals/faq/faq.module').then( m => m.FaqPageModule)
+},
+{
+  path: 'tutorial',
+  loadChildren: () => import('./client/modals/tutorial/tutorial.module').then( m => m.TutorialPageModule)
 },  {
-    path: 'faq',
-    loadChildren: () => import('./client/modals/faq/faq.module').then( m => m.FaqPageModule)
+    path: 'buy-basket',
+    loadChildren: () => import('./client/modals/buy-basket/buy-basket.module').then( m => m.BuyBasketPageModule)
   }
+
 
 
 ];

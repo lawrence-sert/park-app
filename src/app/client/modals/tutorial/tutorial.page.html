@@ -1,0 +1,28 @@
+<ion-header [translucent]="true"  class="ion-no-border">
+	<ion-toolbar *ngFor="let tutorial of tutorial$ | async; index as i">
+		<ion-title class="g-font-size-18--xs g-color--primary heavy">
+			{{tutorial.tutorial_title}}
+		</ion-title>
+		<span slot="end"  class="g-padding-r-10--xs" (click)="closeModal()">
+			<i class="ti-close g-font-size-18--xs g-color--primary"></i>
+		</span>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-slides pager="true">
+
+		<ion-slide *ngFor="let slide of slide">
+			<div class="slide g-text-center--xs">
+				<img class="img-responsive g-margin-b-60--xs" src="{{slide.slide_image}}">
+				<h2 class="g-text-center--xs g-color--primary g-font-size-22--xs g-margin-b-30--xs">{{slide.slide_title}}</h2>
+				<p class="g-font-size-12--xs ">{{slide.slide_description}}</p>
+				<ion-fab class="g-padding-r-10--xs g-padding-y-30--xs" vertical="bottom" horizontal="end" slot="fixed" (click)="next()">
+					<span class="g-font-size-14--xs g-padding-r-10--xs">Next</span> <i class="ti-angle-right  g-font-size-12--xs g-color--primary"></i>
+				</ion-fab>
+
+			</div>
+		</ion-slide>
+
+	</ion-slides>
+</ion-content>

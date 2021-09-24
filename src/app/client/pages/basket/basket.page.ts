@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AlertController, ModalController } from '@ionic/angular';
 import { AddBasketPage } from 'src/app/client/modals/add-basket/add-basket.page';
+import { BuyBasketPage } from 'src/app/client/modals/buy-basket/buy-basket.page';
 
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
@@ -65,6 +66,7 @@ export class BasketPage implements OnInit {
 	pdcts: any;
 	item: any;
 	challenges: any;
+	pdcItems: any;
 
 
 	constructor(
@@ -124,6 +126,17 @@ export class BasketPage implements OnInit {
 
 		});
 
+		// //get all basket items for this param
+		// this.basketService.teste(param).subscribe((data) => {
+		// 	this.pdcItems = data.map((e) => {
+		// 		return {
+		// 			id: e.payload.doc.id,
+		// 			...(e.payload.doc.data() as {}),
+		// 		} as Product;
+		// 	});
+
+		// });
+
 		//read all recipes 
 		this.recipesService.getRecipes().subscribe((data) => {
 			this.recipes = data.map((e) => {
@@ -149,6 +162,27 @@ export class BasketPage implements OnInit {
 		const modal = await this.modalCtrl.create({
 			component: AddBasketPage,
 			cssClass: 'app-comment',
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
+			}
+		});
+		modal.onDidDismiss().then((modelData) => {
+			if (modelData !== null) {
+				this.modelData = modelData.data;
+				console.log('Modal Data : ' + modelData.data);
+			}
+		});
+		await modal.present();
+	}
+
+	async openBuyBasket() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = this.parameterValue;
+		const modal = await this.modalCtrl.create({
+			component: BuyBasketPage,
+			cssClass: 'app-buy-basket',
 			backdropDismiss: false,
 			componentProps: {
 				'pageId': pageId

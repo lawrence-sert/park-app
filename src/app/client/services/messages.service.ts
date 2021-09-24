@@ -23,8 +23,11 @@ export class MessagesService {
   	) {}
 
   //get user messages
-	getUserMessages(id) {
-		return this.firestore.collection(`users/${id}/messages`, ref => ref.orderBy('date', 'desc')).snapshotChanges();
+	getUserMessages() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		console.log(id);
+		return this.firestore.collection(`messages/${id}/main`, ref => ref.orderBy('date', 'asc')).snapshotChanges();
 	}
 
   createMessage(data) {
@@ -42,14 +45,14 @@ export class MessagesService {
 
 		// Add a new document in collection "cities"
 		return this.firestore
-		.collection(`users/${id}/messages`).doc(message_id).set({
+		.collection(`messages/${id}/main`).doc(message_id).set({
 			message_id : message_id,
 			message_main : data.message,
-			date : firebase.default.firestore.FieldValue.serverTimestamp()
+			date : firebase.default.firestore.FieldValue.serverTimestamp(),
+			user_account : 2,
 		})
 		.then(() => {
-			this.toastr.success('Message Save');
-			console.log("Document successfully written!");
+			console.log("User Sent message!");
 		})
 		.catch((error) => {
 			console.error("Error writing document: ", error);

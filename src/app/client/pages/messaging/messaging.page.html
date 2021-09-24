@@ -8,7 +8,7 @@
 		</ion-buttons>
 
 		<ion-title class="ion-text-center">
-			Talk With Seller
+			Chat With Us
 		</ion-title>
 
 		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
@@ -37,6 +37,10 @@
 				Chats
 			</ion-segment-button>
 
+			<ion-segment-button value="tutorials">
+				Tutorials
+			</ion-segment-button>
+
 			<ion-segment-button value="faq">
 				FAQs
 			</ion-segment-button>
@@ -56,25 +60,33 @@
 	<div class="row" [ngSwitch]="type">
 		<div class="col-xs-12" *ngSwitchCase="'messaging'">
 
-			<div *ngIf="messageSent; else emptyBasket" class="g-margin-t-60--xs">
-				<div class="chat">
-					<div class="chat-box">
+			<div *ngIf="messagecreated; else emptyMessage">
 
-						<div class="chat-l" *ngFor="let message of messages">
-							<div class="mess">
-								<p>
-									Me too. <img src="img/heart.png"  class="emoji">
-								</p>
-								<div class="check">
-									<span>4:00 PM</span>
-								</div>
+				<div class="speech-wrapper">
+
+					<span *ngFor="let message of messages">
+						<div class="bubble" *ngIf="message.user_account === 2 ">
+							<div class="txt">
+								<p class="name">You</p>
+								<p class="message">{{message.message_main}}</p>
+								<span class="timestamp">{{message.date.toDate() | date:'h:mm'}}</span>
 							</div>
-							<div class="sp"></div>
+							<div class="bubble-arrow"></div>
 						</div>
+						<!--  Speech Bubble alternative -->
+						<div class="bubble alt"  *ngIf="message.user_account === 1 ">
+							<div class="txt">
+								<p class="name alt">Park&Pick<span> ~ Admin</span></p>
+								<p class="message">{{message.message_main}}</p>
+								<span class="timestamp">{{message.date.toDate() | date:'h:mm'}}</span>
+							</div>
+							<div class="bubble-arrow alt"></div>
+						</div>
+					</span>
+					
+				</div>
 
-					</div>
-
-
+				<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs">
 					<form [formGroup]="messageForm" (ngSubmit)="onSubmit()" novalidate>
 						<div class="chat-footer">
 							<i class="ti-camera emo g-font-size-20--xs g-text-center--xs g-color--primary"></i>
@@ -90,7 +102,7 @@
 				</form>
 			</div>
 		</div>
-		<ng-template #emptyBasket>
+		<ng-template #emptyMessage>
 
 			<div class="row">
 				<div class="col-xs-12">
@@ -113,17 +125,33 @@
 
 
 			<div class="fixed-bottom g-text-center--xs g-margin-b-20--xs" (click)="messageConfirm()">
-					<button class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
-						<i class="ti-comments g-font-size-18--xs"></i> 
-						Send Us A Message
-					</button>
-				</div>
+				<button class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50 g-padding-x-80--xs">
+					<i class="ti-comments g-font-size-18--xs"></i> 
+					Send Us A Message
+				</button>
+			</div>
 
 		</ng-template>
 
 
 
 	</div>
+
+	<div class="col-xs-12" *ngSwitchCase="'tutorials'">
+		<ion-list>
+			<ion-item button  *ngFor="let tutorial of tutorials" (click)="openTutorialModal(tutorial.id)" lines="full">
+				<ion-thumbnail slot="start">
+					<img src="{{tutorial.tutorial_image}}">
+				</ion-thumbnail>
+				<ion-label>
+					<h3>{{tutorial.tutorial_title}}</h3>
+					<p>{{tutorial.tutorial_description | slice:0:120}}</p>
+				</ion-label>
+				<i class="ti-arrow-circle-right g-color--primary g-font-size-16--xs"></i>
+			</ion-item>
+		</ion-list>
+	</div>
+
 	<div class="col-xs-12" *ngSwitchCase="'faq'">
 		
 		<div class="search" *ngIf="basket?.length > 0">
