@@ -5,4 +5,5 @@ export class Basket {
 	basket_items? : any;
 	basket_completed? : boolean;
 	basket_save? : boolean;
+	basket_id? : boolean;
 }

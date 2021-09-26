@@ -36,7 +36,7 @@
 
 
 <ion-content>
-	<div *ngFor="let recipe of recipe$ | async; index as i">
+	<div *ngFor="let recipe of recipe$  | async; index as i">
 		<div class="row g-padding-y-10--xs">
 			<div class="col-xs-3" (click)="addLike()">
 				<i class="ti-heart g-color--primary g-font-size-20--xs g-padding-r-5--xs"></i>

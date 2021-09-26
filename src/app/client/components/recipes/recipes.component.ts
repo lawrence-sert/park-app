@@ -19,22 +19,22 @@ export class RecipesComponent implements OnInit {
   userRef: any;
 
 
-  recipes : any;
+  recipes: any;
 
   type: string;
 
   allLikes: Recipes[] = [];
-  likes : any;
+  likes: any;
 
   allBreakfast: Recipes[] = [];
   breakfast : any;
 
   allLunch: Recipes[] = [];
-  lunch : any;
+  lunch: any;
 
 
   allDiner: Recipes[] = [];
-  diner : any;
+  diner: any;
 
 
 	public slideOpts = {
