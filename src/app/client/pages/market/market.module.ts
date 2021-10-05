@@ -10,6 +10,9 @@ import { MarketPage } from './market.page';
 
 import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
 
+//serch module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -18,7 +21,8 @@ import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
     FormsModule,
     IonicModule,
     MarketPageRoutingModule,
-    ImageUpPageModule
+    ImageUpPageModule,
+    Ng2SearchPipeModule
   ],
   declarations: [MarketPage]
 })

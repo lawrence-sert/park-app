@@ -14,6 +14,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+//serch module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 //firestore
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -24,6 +27,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 //geo maps
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { Network } from '@ionic-native/network/ngx';
 
 //different user menus
 import { UserMenuComponent } from 'src/app/client/components/user-menu/user-menu.component';
@@ -40,18 +44,19 @@ import { VendorMenuComponent } from 'src/app/vendor/components/vendor-menu/vendo
 	ReactiveFormsModule,
 	FormsModule,
 	HttpClientModule,
+	Ng2SearchPipeModule,
 	BrowserAnimationsModule, // required animations module
 	ToastrModule.forRoot(), // ToastrModule added
 	NgxPaginationModule,
 	AngularFireModule.initializeApp(environment.firebase),
 	AngularFireDatabaseModule,
 	AngularFireAuthModule,
-
 	],
 	providers: [
 	AuthService,
 	Geolocation,
 	NativeGeocoder,
+	Network,
 	Camera,
 	{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
 	],

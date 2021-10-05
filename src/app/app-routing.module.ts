@@ -164,6 +164,10 @@ const routes: Routes = [
 },  {
     path: 'buy-basket',
     loadChildren: () => import('./client/modals/buy-basket/buy-basket.module').then( m => m.BuyBasketPageModule)
+  },
+  {
+    path: 'offline',
+    loadChildren: () => import('./client/modals/offline/offline.module').then( m => m.OfflinePageModule)
   }
 
 

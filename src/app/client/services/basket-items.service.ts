@@ -25,6 +25,11 @@ export class BasketItemsService {
 		return this.firestore.collection(`users/${uid}/basket/${bid}/basket_items`).snapshotChanges();
 	}
 
+
+	getProductItem(dattaa) {
+		return this.firestore.collection(`products`, ref => ref.where('id', '==', '07Khn')).snapshotChanges();
+	}
+
 	createBasketItem(data, pageId) {
 
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));

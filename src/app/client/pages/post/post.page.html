@@ -29,21 +29,23 @@
     </div>
 
     <div class="search">
-      <ion-item lines="none" class="ion-no-padding">
+
         <div class="additional-info">
             <div class="attendees">
               <img src="../../assets/img/users/user2.png" class="img-circle" />
-              <img src="../../assets/img/users/user1.png" class="img-circle" />
-              <img src="../../assets/img/users/user3.png" class="img-circle" />
+              <img src="../../assets/img/users/user2.png" class="img-circle" />
+              <img src="../../assets/img/users/user2.png" class="img-circle" />
+              <img src="../../assets/img/users/user2.png" class="img-circle" />
               <div class="count">
                 <img src="../../assets/img/users/person-placeholder.svg" />
                 <p>+7</p>
               </div>
             </div>
 
-            <p class="time g-font-size-12--xs" [routerLink]="['/post', post.id]">{{post.post_category}}</p>
+            <span class="time g-font-size-12--xs pull-right" [routerLink]="['/post', post.id]">{{post.post_category}}</span>
           </div>
-      </ion-item>
+          
+
     </div>
   </div>
 
@@ -60,3 +62,20 @@
 
 </div>
 </ion-content>
+
+<ion-footer>
+  <div class="row g-padding-y-10--xs">
+    <div class="col-xs-4 g-text-center--xs" (click)="addLike()">
+      <i class="ti-heart g-font-size-18--xs g-color--primary g-padding-r-5--xs"></i>
+      <span class="g-font-size-12--xs">Like</span>
+    </div>
+    <div class="col-xs-4 g-text-center--xs" (click)="openCalModal()">
+      <i class="ti-comments g-font-size-18--xs g-color--primary g-padding-r-10--xs"></i>
+      <span class="g-font-size-12--xs">Comment</span>
+    </div>
+    <div class="col-xs-4 g-text-center--xs">
+      <i class="ti-share g-font-size-18--xs g-color--primary g-padding-r-10--xs"></i>
+      <span class="g-font-size-12--xs">Share</span>
+    </div>
+  </div>
+</ion-footer>

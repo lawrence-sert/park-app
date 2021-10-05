@@ -69,6 +69,7 @@ export class BasketPage implements OnInit {
 	pdcItems: any;
 
 
+
 	constructor(
 		public 	usersService: UserService,
 		public 	basketService: BasketService,
@@ -128,107 +129,117 @@ export class BasketPage implements OnInit {
 
 		// //get all basket items for this param
 		// this.basketService.teste(param).subscribe((data) => {
-		// 	this.pdcItems = data.map((e) => {
-		// 		return {
-		// 			id: e.payload.doc.id,
-		// 			...(e.payload.doc.data() as {}),
-		// 		} as Product;
-		// 	});
+			// 	this.pdcItems = data.map((e) => {
+				// 		return {
+					// 			id: e.payload.doc.id,
+					// 			...(e.payload.doc.data() as {}),
+					// 		} as Product;
+					// 	});
 
-		// });
+					// });
 
-		//read all recipes 
-		this.recipesService.getRecipes().subscribe((data) => {
-			this.recipes = data.map((e) => {
-				return {
-					id: e.payload.doc.id,
-					...(e.payload.doc.data() as {}),
-				} as Recipes;
-			});
-		});
+					//read all recipes 
+					this.recipesService.getRecipes().subscribe((data) => {
+						this.recipes = data.map((e) => {
+							return {
+								id: e.payload.doc.id,
+								...(e.payload.doc.data() as {}),
+							} as Recipes;
+						});
+					});
 
-		this.basketService.getCartGoodsData(param);
+					this.basketService.getCartGoodsData(param);
 
-	}
 
-	segmentChanged(ev: any) {
-		console.log('Segment changed', ev);
-	}
 
-	async openCalModalBasket() {
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-		const pageId = this.parameterValue;
-		const modal = await this.modalCtrl.create({
-			component: AddBasketPage,
-			cssClass: 'app-comment',
-			backdropDismiss: false,
-			componentProps: {
-				'pageId': pageId
+					
+
+				}  
+
+
+
+
+
+
+
+				segmentChanged(ev: any) {
+					console.log('Segment changed', ev);
+				}
+
+				async openCalModalBasket() {
+					this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+					const id = this.crrntUsr.uid;
+					const pageId = this.parameterValue;
+					const modal = await this.modalCtrl.create({
+						component: AddBasketPage,
+						cssClass: 'app-comment',
+						backdropDismiss: false,
+						componentProps: {
+							'pageId': pageId
+						}
+					});
+					modal.onDidDismiss().then((modelData) => {
+						if (modelData !== null) {
+							this.modelData = modelData.data;
+							console.log('Modal Data : ' + modelData.data);
+						}
+					});
+					await modal.present();
+				}
+
+				async openBuyBasket() {
+					this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+					const id = this.crrntUsr.uid;
+					const pageId = this.parameterValue;
+					const modal = await this.modalCtrl.create({
+						component: BuyBasketPage,
+						cssClass: 'app-buy-basket',
+						backdropDismiss: false,
+						componentProps: {
+							'pageId': pageId
+						}
+					});
+					modal.onDidDismiss().then((modelData) => {
+						if (modelData !== null) {
+							this.modelData = modelData.data;
+							console.log('Modal Data : ' + modelData.data);
+						}
+					});
+					await modal.present();
+				}
+
+
+				async openCalModal() {
+					const modal = await this.modalCtrl.create({
+						component: ImageUpPage,
+						cssClass: 'app-image-up',
+						backdropDismiss: false
+					});
+
+					await modal.present();
+
+				}
+				async close() {
+					const closeModal: string = "Modal Closed";
+					await this.modalCtrl.dismiss(closeModal);
+				}
+
+
+				deleteBasket(basketItemid) {
+					this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+					const id = this.crrntUsr.uid;
+					this.basketService.deleteBasket(id, basketItemid );
+				}
+
+				deleteBasketItem(basketItemid) {
+					const param = this.parameterValue;
+					this.basketItemsService.deleteBasketItem(param,basketItemid);
+				}
+
+				editBasketItem(basketItemid) {
+
+				}
+
+
+
 			}
-		});
-		modal.onDidDismiss().then((modelData) => {
-			if (modelData !== null) {
-				this.modelData = modelData.data;
-				console.log('Modal Data : ' + modelData.data);
-			}
-		});
-		await modal.present();
-	}
-
-	async openBuyBasket() {
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-		const pageId = this.parameterValue;
-		const modal = await this.modalCtrl.create({
-			component: BuyBasketPage,
-			cssClass: 'app-buy-basket',
-			backdropDismiss: false,
-			componentProps: {
-				'pageId': pageId
-			}
-		});
-		modal.onDidDismiss().then((modelData) => {
-			if (modelData !== null) {
-				this.modelData = modelData.data;
-				console.log('Modal Data : ' + modelData.data);
-			}
-		});
-		await modal.present();
-	}
-
-
-	async openCalModal() {
-		const modal = await this.modalCtrl.create({
-			component: ImageUpPage,
-			cssClass: 'app-image-up',
-			backdropDismiss: false
-		});
-
-		await modal.present();
-
-	}
-	async close() {
-		const closeModal: string = "Modal Closed";
-		await this.modalCtrl.dismiss(closeModal);
-	}
-
-
-	deleteBasket(basketItemid) {
-		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
-		const id = this.crrntUsr.uid;
-		this.basketService.deleteBasket(id, basketItemid );
-	}
-
-	deleteBasketItem(basketItemid) {
-		const param = this.parameterValue;
-		this.basketItemsService.deleteBasketItem(param,basketItemid);
-	}
-
-	editBasketItem(basketItemid) {
-
-	}
-
-
-
-}

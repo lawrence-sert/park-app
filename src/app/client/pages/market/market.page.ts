@@ -18,6 +18,8 @@ import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 })
 export class MarketPage implements OnInit {
 
+  filterTerm: string;
+
 	uid: any;
   crrntUsr: any;
   userRef: any;

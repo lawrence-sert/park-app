@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { RecipesService } from 'src/app/client/services/recipes.service';
 import { Recipes } from 'src/app/client/models/recipes.model';
 
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -13,6 +14,8 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./recipes.component.scss'],
 })
 export class RecipesComponent implements OnInit {
+
+
 
   uid: any;
   crrntUsr: any;

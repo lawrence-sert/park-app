@@ -47,7 +47,7 @@ export class CreateBasketPage implements OnInit {
 
   ngOnInit() {
 
-    this.type = 'account';
+    this.type = 'baskets';
 
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));

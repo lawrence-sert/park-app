@@ -15,6 +15,8 @@ import { PostOptionsPage } from 'src/app/client/modals/post-options/post-options
 
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
+import { CommentPage } from 'src/app/client/modals/comment/comment.page';
+
 @Component({
 	selector: 'app-post',
 	templateUrl: './post.page.html',
@@ -26,6 +28,8 @@ export class PostPage implements OnInit {
 	crrntUsr: any;
 	userRef: any;
 	photoUrl : any;
+
+	modelData: any;
 
 	postRef: AngularFirestoreCollection<Posts>;
 	post$: Observable<Posts[]>;
@@ -135,6 +139,35 @@ export class PostPage implements OnInit {
 	async close() {
 		const closeModal: string = "Modal Closed";
 		await this.modalCtrl.dismiss(closeModal);
+	}
+
+
+	shareRecipe() {
+		
+	}
+
+	async openCommentModal() {
+		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
+		const id = this.crrntUsr.uid;
+		const pageId = this.parameterValue;
+		const modal = await this.modalCtrl.create({
+			component: CommentPage,
+			cssClass: 'app-comment',
+			backdropDismiss: false,
+			componentProps: {
+				'pageId': pageId
+			}
+		});
+
+		modal.onDidDismiss().then((modelData) => {
+			if (modelData !== null) {
+				this.modelData = modelData.data;
+				console.log('Modal Data : ' + modelData.data);
+			}
+		});
+
+		await modal.present();
+
 	}
 
 

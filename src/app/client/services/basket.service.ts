@@ -32,6 +32,8 @@ export class BasketService {
 		return this.firestore.collection(`users/${uid}/basket`, ref => ref.orderBy('basket_date', 'desc')).snapshotChanges();
 	}
 
+
+
 	createBasket(uid, data) {
 
 		this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -101,7 +103,7 @@ export class BasketService {
 						this.firestore.firestore.collection('products').doc(pdctID).get()
 						.then((docData) => {
 							const her = docData.data();
-							console.log(her);
+					
 						});
 					});
 
@@ -117,6 +119,8 @@ export class BasketService {
 	payBasket(data) {
 
 	}
+
+
 
 
 
