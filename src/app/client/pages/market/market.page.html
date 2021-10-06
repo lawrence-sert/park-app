@@ -41,7 +41,7 @@
 	<div class="search">
 		<ion-item lines="none" class="ion-no-padding">
 			<ion-icon slot="start" name="search-outline"></ion-icon>
-			<ion-input placeholder="search market place..."></ion-input>
+			<ion-input placeholder="search market place..." (ionInput)="filterList($event)"></ion-input>
 			<span slot='end'>
 				<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
 			</span>
@@ -56,184 +56,207 @@
 
 <ion-content>
 
+	<div class="g-margin-t-60--xs" *ngIf="searched; else searchedResults"> 
 
-	<div [ngSwitch]="type">
-
-		<ion-row *ngSwitchCase="'vegitables'" class="g-margin-t-60--xs">
-			<ion-col>
-				<ion-row>
-					<ion-col size="9">
-						<h2 class="g-font-size-18--xs g-color--primary">
-							Your Favorite <br>
-							<span class="light">Veggie Corner</span>
-						</h2>
-					</ion-col>
-					<ion-col size="3">
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col>
-						<div>
-							<ion-slides class="slides" [options]='slideOpts'>
-								<ion-slide *ngFor="let vegProm of veggieList; index as i">
-									<div [routerLink]="['/promotion', vegProm.id]">
-										<img src="{{vegProm.promotion_image}}">
-										<p class="title">{{vegProm.promotion_name}}</p>
-									</div>
-								</ion-slide>
-							</ion-slides>
-						</div>
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col size="6" *ngFor="let veggies of allVeggies">
-						<article [routerLink]="['/product', veggies.id]">
-							<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
-								<img class="img-responsive center-image" src="{{veggies.image}}" alt="">
-								<span class="g-font-size-14--xs g-color--primary product-title">{{veggies.item}}</span>
-							</div>
-						</article>
-						<!-- End News -->
-					</ion-col>
-				</ion-row>
-			</ion-col>
-		</ion-row>
-
-		<ion-row *ngSwitchCase="'fruit'" class="g-margin-t-60--xs">
-			<ion-col>
-				<ion-row>
-					<ion-col size="9">
-						<h2 class="g-font-size-18--xs g-color--primary">
-							A Fruit <br>
-							<span class="light">A Day</span>
-						</h2>
-					</ion-col>
-					<ion-col size="3">
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col>
-						<div>
-							<ion-slides class="slides" [options]='slideOpts'>
-								<ion-slide *ngFor="let fruitProm of fruitList; index as i">
-									<div [routerLink]="['/promotion', fruitProm.id]">
-										<img src="{{fruitProm.promotion_image}}">
-										<p class="title">{{fruitProm.promotion_name}}</p>
-									</div>
-								</ion-slide>
-							</ion-slides>
-						</div>
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col size="6" *ngFor="let fruits of allFruits">
-						<article [routerLink]="['/product', fruits.id]">
-							<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
-								<img class="img-responsive center-image" src="{{fruits.image}}" alt="">
-								<span class="g-font-size-14--xs g-color--primary product-title">{{fruits.item}}</span>
-							</div>
-						</article>
-						<!-- End News -->
-					</ion-col>
-				</ion-row>
-
-			</ion-col>
-		</ion-row>
-
-		<ion-row *ngSwitchCase="'processed'" class="g-margin-t-60--xs">
-			<ion-col>
-				<ion-row>
-					<ion-col size="9">
-						<h2 class="g-font-size-18--xs g-color--primary">
-							Your Favorite <br>
-							<span class="light">Food Corner</span>
-						</h2>
-					</ion-col>
-					<ion-col size="3">
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col>
-						<div>
-							<ion-slides class="slides" [options]='slideOpts'>
-								<ion-slide *ngFor="let foodProm of foodList; index as i">
-									<div [routerLink]="['/promotion', foodProm.id]">
-										<img src="{{foodProm.promotion_image}}">
-										<p class="title">{{foodProm.promotion_name}}</p>
-									</div>
-								</ion-slide>
-							</ion-slides>
-						</div>
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col size="6" *ngFor="let food of allFoods">
-						<article [routerLink]="['/product', food.id]">
-							<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
-								<img class="img-responsive center-image" src="{{food.image}}" alt="">
-								<span class="g-font-size-14--xs g-color--primary product-title">{{food.item}}</span>
-							</div>
-						</article>
-						<!-- End News -->
-					</ion-col>
-				</ion-row>
-
-			</ion-col>
-		</ion-row>
-
-		<ion-row *ngSwitchCase="'care'" class="g-margin-t-60--xs">
-			<ion-col>
-				<ion-row>
-					<ion-col size="9">
-						<h2 class="g-font-size-18--xs g-color--primary">
-							What Makes A<br>
-							<span class="light">Happy Home</span>
-						</h2>
-					</ion-col>
-					<ion-col size="3">
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col>
-						<div>
-							<ion-slides class="slides" [options]='slideOpts'>
-								<ion-slide *ngFor="let careProm of careList; index as i">
-									<div [routerLink]="['/promotion', careProm.id]">
-										<img src="{{careProm.promotion_image}}">
-										<p class="title">{{careProm.promotion_name}}</p>
-									</div>
-								</ion-slide>
-							</ion-slides>
-						</div>
-					</ion-col>
-				</ion-row>
-
-				<ion-row>
-					<ion-col size="6" *ngFor="let care of allCare">
-						<article [routerLink]="['/product', care.id]">
-							<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
-								<img class="img-responsive center-image" src="{{care.image}}" alt="">
-								<span class="g-font-size-14--xs g-color--primary product-title">{{care.item}}</span>
-							</div>
-						</article>
-						<!-- End News -->
-					</ion-col>
-				</ion-row>
-
-			</ion-col>
-		</ion-row>
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="g-font-size-16--xs g-color--primary">Search Results</h2>
+				<ion-list lines="full" >
+					<ion-item *ngFor="let searchItem of productSearch" [routerLink]="['/product', searchItem.id]">
+						<ion-avatar slot="start">
+							<img src="{{searchItem.image}}">
+						</ion-avatar>
+						<ion-label>
+							<h3 class="g-font-size-14--xs g-color--primary">{{searchItem.item}}</h3>
+							<p class="g-font-size-10--xs">{{searchItem.category}}</p>
+						</ion-label>
+						<span slot='end'>
+							<h3 class="g-font-size-10--xs g-color--primary">
+								{{searchItem.price}} RFW
+							</h3>
+						</span>
+					</ion-item>
+				</ion-list>
+			</div>
+		</div>
 
 	</div>
 
+	<ng-template #searchedResults>
+		<div [ngSwitch]="type">
 
+			<ion-row *ngSwitchCase="'vegitables'" class="g-margin-t-60--xs">
+				<ion-col>
+					<ion-row>
+						<ion-col size="9">
+							<h2 class="g-font-size-18--xs g-color--primary">
+								Your Favorite <br>
+								<span class="light">Veggie Corner</span>
+							</h2>
+						</ion-col>
+						<ion-col size="3">
+						</ion-col>
+					</ion-row>
 
+					<ion-row>
+						<ion-col>
+							<div>
+								<ion-slides class="slides" [options]='slideOpts'>
+									<ion-slide *ngFor="let vegProm of veggieList; index as i">
+										<div [routerLink]="['/promotion', vegProm.id]">
+											<img src="{{vegProm.promotion_image}}">
+											<p class="title">{{vegProm.promotion_name}}</p>
+										</div>
+									</ion-slide>
+								</ion-slides>
+							</div>
+						</ion-col>
+					</ion-row>
 
+					<ion-row>
+						<ion-col size="6" *ngFor="let veggies of allVeggies">
+							<article [routerLink]="['/product', veggies.id]">
+								<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
+									<img class="img-responsive center-image" src="{{veggies.image}}" alt="">
+									<span class="g-font-size-14--xs g-color--primary product-title">{{veggies.item}}</span>
+								</div>
+							</article>
+							<!-- End News -->
+						</ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'fruit'" class="g-margin-t-60--xs">
+				<ion-col>
+					<ion-row>
+						<ion-col size="9">
+							<h2 class="g-font-size-18--xs g-color--primary">
+								A Fruit <br>
+								<span class="light">A Day</span>
+							</h2>
+						</ion-col>
+						<ion-col size="3">
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col>
+							<div>
+								<ion-slides class="slides" [options]='slideOpts'>
+									<ion-slide *ngFor="let fruitProm of fruitList; index as i">
+										<div [routerLink]="['/promotion', fruitProm.id]">
+											<img src="{{fruitProm.promotion_image}}">
+											<p class="title">{{fruitProm.promotion_name}}</p>
+										</div>
+									</ion-slide>
+								</ion-slides>
+							</div>
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col size="6" *ngFor="let fruits of allFruits">
+							<article [routerLink]="['/product', fruits.id]">
+								<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
+									<img class="img-responsive center-image" src="{{fruits.image}}" alt="">
+									<span class="g-font-size-14--xs g-color--primary product-title">{{fruits.item}}</span>
+								</div>
+							</article>
+							<!-- End News -->
+						</ion-col>
+					</ion-row>
+
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'processed'" class="g-margin-t-60--xs">
+				<ion-col>
+					<ion-row>
+						<ion-col size="9">
+							<h2 class="g-font-size-18--xs g-color--primary">
+								Your Favorite <br>
+								<span class="light">Food Corner</span>
+							</h2>
+						</ion-col>
+						<ion-col size="3">
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col>
+							<div>
+								<ion-slides class="slides" [options]='slideOpts'>
+									<ion-slide *ngFor="let foodProm of foodList; index as i">
+										<div [routerLink]="['/promotion', foodProm.id]">
+											<img src="{{foodProm.promotion_image}}">
+											<p class="title">{{foodProm.promotion_name}}</p>
+										</div>
+									</ion-slide>
+								</ion-slides>
+							</div>
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col size="6" *ngFor="let food of allFoods">
+							<article [routerLink]="['/product', food.id]">
+								<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
+									<img class="img-responsive center-image" src="{{food.image}}" alt="">
+									<span class="g-font-size-14--xs g-color--primary product-title">{{food.item}}</span>
+								</div>
+							</article>
+							<!-- End News -->
+						</ion-col>
+					</ion-row>
+
+				</ion-col>
+			</ion-row>
+
+			<ion-row *ngSwitchCase="'care'" class="g-margin-t-60--xs">
+				<ion-col>
+					<ion-row>
+						<ion-col size="9">
+							<h2 class="g-font-size-18--xs g-color--primary">
+								What Makes A<br>
+								<span class="light">Happy Home</span>
+							</h2>
+						</ion-col>
+						<ion-col size="3">
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col>
+							<div>
+								<ion-slides class="slides" [options]='slideOpts'>
+									<ion-slide *ngFor="let careProm of careList; index as i">
+										<div [routerLink]="['/promotion', careProm.id]">
+											<img src="{{careProm.promotion_image}}">
+											<p class="title">{{careProm.promotion_name}}</p>
+										</div>
+									</ion-slide>
+								</ion-slides>
+							</div>
+						</ion-col>
+					</ion-row>
+
+					<ion-row>
+						<ion-col size="6" *ngFor="let care of allCare">
+							<article [routerLink]="['/product', care.id]">
+								<div class="g-bg-color--white g-box-shadow__dark-lightest-v4 g-text-center--xs">
+									<img class="img-responsive center-image" src="{{care.image}}" alt="">
+									<span class="g-font-size-14--xs g-color--primary product-title">{{care.item}}</span>
+								</div>
+							</article>
+							<!-- End News -->
+						</ion-col>
+					</ion-row>
+
+				</ion-col>
+			</ion-row>
+
+		</div>
+	</ng-template>
 
 </ion-content>

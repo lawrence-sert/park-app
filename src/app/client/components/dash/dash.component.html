@@ -1,4 +1,34 @@
+<div class="" *ngIf="searched; else searchedResults"> 
+	<div class="search">
+		<ion-item lines="none" class="ion-no-padding">
+			<ion-icon slot="start" name="search-outline"></ion-icon>
+			<ion-input placeholder="search market place..." (ionInput)="filterList($event)"></ion-input>
+			<span slot='end'>
+				<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
+			</span>
+		</ion-item>
+	</div>
+	<h2 class="g-font-size-16--xs g-color--primary">Search Results</h2>
+	<ion-list lines="full" >
+		<ion-item *ngFor="let searchItem of productSearch" [routerLink]="['/product', searchItem.id]">
+			<ion-avatar slot="start">
+				<img src="{{searchItem.post_image}}">
+			</ion-avatar>
+			<ion-label>
+				<h3 class="g-font-size-14--xs g-color--primary">{{searchItem.post_title}}</h3>
+				<p class="g-font-size-10--xs">{{searchItem.post_category}}</p>
+			</ion-label>
+			<span slot='end'>
+				<h3 class="g-font-size-10--xs g-color--primary">
+					{{searchItem.post_rating}} RFW
+				</h3>
+			</span>
+		</ion-item>
+	</ion-list>
+</div>
 
+
+<ng-template #searchedResults>
 	<div class="banner" *ngFor="let tip of allTips | slice:0:1; let i=index">
 		<img src="assets/img/dash-banner.svg" />
 
@@ -10,7 +40,7 @@
 		<div class="search">
 			<ion-item lines="none" class="ion-no-padding">
 				<ion-icon slot="start" name="search-outline"></ion-icon>
-				<ion-input placeholder="search posts..."></ion-input>
+				<ion-input placeholder="search market place..." (ionInput)="filterList($event)"></ion-input>
 				<span slot='end'>
 					<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
 				</span>
@@ -18,9 +48,9 @@
 		</div>
 	</div>
 
-
 	<div class="row">
 		<div class="col-xs-12 g-margin-t-40--xs">
+			<h3 class="g-font-size-12--xs g-color--primary">Categories</h3>
 			<ion-slides class="slides" [options]='slideOpts'>
 				<ion-slide *ngFor="let post_cat of postsCat; index as i">
 					<div [routerLink]="['/postcat', post_cat.id]">
@@ -32,8 +62,9 @@
 	</div>
 
 
-	<div class="event-slider">
-		<ion-col class="ion-text-left">
+	<div class="row event-slider">
+		<div class="col-xs-12 ion-text-left">
+			<h3 class="g-font-size-12--xs g-color--primary">Articles</h3>
 			<ion-card *ngFor="let post of posts">
 				<ion-card-header class="ion-no-padding" [routerLink]="['/post', post.id]">
 					<img src="{{post.post_image}}" class="img-responsive" />
@@ -59,10 +90,15 @@
 					</div>
 				</ion-card-content>
 			</ion-card>
-		</ion-col>
+		</div>
 	</div>
+</ng-template>
 
-	
+
+
+
+
+
 
 
 

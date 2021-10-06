@@ -11,6 +11,8 @@ import { Promotions } from 'src/app/client/models/promotions.model';
 
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
 
+import { first } from 'rxjs/operators';
+
 @Component({
   selector: 'app-market',
   templateUrl: './market.page.html',
@@ -50,6 +52,12 @@ export class MarketPage implements OnInit {
   care : any;
   careList: Promotions[] = [];
   careProms : any;
+
+
+  public productSearch: any[];
+  public foodListBackup: any[];
+
+  searched : boolean = false;
 
 
 
@@ -141,7 +149,9 @@ export class MarketPage implements OnInit {
     private modalCtrl : ModalController
     ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    this.productSearch = await this.initializeItems();
 
     // Local storage information
     this.crrntUsr = JSON.parse(window.localStorage.getItem("user"));
@@ -225,6 +235,35 @@ export class MarketPage implements OnInit {
 
 
   }
+
+
+  // search module starts here
+  async initializeItems(): Promise<any> {
+    const productSearch = await this.db.collection('products')
+    .valueChanges().pipe(first()).toPromise();
+    this.foodListBackup = productSearch;
+    return productSearch;
+  }
+
+  async filterList(evt) {
+    this.productSearch = await this.initializeItems();
+    const searchTerm = evt.srcElement.value;
+
+
+    if (!searchTerm) {
+      this.searched = false;
+      return;
+    }
+
+    this.productSearch = this.productSearch.filter(currentFood => {
+
+      if (currentFood.item && searchTerm) {
+        this.searched = true;
+        return (currentFood.item.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+      }
+    });
+  }
+  // search module ends here
 
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);

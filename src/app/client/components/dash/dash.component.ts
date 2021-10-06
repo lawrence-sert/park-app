@@ -10,6 +10,11 @@ import { Posts } from 'src/app/client/models/posts.model';
 import { PostsCatService } from 'src/app/client/services/posts-cat.service';
 import { PostsCat } from 'src/app/client/models/posts-cat.model';
 
+import { first } from 'rxjs/operators';
+
+
+
+
 
 
 @Component({
@@ -25,8 +30,15 @@ export class DashComponent implements OnInit {
 	oneTip: any;
 	allTips: Tips[] = [];
 
+
+
 	posts: any;
 	postsCat: any;
+
+	 public productSearch: any[];
+  public foodListBackup: any[];
+
+  searched : boolean = false;
 
 	public slideOpts = {
 		slidesPerView: 3,
@@ -113,7 +125,11 @@ export class DashComponent implements OnInit {
 		private db: AngularFirestore,
 		) {}
 
-	ngOnInit() {
+	async ngOnInit() {
+
+
+		this.productSearch = await this.initializeItems();
+
 		const randomNumber = Math.floor(Math.random() * 3) + 1;
 
 		console.log(randomNumber);
@@ -146,6 +162,34 @@ export class DashComponent implements OnInit {
 		});
 
 	}
+
+	// search module starts here
+  async initializeItems(): Promise<any> {
+    const productSearch = await this.db.collection('posts')
+    .valueChanges().pipe(first()).toPromise();
+    this.foodListBackup = productSearch;
+    return productSearch;
+  }
+
+  async filterList(evt) {
+    this.productSearch = await this.initializeItems();
+    const searchTerm = evt.srcElement.value;
+
+
+    if (!searchTerm) {
+      this.searched = false;
+      return;
+    }
+
+    this.productSearch = this.productSearch.filter(currentFood => {
+
+      if (currentFood.post_title && searchTerm) {
+        this.searched = true;
+        return (currentFood.post_title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+      }
+    });
+  }
+  // search module ends here
 
 
 }
