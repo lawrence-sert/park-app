@@ -168,6 +168,10 @@ const routes: Routes = [
   {
     path: 'offline',
     loadChildren: () => import('./client/modals/offline/offline.module').then( m => m.OfflinePageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./client/modals/search/search.module').then( m => m.SearchPageModule)
   }
 
 

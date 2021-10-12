@@ -1,4 +1,11 @@
-<div class="" *ngIf="searched; else searchedResults"> 
+<div class="banner" *ngFor="let tip of allTips | slice:0:1; let i=index">
+	<img src="assets/img/dash-banner.svg" />
+
+	<div class="caption ion-padding" [routerLink]="['/tip', tip.id]">
+		{{tip.tip}}
+		<i class="far fa-lightbulb g-font-size-22--xs"></i>
+	</div>
+
 	<div class="search">
 		<ion-item lines="none" class="ion-no-padding">
 			<ion-icon slot="start" name="search-outline"></ion-icon>
@@ -8,6 +15,9 @@
 			</span>
 		</ion-item>
 	</div>
+</div>
+
+<div class="" *ngIf="searched; else searchedResults"> 
 	<h2 class="g-font-size-16--xs g-color--primary">Search Results</h2>
 	<ion-list lines="full" >
 		<ion-item *ngFor="let searchItem of productSearch" [routerLink]="['/product', searchItem.id]">
@@ -29,25 +39,7 @@
 
 
 <ng-template #searchedResults>
-	<div class="banner" *ngFor="let tip of allTips | slice:0:1; let i=index">
-		<img src="assets/img/dash-banner.svg" />
-
-		<div class="caption ion-padding" [routerLink]="['/tip', tip.id]">
-			{{tip.tip}}
-			<i class="far fa-lightbulb g-font-size-22--xs"></i>
-		</div>
-
-		<div class="search">
-			<ion-item lines="none" class="ion-no-padding">
-				<ion-icon slot="start" name="search-outline"></ion-icon>
-				<ion-input placeholder="search market place..." (ionInput)="filterList($event)"></ion-input>
-				<span slot='end'>
-					<i class="ti-panel g-font-size-22--xs g-color--primary"></i>
-				</span>
-			</ion-item>
-		</div>
-	</div>
-
+	
 	<div class="row">
 		<div class="col-xs-12 g-margin-t-40--xs">
 			<h3 class="g-font-size-12--xs g-color--primary">Categories</h3>

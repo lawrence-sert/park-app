@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage'
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage'
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+import { Camera, CameraResultType } from '@capacitor/camera';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
 import { UserService } from 'src/app/auth/services/user.service';
+
 export interface imageData{
 	fileName: string;
 	filePath: string;
@@ -36,6 +37,8 @@ export class ImageUpPage implements OnInit {
 	snapshot: Observable<any>;
 	FileImageUPload: Observable<any>;
 	UserUID: AngularFirestoreDocument;
+
+	picture:string;
 
 	constructor(
 		private database: AngularFirestore,
@@ -114,6 +117,16 @@ export class ImageUpPage implements OnInit {
 		this.modalCtr.dismiss({
 			'dismissed': true
 		});
+	}
+
+	async takePicture() {
+		const image = await Camera.getPhoto({
+			quality:100,
+			allowEditing : true,
+			resultType :CameraResultType.DataUrl,
+		});
+
+		this.picture = image.dataUrl;
 	}
 
 }

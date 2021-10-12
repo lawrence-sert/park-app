@@ -6,9 +6,13 @@
 			</ion-menu-button>
 		</ion-buttons>
 
-		<ion-title class="ion-text-center">
+		<ion-title>
 			Park&Pick
 		</ion-title>
+
+		<span slot="end">
+			<i class="ti-search g-padding-r-20--xs g-font-size-18--xs" (click)="openSearchModal()"></i>
+		</span>
 
 		<span slot="end" class="g-padding-r-10--xs" (click)="openCalModal()">
 			<img class="profile-user-img-main  img-circle "
@@ -46,6 +50,12 @@
 		</ion-segment>
 
 	</ion-toolbar>
+
+
+
+
+
+
 </ion-header>
 
 <ion-content>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/auth/services/user.service';
 import { MenuController } from '@ionic/angular';
 import { ImageUpPage } from 'src/app/auth/image-up/image-up.page';
+import { SearchPage } from 'src/app/client/modals/search/search.page';
 
 @Component({
 	selector: 'app-dashboard',
@@ -57,6 +58,15 @@ export class DashboardPage implements OnInit {
 		console.log('Segment changed', ev);
 	}
 
+
+	async openSearchModal() {
+		const modal = await this.modalCtrl.create({
+			component: SearchPage,
+			cssClass: 'app-search',
+			backdropDismiss: false
+		});
+		await modal.present();
+	}
 	async openCalModal() {
 		const modal = await this.modalCtrl.create({
 			component: ImageUpPage,

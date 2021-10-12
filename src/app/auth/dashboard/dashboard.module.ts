@@ -9,6 +9,7 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 
 import { ImageUpPageModule } from 'src/app/auth/image-up/image-up.module';
+import { SearchPageModule } from 'src/app/client/modals/search/search.module';
 
 import { RecipesComponent } from 'src/app/client/components/recipes/recipes.component';
 import { MapsComponent } from 'src/app/client/components/maps/maps.component';
@@ -24,7 +25,8 @@ import { ComboComponent } from 'src/app/client/components/combo/combo.component'
 		FormsModule,
 		IonicModule,
 		DashboardPageRoutingModule,
-		ImageUpPageModule
+		ImageUpPageModule,
+		SearchPageModule
 	],
 	declarations: [
 		DashboardPage,  

@@ -1,0 +1,44 @@
+<ion-header [translucent]="true" class="ion-no-border">
+	<ion-toolbar class="g-padding-x-10--xs g-padding-y-10--xs">
+		<ion-searchbar color="primary" showCancelButton="focus" cancelButtonText="Search Park&Pick" (ionInput)="filterList($event)"></ion-searchbar>
+	</ion-toolbar>
+
+	<ion-toolbar>
+		<!-- Scrollable Segment -->
+		<ion-segment [(ngModel)]="type" (ionChange)="segmentChanged($event)" scrollable>
+			<ion-segment-button value="market">
+				<span class="g-font-size-12--xs">Market</span>
+			</ion-segment-button>
+
+			<ion-segment-button value="recipes">
+				<span class="g-font-size-12--xs">Recipes</span>
+			</ion-segment-button>
+
+			<ion-segment-button value="videos">
+				<span class="g-font-size-12--xs">Videos</span>
+			</ion-segment-button>
+
+			<ion-segment-button value="posts">
+				<span class="g-font-size-12--xs">News</span>
+			</ion-segment-button>
+		</ion-segment>
+
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	
+	<div class="g-margin-t-20--xs" *ngIf="searched; else searchedResults"> 
+		hey here we are
+	</div>
+	<ng-template #searchedResults>
+		noting searched
+	</ng-template>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="g-text-center--xs">
+    <button type="submit" class="text-uppercase s-btn s-btn--sm s-btn--primary-bg g-radius--50" (click)="closeModal()">Close </button>
+  </ion-toolbar>
+</ion-footer>
